@@ -35,25 +35,23 @@ Use the running app only as a smoke test. The exercise is about creating and val
 
 ## Do This
 
-1. Ask your coding agent to scan the exercise folder and starter app. It should report the project overview, tech stack, important files, existing npm scripts, coding conventions, security concerns, accessibility concerns, generated artifacts, and likely forbidden paths.
-2. Review the scan yourself. Remove guesses, vague advice, one-time task notes, and anything not supported by files in the repo.
-3. Ask the coding agent to create an exercise-level `AGENTS.md` next to this README using the reviewed scan. If you are using Claude Code, also create `CLAUDE.md` with the same stable rules.
-4. Review the generated `AGENTS.md` or `CLAUDE.md` as if it will guide future agents. Check that it is short, specific, repo-grounded, and includes setup commands, allowed checks, security expectations, accessibility expectations, forbidden paths, generated-artifact cleanup, and evidence expectations.
-5. Write a change request for your coding agent with the missing or incorrect rules from your review. Ask it to update the agent rules file without adding task-specific instructions.
-6. Add or update lightweight verification in `starter-react` so the rules can be tested. At minimum, make sure `npm run agent:check` works and add checks for rule size, required sections, and forbidden-path guidance.
-7. Test the rules with a fresh-agent handoff. Start a new agent session or clean context, point it only at this exercise folder, and ask it to explain the project, name the safe commands, identify forbidden paths, and run the verification gate.
-8. Fix any rule or script gaps found during the fresh-agent test, then rerun the verification gate.
-9. Keep an evidence note with the original scan, your review changes, final rules file, commands run, pass/fail output, and remaining risks.
+1. Ask your coding agent to scan this exercise and summarize:
+   project purpose, tech stack, commands, code conventions, security notes, accessibility notes, and files it should not touch.
+2. Review that summary yourself. Remove guesses and anything not proven by files in the repo.
+3. Ask the agent to create `AGENTS.md` next to this README. If you use Claude Code, create `CLAUDE.md` too.
+4. Review the rules file. Tell the agent what to fix, then have it update the file.
+5. Add a small check in `starter-react` that proves the rules file exists and has the sections future agents need.
+6. Test with a fresh agent or clean context. Give it only this exercise folder and ask what the project is, which commands to run, and which paths to avoid.
+7. Save a short evidence note with the scan, your review notes, final rules, commands run, and remaining risks.
 
 ## Deliver
 
-- Exercise-level `AGENTS.md`, plus `CLAUDE.md` if using Claude Code.
-- A reviewed and revised rules file, not the first draft from the agent.
-- `starter-react` verification updates for rule quality, forbidden paths, and `agent:check`.
-- Fresh-agent handoff evidence showing the rules were understandable without extra context.
-- Final command output from install, app smoke test, and verification.
+- `AGENTS.md`, and `CLAUDE.md` if you use Claude Code.
+- One small verification script or package script for the rules file.
+- Evidence note showing the rules were reviewed, updated, and tested with a fresh agent.
+- Command output from install, app smoke test, and verification.
 
-Do not commit generated artifacts such as `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
+Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
@@ -65,19 +63,17 @@ npm test
 npm run agent:check
 ```
 
-Also run the rule-quality commands you added, for example:
+Also run the rules check you added, for example:
 
 ```bash
-npm run rules:size
-npm run guard:forbidden-paths
+npm run rules:check
 ```
 
 Done when:
-- The rules file is based on a real repo scan, not generic advice.
-- Human review changed or tightened the first agent draft.
-- The final rules cover overview, commands, conventions, security, accessibility, forbidden paths, cleanup, and evidence.
-- A fresh agent can follow the rules and choose the right checks without additional prompting.
-- `agent:check` and your rule-quality checks pass.
-- The evidence note lists commands run, pass/fail results, changed behavior, final file list, and residual risk.
+- Rules are based on a real repo scan.
+- You reviewed and improved the agent's first draft.
+- A fresh agent can explain the project, commands, and forbidden paths.
+- `agent:check` and your rules check pass.
+- The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the rules, verification updates, and evidence are in place.
