@@ -29,17 +29,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [07. Docs & Diagrams practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#07-docs-diagrams)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `graph-to-diagram`
+- [Graphify](https://graphify.net/) - optional source for the graph snapshot
+- [Excalidraw diagram generator skill](https://github.com/github/awesome-copilot/blob/main/skills/excalidraw-diagram-generator/SKILL.md) - optional editable diagram output
 - [C4 model](https://c4model.com/)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to read `docs/graph-snapshot.md` and `docs/diagram-requests.md`, then validate the graph against current starter files before generating diagrams.
-2. Review the graph and mark stale, inferred, and verified edges so diagrams do not inherit false relationships.
-3. Have the agent generate C4-style and sequence diagrams only from verified graph edges plus cited code files.
-4. Use the diagrams to identify the notification workflow change path, then implement the smallest safe change.
-5. Ask the agent to update graph and diagram artifacts after implementation and explain which edge changed.
-6. Run a clean-context review where a new agent checks whether the diagram still predicts the changed workflow.
+1. Optional tool setup: install Graphify with `pip install graphifyy && graphify install` if you want a fresh graph, or install the Excalidraw skill with `npx skills add https://github.com/github/awesome-copilot --skill excalidraw-diagram-generator` if you want editable `.excalidraw` output.
+2. Ask your coding agent to read `docs/graph-snapshot.md` and `docs/diagram-requests.md`, then validate the graph against current starter files before generating diagrams.
+3. Review the graph and mark stale, inferred, and verified edges so diagrams do not inherit false relationships.
+4. Have the agent generate C4-style and sequence diagrams only from verified graph edges plus cited code files.
+5. Use the diagrams to identify the notification workflow change path, then implement the smallest safe change.
+6. Ask the agent to update graph and diagram artifacts after implementation and explain which edge changed.
+7. Run a clean-context review where a new agent checks whether the diagram still predicts the changed workflow.
 
 ## Deliver
 

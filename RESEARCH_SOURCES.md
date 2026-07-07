@@ -28,5 +28,14 @@ This file lists public references used to sanity-check the exercise set against 
 - Agent Skills open format: https://agentskills.io/home
 - Matt Pocock skills: https://github.com/mattpocock/skills
 - Graphify: https://github.com/Graphify-Labs/graphify
+- Graphify install and command reference: https://graphify.net/
+- Ponytail: https://github.com/DietrichGebert/ponytail
+- Excalidraw diagram generator skill: https://github.com/github/awesome-copilot/blob/main/skills/excalidraw-diagram-generator/SKILL.md
+- Excalidraw skill install listing: https://mcpservers.org/agent-skills/github/excalidraw-diagram-generator
+- AI Hero Grill Me guide: https://www.aihero.dev/skills-grill-me
+- AI Hero to-prd guide: https://www.aihero.dev/skills-to-prd
+- AI Hero to-issues guide: https://www.aihero.dev/skills-to-issues
+- AI Hero TDD skill guide: https://www.aihero.dev/skill-test-driven-development-claude-code
+- AI Hero triage skill guide: https://www.aihero.dev/burn-through-your-backlog-with-my-triage-skill
 - Awesome Agent Skills: https://github.com/VoltAgent/awesome-agent-skills
 - AI Hero daily agent skills: https://www.aihero.dev/5-agent-skills-i-use-every-day

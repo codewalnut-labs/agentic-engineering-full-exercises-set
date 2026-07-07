@@ -29,17 +29,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [04. Test Automation practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#04-test-automation)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `tdd`
+- [Matt Pocock skills](https://github.com/mattpocock/skills) - install `tdd`
+- [TDD skill guide](https://www.aihero.dev/skill-test-driven-development-claude-code)
 - [Test-driven development overview](https://martinfowler.com/bliki/TestDrivenDevelopment.html)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to read `docs/behavior-contract.md` and `docs/red-green-log.md`, then list the invoice retry rules in the order they should be tested.
-2. Review the list and block any broad rewrite plan that does not start with one failing behavior test.
-3. Have the agent write the first failing test for the highest-risk retry rule and capture the red result in the log.
-4. Ask the agent to implement only enough production code to make that test pass, then repeat for the next rule.
-5. After the retry suite is green, ask for a refactor pass that reduces duplication without changing the test contract.
-6. Review the red-green log and require evidence that each refactor happened after green, not before behavior was protected.
+1. Install or open the public skill first. Run `npx skills@latest add mattpocock/skills`, select `tdd`, and run `/setup-matt-pocock-skills` if your agent installed it. If your tool cannot install skills, use the linked guide as the workflow.
+2. Ask your coding agent to read `docs/behavior-contract.md` and `docs/red-green-log.md`, then list the invoice retry rules in the order they should be tested.
+3. Review the list and block any broad rewrite plan that does not start with one failing behavior test.
+4. Invoke `/tdd` or have the agent follow the linked guide to write the first failing test for the highest-risk retry rule and capture the red result in the log.
+5. Ask the agent to implement only enough production code to make that test pass, then repeat for the next rule.
+6. After the retry suite is green, ask for a refactor pass that reduces duplication without changing the test contract.
+7. Review the red-green log and require evidence that each refactor happened after green, not before behavior was protected.
 
 ## Deliver
 

@@ -35,12 +35,13 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to read `docs/diagram-requests.md`, `docs/excalidraw-validation-notes.md`, and the starter workflow before generating JSON.
-2. Review the requested diagram scope and remove branches that would make the Excalidraw scene too dense to read.
-3. Have the agent use the Excalidraw generator pattern to create a `.excalidraw` scene with bounded element count, readable text, and clear arrows.
-4. Ask the agent to validate the JSON schema, root fields, font choices, element positions, and arrow bindings.
-5. Compare every text node and connector against source files or observed UI behavior, then rename or delete anything unsupported.
-6. Run a clean-context opening test where a new agent loads the file, explains the diagram, and identifies one source-backed node.
+1. Install or open the public skill first. Run `npx skills add https://github.com/github/awesome-copilot --skill excalidraw-diagram-generator`, or keep the linked `SKILL.md` open if your agent cannot install skills.
+2. Ask your coding agent to read `docs/diagram-requests.md`, `docs/excalidraw-validation-notes.md`, and the starter workflow before generating JSON.
+3. Review the requested diagram scope and remove branches that would make the Excalidraw scene too dense to read.
+4. Have the agent use the Excalidraw generator pattern to create a `.excalidraw` scene with bounded element count, readable text, and clear arrows.
+5. Ask the agent to validate the JSON schema, root fields, font choices, element positions, and arrow bindings.
+6. Compare every text node and connector against source files or observed UI behavior, then rename or delete anything unsupported.
+7. Run a clean-context opening test where a new agent loads the file, explains the diagram, and identifies one source-backed node.
 
 ## Deliver
 

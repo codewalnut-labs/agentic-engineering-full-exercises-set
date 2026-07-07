@@ -29,17 +29,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `grill-me / grill-with-docs`
+- [Matt Pocock skills](https://github.com/mattpocock/skills) - install `grill-me` or `grill-with-docs`
+- [Grill Me guide](https://www.aihero.dev/skills-grill-me)
 - [Decision table testing overview](https://martinfowler.com/bliki/DecisionTable.html)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to run a grill-me interview against `docs/vague-request.md` and stop after questions, contradictions, examples, and non-goals are captured.
-2. Review the interview and answer only the questions needed to protect entitlement behavior, migration safety, and user-visible failure states.
-3. Have the agent convert the answers and `docs/decision-tree-seeds.md` into a decision tree with examples at every branch.
-4. Ask the agent to turn the tree into a small implementation contract: accepted inputs, rejected inputs, precedence rules, and merge slices.
-5. Use the contract to update the starter workflow and tests, keeping the first slice narrow enough to review independently.
-6. Re-run the grill-me prompt once after implementation and capture any branch the agent still cannot decide from the spec.
+1. Install or open the public skill first. Run `npx skills@latest add mattpocock/skills`, select `grill-me` or `grill-with-docs`, and run `/setup-matt-pocock-skills` if your agent installed it. If your tool cannot install skills, keep the linked skill guide open and ask the agent to follow that workflow.
+2. Ask your coding agent to run `/grill-me` or `/grill-with-docs` against `docs/vague-request.md` and stop after questions, contradictions, examples, and non-goals are captured.
+3. Review the interview and answer only the questions needed to protect entitlement behavior, migration safety, and user-visible failure states.
+4. Have the agent convert the answers and `docs/decision-tree-seeds.md` into a decision tree with examples at every branch.
+5. Ask the agent to turn the tree into a small implementation contract: accepted inputs, rejected inputs, precedence rules, and merge slices.
+6. Use the contract to update the starter workflow and tests, keeping the first slice narrow enough to review independently.
+7. Re-run the grill-me prompt once after implementation and capture any branch the agent still cannot decide from the spec.
 
 ## Deliver
 

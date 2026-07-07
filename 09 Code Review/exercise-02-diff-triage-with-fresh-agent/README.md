@@ -29,18 +29,21 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [09. Code Review practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#09-code-review)
+- [Matt Pocock skills](https://github.com/mattpocock/skills) - install `code-review`
+- [Code review skill](https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review)
 - [GitHub pull request review docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests)
 - [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask a fresh coding agent to review `docs/review-diff.md` without reading `docs/implementer-notes.md` first, so it is not anchored by the original implementation story.
-2. Review the fresh findings, then compare them with the implementer notes to identify missed assumptions, false positives, and real blockers.
-3. Ask the agent to verify each likely blocker against surrounding source code instead of treating the diff alone as truth.
-4. Triage findings into block merge, fix before merge, defer with issue, or dismiss with reason.
-5. Have the agent implement the most important accepted fix and add the narrowest check that proves it.
-6. Run a second clean-context review focused only on the fixed area to confirm the blocker is gone.
+1. Install or open the public review skill first. Run `npx skills@latest add mattpocock/skills`, select `code-review`, and run `/setup-matt-pocock-skills` if your agent installed it. If your tool cannot install skills, use the linked skill file as the workflow.
+2. Ask a fresh coding agent to invoke `/code-review` on `docs/review-diff.md` without reading `docs/implementer-notes.md` first, so it is not anchored by the original implementation story.
+3. Review the fresh findings, then compare them with the implementer notes to identify missed assumptions, false positives, and real blockers.
+4. Ask the agent to verify each likely blocker against surrounding source code instead of treating the diff alone as truth.
+5. Triage findings into block merge, fix before merge, defer with issue, or dismiss with reason.
+6. Have the agent implement the most important accepted fix and add the narrowest check that proves it.
+7. Run a second clean-context review focused only on the fixed area to confirm the blocker is gone.
 
 ## Deliver
 

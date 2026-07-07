@@ -29,17 +29,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [03. Context Engineering practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#03-context-engineering)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `graphify`
+- [Graphify](https://graphify.net/) - install package `graphifyy`, use CLI command `graphify`
+- [Graphify source](https://github.com/Graphify-Labs/graphify)
 - [Mermaid flowchart syntax](https://mermaid.js.org/syntax/flowchart.html) for lightweight graph views
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to read `docs/graph-extract.md`, `docs/graph-questions.md`, and the starter entry points, then propose graph nodes for modules, data, jobs, owners, and tests.
-2. Review the node list and remove low-value raw-file duplication; keep relationships that answer real change-impact questions.
-3. Have the agent produce a machine-readable or Markdown graph with edge types such as calls, owns, reads, writes, tests, and depends-on.
-4. Ask the graph questions from `docs/graph-questions.md` and require answers to cite graph edges plus source files.
-5. Use the verified graph to implement the billing analytics change with a narrow impact path.
-6. After the change, ask the agent to update only the graph edges that actually changed and record stale or uncertain edges.
+1. Install or open Graphify first. With Python 3.10+, run `pip install graphifyy && graphify install`, then use `/graphify ./raw` or the current command from the Graphify docs. If you cannot install it, follow the Graphify output shape manually.
+2. Ask your coding agent to read `docs/graph-extract.md`, `docs/graph-questions.md`, and the starter entry points, then propose graph nodes for modules, data, jobs, owners, and tests.
+3. Review the node list and remove low-value raw-file duplication; keep relationships that answer real change-impact questions.
+4. Run Graphify or have the agent produce a machine-readable graph with edge types such as calls, owns, reads, writes, tests, and depends-on.
+5. Ask the graph questions from `docs/graph-questions.md` and require answers to cite graph edges plus source files.
+6. Use the verified graph to implement the billing analytics change with a narrow impact path.
+7. After the change, ask the agent to update only the graph edges that actually changed and record stale or uncertain edges.
 
 ## Deliver
 

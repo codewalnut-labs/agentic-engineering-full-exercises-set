@@ -29,17 +29,19 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [09. Code Review practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#09-code-review)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `code review graph`
+- [Graphify](https://graphify.net/) - optional source for live call-path graph context
 - [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to read `docs/review-graph.md` and `docs/diff-summary.md`, then identify call paths, ownership boundaries, and tests touched by the discount change.
-2. Review the graph and mark any edge that is stale, inferred, or missing source evidence before using it for findings.
-3. Have the agent review the change path-by-path: entry point, domain calculation, UI display, persistence or API boundary, and tests.
-4. Ask for findings that cite both the diff and the graph edge that makes the risk important.
-5. Patch the highest-risk accepted finding and update graph notes if the fix changes ownership or call path.
-6. Run a clean-context review where a new agent starts from the graph and confirms no high-risk discount path is unreviewed.
+1. Optional tool setup: install Graphify with `pip install graphifyy && graphify install` if you want to rebuild the review graph from the starter before reviewing.
+2. Ask your coding agent to read `docs/review-graph.md` and `docs/diff-summary.md`, then identify call paths, ownership boundaries, and tests touched by the discount change.
+3. Review the graph and mark any edge that is stale, inferred, or missing source evidence before using it for findings.
+4. Have the agent review the change path-by-path: entry point, domain calculation, UI display, persistence or API boundary, and tests.
+5. Ask for findings that cite both the diff and the graph edge that makes the risk important.
+6. Patch the highest-risk accepted finding and update graph notes if the fix changes ownership or call path.
+7. Run a clean-context review where a new agent starts from the graph and confirms no high-risk discount path is unreviewed.
 
 ## Deliver
 

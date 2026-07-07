@@ -34,12 +34,13 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to read `docs/session-transcript.md`, `docs/ponytail-ladder-ledger.md`, and the migration target, then identify what the overbuilt plan wanted to add.
-2. Review the plan and force the Ponytail ladder in order: skip, reuse existing code, use platform behavior, add a dependency only if justified, then write new code last.
-3. Have the agent fill the ladder ledger with accepted and rejected rungs before editing the starter.
-4. Implement the migration slice using the smallest safe diff while preserving validation, accessibility, error handling, and data-loss protection.
-5. Ask the agent to compare the final diff against the overbuilt plan by changed files, new code, deleted code, and risk accepted.
-6. Run a clean-context review where a new agent challenges whether any new code could have been avoided safely.
+1. Install or open Ponytail first. For Codex, run `codex plugin marketplace add DietrichGebert/ponytail`, restart Codex, open `/plugins`, install Ponytail, then review and trust its `/hooks`. For Claude Code, use the plugin commands from the linked Ponytail repo.
+2. Ask your coding agent to read `docs/session-transcript.md`, `docs/ponytail-ladder-ledger.md`, and the migration target, then identify what the overbuilt plan wanted to add.
+3. Review the plan and force the Ponytail ladder in order: skip, reuse existing code, use platform behavior, add a dependency only if justified, then write new code last.
+4. Have the agent fill the ladder ledger with accepted and rejected rungs before editing the starter.
+5. Implement the migration slice using the smallest safe diff while preserving validation, accessibility, error handling, and data-loss protection.
+6. Ask the agent to compare the final diff against the overbuilt plan by changed files, new code, deleted code, and risk accepted.
+7. Run a clean-context review where a new agent challenges whether any new code could have been avoided safely.
 
 ## Deliver
 

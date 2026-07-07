@@ -29,17 +29,21 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `to-prd / to-issues`
+- [Matt Pocock skills](https://github.com/mattpocock/skills) - install `to-prd` and `to-issues`
+- [to-prd guide](https://www.aihero.dev/skills-to-prd)
+- [to-issues guide](https://www.aihero.dev/skills-to-issues)
 - [GitHub issue planning concepts](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to extract goals, users, constraints, metrics, risks, and open questions from `docs/product-conversation.md` without creating issues yet.
-2. Review the extraction and decide what belongs in the PRD, what is an assumption, and what must be left out of scope.
-3. Have the agent draft a PRD with success metric, release guardrail, non-goals, and acceptance criteria that can be tested in the starter.
-4. Convert the PRD into vertical issues using `docs/slice-board.md`: each card should have independent files, checks, dependencies, and review evidence.
-5. Ask the agent to implement or dry-run one thin slice so the issue format is proven by real work, not only planning.
-6. Run a handoff review where a fresh agent chooses the next safe issue and explains why it can be worked independently.
+1. Install or open the public skills first. Run `npx skills@latest add mattpocock/skills`, select `to-prd`, `to-issues`, and `/setup-matt-pocock-skills`, then run `/setup-matt-pocock-skills` if your agent installed it. If your tool cannot install skills, use the linked guides as the workflow.
+2. Ask your coding agent to extract goals, users, constraints, metrics, risks, and open questions from `docs/product-conversation.md` without creating issues yet.
+3. Review the extraction and decide what belongs in the PRD, what is an assumption, and what must be left out of scope.
+4. Invoke `/to-prd` or have the agent follow the linked guide to draft a PRD with success metric, release guardrail, non-goals, and acceptance criteria that can be tested in the starter.
+5. Invoke `/to-issues` or have the agent follow the linked guide to convert the PRD into vertical issues using `docs/slice-board.md`; each card should have independent files, checks, dependencies, and review evidence.
+6. Ask the agent to implement or dry-run one thin slice so the issue format is proven by real work, not only planning.
+7. Run a handoff review where a fresh agent chooses the next safe issue and explains why it can be worked independently.
 
 ## Deliver
 
