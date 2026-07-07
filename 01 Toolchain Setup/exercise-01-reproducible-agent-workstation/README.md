@@ -40,7 +40,7 @@ Use the running app only as a smoke test. The exercise is about creating and val
 2. Review that summary yourself. Remove guesses and anything not proven by files in the repo.
 3. Ask the agent to create `AGENTS.md` next to this README. If you use Claude Code, create `CLAUDE.md` too.
 4. Review the rules file. Tell the agent what to fix, then have it update the file.
-5. Run the existing checks. If you want an extra guard, add a small `rules:check` script that proves the rules file has the sections future agents need.
+5. Run the setup and check commands that your rules file tells future agents to use.
 6. Test with a fresh agent or clean context. Give it only this exercise folder and ask what the project is, which commands to run, and which paths to avoid.
 7. Save a short evidence note with the scan, your review notes, final rules, commands run, and remaining risks.
 
@@ -55,25 +55,11 @@ Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache fo
 
 ## Verify
 
-Run from the repository root:
-
-```bash
-cd "01 Toolchain Setup/exercise-01-reproducible-agent-workstation/starter-react"
-npm test
-npm run agent:check
-```
-
-If you added a rules check, run it too:
-
-```bash
-npm run rules:check
-```
-
 Done when:
 - Rules are based on a real repo scan.
 - You reviewed and improved the agent's first draft.
 - A fresh agent can explain the project, commands, and forbidden paths.
-- `agent:check` passes, and any rules check you added passes.
+- The commands named in the rules file were run or clearly marked as not applicable.
 - The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the rules and evidence are in place.
