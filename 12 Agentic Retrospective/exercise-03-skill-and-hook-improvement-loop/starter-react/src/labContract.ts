@@ -1,0 +1,56 @@
+export interface LabContract {
+  title: string;
+  competency: string;
+  domain: string;
+  mission: string;
+  outcome: string;
+  entities: string[];
+  seededDefects: string[];
+  verificationGates: string[];
+  agentWorkflow: string[];
+  workingDeliverables: string[];
+  seniorSignals: string[];
+}
+
+export const labContract: LabContract = {
+  "title": "Skill and Hook Improvement Loop",
+  "competency": "12. Agentic Retrospective - Session review, waste reduction, and improvement",
+  "domain": "Skill and hook improvement loop from failed sessions",
+  "mission": "Run a mini retro on a flawed team skill and hook setup, then revise both to reduce future rework.",
+  "outcome": "A flawed skill and hook setup is improved using real session evidence and evals.",
+  "entities": [
+    "flawed skill",
+    "hook failure",
+    "eval case",
+    "improved trigger"
+  ],
+  "seededDefects": [
+    "skill triggers for unrelated reviews",
+    "hook blocks harmless read commands",
+    "eval checks output length but not correctness"
+  ],
+  "verificationGates": [
+    "before/after eval",
+    "hook policy tests",
+    "trigger negative cases",
+    "maintenance note"
+  ],
+  "agentWorkflow": [
+    "Ask the coding agent to inspect this lab contract, starter code, docs, and tests before proposing a plan.",
+    "Revise the agent plan so it exercises the competency practice and avoids the common mistake.",
+    "Implement the smallest working change that addresses the seeded defects.",
+    "Run the verification gates and capture command evidence before writing the final review note."
+  ],
+  "workingDeliverables": [
+    "Revised skill and hook implementation.",
+    "Before/after eval harness and results.",
+    "Any starter code changes needed to exercise the workflow.",
+    "Maintenance notes for future retros."
+  ],
+  "seniorSignals": [
+    "Run the provided flawed skill/hook against seed scenarios and capture failures.",
+    "Improve trigger descriptions, references, policy logic, and output shape.",
+    "Add an eval harness that compares before and after behavior.",
+    "Document only the decisions needed for future maintainers."
+  ]
+};

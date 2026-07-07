@@ -1,0 +1,14 @@
+# 07. Docs & Diagrams
+
+Diagrams and architecture decision records
+
+## What Mastery Looks Like
+
+Decisions, diagrams, and non-obvious system behavior are recorded while context is fresh and verified against code.
+
+## Exercises
+
+- [Exercise 01: ADR for Architecture Change](./exercise-01-adr-for-architecture-change/README.md)
+- [Exercise 02: C4 and Sequence Diagram From Code](./exercise-02-c4-and-sequence-diagram-from-code/README.md)
+- [Exercise 03: Runbook Drift Repair](./exercise-03-runbook-drift-repair/README.md)
+- [Exercise 04: Imported Generate Diagram](./exercise-04-imported-generate-diagram/README.md)

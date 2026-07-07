@@ -1,0 +1,56 @@
+export interface LabContract {
+  title: string;
+  competency: string;
+  domain: string;
+  mission: string;
+  outcome: string;
+  entities: string[];
+  seededDefects: string[];
+  verificationGates: string[];
+  agentWorkflow: string[];
+  workingDeliverables: string[];
+  seniorSignals: string[];
+}
+
+export const labContract: LabContract = {
+  "title": "Performance and A11y Evidence Gate",
+  "competency": "08. Evidence-led PRs - PR gate evidence and handoff",
+  "domain": "Performance and accessibility gate for a generated UI change",
+  "mission": "Attach performance and accessibility evidence to a UI change so reviewers can judge risk quickly.",
+  "outcome": "Performance and accessibility are measured and improved before review.",
+  "entities": [
+    "Lighthouse report",
+    "a11y violation",
+    "budget threshold",
+    "before/after capture"
+  ],
+  "seededDefects": [
+    "largest contentful section regresses past budget",
+    "button has no accessible name",
+    "report is generated but not attached to evidence"
+  ],
+  "verificationGates": [
+    "a11y check",
+    "performance budget",
+    "before/after report",
+    "evidence pack link"
+  ],
+  "agentWorkflow": [
+    "Ask the coding agent to inspect this lab contract, starter code, docs, and tests before proposing a plan.",
+    "Revise the agent plan so it exercises the competency practice and avoids the common mistake.",
+    "Implement the smallest working change that addresses the seeded defects.",
+    "Run the verification gates and capture command evidence before writing the final review note."
+  ],
+  "workingDeliverables": [
+    "Performance/a11y check configuration.",
+    "Code fixes for measured issues.",
+    "Before/after reports or screenshots.",
+    "Thresholds documented in the PR evidence pack."
+  ],
+  "seniorSignals": [
+    "Run or add automated performance and accessibility checks relevant to the starter.",
+    "Fix at least one real issue discovered by those checks.",
+    "Capture before/after evidence.",
+    "Fail the gate when regressions exceed the chosen threshold."
+  ]
+};

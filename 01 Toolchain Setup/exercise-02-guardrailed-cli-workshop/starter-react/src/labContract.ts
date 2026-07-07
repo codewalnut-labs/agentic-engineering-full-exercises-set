@@ -1,0 +1,56 @@
+export interface LabContract {
+  title: string;
+  competency: string;
+  domain: string;
+  mission: string;
+  outcome: string;
+  entities: string[];
+  seededDefects: string[];
+  verificationGates: string[];
+  agentWorkflow: string[];
+  workingDeliverables: string[];
+  seniorSignals: string[];
+}
+
+export const labContract: LabContract = {
+  "title": "Guardrailed CLI Workshop",
+  "competency": "01. Toolchain Setup - Project rules, hooks, guardrails, and CLI or MCP wiring",
+  "domain": "Runtime command guardrails for agent-driven maintenance",
+  "mission": "Design the safety rails for an agent that can inspect code, run checks, and collect logs without touching secrets or destructive commands.",
+  "outcome": "The agent has useful autonomy, but dangerous paths and tools are blocked by executable guardrails rather than tribal warnings.",
+  "entities": [
+    "command policy",
+    "PreToolUse simulator",
+    "secret path denylist",
+    "CLI allowlist"
+  ],
+  "seededDefects": [
+    "recursive delete is allowed outside the exercise folder",
+    ".env.local read is warned instead of blocked",
+    "gh workflow dispatch is allowed without a branch guard"
+  ],
+  "verificationGates": [
+    "guardrail unit cases",
+    "denylist simulation",
+    "allowed command smoke",
+    "policy diff review"
+  ],
+  "agentWorkflow": [
+    "Ask the coding agent to inspect this lab contract, starter code, docs, and tests before proposing a plan.",
+    "Revise the agent plan so it exercises the competency practice and avoids the common mistake.",
+    "Implement the smallest working change that addresses the seeded defects.",
+    "Run the verification gates and capture command evidence before writing the final review note."
+  ],
+  "workingDeliverables": [
+    "Executable guardrail script and policy config.",
+    "Automated guardrail test cases.",
+    "Updated starter scripts invoking the guardrail.",
+    "Evidence showing blocked and allowed examples."
+  ],
+  "seniorSignals": [
+    "Create a guardrail policy for secrets, destructive git operations, generated artifacts, and external CLIs.",
+    "Implement a local hook simulator or PreToolUse-style script that blocks `.env`, secret manager paths, force pushes, recursive deletes outside the exercise, and unapproved CLIs.",
+    "Add tests or table-driven cases for allowed, warned, and blocked commands.",
+    "Wire the guardrail into `agent:check` so it can run before an agent session."
+  ]
+};

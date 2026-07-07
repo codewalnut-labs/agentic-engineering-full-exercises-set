@@ -1,0 +1,289 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #24211d;
+  background: #f6eee6;
+}
+
+button {
+  font: inherit;
+}
+
+.shell {
+  width: min(1320px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.page-header,
+.panel {
+  border: 1px solid #dccbbb;
+  background: #ffffff;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+}
+
+.page-header p:last-child {
+  margin-bottom: 0;
+  color: #6f5d4d;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #c46a1a;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+.section-kicker,
+dt,
+small {
+  color: #7c6653;
+  font-size: 12px;
+}
+
+.section-kicker,
+dt {
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.page-header button,
+.request {
+  border: 0;
+}
+
+button {
+  padding: 10px 14px;
+  color: #ffffff;
+  background: #c46a1a;
+  cursor: pointer;
+}
+
+.secondary-button {
+  color: #8f4d13;
+  background: #f6dcc4;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+  align-items: start;
+}
+
+.panel {
+  padding: 24px;
+}
+
+.main-column {
+  display: grid;
+  gap: 16px;
+}
+
+.request-list {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  position: sticky;
+  top: 16px;
+}
+
+.request {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px;
+  text-align: left;
+  background: #f9f4ef;
+}
+
+.request span:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.request.active {
+  color: #ffffff;
+  background: #3a2a1f;
+}
+
+.summary-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.metadata {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0 0 24px;
+}
+
+.metadata div {
+  border: 1px solid #eadfd4;
+  padding: 12px;
+}
+
+dt {
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 4px 0 0;
+  font-weight: 800;
+}
+
+.business-reason {
+  color: #5e5045;
+}
+
+.actor-grid,
+.split-panel {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.actor-card,
+.check-card {
+  display: grid;
+  gap: 6px;
+  border: 1px solid #eadfd4;
+  padding: 12px;
+}
+
+.workflow-map {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.workflow-step {
+  min-height: 86px;
+  border: 1px solid #eadfd4;
+  padding: 12px;
+  background: #fffaf6;
+}
+
+.workflow-step span,
+.pill,
+.status {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px 7px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.workflow-step span {
+  color: #7c6653;
+  background: #f6eee6;
+}
+
+.workflow-step.complete {
+  border-color: #8b9b72;
+}
+
+.workflow-step.current {
+  border-color: #c46a1a;
+  box-shadow: inset 4px 0 0 #c46a1a;
+}
+
+.status,
+.pill.passed,
+.pill.healthy {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.pill.pending,
+.pill.waiting,
+.pill.warning,
+.pill.running,
+.submitted,
+.security-review,
+.data-owner-review,
+.provisioning,
+.rollback-requested {
+  color: #92400e;
+  background: #fef3c7;
+}
+
+.failed-provisioning,
+.pill.degraded {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.timeline {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 180px 1fr 180px;
+  gap: 12px;
+  border-bottom: 1px solid #eadfd4;
+  padding-bottom: 10px;
+}
+
+.check-list {
+  display: grid;
+  gap: 8px;
+}
+
+@media (max-width: 800px) {
+  .layout,
+  .metadata,
+  .actor-grid,
+  .split-panel,
+  .workflow-map,
+  .timeline li {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header,
+  .summary-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .request-list {
+    position: static;
+  }
+}

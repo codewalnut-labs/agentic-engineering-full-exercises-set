@@ -1,0 +1,17 @@
+[
+  {
+    "name": "should_trigger_on_release_notes",
+    "prompt": "Generate release notes from these commits and flag missing verification evidence.",
+    "shouldTrigger": true
+  },
+  {
+    "name": "should_trigger_on_changelog_review",
+    "prompt": "Review the changelog for customer impact, breaking changes, and rollback notes.",
+    "shouldTrigger": true
+  },
+  {
+    "name": "should_not_trigger_on_code_review",
+    "prompt": "Review this React diff for accessibility bugs.",
+    "shouldTrigger": false
+  }
+]

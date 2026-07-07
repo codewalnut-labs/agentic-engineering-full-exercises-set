@@ -1,0 +1,56 @@
+export interface LabContract {
+  title: string;
+  competency: string;
+  domain: string;
+  mission: string;
+  outcome: string;
+  entities: string[];
+  seededDefects: string[];
+  verificationGates: string[];
+  agentWorkflow: string[];
+  workingDeliverables: string[];
+  seniorSignals: string[];
+}
+
+export const labContract: LabContract = {
+  "title": "ADR for Architecture Change",
+  "competency": "07. Docs & Diagrams - Diagrams and architecture decision records",
+  "domain": "Architecture decision for extracting workflow state",
+  "mission": "Write an ADR for moving workflow state out of React-only local state into a service boundary.",
+  "outcome": "An architecture decision is implemented, tested, and documented while context is fresh.",
+  "entities": [
+    "state boundary",
+    "service module",
+    "ADR",
+    "alternative"
+  ],
+  "seededDefects": [
+    "ADR is written before behavior is verified",
+    "service extraction changes selected item persistence",
+    "diagram omits the new service boundary"
+  ],
+  "verificationGates": [
+    "boundary behavior test",
+    "ADR completeness check",
+    "diagram verification",
+    "architecture smoke"
+  ],
+  "agentWorkflow": [
+    "Ask the coding agent to inspect this lab contract, starter code, docs, and tests before proposing a plan.",
+    "Revise the agent plan so it exercises the competency practice and avoids the common mistake.",
+    "Implement the smallest working change that addresses the seeded defects.",
+    "Run the verification gates and capture command evidence before writing the final review note."
+  ],
+  "workingDeliverables": [
+    "Implemented architecture change.",
+    "Tests for the changed boundary.",
+    "ADR tied to code and test evidence.",
+    "Verified diagram or dependency map."
+  ],
+  "seniorSignals": [
+    "Move workflow state or another meaningful boundary out of an overgrown component into a service/module.",
+    "Add tests proving the new boundary preserves behavior.",
+    "Write the ADR after implementation evidence exists, including alternatives and trade-offs.",
+    "Update a diagram only where it explains the non-obvious system change."
+  ]
+};
