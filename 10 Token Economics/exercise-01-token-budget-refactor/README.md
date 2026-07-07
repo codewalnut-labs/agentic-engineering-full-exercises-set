@@ -2,21 +2,16 @@
 
 # Token Budget Refactor
 
-## Competency
+**Goal:** Plan a refactor with a token budget, choosing context, model effort, and automation deliberately.
 
-10. Token Economics - Right model and token cost optimizations
+**Outcome:** A refactor is planned and executed with expensive reasoning reserved for judgment-heavy work.
 
-## Your Mission
+## Start Here
 
-Plan a refactor with a token budget, choosing context, model effort, and automation deliberately.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-10 Token Economics/exercise-01-token-budget-refactor/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "10 Token Economics/exercise-01-token-budget-refactor/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/large-doc-pack.md](./docs/large-doc-pack.md)
+- [docs/usage-log.md](./docs/usage-log.md)
 
-A refactor is planned and executed with expensive reasoning reserved for judgment-heavy work.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [10. Token Economics practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#10-token-economics)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Spend expensive tokens on judgment. Do not use them for routine edits.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Create a context and model/effort budget before touching code.
+4. Move deterministic edits into a script or small helper where appropriate.
+5. Implement the refactor and tests without loading unrelated files.
+6. Compare planned vs actual context, commands, and verification effort.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Use stronger models for planning, architecture, and review; use cheaper models for routine implementation.
-- Match effort to task difficulty instead of defaulting to max effort.
-- Keep always-on context small with lean rules, few skills, and only needed tools.
-- Use one task per session and compact or resume from summaries to avoid rebilling stale context.
-
-Common mistake to avoid: Using the strongest model on simple edits spends expensive tokens on work that never needed them.
-
-Mastery signal: Model and effort are chosen on purpose, cost tracks task difficulty, and routine work runs cheap.
-
-## Hands-On Scope
-
-- Create a context and model/effort budget before touching code.
-- Move deterministic edits into a script or small helper where appropriate.
-- Implement the refactor and tests without loading unrelated files.
-- Compare planned vs actual context, commands, and verification effort.
-
-## Required Working Deliverables
+## Deliver
 
 - Working refactor in the starter.
 - Tests proving behavior.
 - Context/model budget ledger.
 - Automation for any repeated deterministic work.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "10 Token Economics/exercise-01-token-budget-refactor/starter-react" && npm test
+cd "10 Token Economics/exercise-01-token-budget-refactor/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- context manifest
+- model routing log
+- refactor test
+- automation savings estimate
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Does cost track task difficulty instead of session sprawl?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

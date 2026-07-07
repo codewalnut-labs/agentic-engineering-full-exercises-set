@@ -2,21 +2,16 @@
 
 # Session Waste Retro From Logs
 
-## Competency
+**Goal:** Analyze provided agent session logs to find retry loops, redundant file reads, and context waste.
 
-12. Agentic Retrospective - Session review, waste reduction, and improvement
+**Outcome:** Agent session waste becomes measurable, then one waste pattern is eliminated with a system fix.
 
-## Your Mission
+## Start Here
 
-Analyze provided agent session logs to find retry loops, redundant file reads, and context waste.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/session-log.md](./docs/session-log.md)
+- [docs/usage-summary.md](./docs/usage-summary.md)
 
-Agent session waste becomes measurable, then one waste pattern is eliminated with a system fix.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [12. Agentic Retrospective practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#12-agentic-retrospective)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Review how you worked with the agent, then turn the lessons into better rules.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Parse the provided session logs for retry loops, repeated reads, abandoned turns, tool failures, and context bloat.
+4. Build a small metrics script rather than hand-counting.
+5. Implement one rule, hook, skill, or workflow change that targets the top waste source.
+6. Re-run the seed scenario or simulation to show expected reduction.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Review agent sessions every one to two weeks like a sprint retro.
-- Analyze wrong turns, re-prompts, steers, abandoned chats, and redone work.
-- Track retry loops, oversized context, repeated file reads, cost, and tool failures.
-- Diff agent output against final commits to find what was rewritten by hand.
-
-Common mistake to avoid: Repeated mistakes are often setup problems, not just model failures.
-
-Mastery signal: The same mistake stops recurring, rules and skills grow from evidence, and cost and rework trend down.
-
-## Hands-On Scope
-
-- Parse the provided session logs for retry loops, repeated reads, abandoned turns, tool failures, and context bloat.
-- Build a small metrics script rather than hand-counting.
-- Implement one rule, hook, skill, or workflow change that targets the top waste source.
-- Re-run the seed scenario or simulation to show expected reduction.
-
-## Required Working Deliverables
+## Deliver
 
 - Session log analyzer script.
 - Waste metrics report.
 - Implemented system fix in rules, hook, or skill.
 - Before/after comparison evidence.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/starter-react" && npm test
+cd "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- log parser test
+- waste metric report
+- rule/hook/skill fix
+- before/after simulation
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Does the retro change the operating system, or merely complain about the model?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

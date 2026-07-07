@@ -2,21 +2,16 @@
 
 # Flaky Checkout E2E Rescue
 
-## Competency
+**Goal:** Replace brittle checkout tests with a reliable Playwright suite that uses user-facing locators and web-first assertions.
 
-04. Test Automation - Reliable E2E test generation
+**Outcome:** The checkout suite becomes trustworthy enough to protect a refactor.
 
-## Your Mission
+## Start Here
 
-Replace brittle checkout tests with a reliable Playwright suite that uses user-facing locators and web-first assertions.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-04 Test Automation/exercise-01-flaky-checkout-e2e-rescue/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "04 Test Automation/exercise-01-flaky-checkout-e2e-rescue/starter-react"
@@ -24,55 +19,47 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/flaky-test-notes.md](./docs/flaky-test-notes.md)
 
-The checkout suite becomes trustworthy enough to protect a refactor.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [04. Test Automation practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#04-test-automation)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Agents can write tests quickly; your job is to make those tests reliable.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Replace brittle selectors and fixed waits with role locators and web-first assertions.
+4. Mock payment, tax, clock, or third-party boundaries without mocking away checkout behavior.
+5. Make every test independent and parallel-safe.
+6. Run repeated local passes and preserve traces or reports for failures.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Test real user flows and behavior users notice.
-- Use role-based locators rather than brittle CSS or XPath selectors.
-- Make every test independent so suites run in parallel without cascading failures.
-- Use auto-waiting assertions instead of fixed sleeps.
-
-Common mistake to avoid: Flaky tests train teams to ignore red; green means little when the suite never fails for real regressions.
-
-Mastery signal: Tests fail for regressions, stay green across repeated CI runs, and are trusted enough to refactor behind.
-
-## Hands-On Scope
-
-- Replace brittle selectors and fixed waits with role locators and web-first assertions.
-- Mock payment, tax, clock, or third-party boundaries without mocking away checkout behavior.
-- Make every test independent and parallel-safe.
-- Run repeated local passes and preserve traces or reports for failures.
-
-## Required Working Deliverables
+## Deliver
 
 - Playwright tests for the main checkout flows.
 - Deterministic mocks and fixtures.
 - Any app accessibility/testability fixes required for role locators.
 - Repeated-run evidence and trace/report configuration.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "04 Test Automation/exercise-01-flaky-checkout-e2e-rescue/starter-react" && npm test
+cd "04 Test Automation/exercise-01-flaky-checkout-e2e-rescue/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- role locator audit
+- parallel repeat run
+- trace capture
+- payment boundary fixture
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would you trust this suite before letting an agent refactor checkout?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

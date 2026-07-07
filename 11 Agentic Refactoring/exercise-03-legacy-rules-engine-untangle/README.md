@@ -2,22 +2,17 @@
 
 # Legacy Rules Engine Untangle
 
-## Competency
+**Goal:** Refactor a Spring Boot rules endpoint and React UI adapter without changing the contract clients depend on.
 
-11. Agentic Refactoring - Test-driven tech-debt cleanup
+**Outcome:** A Spring Boot rules endpoint is refactored only after API behavior and logs are protected.
 
-## Your Mission
+## Start Here
 
-Refactor a Spring Boot rules endpoint and React UI adapter without changing the contract clients depend on.
+Starter folders:
+- [starter-react](./starter-react)
+- [starter-spring-boot](./starter-spring-boot)
 
-## Starter Project
-
-```text
-11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/starter-react
-11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/starter-spring-boot
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/starter-react"
@@ -25,62 +20,56 @@ npm install
 npm run dev
 ```
 
-Run the Spring Boot starter:
+Spring Boot starter:
 
 ```bash
 cd "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/starter-spring-boot"
 mvn spring-boot:run
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/legacy-case-table.md](./docs/legacy-case-table.md)
+- [docs/rules-contract.md](./docs/rules-contract.md)
 
-A Spring Boot rules endpoint is refactored only after API behavior and logs are protected.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [11. Agentic Refactoring practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#11-agentic-refactoring)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Before the agent cleans up old code, make it prove behavior stays the same.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Add characterization and integration tests around the legacy rules endpoint.
+4. Separate validation, rule evaluation, persistence, and side effects.
+5. Preserve API shape, logs, and frontend behavior unless explicitly categorized as bugs.
+6. Compare before/after responses using golden cases.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Generate a behavior spec from current code before changing structure.
-- Add characterization tests and get a green baseline first.
-- Mark behavior as must-preserve, intentionally-changing, or actually-a-bug.
-- Refactor in small chunks while isolating I/O, validation, side effects, and conditionals.
-
-Common mistake to avoid: A clean-looking rewrite that changes behavior is still a bug.
-
-Mastery signal: A green baseline exists before refactoring, every chunk stays green, and behavior is identical where it must be.
-
-## Hands-On Scope
-
-- Add characterization and integration tests around the legacy rules endpoint.
-- Separate validation, rule evaluation, persistence, and side effects.
-- Preserve API shape, logs, and frontend behavior unless explicitly categorized as bugs.
-- Compare before/after responses using golden cases.
-
-## Required Working Deliverables
+## Deliver
 
 - Spring Boot characterization/integration tests.
 - Refactored backend rules code.
 - React adapter updates only where needed.
 - Golden-case comparison evidence.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/starter-react" && npm test
+cd "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/starter-react" && npm run agent:check
+cd "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/starter-spring-boot" && mvn test
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- Spring characterization tests
+- API golden comparison
+- React adapter smoke
+- contract preservation check
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would you let an agent continue refactoring this service after seeing the safety net?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

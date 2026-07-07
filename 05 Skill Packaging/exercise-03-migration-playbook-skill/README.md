@@ -2,21 +2,16 @@
 
 # Migration Playbook Skill
 
-## Competency
+**Goal:** Package a migration workflow for converting legacy components to typed React modules with tests and review notes.
 
-05. Skill Packaging - Workflow packaging into reusable skills
+**Outcome:** A migration recipe becomes a skill and proves itself by migrating a real starter component.
 
-## Your Mission
+## Start Here
 
-Package a migration workflow for converting legacy components to typed React modules with tests and review notes.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-05 Skill Packaging/exercise-03-migration-playbook-skill/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "05 Skill Packaging/exercise-03-migration-playbook-skill/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/legacy-component-map.md](./docs/legacy-component-map.md)
+- [docs/migration-notes.md](./docs/migration-notes.md)
 
-A migration recipe becomes a skill and proves itself by migrating a real starter component.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-If a workflow works, package it once so the whole team can use it.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Package the migration workflow as a focused skill with references for edge cases.
+4. Apply the skill to convert a legacy component to typed React with tests.
+5. Add an eval case for when the skill should not run.
+6. Record the gaps discovered during real use and refine the skill.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Notice repeated prompts and turn them into focused skills.
-- Write a SKILL.md with a precise use-when description that can trigger correctly.
-- Keep the skill body lean and push long detail into references.
-- Include when-to-use, when-not-to-use, and a concrete example.
-
-Common mistake to avoid: A vague description means the agent never loads the skill or loads it at the wrong time.
-
-Mastery signal: The agent invokes the right skill on its own and teammates get consistent workflow output across machines.
-
-## Hands-On Scope
-
-- Package the migration workflow as a focused skill with references for edge cases.
-- Apply the skill to convert a legacy component to typed React with tests.
-- Add an eval case for when the skill should not run.
-- Record the gaps discovered during real use and refine the skill.
-
-## Required Working Deliverables
+## Deliver
 
 - Migration skill folder.
 - A completed component migration in `starter-react`.
 - Tests proving migrated behavior.
 - Before/after skill eval notes.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "05 Skill Packaging/exercise-03-migration-playbook-skill/starter-react" && npm test
+cd "05 Skill Packaging/exercise-03-migration-playbook-skill/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- migration eval
+- component behavior test
+- trigger negative case
+- before/after skill comparison
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Does this lower migration risk across a team, or does it only work for the author?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

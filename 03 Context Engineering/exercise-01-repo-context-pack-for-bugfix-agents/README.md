@@ -2,21 +2,16 @@
 
 # Repo Context Pack for Bugfix Agents
 
-## Competency
+**Goal:** Build a compact context layer so future bugfix agents understand ownership, commands, and safe inspection paths.
 
-03. Context Engineering - Agent working-context curation
+**Outcome:** A fresh agent can fix a seeded bug using project context files instead of chat paste.
 
-## Your Mission
+## Start Here
 
-Build a compact context layer so future bugfix agents understand ownership, commands, and safe inspection paths.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-03 Context Engineering/exercise-01-repo-context-pack-for-bugfix-agents/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "03 Context Engineering/exercise-01-repo-context-pack-for-bugfix-agents/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/hidden-conventions.md](./docs/hidden-conventions.md)
+- [docs/repo-map-starter.md](./docs/repo-map-starter.md)
 
-A fresh agent can fix a seeded bug using project context files instead of chat paste.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [03. Context Engineering practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#03-context-engineering)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Build the project context layer the agent needs before it starts changing code.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Create a compact repo map, architecture/context file, command list, and do-not-touch list.
+4. Seed or use the provided bug report, then have the context guide a real code fix in the starter.
+5. Add a regression test proving the bug is fixed.
+6. Keep deep detail linked, not stuffed into the always-on file.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Create a project context file with overview, architecture, module map, commands, conventions, and do-not-touch areas.
-- Keep always-on rules lean while linking deeper architecture, domain, API, data-flow, and ADR references.
-- Write a repo map covering owners, entry points, test locations, and common change paths.
-- Capture project-specific rules for naming, errors, logging, auth, flags, migrations, and deployment checks.
-
-Common mistake to avoid: Architecture and rules kept only in chat make every session start from zero.
-
-Mastery signal: New sessions understand the repo shape, durable context replaces repeated corrections, and architecture lives in versioned files.
-
-## Hands-On Scope
-
-- Create a compact repo map, architecture/context file, command list, and do-not-touch list.
-- Seed or use the provided bug report, then have the context guide a real code fix in the starter.
-- Add a regression test proving the bug is fixed.
-- Keep deep detail linked, not stuffed into the always-on file.
-
-## Required Working Deliverables
+## Deliver
 
 - Versioned context layer under the exercise.
 - Actual bug fix in the React starter.
 - Regression test or smoke check.
 - Fresh-agent handoff note showing what context was loaded and why.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "03 Context Engineering/exercise-01-repo-context-pack-for-bugfix-agents/starter-react" && npm test
+cd "03 Context Engineering/exercise-01-repo-context-pack-for-bugfix-agents/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- context-pack check
+- regression test
+- fresh-agent handoff simulation
+- do-not-touch path audit
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would future agents stop asking the same repo-shape questions after this context layer exists?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -2,21 +2,16 @@
 
 # Ambiguous Bulk Refund Spec
 
-## Competency
+**Goal:** Convert a vague product request for bulk refunds into a testable spec before touching the React implementation.
 
-02. Spec Framing - Requirements decomposition and testable spec creation
+**Outcome:** A vague refund request becomes a shippable vertical slice with acceptance tests, not a prettier requirements document.
 
-## Your Mission
+## Start Here
 
-Convert a vague product request for bulk refunds into a testable spec before touching the React implementation.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-02 Spec Framing/exercise-01-ambiguous-bulk-refund-spec/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "02 Spec Framing/exercise-01-ambiguous-bulk-refund-spec/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/ambiguous-ticket.md](./docs/ambiguous-ticket.md)
+- [docs/scenario-fixtures.md](./docs/scenario-fixtures.md)
 
-A vague refund request becomes a shippable vertical slice with acceptance tests, not a prettier requirements document.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Do not hand the agent a vague ticket. Hand it a contract it can test.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Use the ambiguous ticket and fixtures to ask product questions, then freeze assumptions in a small implementation contract.
+4. Implement the bulk refund UI behavior for eligible, partially eligible, and blocked orders.
+5. Add validation and failure-state tests from concrete Given/When/Then examples.
+6. Keep non-goals out of the diff and prove the slice is independently reviewable.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Have the agent interview the ticket for gaps, assumptions, and product questions before code planning.
-- Decompose work into PR-sized chunks that are independent, testable, and reviewable.
-- Write acceptance criteria with expected behavior, boundaries, failure states, and done conditions.
-- Include concrete inputs, outputs, UI states, API responses, and error messages.
-
-Common mistake to avoid: A spec the agent cannot test is not useful; vague improvement language invites invention.
-
-Mastery signal: The first diff matches intent, acceptance criteria are clear, and each chunk can merge on its own.
-
-## Hands-On Scope
-
-- Use the ambiguous ticket and fixtures to ask product questions, then freeze assumptions in a small implementation contract.
-- Implement the bulk refund UI behavior for eligible, partially eligible, and blocked orders.
-- Add validation and failure-state tests from concrete Given/When/Then examples.
-- Keep non-goals out of the diff and prove the slice is independently reviewable.
-
-## Required Working Deliverables
+## Deliver
 
 - Working React behavior for the selected refund slice.
 - Unit/component tests covering eligibility, limits, auth, and failure states.
 - A short spec file linked to the tests, not replacing them.
 - Command evidence showing the slice passes build and tests.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "02 Spec Framing/exercise-01-ambiguous-bulk-refund-spec/starter-react" && npm test
+cd "02 Spec Framing/exercise-01-ambiguous-bulk-refund-spec/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- eligibility test
+- approval boundary test
+- failure-state smoke
+- session-readable spec check
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Is the work sliced tightly enough that a staff engineer could delegate implementation while still owning the outcome?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

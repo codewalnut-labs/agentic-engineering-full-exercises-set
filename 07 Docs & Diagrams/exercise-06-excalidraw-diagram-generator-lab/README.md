@@ -2,25 +2,16 @@
 
 # Excalidraw Diagram Generator Lab
 
-## Competency
+**Goal:** Use an Excalidraw diagram generator skill to convert a messy workflow request into a valid, readable `.excalidraw` file that matches the starter app and can be opened directly in Excalidraw.
 
-07. Docs & Diagrams - Visual system explanation with editable diagram artifacts
+**Outcome:** The final diagram is a real Excalidraw JSON artifact with readable layout, bounded scope, consistent styling, and evidence that each node and arrow reflects the implementation.
 
-## Popular Agent Skill Pattern
+## Start Here
 
-Excalidraw diagram generator
+Starter folders:
+- [starter-react](./starter-react)
 
-## Your Mission
-
-Use an Excalidraw diagram generator skill to convert a messy workflow request into a valid, readable `.excalidraw` file that matches the starter app and can be opened directly in Excalidraw.
-
-## Starter Project
-
-```text
-07 Docs & Diagrams/exercise-06-excalidraw-diagram-generator-lab/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "07 Docs & Diagrams/exercise-06-excalidraw-diagram-generator-lab/starter-react"
@@ -28,55 +19,49 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/diagram-requests.md](./docs/diagram-requests.md)
+- [docs/excalidraw-validation-notes.md](./docs/excalidraw-validation-notes.md)
 
-The final diagram is a real Excalidraw JSON artifact with readable layout, bounded scope, consistent styling, and evidence that each node and arrow reflects the implementation.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [07. Docs & Diagrams practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#07-docs-diagrams)
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `Excalidraw diagram generator`
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
+- [Excalidraw diagram generator skill](https://github.com/github/awesome-copilot/blob/main/skills/excalidraw-diagram-generator/SKILL.md)
 
-## Practice Focus
+## Do This
 
-Use the skill pattern as an operating workflow, not as a prompt shortcut.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Classify the request as flowchart, architecture, sequence, DFD, or swimlane before generating.
+4. Extract entities, steps, and relationships from the starter app and seeded notes.
+5. Generate a `.excalidraw` file under `docs/diagrams/`.
+6. Add a validation script or test for JSON structure, IDs, text font, and element count.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
+## Deliver
 
-- Choose the correct diagram type from the request before generating JSON.
-- Extract entities, steps, relationships, and data flows from code and docs.
-- Generate `.excalidraw` JSON with unique IDs, readable coordinates, arrows, and `fontFamily: 5` for text.
-- Validate the diagram as JSON and verify the layout against the app workflow.
-
-Common mistake to avoid: A diagram file that opens but misstates the workflow is still a bug.
-
-Mastery signal: Reviewers can open the `.excalidraw` file, inspect it visually, and trace every important element back to code.
-
-## Hands-On Scope
-
-- Read the diagram request and choose flowchart, architecture, sequence, DFD, or swimlane format.
-- Generate one `.excalidraw` file under `docs/diagrams/`.
-- Add a validation script or test that checks valid JSON, Excalidraw root fields, unique element IDs, readable text, and `fontFamily: 5`.
-- Fix one mismatch between the starter app, source notes, and generated diagram.
-
-## Required Working Deliverables
-
-- One valid `.excalidraw` file.
+- Valid `.excalidraw` file.
 - Diagram validation script or test.
 - Evidence note linking diagram elements to source files.
-- Small docs or code fix for any verified mismatch.
+- Small docs or code fix for one verified mismatch.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "07 Docs & Diagrams/exercise-06-excalidraw-diagram-generator-lab/starter-react" && npm test
+cd "07 Docs & Diagrams/exercise-06-excalidraw-diagram-generator-lab/starter-react" && npm run agent:check
+```
 
-- `.excalidraw` JSON parses and has `type: "excalidraw"`, `version`, `elements`, `appState`, and `files`.
-- Every text element uses `fontFamily: 5` and has readable size.
-- Element count stays below 20 unless the exercise note explains the split.
+Done when:
+- Excalidraw JSON parses and contains the expected root fields.
+- Every text element uses `fontFamily: 5` and readable font size.
+- Element count stays below 20 or the split is justified.
 - Diagram arrows and labels are verified against source files or trace output.
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Could a reviewer open the generated file and trust it as an editable system diagram?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -2,25 +2,16 @@
 
 # Skill Optimizer From Traces
 
-## Competency
+**Goal:** Analyze failed agent traces and turn repeated skill mistakes into a measured skill improvement, hook, or team rule.
 
-12. Agentic Retrospective - Improving the human-agent system
+**Outcome:** A broken alert-triage skill improves because trace evidence reveals trigger misses, repeated reads, skipped checks, and weak output contracts.
 
-## Popular Agent Skill Pattern
+## Start Here
 
-skill optimizer and trace retro
+Starter folders:
+- [starter-react](./starter-react)
 
-## Your Mission
-
-Analyze failed agent traces and turn repeated skill mistakes into a measured skill improvement, hook, or team rule.
-
-## Starter Project
-
-```text
-12 Agentic Retrospective/exercise-04-skill-optimizer-from-traces/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "12 Agentic Retrospective/exercise-04-skill-optimizer-from-traces/starter-react"
@@ -28,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/skill-regression.md](./docs/skill-regression.md)
+- [docs/trace-samples.md](./docs/trace-samples.md)
 
-A broken alert-triage skill improves because trace evidence reveals trigger misses, repeated reads, skipped checks, and weak output contracts.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [12. Agentic Retrospective practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#12-agentic-retrospective)
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `skill optimizer and trace retro`
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Use the skill pattern as an operating workflow, not as a prompt shortcut.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Read traces and group mistakes by cause.
+4. Choose skill, rule, hook, or habit as the corrective mechanism.
+5. Patch the smallest durable artifact.
+6. Add an eval or check so the same mistake is visible next time.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Package the repeated workflow into explicit steps, trigger conditions, and evidence checks.
-- Keep the agent focused on the smallest useful slice of the domain.
-- Verify the skill pattern against code, tests, traces, or review artifacts.
-- Record the decisions future humans or agents need to continue safely.
-
-Common mistake to avoid: Treating the skill name as magic and skipping the engineering control loop around it.
-
-Mastery signal: The skill pattern changes how the work is planned, executed, verified, and handed off.
-
-## Hands-On Scope
-
-- Read traces and group mistakes by cause.
-- Choose skill, rule, hook, or habit as the corrective mechanism.
-- Patch the smallest durable artifact.
-- Add an eval or check so the same mistake is visible next time.
-
-## Required Working Deliverables
+## Deliver
 
 - Trace retro with ranked waste and failure patterns.
 - Patched skill or team rule.
 - Regression case from a real trace.
 - Before and after evidence for the improvement.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "12 Agentic Retrospective/exercise-04-skill-optimizer-from-traces/starter-react" && npm test
+cd "12 Agentic Retrospective/exercise-04-skill-optimizer-from-traces/starter-react" && npm run agent:check
+```
 
+Done when:
 - Trace analysis identifies repeated reads, retry loops, skipped checks, and trigger misses.
 - At least one skill patch is backed by a failing trace case.
 - A hook or rule is added only when it prevents a repeated mistake.
 - Post-change eval shows fewer misses or a clearer remaining risk.
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would this skill pattern make a real experienced team safer, faster, or clearer after the first implementation?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

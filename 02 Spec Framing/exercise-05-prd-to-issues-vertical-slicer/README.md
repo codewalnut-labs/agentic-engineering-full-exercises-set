@@ -2,25 +2,16 @@
 
 # PRD to Issues Vertical Slicer
 
-## Competency
+**Goal:** Turn a messy growth experiment conversation into a PRD and independently grabbable vertical slice issues.
 
-02. Spec Framing - Requirements decomposition and testable spec creation
+**Outcome:** A broad experiment idea becomes a PRD, dependency graph, and issue set that multiple agents can implement without stepping on each other.
 
-## Popular Agent Skill Pattern
+## Start Here
 
-to-prd and to-issues
+Starter folders:
+- [starter-react](./starter-react)
 
-## Your Mission
-
-Turn a messy growth experiment conversation into a PRD and independently grabbable vertical slice issues.
-
-## Starter Project
-
-```text
-02 Spec Framing/exercise-05-prd-to-issues-vertical-slicer/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "02 Spec Framing/exercise-05-prd-to-issues-vertical-slicer/starter-react"
@@ -28,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/product-conversation.md](./docs/product-conversation.md)
+- [docs/slice-board.md](./docs/slice-board.md)
 
-A broad experiment idea becomes a PRD, dependency graph, and issue set that multiple agents can implement without stepping on each other.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `to-prd and to-issues`
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Use the skill pattern as an operating workflow, not as a prompt shortcut.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Extract product intent from the conversation before writing issues.
+4. Inspect the starter to verify what modules already exist.
+5. Create vertical slices that reveal integration risk early.
+6. Implement one agent-ready issue and leave the rest ready for delegation.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Package the repeated workflow into explicit steps, trigger conditions, and evidence checks.
-- Keep the agent focused on the smallest useful slice of the domain.
-- Verify the skill pattern against code, tests, traces, or review artifacts.
-- Record the decisions future humans or agents need to continue safely.
-
-Common mistake to avoid: Treating the skill name as magic and skipping the engineering control loop around it.
-
-Mastery signal: The skill pattern changes how the work is planned, executed, verified, and handed off.
-
-## Hands-On Scope
-
-- Extract product intent from the conversation before writing issues.
-- Inspect the starter to verify what modules already exist.
-- Create vertical slices that reveal integration risk early.
-- Implement one agent-ready issue and leave the rest ready for delegation.
-
-## Required Working Deliverables
+## Deliver
 
 - PRD draft tied to concrete examples.
 - Issue board with dependency and ownership notes.
 - Working React slice for one upgrade prompt path.
 - Evidence that the implemented slice passes local gates.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "02 Spec Framing/exercise-05-prd-to-issues-vertical-slicer/starter-react" && npm test
+cd "02 Spec Framing/exercise-05-prd-to-issues-vertical-slicer/starter-react" && npm run agent:check
+```
 
+Done when:
 - PRD includes problem, users, success metric, constraints, non-goals, and examples.
 - Issues are vertical slices with acceptance criteria and explicit dependencies.
 - At least one issue ships a thin behavior across UI, state, analytics, and test evidence.
 - The board marks human-review and agent-ready tasks separately.
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would this skill pattern make a real experienced team safer, faster, or clearer after the first implementation?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

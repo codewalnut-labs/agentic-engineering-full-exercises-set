@@ -2,21 +2,16 @@
 
 # Rule Hardening From Repeated Mistakes
 
-## Competency
+**Goal:** Turn repeated agent corrections into durable AGENTS.md rules, skills, or hooks with clear trigger criteria.
 
-12. Agentic Retrospective - Session review, waste reduction, and improvement
+**Outcome:** Repeated agent mistakes become durable rules, skills, or hooks with tests.
 
-## Your Mission
+## Start Here
 
-Turn repeated agent corrections into durable AGENTS.md rules, skills, or hooks with clear trigger criteria.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/agents-md-before.md](./docs/agents-md-before.md)
+- [docs/correction-history.md](./docs/correction-history.md)
 
-Repeated agent mistakes become durable rules, skills, or hooks with tests.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [12. Agentic Retrospective practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#12-agentic-retrospective)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Review how you worked with the agent, then turn the lessons into better rules.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Cluster repeated corrections from the provided history into root causes.
+4. Choose the right fix type: rule, context file, skill, hook, or human habit.
+5. Implement at least two durable fixes.
+6. Add tests or simulations proving the fixes catch the repeated mistake.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Review agent sessions every one to two weeks like a sprint retro.
-- Analyze wrong turns, re-prompts, steers, abandoned chats, and redone work.
-- Track retry loops, oversized context, repeated file reads, cost, and tool failures.
-- Diff agent output against final commits to find what was rewritten by hand.
-
-Common mistake to avoid: Repeated mistakes are often setup problems, not just model failures.
-
-Mastery signal: The same mistake stops recurring, rules and skills grow from evidence, and cost and rework trend down.
-
-## Hands-On Scope
-
-- Cluster repeated corrections from the provided history into root causes.
-- Choose the right fix type: rule, context file, skill, hook, or human habit.
-- Implement at least two durable fixes.
-- Add tests or simulations proving the fixes catch the repeated mistake.
-
-## Required Working Deliverables
+## Deliver
 
 - Updated rules/context/skill/hook files.
 - Hook or policy tests where applicable.
 - Correction history mapped to fixes.
 - Re-run evidence on seed mistakes.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/starter-react" && npm test
+cd "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- correction clustering
+- rule specificity test
+- hook simulation
+- re-run seed mistakes
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Will the same mistake stop recurring across engineers and sessions?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

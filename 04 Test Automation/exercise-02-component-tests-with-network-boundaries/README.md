@@ -2,21 +2,16 @@
 
 # Component Tests With Network Boundaries
 
-## Competency
+**Goal:** Backfill useful React component tests around loading, empty, error, and filtered states without coupling to implementation details.
 
-04. Test Automation - Reliable E2E test generation
+**Outcome:** Component tests prove user-visible behavior while isolating flaky network boundaries.
 
-## Your Mission
+## Start Here
 
-Backfill useful React component tests around loading, empty, error, and filtered states without coupling to implementation details.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-04 Test Automation/exercise-02-component-tests-with-network-boundaries/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "04 Test Automation/exercise-02-component-tests-with-network-boundaries/starter-react"
@@ -24,55 +19,47 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/test-plan.md](./docs/test-plan.md)
 
-Component tests prove user-visible behavior while isolating flaky network boundaries.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [04. Test Automation practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#04-test-automation)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Agents can write tests quickly; your job is to make those tests reliable.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Add Testing Library tests for loading, empty, error, filtered, and successful states using user-facing queries.
+4. Use MSW or equivalent mocks at the network boundary, not implementation internals.
+5. Add a browser-level smoke or Playwright component flow using role locators and auto-waiting assertions.
+6. Prove stability with repeated runs and trace/report settings for failures.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Test real user flows and behavior users notice.
-- Use role-based locators rather than brittle CSS or XPath selectors.
-- Make every test independent so suites run in parallel without cascading failures.
-- Use auto-waiting assertions instead of fixed sleeps.
-
-Common mistake to avoid: Flaky tests train teams to ignore red; green means little when the suite never fails for real regressions.
-
-Mastery signal: Tests fail for regressions, stay green across repeated CI runs, and are trusted enough to refactor behind.
-
-## Hands-On Scope
-
-- Add Testing Library tests for loading, empty, error, filtered, and successful states using user-facing queries.
-- Use MSW or equivalent mocks at the network boundary, not implementation internals.
-- Add a browser-level smoke or Playwright component flow using role locators and auto-waiting assertions.
-- Prove stability with repeated runs and trace/report settings for failures.
-
-## Required Working Deliverables
+## Deliver
 
 - Component tests using user-facing queries.
 - Network boundary mocks and fixtures.
 - Code fixes required to make the UI testable and accessible.
 - Test command evidence.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "04 Test Automation/exercise-02-component-tests-with-network-boundaries/starter-react" && npm test
+cd "04 Test Automation/exercise-02-component-tests-with-network-boundaries/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- Testing Library tests
+- MSW network boundary
+- role locator browser smoke
+- repeated stability run
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Do the tests assert behavior a user or reviewer actually cares about?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

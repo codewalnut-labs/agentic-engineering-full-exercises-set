@@ -2,25 +2,16 @@
 
 # Kanban Triage Worktree Control Plane
 
-## Competency
+**Goal:** Turn a noisy backlog into agent-ready cards, isolated worktrees, review queues, and integration ownership.
 
-06. Multi-Agent Workflows - Delegation and orchestration
+**Outcome:** Multiple agents can work in parallel because the board encodes issue state, ownership, blockers, review gates, and merge order.
 
-## Popular Agent Skill Pattern
+## Start Here
 
-triage, to-issues, and vibe-kanban
+Starter folders:
+- [starter-react](./starter-react)
 
-## Your Mission
-
-Turn a noisy backlog into agent-ready cards, isolated worktrees, review queues, and integration ownership.
-
-## Starter Project
-
-```text
-06 Multi-Agent Workflows/exercise-04-kanban-triage-worktree-control-plane/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "06 Multi-Agent Workflows/exercise-04-kanban-triage-worktree-control-plane/starter-react"
@@ -28,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/agent-board.md](./docs/agent-board.md)
+- [docs/incoming-issues.md](./docs/incoming-issues.md)
 
-Multiple agents can work in parallel because the board encodes issue state, ownership, blockers, review gates, and merge order.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [06. Multi-Agent Workflows practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#06-multi-agent-workflows)
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `triage, to-issues, and vibe-kanban`
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Use the skill pattern as an operating workflow, not as a prompt shortcut.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Triage cards before spawning or assigning agents.
+4. Split work by ownership and conflict risk.
+5. Use isolated branches or worktrees for implementation.
+6. Keep the main thread responsible for review, integration, and final evidence.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Package the repeated workflow into explicit steps, trigger conditions, and evidence checks.
-- Keep the agent focused on the smallest useful slice of the domain.
-- Verify the skill pattern against code, tests, traces, or review artifacts.
-- Record the decisions future humans or agents need to continue safely.
-
-Common mistake to avoid: Treating the skill name as magic and skipping the engineering control loop around it.
-
-Mastery signal: The skill pattern changes how the work is planned, executed, verified, and handed off.
-
-## Hands-On Scope
-
-- Triage cards before spawning or assigning agents.
-- Split work by ownership and conflict risk.
-- Use isolated branches or worktrees for implementation.
-- Keep the main thread responsible for review, integration, and final evidence.
-
-## Required Working Deliverables
+## Deliver
 
 - Updated triage board.
 - Worktree or branch plan with collision warnings.
 - At least one working card implementation in React.
 - Integration note with accepted and rejected agent outputs.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "06 Multi-Agent Workflows/exercise-04-kanban-triage-worktree-control-plane/starter-react" && npm test
+cd "06 Multi-Agent Workflows/exercise-04-kanban-triage-worktree-control-plane/starter-react" && npm run agent:check
+```
 
+Done when:
 - Backlog states distinguish needs-info, ready-for-agent, ready-for-human, blocked, and done.
 - Every agent card has ownership, touched area, commands, and merge criteria.
 - Worktree plan avoids overlapping edits where possible.
 - Integration evidence records which agent outputs were accepted, revised, or rejected.
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would this skill pattern make a real experienced team safer, faster, or clearer after the first implementation?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

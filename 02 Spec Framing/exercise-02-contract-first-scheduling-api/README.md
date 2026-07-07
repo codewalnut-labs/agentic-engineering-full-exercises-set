@@ -2,22 +2,17 @@
 
 # Contract-First Scheduling API
 
-## Competency
+**Goal:** Frame the contract between a scheduling UI and a Spring Boot availability API before implementation begins.
 
-02. Spec Framing - Requirements decomposition and testable spec creation
+**Outcome:** The UI and Spring Boot scheduling API agree on a testable contract before the implementation drifts.
 
-## Your Mission
+## Start Here
 
-Frame the contract between a scheduling UI and a Spring Boot availability API before implementation begins.
+Starter folders:
+- [starter-react](./starter-react)
+- [starter-spring-boot](./starter-spring-boot)
 
-## Starter Project
-
-```text
-02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-react
-02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-spring-boot
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-react"
@@ -25,62 +20,56 @@ npm install
 npm run dev
 ```
 
-Run the Spring Boot starter:
+Spring Boot starter:
 
 ```bash
 cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-spring-boot"
 mvn spring-boot:run
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/api-brief.md](./docs/api-brief.md)
+- [docs/openapi-stub.md](./docs/openapi-stub.md)
 
-The UI and Spring Boot scheduling API agree on a testable contract before the implementation drifts.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Do not hand the agent a vague ticket. Hand it a contract it can test.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Use the OpenAPI draft as the source of truth for slots, holds, conflicts, validation errors, time zones, and concurrency.
+4. Implement or repair the Spring Boot endpoints and React client states against that contract.
+5. Add contract/integration tests for successful holds, stale slots, duplicate holds, invalid time zones, and conflict responses.
+6. Generate a small frontend state matrix from real API payload examples.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Have the agent interview the ticket for gaps, assumptions, and product questions before code planning.
-- Decompose work into PR-sized chunks that are independent, testable, and reviewable.
-- Write acceptance criteria with expected behavior, boundaries, failure states, and done conditions.
-- Include concrete inputs, outputs, UI states, API responses, and error messages.
-
-Common mistake to avoid: A spec the agent cannot test is not useful; vague improvement language invites invention.
-
-Mastery signal: The first diff matches intent, acceptance criteria are clear, and each chunk can merge on its own.
-
-## Hands-On Scope
-
-- Use the OpenAPI draft as the source of truth for slots, holds, conflicts, validation errors, time zones, and concurrency.
-- Implement or repair the Spring Boot endpoints and React client states against that contract.
-- Add contract/integration tests for successful holds, stale slots, duplicate holds, invalid time zones, and conflict responses.
-- Generate a small frontend state matrix from real API payload examples.
-
-## Required Working Deliverables
+## Deliver
 
 - Spring Boot endpoint behavior matching the contract.
 - React client states for loading, success, validation, conflict, and retry.
 - Backend contract or integration tests plus frontend smoke coverage.
 - Contract notes that cite the tests and payload examples.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-react" && npm test
+cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-react" && npm run agent:check
+cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-spring-boot" && mvn test
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- OpenAPI contract check
+- Spring integration tests
+- frontend state smoke
+- timezone validation test
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Can backend and frontend leads sign off independently without discovering contract gaps in review?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

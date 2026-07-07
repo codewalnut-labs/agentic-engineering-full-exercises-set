@@ -2,21 +2,17 @@
 
 # MCP Context Server for Product Data
 
-## Competency
+**Goal:** Expose product rules and fixtures through a tiny TypeScript context server so agents stop pasting giant JSON into prompts.
 
-03. Context Engineering - Agent working-context curation
+**Outcome:** Product rules move from prompt paste into a small runnable context service that agents and code can query.
 
-## Your Mission
+## Start Here
 
-Expose product rules and fixtures through a tiny TypeScript context server so agents stop pasting giant JSON into prompts.
+Starter folders:
+- [starter-react](./starter-react)
+- [context-server](./context-server)
 
-## Starter Project
-
-```text
-03 Context Engineering/exercise-03-mcp-context-server-for-product-data/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "03 Context Engineering/exercise-03-mcp-context-server-for-product-data/starter-react"
@@ -24,55 +20,57 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Context server:
 
-Product rules move from prompt paste into a small runnable context service that agents and code can query.
+```bash
+cd "03 Context Engineering/exercise-03-mcp-context-server-for-product-data/context-server"
+npm install
+npm test
+```
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+Seed files:
+- [docs/fixture-index.md](./docs/fixture-index.md)
+- [docs/product-rules.md](./docs/product-rules.md)
 
-## Practice Focus
+## Use These Practices
 
-Build the project context layer the agent needs before it starts changing code.
+- [03. Context Engineering practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#03-context-engineering)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-Practice signals for this exercise:
+## Do This
 
-- Create a project context file with overview, architecture, module map, commands, conventions, and do-not-touch areas.
-- Keep always-on rules lean while linking deeper architecture, domain, API, data-flow, and ADR references.
-- Write a repo map covering owners, entry points, test locations, and common change paths.
-- Capture project-specific rules for naming, errors, logging, auth, flags, migrations, and deployment checks.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Build the TypeScript context server around product rules, fixtures, and retrieval boundaries.
+4. Expose focused queries for product limits, eligibility rules, glossary terms, and sample payloads.
+5. Integrate one starter workflow with the server output instead of hard-coded duplicated rules.
+6. Add tests for retrieval correctness and forbidden broad dumps.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Common mistake to avoid: Architecture and rules kept only in chat make every session start from zero.
-
-Mastery signal: New sessions understand the repo shape, durable context replaces repeated corrections, and architecture lives in versioned files.
-
-## Hands-On Scope
-
-- Build the TypeScript context server around product rules, fixtures, and retrieval boundaries.
-- Expose focused queries for product limits, eligibility rules, glossary terms, and sample payloads.
-- Integrate one starter workflow with the server output instead of hard-coded duplicated rules.
-- Add tests for retrieval correctness and forbidden broad dumps.
-
-## Required Working Deliverables
+## Deliver
 
 - Runnable context server or MCP-style adapter.
 - React integration or demo client using retrieved rules.
 - Tests for rule lookup and access boundaries.
 - Usage notes for Codex/Claude/Cursor.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "03 Context Engineering/exercise-03-mcp-context-server-for-product-data/starter-react" && npm test
+cd "03 Context Engineering/exercise-03-mcp-context-server-for-product-data/starter-react" && npm run agent:check
+cd "03 Context Engineering/exercise-03-mcp-context-server-for-product-data/context-server" && npm test
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- query contract test
+- access-boundary test
+- fixture version check
+- integration smoke
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Does this reduce token waste and hallucinated product rules across future sessions?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

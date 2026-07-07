@@ -2,21 +2,16 @@
 
 # Conflict-Tolerant Migration Board
 
-## Competency
+**Goal:** Plan and execute a batched UI migration where agents must avoid editing shared foundations at the same time.
 
-06. Multi-Agent Workflows - Parallel agents on isolated tasks
+**Outcome:** A migration board prevents parallel agents from colliding on shared foundations.
 
-## Your Mission
+## Start Here
 
-Plan and execute a batched UI migration where agents must avoid editing shared foundations at the same time.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-06 Multi-Agent Workflows/exercise-03-conflict-tolerant-migration-board/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "06 Multi-Agent Workflows/exercise-03-conflict-tolerant-migration-board/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/migration-board.md](./docs/migration-board.md)
+- [docs/shared-foundation-risks.md](./docs/shared-foundation-risks.md)
 
-A migration board prevents parallel agents from colliding on shared foundations.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [06. Multi-Agent Workflows practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#06-multi-agent-workflows)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Run independent work in parallel, with each agent in its own lane.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Create a migration board that assigns files, dependencies, and merge order.
+4. Implement at least two migration slices in non-overlapping areas.
+5. Add an integration check that detects shared-file edits or ordering mistakes.
+6. Run final tests after merging slices.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Split work into isolated tasks before parallelizing.
-- Give independent tasks separate worktrees and branches.
-- Treat each agent result like a separate PR: review, test, and merge deliberately.
-- Use subagents for focused search, repo review, research, and NFR checks inside one main task.
-
-Common mistake to avoid: Parallel agents editing overlapping files do not go faster; they create conflict cleanup.
-
-Mastery signal: Independent work runs side by side, worktrees prevent collisions, and the accountable owner integrates rather than babysits.
-
-## Hands-On Scope
-
-- Create a migration board that assigns files, dependencies, and merge order.
-- Implement at least two migration slices in non-overlapping areas.
-- Add an integration check that detects shared-file edits or ordering mistakes.
-- Run final tests after merging slices.
-
-## Required Working Deliverables
+## Deliver
 
 - Migration board with ownership and dependency rules.
 - Two completed migration slices in code.
 - Conflict detection script or checklist backed by actual file changes.
 - Integration verification evidence.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "06 Multi-Agent Workflows/exercise-03-conflict-tolerant-migration-board/starter-react" && npm test
+cd "06 Multi-Agent Workflows/exercise-03-conflict-tolerant-migration-board/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- migration board validation
+- overlap detector
+- slice verification
+- integration smoke
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Could this migration scale to multiple accountable engineers and agents without merge chaos?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

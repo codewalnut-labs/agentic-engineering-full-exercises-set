@@ -2,25 +2,16 @@
 
 # Skill Trigger Eval Harness
 
-## Competency
+**Goal:** Build an eval harness that scores whether team skills trigger, run the right steps, and produce the expected output shape.
 
-05. Skill Packaging - Reusable agent skills and prompts
+**Outcome:** A skill is treated like production workflow code: trigger cases, process checks, output checks, and regression evidence exist before rollout.
 
-## Popular Agent Skill Pattern
+## Start Here
 
-skill evals and skill optimizer
+Starter folders:
+- [starter-react](./starter-react)
 
-## Your Mission
-
-Build an eval harness that scores whether team skills trigger, run the right steps, and produce the expected output shape.
-
-## Starter Project
-
-```text
-05 Skill Packaging/exercise-04-skill-trigger-eval-harness/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "05 Skill Packaging/exercise-04-skill-trigger-eval-harness/starter-react"
@@ -28,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/eval-plan.md](./docs/eval-plan.md)
+- [docs/trigger-cases.md](./docs/trigger-cases.md)
 
-A skill is treated like production workflow code: trigger cases, process checks, output checks, and regression evidence exist before rollout.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `skill evals and skill optimizer`
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Use the skill pattern as an operating workflow, not as a prompt shortcut.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Inspect the bundled skill and find trigger ambiguity.
+4. Write eval cases before changing the skill.
+5. Patch the skill metadata and instructions.
+6. Run the harness and capture the regression report.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Package the repeated workflow into explicit steps, trigger conditions, and evidence checks.
-- Keep the agent focused on the smallest useful slice of the domain.
-- Verify the skill pattern against code, tests, traces, or review artifacts.
-- Record the decisions future humans or agents need to continue safely.
-
-Common mistake to avoid: Treating the skill name as magic and skipping the engineering control loop around it.
-
-Mastery signal: The skill pattern changes how the work is planned, executed, verified, and handed off.
-
-## Hands-On Scope
-
-- Inspect the bundled skill and find trigger ambiguity.
-- Write eval cases before changing the skill.
-- Patch the skill metadata and instructions.
-- Run the harness and capture the regression report.
-
-## Required Working Deliverables
+## Deliver
 
 - Updated SKILL.md with precise use-when and do-not-use boundaries.
 - Eval cases for trigger and output behavior.
 - Runnable harness or script check.
 - Versioned report showing improvement.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "05 Skill Packaging/exercise-04-skill-trigger-eval-harness/starter-react" && npm test
+cd "05 Skill Packaging/exercise-04-skill-trigger-eval-harness/starter-react" && npm run agent:check
+```
 
+Done when:
 - Trigger cases include positive, negative, and ambiguous prompts.
 - Process checks verify commands, touched files, and required artifacts.
 - Output checks validate schema and reviewer-ready language.
 - The harness produces a versioned pass/fail report.
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would this skill pattern make a real experienced team safer, faster, or clearer after the first implementation?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

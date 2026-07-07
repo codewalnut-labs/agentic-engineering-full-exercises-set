@@ -2,21 +2,16 @@
 
 # Release Notes Skill Factory
 
-## Competency
+**Goal:** Turn a messy release-note prompt into a reusable skill that reads changes, groups them, and flags missing evidence.
 
-05. Skill Packaging - Workflow packaging into reusable skills
+**Outcome:** Release-note generation becomes a repeatable workflow backed by parsing, grouping, and evidence checks.
 
-## Your Mission
+## Start Here
 
-Turn a messy release-note prompt into a reusable skill that reads changes, groups them, and flags missing evidence.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-05 Skill Packaging/exercise-02-release-notes-skill-factory/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "05 Skill Packaging/exercise-02-release-notes-skill-factory/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/changelog-fixtures.md](./docs/changelog-fixtures.md)
+- [docs/release-prompt-history.md](./docs/release-prompt-history.md)
 
-Release-note generation becomes a repeatable workflow backed by parsing, grouping, and evidence checks.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-If a workflow works, package it once so the whole team can use it.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Create a release-notes skill that reads commit/change fixtures and groups work by customer impact.
+4. Build or wire a parser script so deterministic extraction is not spent on expensive model turns.
+5. Add snapshot or fixture tests for grouping, missing evidence, and breaking-change detection.
+6. Run the skill on the provided release data and refine it from failures.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Notice repeated prompts and turn them into focused skills.
-- Write a SKILL.md with a precise use-when description that can trigger correctly.
-- Keep the skill body lean and push long detail into references.
-- Include when-to-use, when-not-to-use, and a concrete example.
-
-Common mistake to avoid: A vague description means the agent never loads the skill or loads it at the wrong time.
-
-Mastery signal: The agent invokes the right skill on its own and teammates get consistent workflow output across machines.
-
-## Hands-On Scope
-
-- Create a release-notes skill that reads commit/change fixtures and groups work by customer impact.
-- Build or wire a parser script so deterministic extraction is not spent on expensive model turns.
-- Add snapshot or fixture tests for grouping, missing evidence, and breaking-change detection.
-- Run the skill on the provided release data and refine it from failures.
-
-## Required Working Deliverables
+## Deliver
 
 - Release-notes skill and reference files.
 - Parser or helper script with tests.
 - Generated release notes from the fixture set.
 - Eval evidence showing improvements after refinement.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "05 Skill Packaging/exercise-02-release-notes-skill-factory/starter-react" && npm test
+cd "05 Skill Packaging/exercise-02-release-notes-skill-factory/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- parser fixture test
+- snapshot output
+- missing evidence check
+- skill trigger eval
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Does the workflow turn a experienced engineer's release judgment into a team default?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

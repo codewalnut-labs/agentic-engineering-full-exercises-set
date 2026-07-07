@@ -2,22 +2,17 @@
 
 # Spring Boot Integration Test Gate
 
-## Competency
+**Goal:** Create an integration test gate for a React task board backed by a Spring Boot API whose persistence workflow mocks keep missing.
 
-04. Test Automation - Reliable E2E test generation
+**Outcome:** Mock-heavy confidence is replaced with backend integration tests and a frontend smoke path.
 
-## Your Mission
+## Start Here
 
-Create an integration test gate for a React task board backed by a Spring Boot API whose persistence workflow mocks keep missing.
+Starter folders:
+- [starter-react](./starter-react)
+- [starter-spring-boot](./starter-spring-boot)
 
-## Starter Project
-
-```text
-04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-react
-04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-spring-boot
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-react"
@@ -25,62 +20,55 @@ npm install
 npm run dev
 ```
 
-Run the Spring Boot starter:
+Spring Boot starter:
 
 ```bash
 cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-spring-boot"
 mvn spring-boot:run
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/backend-test-gap.md](./docs/backend-test-gap.md)
 
-Mock-heavy confidence is replaced with backend integration tests and a frontend smoke path.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [04. Test Automation practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#04-test-automation)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Agents can write tests quickly; your job is to make those tests reliable.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Add Spring Boot integration tests for transitions, validation, persistence, and audit logs.
+4. Fix the backend behavior those tests expose.
+5. Connect an independent browser smoke flow to deterministic backend fixtures using role locators and web-first assertions.
+6. Preserve Playwright traces/reports and repeated-run evidence so the gate proves UI plus backend reliability.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Test real user flows and behavior users notice.
-- Use role-based locators rather than brittle CSS or XPath selectors.
-- Make every test independent so suites run in parallel without cascading failures.
-- Use auto-waiting assertions instead of fixed sleeps.
-
-Common mistake to avoid: Flaky tests train teams to ignore red; green means little when the suite never fails for real regressions.
-
-Mastery signal: Tests fail for regressions, stay green across repeated CI runs, and are trusted enough to refactor behind.
-
-## Hands-On Scope
-
-- Add Spring Boot integration tests for transitions, validation, persistence, and audit logs.
-- Fix the backend behavior those tests expose.
-- Connect an independent browser smoke flow to deterministic backend fixtures using role locators and web-first assertions.
-- Preserve Playwright traces/reports and repeated-run evidence so the gate proves UI plus backend reliability.
-
-## Required Working Deliverables
+## Deliver
 
 - Spring Boot integration tests.
 - Backend code fixes where the test gate exposes gaps.
 - Frontend smoke path against deterministic data.
 - Evidence from backend and frontend verification commands.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-react" && npm test
+cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-react" && npm run agent:check
+cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-spring-boot" && mvn test
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- Spring integration tests
+- role locator smoke
+- trace/report capture
+- deterministic backend fixture
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Does this gate catch the category of regression mocks kept missing?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -2,25 +2,16 @@
 
 # TDD Skill Red-Green Refactor
 
-## Competency
+**Goal:** Use a TDD-style skill loop to implement invoice retry rules without letting the agent jump straight to a broad rewrite.
 
-04. Test Automation - Reliable E2E test generation
+**Outcome:** Payment retry behavior is specified test-first, implemented one rule at a time, and refactored only after the suite proves behavior.
 
-## Popular Agent Skill Pattern
+## Start Here
 
-tdd
+Starter folders:
+- [starter-react](./starter-react)
 
-## Your Mission
-
-Use a TDD-style skill loop to implement invoice retry rules without letting the agent jump straight to a broad rewrite.
-
-## Starter Project
-
-```text
-04 Test Automation/exercise-04-tdd-skill-red-green-refactor/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "04 Test Automation/exercise-04-tdd-skill-red-green-refactor/starter-react"
@@ -28,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/behavior-contract.md](./docs/behavior-contract.md)
+- [docs/red-green-log.md](./docs/red-green-log.md)
 
-Payment retry behavior is specified test-first, implemented one rule at a time, and refactored only after the suite proves behavior.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [04. Test Automation practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#04-test-automation)
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `tdd`
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Use the skill pattern as an operating workflow, not as a prompt shortcut.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Confirm the behavior contract and interfaces to test.
+4. Write one failing test for the smallest rule.
+5. Implement only enough code to pass.
+6. Refactor after the test suite protects behavior.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Package the repeated workflow into explicit steps, trigger conditions, and evidence checks.
-- Keep the agent focused on the smallest useful slice of the domain.
-- Verify the skill pattern against code, tests, traces, or review artifacts.
-- Record the decisions future humans or agents need to continue safely.
-
-Common mistake to avoid: Treating the skill name as magic and skipping the engineering control loop around it.
-
-Mastery signal: The skill pattern changes how the work is planned, executed, verified, and handed off.
-
-## Hands-On Scope
-
-- Confirm the behavior contract and interfaces to test.
-- Write one failing test for the smallest rule.
-- Implement only enough code to pass.
-- Refactor after the test suite protects behavior.
-
-## Required Working Deliverables
+## Deliver
 
 - Tests for retry scheduling and copy decisions.
 - Working React retry state behavior.
 - Refactor notes explaining protected behavior.
 - Evidence log showing red, green, and refactor commands.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "04 Test Automation/exercise-04-tdd-skill-red-green-refactor/starter-react" && npm test
+cd "04 Test Automation/exercise-04-tdd-skill-red-green-refactor/starter-react" && npm run agent:check
+```
 
+Done when:
 - Tests are written before each behavior change.
 - Each red-green-refactor step is recorded with command evidence.
 - Mocks are deterministic and cover network failure, expired card, recovery, and enterprise copy.
 - Refactoring happens after behavior is green, not as a speculative rewrite.
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would this skill pattern make a real experienced team safer, faster, or clearer after the first implementation?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -2,21 +2,16 @@
 
 # Runbook Drift Repair
 
-## Competency
+**Goal:** Update stale support docs and diagrams after verifying how the current app actually handles incidents.
 
-07. Docs & Diagrams - Diagrams and architecture decision records
+**Outcome:** A stale runbook is repaired by changing code, checks, and docs together.
 
-## Your Mission
+## Start Here
 
-Update stale support docs and diagrams after verifying how the current app actually handles incidents.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-07 Docs & Diagrams/exercise-03-runbook-drift-repair/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "07 Docs & Diagrams/exercise-03-runbook-drift-repair/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/incident-flow-notes.md](./docs/incident-flow-notes.md)
+- [docs/stale-runbook.md](./docs/stale-runbook.md)
 
-A stale runbook is repaired by changing code, checks, and docs together.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [07. Docs & Diagrams practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#07-docs-diagrams)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Use agents to capture decisions while the context is still fresh.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Compare the runbook against actual incident handling code and current app behavior.
+4. Fix drift in code, scripts, or docs where the current behavior is wrong or unclear.
+5. Add an incident smoke test or scripted reproduction.
+6. Update diagrams only after the verified behavior is known.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Record decisions as ADRs with what, why, alternatives, and trade-offs.
-- Generate flowcharts, sequence diagrams, state diagrams, and C4 diagrams from code.
-- Make architecture-change ADRs part of normal PR flow.
-- Verify generated diagrams against code before trusting them.
-
-Common mistake to avoid: A generated diagram that is slightly wrong is worse than none because people trust it.
-
-Mastery signal: The why behind decisions is committed, docs evolve with code, and newcomers or agents can onboard from the repo.
-
-## Hands-On Scope
-
-- Compare the runbook against actual incident handling code and current app behavior.
-- Fix drift in code, scripts, or docs where the current behavior is wrong or unclear.
-- Add an incident smoke test or scripted reproduction.
-- Update diagrams only after the verified behavior is known.
-
-## Required Working Deliverables
+## Deliver
 
 - Runbook update grounded in actual code behavior.
 - Code/config fixes for discovered drift where needed.
 - Incident smoke test or reproduction script.
 - Verification evidence for the support path.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "07 Docs & Diagrams/exercise-03-runbook-drift-repair/starter-react" && npm test
+cd "07 Docs & Diagrams/exercise-03-runbook-drift-repair/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- runbook command smoke
+- incident reproduction script
+- diagram drift check
+- support handoff review
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would on-call trust this runbook during an incident?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

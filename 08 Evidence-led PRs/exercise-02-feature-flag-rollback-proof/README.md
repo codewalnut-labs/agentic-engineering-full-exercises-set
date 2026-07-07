@@ -2,21 +2,16 @@
 
 # Feature Flag Rollback Proof
 
-## Competency
+**Goal:** Prove that a risky UI feature is gated, observable, and reversible before a reviewer sees the PR.
 
-08. Evidence-led PRs - PR gate evidence and handoff
+**Outcome:** A risky agent-written feature is gated, observable, and reversible.
 
-## Your Mission
+## Start Here
 
-Prove that a risky UI feature is gated, observable, and reversible before a reviewer sees the PR.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/flag-brief.md](./docs/flag-brief.md)
+- [docs/rollback-template.md](./docs/rollback-template.md)
 
-A risky agent-written feature is gated, observable, and reversible.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [08. Evidence-led PRs practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#08-evidence-led-prs)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Do not ask reviewers to trust agent-written code. Put the proof in the PR.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Implement a real feature flag around the risky UI behavior.
+4. Add telemetry/audit events for enabled, disabled, and rollback paths.
+5. Build a rollback script or documented command that changes behavior without a deploy.
+6. Test both flag states and the failure path.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Treat quality gates as deliverables with commands, location, risk, and approval evidence.
-- Write the PR so reviewers understand intent before reading the diff.
-- Attach test results, coverage, screenshots, outputs, traces, and profiles where useful.
-- Let CI produce evidence automatically while humans keep judgment calls.
-
-Common mistake to avoid: A green checkmark without visible evidence still makes reviewers reconstruct the work.
-
-Mastery signal: Reviewers stop asking whether it was tested, evidence is mostly automated, and merge confidence comes from proof.
-
-## Hands-On Scope
-
-- Implement a real feature flag around the risky UI behavior.
-- Add telemetry/audit events for enabled, disabled, and rollback paths.
-- Build a rollback script or documented command that changes behavior without a deploy.
-- Test both flag states and the failure path.
-
-## Required Working Deliverables
+## Deliver
 
 - Feature flag implementation in code/config.
 - Telemetry or audit behavior.
 - Tests for on/off/rollback states.
 - Rollback evidence suitable for a PR.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/starter-react" && npm test
+cd "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- flag on/off tests
+- rollback script
+- telemetry assertion
+- PR evidence capture
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would you approve this feature for a staged rollout?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

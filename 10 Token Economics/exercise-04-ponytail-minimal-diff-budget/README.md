@@ -2,25 +2,16 @@
 
 # Ponytail Minimal-Diff Budget
 
-## Competency
+**Goal:** Use the Ponytail ladder to finish a design-system migration slice with the smallest safe diff: skip what is not needed, reuse what exists, prefer platform features, and write new code only after the cheaper rungs fail.
 
-10. Token Economics - Cost and context budget control
+**Outcome:** A migration task ships with less new code, less context churn, and no hidden loss of validation, accessibility, or error handling.
 
-## Popular Agent Skill Pattern
+## Start Here
 
-Ponytail minimal-diff ladder
+Starter folders:
+- [starter-react](./starter-react)
 
-## Your Mission
-
-Use the Ponytail ladder to finish a design-system migration slice with the smallest safe diff: skip what is not needed, reuse what exists, prefer platform features, and write new code only after the cheaper rungs fail.
-
-## Starter Project
-
-```text
-10 Token Economics/exercise-04-ponytail-minimal-diff-budget/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "10 Token Economics/exercise-04-ponytail-minimal-diff-budget/starter-react"
@@ -28,55 +19,49 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/ponytail-ladder-ledger.md](./docs/ponytail-ladder-ledger.md)
+- [docs/session-transcript.md](./docs/session-transcript.md)
 
-A migration task ships with less new code, less context churn, and no hidden loss of validation, accessibility, or error handling.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [10. Token Economics practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#10-token-economics)
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `Ponytail minimal-diff ladder`
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
+- [Ponytail skill](https://github.com/DietrichGebert/ponytail)
 
-## Practice Focus
+## Do This
 
-Use the skill pattern as an operating workflow, not as a prompt shortcut.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Audit the session transcript and starter code for overbuilt migration ideas.
+4. Create a Ponytail ladder ledger showing which rung was accepted or rejected for each proposed change.
+5. Implement one design-system migration task by deleting, reusing, or using native behavior before adding new code.
+6. Add the smallest check that would fail if the chosen shortcut broke behavior.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Climb the ladder in order: skip, reuse local code, use standard library or platform behavior, use installed dependencies, then write the minimum new code.
-- Trace the real flow before choosing a small diff.
-- Preserve trust-boundary validation, accessibility, error handling, and data-loss protection.
-- Leave one focused runnable check for any non-trivial logic.
-
-Common mistake to avoid: Treating the skill name as magic and skipping the engineering control loop around it.
-
-Mastery signal: The final diff is small because the correct lower rung held, not because the implementation ignored risk.
-
-## Hands-On Scope
-
-- Audit the session transcript and starter code for overbuilt migration ideas.
-- Create a Ponytail ladder ledger showing which rung was accepted or rejected for each proposed change.
-- Implement one design-system migration task by deleting, reusing, or using native behavior before adding new code.
-- Add the smallest check that would fail if the chosen shortcut broke behavior.
-
-## Required Working Deliverables
+## Deliver
 
 - Ponytail ladder ledger with accepted and rejected rungs.
 - Working React migration slice.
 - One focused runnable check for non-trivial logic.
 - Short impact note comparing avoided code, changed files, commands, and residual risks.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "10 Token Economics/exercise-04-ponytail-minimal-diff-budget/starter-react" && npm test
+cd "10 Token Economics/exercise-04-ponytail-minimal-diff-budget/starter-react" && npm run agent:check
+```
 
+Done when:
 - Ladder ledger proves skip/reuse/platform/dependency options were considered before new code.
 - Final diff changes fewer files than the overbuilt starter plan while preserving required behavior.
 - Safety exceptions are explicit for validation, accessibility, error handling, and data-loss protection.
 - One focused check proves the implemented migration slice.
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would this skill pattern make a real experienced team safer, faster, or clearer after the first implementation?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

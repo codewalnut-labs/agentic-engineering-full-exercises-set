@@ -2,21 +2,16 @@
 
 # Subagent NFR Swarm
 
-## Competency
+**Goal:** Use specialist subagents for security, accessibility, performance, and testability review while one main thread owns the decision log.
 
-06. Multi-Agent Workflows - Parallel agents on isolated tasks
+**Outcome:** Specialist review agents produce actionable NFR findings and the main thread implements the right fixes.
 
-## Your Mission
+## Start Here
 
-Use specialist subagents for security, accessibility, performance, and testability review while one main thread owns the decision log.
+Starter folders:
+- [starter-react](./starter-react)
 
-## Starter Project
-
-```text
-06 Multi-Agent Workflows/exercise-02-subagent-nfr-swarm/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "06 Multi-Agent Workflows/exercise-02-subagent-nfr-swarm/starter-react"
@@ -24,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/nfr-risk-seeds.md](./docs/nfr-risk-seeds.md)
+- [docs/specialist-prompts.md](./docs/specialist-prompts.md)
 
-Specialist review agents produce actionable NFR findings and the main thread implements the right fixes.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [06. Multi-Agent Workflows practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#06-multi-agent-workflows)
+- Use the competency practice guide as the main workflow reference.
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Run independent work in parallel, with each agent in its own lane.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Run separate security, accessibility, performance, and testability review passes.
+4. Triage findings into fix, defer, or dismiss with evidence.
+5. Implement the top fixes in the starter.
+6. Re-run checks after changes and record residual risk.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Split work into isolated tasks before parallelizing.
-- Give independent tasks separate worktrees and branches.
-- Treat each agent result like a separate PR: review, test, and merge deliberately.
-- Use subagents for focused search, repo review, research, and NFR checks inside one main task.
-
-Common mistake to avoid: Parallel agents editing overlapping files do not go faster; they create conflict cleanup.
-
-Mastery signal: Independent work runs side by side, worktrees prevent collisions, and the accountable owner integrates rather than babysits.
-
-## Hands-On Scope
-
-- Run separate security, accessibility, performance, and testability review passes.
-- Triage findings into fix, defer, or dismiss with evidence.
-- Implement the top fixes in the starter.
-- Re-run checks after changes and record residual risk.
-
-## Required Working Deliverables
+## Deliver
 
 - Specialist review summaries.
 - Implemented NFR fixes.
 - Tests or checks for the fixed risks.
 - Main-thread decision log.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "06 Multi-Agent Workflows/exercise-02-subagent-nfr-swarm/starter-react" && npm test
+cd "06 Multi-Agent Workflows/exercise-02-subagent-nfr-swarm/starter-react" && npm run agent:check
+```
 
-- List exact commands run and whether they passed or failed.
-- Include test, typecheck, build, smoke, trace, or script output appropriate to the exercise.
-- Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
-- Call out residual risk, deferred work, and why those choices are acceptable.
+Done when:
+- specialist report schema
+- fix/defer/dismiss table
+- implemented top fixes
+- post-fix recheck
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Did specialist agents add signal without losing a single accountable owner?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

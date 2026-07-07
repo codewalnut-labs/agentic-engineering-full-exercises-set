@@ -13,8 +13,10 @@ for (const file of files) {
 }
 
 const readme = fs.readFileSync(path.join(process.cwd(), "..", "README.md"), "utf8");
-if (!readme.includes("## Popular Agent Skill Pattern") || !readme.includes("## Practice Focus")) {
-  failures.push("README is missing required exercise sections");
+const requiredSections = ["## Use These Practices", "## Do This", "## Deliver", "## Verify"];
+const missingSections = requiredSections.filter((section) => !readme.includes(section));
+if (missingSections.length) {
+  failures.push("README is missing required exercise sections: " + missingSections.join(", "));
 }
 
 if (failures.length) {

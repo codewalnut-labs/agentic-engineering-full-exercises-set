@@ -2,25 +2,16 @@
 
 # Graphify Knowledge Graph Lab
 
-## Competency
+**Goal:** Create and verify a codebase knowledge graph before asking an agent to make a cross-cutting billing analytics change.
 
-03. Context Engineering - Agent working-context curation
+**Outcome:** Agents answer architecture questions from a durable graph of code, docs, schema, jobs, and ownership instead of repeatedly scanning raw files.
 
-## Popular Agent Skill Pattern
+## Start Here
 
-graphify
+Starter folders:
+- [starter-react](./starter-react)
 
-## Your Mission
-
-Create and verify a codebase knowledge graph before asking an agent to make a cross-cutting billing analytics change.
-
-## Starter Project
-
-```text
-03 Context Engineering/exercise-05-graphify-knowledge-graph-lab/starter-react
-```
-
-Run the React starter:
+React starter:
 
 ```bash
 cd "03 Context Engineering/exercise-05-graphify-knowledge-graph-lab/starter-react"
@@ -28,55 +19,48 @@ npm install
 npm run dev
 ```
 
-## Lab Outcome
+Seed files:
+- [docs/graph-extract.md](./docs/graph-extract.md)
+- [docs/graph-questions.md](./docs/graph-questions.md)
 
-Agents answer architecture questions from a durable graph of code, docs, schema, jobs, and ownership instead of repeatedly scanning raw files.
+## Use These Practices
 
-This is not complete if the only result is a Markdown file. The written artifacts are there to constrain and explain the engineering work.
+- [03. Context Engineering practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#03-context-engineering)
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `graphify`
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
-## Practice Focus
+## Do This
 
-Use the skill pattern as an operating workflow, not as a prompt shortcut.
+1. Run the starter and skim the seed files so the agent has real context.
+2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
+3. Build or simulate the graph from the provided extract.
+4. Query the graph to find affected modules and owner boundaries.
+5. Use raw files only after the graph narrows the search space.
+6. Patch one billing metric bug and update the graph notes.
+7. Run the checks below and keep the output for your evidence note.
+8. Commit only the files needed for this exercise.
 
-Practice signals for this exercise:
-
-- Package the repeated workflow into explicit steps, trigger conditions, and evidence checks.
-- Keep the agent focused on the smallest useful slice of the domain.
-- Verify the skill pattern against code, tests, traces, or review artifacts.
-- Record the decisions future humans or agents need to continue safely.
-
-Common mistake to avoid: Treating the skill name as magic and skipping the engineering control loop around it.
-
-Mastery signal: The skill pattern changes how the work is planned, executed, verified, and handed off.
-
-## Hands-On Scope
-
-- Build or simulate the graph from the provided extract.
-- Query the graph to find affected modules and owner boundaries.
-- Use raw files only after the graph narrows the search space.
-- Patch one billing metric bug and update the graph notes.
-
-## Required Working Deliverables
+## Deliver
 
 - Updated graph snapshot or graph notes.
 - Working metric behavior in the React starter.
 - Evidence of graph-guided file selection.
 - A short list of graph gaps for future agents.
 
-## Agentic Engineering Requirements
+## Verify
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
-- Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
-- Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
-- Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
+Run at least:
 
-## Evidence Gate
+```bash
+cd "03 Context Engineering/exercise-05-graphify-knowledge-graph-lab/starter-react" && npm test
+cd "03 Context Engineering/exercise-05-graphify-knowledge-graph-lab/starter-react" && npm run agent:check
+```
 
+Done when:
 - Graph extract contains nodes for UI, API, warehouse, jobs, docs, and owner teams.
 - At least five agent questions are answered from the graph before files are opened.
 - A stale or missing edge is corrected and documented.
 - The implemented change names the graph queries used to choose files.
+- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
 
-## Review Bar
-
-Would this skill pattern make a real experienced team safer, faster, or clearer after the first implementation?
+A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.
