@@ -9,7 +9,7 @@
     <version>3.5.6</version>
     <relativePath />
   </parent>
-  <groupId>com.codewalnut.agentic</groupId>
+  <groupId>dev.agentic.exercise</groupId>
   <artifactId>contract-first-scheduling-api</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <properties>

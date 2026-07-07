@@ -25,7 +25,7 @@ Architecture, commands, conventions, and repeated corrections live in versioned 
 - Exercise 01: Repo Context Pack for Bugfix Agents - Build a compact context layer so future bugfix agents understand ownership, commands, and safe inspection paths.
 - Exercise 02: Token-Budgeted Feature Delivery - Implement a small UI change while staying inside a strict context budget and documenting every file included.
 - Exercise 03: MCP Context Server for Product Data - Expose product rules and fixtures through a tiny TypeScript context server so agents stop pasting giant JSON into prompts.
-- Exercise 04: Imported NFR X-Ray - Build the context layer a fresh agent needs before it audits the internal workflow portal. Use the audit to prove the context pack is useful, then fix the highest-value findings.
+- Exercise 04: Context-First NFR X-Ray - Build the context layer a fresh agent needs before it audits the production workflow portal. Use the audit to prove the context pack is useful, then fix the highest-value findings.
 - Exercise 05: Graphify Knowledge Graph Lab - Create and verify a codebase knowledge graph before asking an agent to make a cross-cutting billing analytics change.
 - Exercise 06: Intent Layer Repo Map - Add folder-level intent context so agents understand ownership, constraints, and traps before editing an incident workflow.
 
@@ -64,7 +64,7 @@ Decisions, diagrams, and non-obvious system behavior are recorded while context 
 - Exercise 01: ADR for Architecture Change - Write an ADR for moving workflow state out of React-only local state into a service boundary.
 - Exercise 02: C4 and Sequence Diagram From Code - Reverse engineer the feature and create C4-style and sequence diagrams that match the actual code paths.
 - Exercise 03: Runbook Drift Repair - Update stale support docs and diagrams after verifying how the current app actually handles incidents.
-- Exercise 04: Imported Generate Diagram - Reverse engineer the feature workflow in the starter app and create diagrams that match the actual implementation, not the intended story in your head.
+- Exercise 04: Workflow Diagram Reconstruction - Reverse engineer the feature workflow in the starter app and create diagrams that match the actual implementation, not the intended story in your head.
 - Exercise 05: Codebase Graph to Diagrams - Convert a codebase graph snapshot into verified C4 and sequence diagrams, then use those diagrams to guide a safe change.
 
 ## 08. Evidence-led PRs
@@ -82,7 +82,7 @@ Clean-looking code is checked for behavior, security, accessibility, performance
 - Exercise 01: Security and A11y Review Gauntlet - Review a generated React change for security, accessibility, and behavioral regressions before approving it.
 - Exercise 02: Diff Triage With Fresh Agent - Use a fresh review pass to find what the implementing agent missed, then decide which findings are merge blockers.
 - Exercise 03: Review Regression Lab - Find subtle regressions in a large agent-written UI diff that appears clean at first glance.
-- Exercise 04: Imported Code Review - Review the supplied PR diff in five focused minutes, then verify the agent's findings against the surrounding code before deciding what blocks merge.
+- Exercise 04: PR Diff Review - Review the supplied PR diff in five focused minutes, then verify the agent's findings against the surrounding code before deciding what blocks merge.
 - Exercise 05: Code Review Graph Skill - Use structural graph context to review a large agent-written discount change by call path, ownership, and risk.
 
 ## 10. Token Economics

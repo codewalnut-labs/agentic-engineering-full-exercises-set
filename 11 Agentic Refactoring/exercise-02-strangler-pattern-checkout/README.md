@@ -61,7 +61,7 @@ Mastery signal: A green baseline exists before refactoring, every chunk stays gr
 
 ## Agentic Engineering Requirements
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner accountable for the diff.
+- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner for the diff.
 - Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
 - Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
 - Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.
@@ -73,6 +73,6 @@ Mastery signal: A green baseline exists before refactoring, every chunk stays gr
 - Show before/after behavior for any bug fix, refactor, NFR improvement, or policy change.
 - Call out residual risk, deferred work, and why those choices are acceptable.
 
-## Leadership Review
+## Review Bar
 
 Is this small enough to merge, observe, and continue without a risky rewrite?
