@@ -29,37 +29,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [03. Context Engineering practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#03-context-engineering)
-- Use the competency practice guide as the main workflow reference.
+- [Model Context Protocol specification](https://modelcontextprotocol.io/specification)
+- [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to inspect `docs/product-rules.md`, `docs/fixture-index.md`, `context-server`, and the React starter, then define which product facts should be queried instead of pasted into prompts.
+2. Review the proposed resource and tool names for least privilege, stable schemas, and fixture versioning.
+3. Have the agent implement or repair the tiny context server so it exposes only the approved rules and fixture queries.
+4. Wire the starter or a smoke script to consume the context server response and handle missing or version-mismatched data.
+5. Ask the agent to add tests for valid query, unknown query, access boundary, and fixture version behavior.
+6. Run a clean-context trial where the new agent answers a product-rule question by querying the server instead of opening every fixture file.
 
 ## Deliver
 
-- Runnable context server or MCP-style adapter.
-- React integration or demo client using retrieved rules.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Runnable TypeScript context server with documented resources or tools.
+- Schema and fixture version notes for each exposed query.
+- Consumer smoke test or starter integration showing the query path works.
+- Evidence note comparing prompt-paste context avoided by the server.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The context server query contract is covered by tests.
-- Access boundary tests prove the server does not expose out-of-scope data.
-- Fixture versioning is documented so agents know which data is current.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- The server exposes only the product data needed for the exercise.
+- Query contracts are typed or validated and covered by tests.
+- Out-of-scope resources fail safely instead of leaking fixture internals.
+- A fresh agent can discover the context server contract from repo files and use it correctly.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

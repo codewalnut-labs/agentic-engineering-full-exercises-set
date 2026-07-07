@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
-- Use the competency practice guide as the main workflow reference.
+- [Codex skills guide](https://developers.openai.com/codex/skills)
+- [Claude Skills overview](https://docs.anthropic.com/en/docs/claude-code/skills)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to inspect `docs/repeated-review-prompt.md`, `docs/skill-eval-cases.md`, and the starter diff target, then identify the repeated review workflow worth packaging.
+2. Review the workflow and remove one-off project notes, vague quality advice, and instructions that belong in repo rules instead of the skill.
+3. Have the agent create an in-repo skill with a precise use-when description, non-use cases, input expectations, output shape, and review checklist.
+4. Run the skill against the sample React change and capture findings in the expected output format.
+5. Ask the agent to build a tiny eval or smoke harness from `skill-eval-cases.md` that checks trigger fit and output sections.
+6. Revise the skill after the eval: tighten the trigger if it fires too broadly or add missing review steps if it misses real risk.
 
 ## Deliver
 
-- In-repo skill folder.
-- Eval or smoke harness for trigger quality and output shape.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Packaged review skill folder with `SKILL.md` or equivalent instructions.
+- Sample review output for the provided React change.
+- Eval or smoke harness covering trigger and output shape.
+- Evidence note showing what changed after the first skill draft.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Skill trigger cases prove the skill activates only in the intended situations.
-- The sample React change is reviewed with the packaged skill.
-- Skill output follows the documented schema.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- The skill trigger is specific enough to load for code review work and stay quiet for unrelated tasks.
+- The checklist asks for security, accessibility, behavior, tests, and evidence without becoming a generic essay.
+- Eval cases include at least one positive and one negative trigger case.
+- A fresh agent can use the skill and produce the expected review sections.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

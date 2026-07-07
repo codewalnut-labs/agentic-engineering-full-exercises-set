@@ -29,36 +29,33 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [12. Agentic Retrospective practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#12-agentic-retrospective)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `trace-backed skill optimizer`
+- [OpenAI Evals](https://github.com/openai/evals) for regression-minded evaluation
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to mine `docs/trace-samples.md` and `docs/skill-regression.md` for trigger misses, repeated reads, skipped checks, wrong tool choice, and weak final evidence.
+2. Review the trace labels and separate skill defects from missing repo context, missing hooks, or impossible user requests.
+3. Have the agent propose one optimizer change to the skill, one eval case that would catch the regression, and one optional hook or rule if the trace proves it is needed.
+4. Apply the smallest skill change first, keeping references and examples lean.
+5. Run before/after evals on the trace-derived cases and record whether the optimizer reduced false triggers, skipped steps, or weak outputs.
+6. Run a clean-context replay where a new agent uses the optimized skill on a trace-like task and produces stronger evidence.
 
 ## Deliver
 
-- Trace retro with ranked waste and failure patterns.
-- Patched skill or team rule.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Trace analysis table with defect type, evidence, and chosen fix.
+- Optimized skill, eval case, and optional hook or rule update.
+- Before/after eval results from trace-derived cases.
+- Evidence note describing improved behavior and remaining regression risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Trace analysis identifies repeated reads, retry loops, skipped checks, and trigger misses.
-- At least one skill patch is backed by a failing trace case.
-- A hook or rule is added only when it prevents a repeated mistake.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Trace findings are tied to concrete failed steps, not general dissatisfaction.
+- The skill optimizer change is measured by an eval before it is considered better.
+- Hooks or rules are added only when traces show the skill alone cannot prevent recurrence.
+- A fresh agent produces stronger output on a trace-like task without extra coaching.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

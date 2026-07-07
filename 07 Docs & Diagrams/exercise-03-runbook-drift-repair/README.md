@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [07. Docs & Diagrams practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#07-docs-diagrams)
-- Use the competency practice guide as the main workflow reference.
+- [Google SRE incident management concepts](https://sre.google/sre-book/managing-incidents/)
+- [Mermaid flowchart syntax](https://mermaid.js.org/syntax/flowchart.html)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: workflow, architecture, source files, existing docs, drift risks, and diagram or doc outputs.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to compare `docs/stale-runbook.md`, `docs/incident-flow-notes.md`, and current incident-handling code for drift.
+2. Review the drift report and separate wrong docs, wrong code, missing checks, and outdated diagrams.
+3. Have the agent reproduce or simulate the incident path described by the stale runbook before changing docs.
+4. Fix the smallest code or check gap needed, then update the runbook steps and diagram to match the current behavior.
+5. Ask the agent to add a runbook smoke script, checklist, or manual verification table for future drift checks.
+6. Run a clean-context drill where a new agent follows the repaired runbook and records any unclear command or branch.
 
 ## Deliver
 
-- Runbook update grounded in actual code behavior.
-- Code/config fixes for discovered drift where needed.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Runbook updated from observed behavior, not memory.
+- Diagram or flow update matching the repaired incident path.
+- Smoke script, checklist, or manual verification table for the runbook.
+- Evidence note showing reproduction, repair, and clean-context drill results.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Runbook commands are smoke-tested or clearly marked as manual.
-- The incident reproduction script or steps reproduce the documented failure.
-- Diagram updates match the repaired runbook and current code.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Every runbook command or action is current, executable, or clearly marked manual.
+- The diagram and runbook describe the same incident path.
+- At least one drift cause is fixed or guarded against for the next change.
+- A fresh agent can follow the runbook without relying on the original stale notes.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

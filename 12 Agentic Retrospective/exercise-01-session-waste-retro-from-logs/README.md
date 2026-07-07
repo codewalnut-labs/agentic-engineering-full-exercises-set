@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [12. Agentic Retrospective practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#12-agentic-retrospective)
-- Use the competency practice guide as the main workflow reference.
+- [OpenAI prompt caching guide](https://platform.openai.com/docs/guides/prompt-caching)
+- [Anthropic prompt caching guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to parse `docs/session-log.md` and `docs/usage-summary.md` for repeated file reads, abandoned plans, re-prompts, failed commands, and context reloads.
+2. Review the extracted waste events and group them by root cause: missing rule, missing context, weak skill, flaky check, or human decision delay.
+3. Have the agent calculate simple waste metrics such as repeated reads, retry loops, stale context loaded, and commands rerun without new evidence.
+4. Pick the highest-value root cause and implement one durable fix: rule, context note, hook, script, or skill update.
+5. Ask the agent to rerun the log analysis as a simulated after state and estimate which events the fix would have prevented.
+6. Run a clean-context retro review where a new agent reads the fix and predicts which session behavior should improve.
 
 ## Deliver
 
-- Session log analyzer script.
-- Waste metrics report.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Session waste analysis with grouped root causes and simple metrics.
+- One implemented durable fix for the highest-value waste pattern.
+- Before/after estimate showing which waste events the fix addresses.
+- Evidence note with remaining waste patterns and next retro candidate.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Log parser tests cover the provided session fixtures.
-- The waste metric report identifies repeated, actionable agent friction.
-- At least one rule, hook, or skill is improved from the retrospective.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Waste metrics are derived from the provided logs, not guessed from memory.
+- The implemented fix targets a repeated root cause rather than one isolated annoyance.
+- Before/after reasoning explains how future sessions should spend less time or context.
+- A fresh agent can read the fix and understand the behavior it is meant to change.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

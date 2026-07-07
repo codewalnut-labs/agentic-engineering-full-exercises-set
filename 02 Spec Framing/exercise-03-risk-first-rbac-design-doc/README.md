@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
-- Use the competency practice guide as the main workflow reference.
+- [OWASP Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html)
+- [NIST access control overview](https://csrc.nist.gov/projects/role-based-access-control)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to read `docs/rbac-brief.md`, `docs/decision-table.md`, and the starter UI, then identify protected resources, actors, actions, and data exposure risks.
+2. Review the risk list and force each permission rule to answer what harm it prevents, not only which role gets a checkbox.
+3. Have the agent draft a compact design note with roles, non-goals, denied states, audit expectations, and a permission matrix.
+4. Implement the smallest UI/domain enforcement needed to prove the matrix works for allowed and denied cases.
+5. Ask the agent to add tests or fixtures for escalation attempts, missing role data, hidden controls, and server-trust assumptions.
+6. Run a clean-context review where the new agent attacks the design for over-broad access and ambiguous ownership.
 
 ## Deliver
 
-- Permission matrix encoded in code or config.
-- UI/API guard behavior with tests.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Risk-first RBAC design note with permission matrix and explicit non-goals.
+- Starter behavior enforcing the most important allow and deny paths.
+- Tests or manual evidence for denied access, role changes, and hidden or disabled actions.
+- Evidence note explaining accepted risk, deferred risk, and why the design is not overbuilt.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Product questions are captured and resolved or explicitly marked open.
-- Acceptance criteria are covered by tests or documented manual checks.
-- Permission matrix cases are covered, including denied access.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Every role rule is tied to a resource, action, risk, and enforcement point.
+- Denied paths are tested as first-class behavior, not inferred from hidden buttons.
+- The design separates UI affordances from actual authorization decisions.
+- A fresh agent can use the matrix to implement another permission without inventing a new model.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -24,37 +24,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [07. Docs & Diagrams practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#07-docs-diagrams)
-- Use the competency practice guide as the main workflow reference.
+- [Mermaid flowchart syntax](https://mermaid.js.org/syntax/flowchart.html)
+- [Mermaid sequence diagrams](https://mermaid.js.org/syntax/sequenceDiagram.html)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: workflow, architecture, source files, existing docs, drift risks, and diagram or doc outputs.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to reverse engineer the workflow from the starter code by tracing user actions, state transitions, service calls, and rendered evidence panels.
+2. Review the trace and remove guessed product intentions that are not visible in code or UI behavior.
+3. Have the agent create a compact flow diagram for state transitions and a sequence diagram for the main user action.
+4. Ask the agent to write a trace script, test, or manual checklist that proves the diagram steps happen in the app.
+5. Update diagram labels until they match actual file, function, state, or user-action names.
+6. Run a clean-context diagram review where a new agent starts from the diagram and finds the corresponding code path.
 
 ## Deliver
 
-- Sequence and flow diagram sources.
-- Trace script/test output proving the diagram steps.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Workflow flow diagram source.
+- Sequence diagram source for the main action.
+- Trace script, test, or manual checklist proving the diagram path.
+- Evidence note listing labels changed after code verification.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Diagram nodes map to actual files, functions, or user actions.
-- The trace script/test proves the main workflow steps.
-- Any diagram-code mismatch is fixed or called out as residual risk.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Diagram nodes map to actual files, functions, states, or user actions.
+- The trace evidence proves the main path rather than describing it by hand.
+- Any mismatch between diagram and code is fixed or recorded as residual risk.
+- A fresh agent can navigate from diagram node to source file.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [03. Context Engineering practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#03-context-engineering)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `intent-layer / zoom-out`
+- [Codex AGENTS.md guide](https://developers.openai.com/codex/guides/agents-md)
+- [Claude Code memory docs](https://docs.anthropic.com/en/docs/claude-code/memory)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to compare `docs/folder-map.md`, `docs/context-smells.md`, and the starter folders to find where intent is missing or misleading.
+2. Review each proposed intent note and reject anything that restates filenames, predicts future work, or belongs in a one-time task plan.
+3. Have the agent add folder-level intent notes that explain ownership, domain role, allowed changes, risky traps, and related checks.
+4. Ask the agent to use those notes to make the incident workflow change, then update the map only where the change proves a durable rule.
+5. Check that the intent layer stays small and links to deeper docs rather than becoming a dumped architecture essay.
+6. Start a clean-context handoff where a new agent chooses the right folder for an incident change and names one path it should avoid.
 
 ## Deliver
 
-- Folder intent notes or context map.
-- Working React fix for escalation or severity behavior.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Folder-level intent layer or repo map update.
+- Incident workflow change that demonstrates the map is usable.
+- Short review note showing which proposed notes were rejected as noise.
+- Evidence note from the clean-context folder-selection test.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Intent notes explain module purpose, ownership, traps, and safe commands.
-- Context stays compact enough for every session.
-- A future bugfix plan cites intent notes before choosing files.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Intent notes explain why folders exist and what agents must preserve.
+- The map is compact and links out instead of copying whole docs.
+- The incident change follows the mapped ownership and check guidance.
+- A fresh agent can locate the right module and avoid at least one known trap.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

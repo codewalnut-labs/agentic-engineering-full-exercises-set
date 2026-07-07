@@ -29,36 +29,33 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `to-prd / to-issues`
+- [GitHub issue planning concepts](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to extract goals, users, constraints, metrics, risks, and open questions from `docs/product-conversation.md` without creating issues yet.
+2. Review the extraction and decide what belongs in the PRD, what is an assumption, and what must be left out of scope.
+3. Have the agent draft a PRD with success metric, release guardrail, non-goals, and acceptance criteria that can be tested in the starter.
+4. Convert the PRD into vertical issues using `docs/slice-board.md`: each card should have independent files, checks, dependencies, and review evidence.
+5. Ask the agent to implement or dry-run one thin slice so the issue format is proven by real work, not only planning.
+6. Run a handoff review where a fresh agent chooses the next safe issue and explains why it can be worked independently.
 
 ## Deliver
 
-- PRD draft tied to concrete examples.
-- Issue board with dependency and ownership notes.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- PRD grounded in the product conversation with explicit non-goals and open questions.
+- Vertical slice issue board with owners, dependencies, acceptance criteria, and checks.
+- One proven slice or dry-run showing the issue format is actionable.
+- Evidence note documenting assumption changes and any issue that is not independently grabbable yet.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- PRD includes problem, users, success metric, constraints, non-goals, and examples.
-- Issues are vertical slices with acceptance criteria and explicit dependencies.
-- At least one issue ships a thin behavior across UI, state, analytics, and test evidence.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- The PRD separates user value, metric, scope, and release risk clearly.
+- Each issue can be implemented and reviewed without requiring a hidden shared rewrite.
+- Dependencies are shown explicitly instead of buried in prose.
+- A fresh agent can pick a card and name the files and checks before editing.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

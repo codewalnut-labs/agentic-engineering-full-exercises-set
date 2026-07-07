@@ -29,36 +29,33 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `grill-me / grill-with-docs`
+- [Decision table testing overview](https://martinfowler.com/bliki/DecisionTable.html)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to run a grill-me interview against `docs/vague-request.md` and stop after questions, contradictions, examples, and non-goals are captured.
+2. Review the interview and answer only the questions needed to protect entitlement behavior, migration safety, and user-visible failure states.
+3. Have the agent convert the answers and `docs/decision-tree-seeds.md` into a decision tree with examples at every branch.
+4. Ask the agent to turn the tree into a small implementation contract: accepted inputs, rejected inputs, precedence rules, and merge slices.
+5. Use the contract to update the starter workflow and tests, keeping the first slice narrow enough to review independently.
+6. Re-run the grill-me prompt once after implementation and capture any branch the agent still cannot decide from the spec.
 
 ## Deliver
 
-- Updated entitlement decision table and question log.
-- Working React behavior for selected entitlement states.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Question log with resolved, deferred, and rejected assumptions.
+- Decision tree and examples covering entitlement precedence and failures.
+- Implementation slice tied directly to the tree.
+- Evidence note showing how the second grill-me pass improved or validated the spec.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Question log covers decision branches, dependencies, defaults, non-goals, and open risks.
-- Spec examples cover eligible, blocked, expired, downgrade, and override conflict paths.
-- React contract panel reflects the frozen decisions and rejects unknown entitlement states.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- No implementation decision depends on an unanswered grill-me question.
+- The decision tree includes edge cases, denied paths, and at least one non-goal.
+- Tests or checks cover the highest-risk branches before the slice is considered done.
+- A fresh agent can follow the tree and predict behavior for a new example.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -27,37 +27,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [04. Test Automation practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#04-test-automation)
-- Use the competency practice guide as the main workflow reference.
+- [Playwright best practices](https://playwright.dev/docs/best-practices)
+- [Playwright locators](https://playwright.dev/docs/locators)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: current test behavior, flaky points, boundaries, fixtures, commands, and likely regression risks.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to inspect `docs/flaky-test-notes.md`, existing checkout tests, and the UI accessibility tree before rewriting anything.
+2. Review the flake diagnosis and classify each failure as locator brittleness, timing, shared state, test data, or product bug.
+3. Have the agent replace brittle selectors with role or label locators and web-first assertions for the checkout happy path and failure path.
+4. Remove fixed sleeps and shared mutable test state; add deterministic setup for cart, payment, and confirmation state.
+5. Ask the agent to run or document a repeated-run strategy that would expose the old flake and validate the new suite.
+6. Review traces or failure artifacts and keep only evidence that helps debug future regressions.
 
 ## Deliver
 
-- Playwright tests for the main checkout flows.
-- Deterministic mocks and fixtures.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Refactored Playwright checkout tests using user-facing locators.
+- Flake diagnosis table with root cause and fix for each unstable test.
+- Repeat-run or trace evidence for the rescued checkout flow.
+- Evidence note explaining what was removed because it was brittle.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- UI tests use stable role locators instead of brittle selectors.
-- The flaky path is checked with repeated or parallel runs.
-- Trace or failure evidence is captured only where it helps diagnose the issue.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Tests use role, text, label, or test id locators deliberately, with roles preferred where possible.
+- Assertions wait for user-visible state instead of sleeping.
+- The checkout suite can run repeatedly without depending on order or previous state.
+- A future failure would leave enough trace or log evidence to debug quickly.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [03. Context Engineering practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#03-context-engineering)
-- Use the competency practice guide as the main workflow reference.
+- [Codex AGENTS.md guide](https://developers.openai.com/codex/guides/agents-md)
+- [Claude Code memory docs](https://docs.anthropic.com/en/docs/claude-code/memory)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to scan the starter, `docs/repo-map-starter.md`, and `docs/hidden-conventions.md` for entry points, ownership boundaries, safe commands, and bug-prone conventions.
+2. Review the scan and remove folklore that is not proven by files or seed docs.
+3. Have the agent create a compact context pack that covers purpose, architecture map, change paths, commands, forbidden paths, and testing expectations.
+4. Use the context pack to fix the seeded bug in the starter without giving the agent extra chat hints.
+5. Ask the agent to update the pack only when the bugfix reveals a durable rule future agents need.
+6. Start a clean-context handoff and ask the new agent to find the likely bug area using only the context pack and repo files.
 
 ## Deliver
 
-- Versioned context layer under the exercise.
-- Actual bug fix in the React starter.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Repo context pack or updated repo map checked into the exercise.
+- Bugfix or demonstration change that proves the context pack is usable.
+- Short changelog of which hidden conventions were promoted into durable context.
+- Evidence note from the clean-context bugfix rehearsal.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The context pack gives a fresh agent enough repo-grounded context to work safely.
-- The target regression test fails before the fix and passes after it.
-- fresh-agent handoff simulation
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- The context pack is short enough to be read every session and specific enough to guide edits.
+- Bugfix work cites the context pack rather than relying on chat-only instructions.
+- Forbidden paths and generated artifacts are called out clearly.
+- A fresh agent can choose the right files and checks from the pack alone.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -29,37 +29,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
-- Use the competency practice guide as the main workflow reference.
+- [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Spring Boot testing reference](https://docs.spring.io/spring-boot/reference/testing/index.html)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to compare `docs/api-brief.md`, `docs/openapi-stub.md`, the React client, and the Spring Boot controller for contract gaps.
+2. Review the proposed contract and decide exact request and response shapes for slots, holds, time zones, conflicts, validation errors, and stale selections.
+3. Have the agent update the OpenAPI stub before implementation so both starters share the same vocabulary and status codes.
+4. Implement or repair the Spring endpoint behavior against the contract, then wire the React states to real payload examples.
+5. Ask the agent to add contract or integration tests for successful holds, duplicate holds, invalid time zones, stale slots, and conflict responses.
+6. Do a final contract walk from OpenAPI to backend test to UI state and mark any intentionally unsupported behavior as a non-goal.
 
 ## Deliver
 
-- Spring Boot endpoint behavior matching the contract.
-- React client states for loading, success, validation, conflict, and retry.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- OpenAPI contract that matches the implemented Spring Boot and React behavior.
+- Spring Boot endpoint updates plus contract or integration tests.
+- React loading, success, validation, conflict, and retry states driven by contract payloads.
+- Evidence note tracing each major response type to a test or smoke check.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The OpenAPI contract matches the UI and API behavior.
-- Spring integration tests cover the scheduling contract.
-- Frontend smoke testing covers loading, success, validation, conflict, and retry states.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- The OpenAPI contract is the source of truth for the backend and UI, not an after-the-fact note.
+- Backend tests cover status codes and payloads for success, validation, stale data, and conflict paths.
+- The React client handles every documented response state without guessing at undocumented fields.
+- A fresh agent can explain the API boundary and name which side owns each behavior.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

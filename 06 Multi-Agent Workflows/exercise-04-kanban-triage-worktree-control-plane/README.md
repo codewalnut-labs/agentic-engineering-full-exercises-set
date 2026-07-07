@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [06. Multi-Agent Workflows practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#06-multi-agent-workflows)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `triage / to-issues / kanban board`
+- [GitHub Issues docs](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
+- [git worktree documentation](https://git-scm.com/docs/git-worktree)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to triage `docs/incoming-issues.md` into bug, feature, chore, duplicate, needs-spec, and unsafe-to-parallel buckets.
+2. Review the triage and require every accepted card to include value, scope, owned files, checks, risk, and integration owner.
+3. Have the agent update `docs/agent-board.md` into a control plane with columns for ready, in progress, review, blocked, integrated, and deferred.
+4. Assign worktree or branch names only to cards that have non-overlapping ownership and clear review evidence.
+5. Simulate moving two cards through the board, including at least one blocker or review rejection.
+6. Run a clean-context handoff where a new agent reads the board and chooses exactly one ready card with safe commands and forbidden paths.
 
 ## Deliver
 
-- Updated triage board.
-- Worktree or branch plan with collision warnings.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Triage table for incoming issues with disposition and reason.
+- Agent-ready board with card scope, ownership, checks, and integration owner.
+- Worktree or branch plan for cards safe to parallelize.
+- Evidence note from the board simulation and clean-context handoff.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Backlog states distinguish needs-info, ready-for-agent, ready-for-human, blocked, and done.
-- Every agent card has ownership, touched area, commands, and merge criteria.
-- Worktree plan avoids overlapping edits where possible.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- No card reaches ready state without scope, files, checks, and review evidence.
+- Blocked and needs-spec items are not silently converted into implementation work.
+- Worktree assignments avoid overlapping write sets.
+- A fresh agent can take one ready card without asking for hidden backlog context.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

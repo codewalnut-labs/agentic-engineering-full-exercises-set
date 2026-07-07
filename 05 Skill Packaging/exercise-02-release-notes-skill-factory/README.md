@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
-- Use the competency practice guide as the main workflow reference.
+- [Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0/)
+- [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to compare `docs/release-prompt-history.md` with `docs/changelog-fixtures.md` and identify the repeatable release-note workflow.
+2. Review the workflow and decide how changes should be grouped, what evidence each item needs, and what should be flagged as missing.
+3. Have the agent package a release-notes skill with inputs, grouping rules, unsupported cases, and output format.
+4. Build or update a parser fixture that turns the supplied changelog data into categorized release notes.
+5. Ask the agent to add snapshot or golden output for normal release, missing evidence, breaking change, and no-user-facing-change cases.
+6. Run a clean-context skill trial and ask the agent to explain which notes were excluded and why.
 
 ## Deliver
 
-- Release-notes skill and reference files.
-- Parser or helper script with tests.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Release-notes skill with clear trigger and grouping rules.
+- Parser or fixture harness for the changelog examples.
+- Golden or snapshot release-note output.
+- Evidence note showing missing-evidence flags and excluded-change decisions.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Parser fixtures cover the release-note inputs.
-- Snapshot or golden output shows the release notes are stable.
-- missing evidence check
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Release notes separate user-facing changes, fixes, internal changes, and breaking changes.
+- Items without evidence are flagged instead of confidently rewritten.
+- Snapshot or golden output makes future skill changes reviewable.
+- A fresh agent can run the skill on the fixtures and explain its grouping choices.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

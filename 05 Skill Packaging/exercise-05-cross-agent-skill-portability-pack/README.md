@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `cross-agent skill standardization`
+- [Codex skills guide](https://developers.openai.com/codex/skills)
+- [Claude Skills overview](https://docs.anthropic.com/en/docs/claude-code/skills)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to audit `docs/bad-skill.md` and `docs/portability-matrix.md` for path assumptions, tool assumptions, missing triggers, and agent-specific language.
+2. Review the audit and decide which behavior belongs in the portable skill versus adapter notes for Codex, Claude Code, Cursor, or other agents.
+3. Have the agent rewrite the compliance review skill with relative paths, explicit inputs, fallback behavior, and minimal tool assumptions.
+4. Create installation or usage notes for each agent surface in the matrix without promising unsupported features.
+5. Ask the agent to run portability checks against sample prompts for each supported surface and record incompatibilities.
+6. Do a clean-context test where the skill is read as plain Markdown and still produces the expected compliance review output.
 
 ## Deliver
 
-- Portable SKILL.md and references.
-- Cross-agent install matrix.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Portable compliance review skill with scoped assumptions and relative references.
+- Portability matrix updated with supported surfaces, limitations, and fallback notes.
+- Sample outputs or smoke checks for at least two agent surfaces.
+- Evidence note explaining which original bad-skill patterns were removed.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Skill uses portable relative paths and documented project roots.
-- Metadata explains use and non-use cases in trigger-friendly language.
-- References are split from the top-level instructions.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- The skill does not depend on a local machine path, hidden tool, or one agent vendor feature for core behavior.
+- Agent-specific notes are separated from the main reusable workflow.
+- Trigger and non-trigger cases are clear across the portability matrix.
+- A fresh agent can use the skill from repository files alone.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

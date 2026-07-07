@@ -29,37 +29,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [09. Code Review practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#09-code-review)
-- Use the competency practice guide as the main workflow reference.
+- [GitHub pull request review docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests)
+- [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask a fresh coding agent to review `docs/review-diff.md` without reading `docs/implementer-notes.md` first, so it is not anchored by the original implementation story.
+2. Review the fresh findings, then compare them with the implementer notes to identify missed assumptions, false positives, and real blockers.
+3. Ask the agent to verify each likely blocker against surrounding source code instead of treating the diff alone as truth.
+4. Triage findings into block merge, fix before merge, defer with issue, or dismiss with reason.
+5. Have the agent implement the most important accepted fix and add the narrowest check that proves it.
+6. Run a second clean-context review focused only on the fixed area to confirm the blocker is gone.
 
 ## Deliver
 
-- Fresh-agent review prompt and findings.
-- Code/test fixes for verified blockers.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Fresh-agent review findings before implementer-note comparison.
+- Triage table with blocker, defer, and dismiss reasons.
+- Patch and verification for the top accepted finding.
+- Evidence note comparing first review, owner decision, and second review.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- fresh-agent finding verification
-- Cache behavior is covered before and after the review fix.
-- Human triage records which agent findings were accepted, changed, or rejected.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Fresh review findings are verified against surrounding code before they become blockers.
+- The accountable owner explains why each finding blocks, defers, or is dismissed.
+- The accepted top finding is fixed with evidence.
+- A second review pass does not repeat the same accepted blocker.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

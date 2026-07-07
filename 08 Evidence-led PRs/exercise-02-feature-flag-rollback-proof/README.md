@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [08. Evidence-led PRs practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#08-evidence-led-prs)
-- Use the competency practice guide as the main workflow reference.
+- [Feature Toggles by Martin Fowler](https://martinfowler.com/articles/feature-toggles.html)
+- [LaunchDarkly feature flag concepts](https://docs.launchdarkly.com/home/flags)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to inspect `docs/flag-brief.md`, `docs/rollback-template.md`, and the risky UI path to identify the flag boundary and rollback trigger.
+2. Review the proposed boundary and ensure the off state preserves current behavior, data shape, and user expectations.
+3. Have the agent implement the feature behind a clear flag with default, enabled, disabled, and missing-config behavior.
+4. Add tests or smoke checks for flag on, flag off, invalid configuration, and rollback path.
+5. Ask the agent to add telemetry or observable evidence that proves which path a user took without exposing sensitive data.
+6. Run a clean-context rollback rehearsal where a new agent follows the template and proves the feature can be disabled safely.
 
 ## Deliver
 
-- Feature flag implementation in code/config.
-- Telemetry or audit behavior.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Feature flag implementation with safe default and documented ownership.
+- Rollback template filled for this feature.
+- Tests or smoke evidence for on, off, and rollback states.
+- Evidence note with telemetry or observable proof and residual launch risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Feature flag on/off behavior is checked.
-- Rollback steps are tested or clearly marked as manual.
-- Telemetry evidence proves the important event or metric still fires.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Flag-off behavior matches the pre-feature user path.
+- Flag-on behavior is observable and covered by checks.
+- Rollback steps are specific enough to execute without redesigning the feature.
+- A fresh agent can explain how to disable the feature and what evidence proves it worked.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

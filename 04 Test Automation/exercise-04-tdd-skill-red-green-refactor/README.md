@@ -29,36 +29,33 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [04. Test Automation practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#04-test-automation)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `tdd`
+- [Test-driven development overview](https://martinfowler.com/bliki/TestDrivenDevelopment.html)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to read `docs/behavior-contract.md` and `docs/red-green-log.md`, then list the invoice retry rules in the order they should be tested.
+2. Review the list and block any broad rewrite plan that does not start with one failing behavior test.
+3. Have the agent write the first failing test for the highest-risk retry rule and capture the red result in the log.
+4. Ask the agent to implement only enough production code to make that test pass, then repeat for the next rule.
+5. After the retry suite is green, ask for a refactor pass that reduces duplication without changing the test contract.
+6. Review the red-green log and require evidence that each refactor happened after green, not before behavior was protected.
 
 ## Deliver
 
-- Tests for retry scheduling and copy decisions.
-- Working React retry state behavior.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Ordered retry-rule test list tied to the behavior contract.
+- Red-green log showing failing test, minimal implementation, and refactor steps.
+- Working retry behavior in the starter.
+- Evidence note with final checks and any rule deferred from the contract.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Tests are written before each behavior change.
-- Each red-green-refactor step is recorded with command evidence.
-- Mocks are deterministic and cover network failure, expired card, recovery, and enterprise copy.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Each implemented rule has a test that failed before the code change or a clear reason it could not be demonstrated.
+- Production changes stay narrow until the corresponding test is green.
+- Refactoring preserves the retry contract and does not delete meaningful edge coverage.
+- A fresh agent can continue the loop from the red-green log.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

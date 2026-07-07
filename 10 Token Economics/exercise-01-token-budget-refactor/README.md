@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [10. Token Economics practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#10-token-economics)
-- Use the competency practice guide as the main workflow reference.
+- [OpenAI prompt caching guide](https://platform.openai.com/docs/guides/prompt-caching)
+- [OpenAI API pricing](https://openai.com/api/pricing/)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to read `docs/usage-log.md` and skim `docs/large-doc-pack.md` only enough to propose a refactor context budget.
+2. Review the budget and assign model or effort tiers by task type: planning, mechanical edit, test update, and review.
+3. Have the agent create a context manifest that includes the minimum source files, excludes stale docs, and records why each file is worth reading.
+4. Execute the refactor in small steps, moving deterministic checks into scripts where that saves repeated reasoning.
+5. Ask the agent to compare planned versus actual context and note where the budget changed because of real code discoveries.
+6. Run a clean-context review using only the manifest and final diff to confirm the refactor can be understood without rebilling the whole doc pack.
 
 ## Deliver
 
-- Working refactor in the starter.
-- Tests proving behavior.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Token and effort budget plan for the refactor.
+- Context manifest with include, exclude, and reason columns.
+- Refactor implementation with focused checks.
+- Evidence note comparing planned context, actual context, and remaining cost risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The context manifest lists what was included, excluded, and why.
-- The model routing log explains why each task used that model or agent.
-- Refactor checks prove behavior stayed the same where intended.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Expensive reasoning is reserved for planning and review rather than routine edits.
+- The context manifest excludes large or stale docs unless they directly affect the refactor.
+- The refactor is verified by checks that do not require rereading broad context.
+- A fresh agent can understand the work from the manifest and evidence note.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

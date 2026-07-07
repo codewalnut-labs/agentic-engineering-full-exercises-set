@@ -29,37 +29,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [09. Code Review practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#09-code-review)
-- Use the competency practice guide as the main workflow reference.
+- [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)
+- [WCAG 2.2 Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: changed behavior, risky files, security concerns, accessibility concerns, tests, and likely blockers.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to read `docs/review-diff.md`, `docs/risk-checklist.md`, and surrounding source files, then list possible security, accessibility, behavior, and test regressions.
+2. Review the findings yourself and require each blocker candidate to include file reference, user impact, and exploit or failure path.
+3. Have the agent fix the highest-risk confirmed blocker while preserving the intended change.
+4. Ask the agent to add a regression check for the fixed blocker and a manual accessibility check where automation cannot prove behavior.
+5. Re-review the patched diff with the original checklist and triage every remaining finding as fix, defer, or dismiss.
+6. Run a clean-context review where a new agent tries to find a missed security or accessibility blocker.
 
 ## Deliver
 
-- Patched starter code.
-- Regression tests for security/a11y/behavior blockers.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Severity-ranked review findings with evidence and disposition.
+- Patch for the top confirmed blocker.
+- Regression test or manual check for the fix.
+- Evidence note showing re-review results and remaining risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- fresh review
-- Security checks cover the risky path in the exercise.
-- Accessibility regression checks cover keyboard and screen-reader basics.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Every blocking finding is backed by code behavior and user or security impact.
+- The top blocker is fixed without erasing the requested feature.
+- Accessibility review includes keyboard and naming behavior, not only visual inspection.
+- A fresh review pass does not find the same blocker again.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

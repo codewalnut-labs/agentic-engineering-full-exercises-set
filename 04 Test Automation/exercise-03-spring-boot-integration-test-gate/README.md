@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [04. Test Automation practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#04-test-automation)
-- Use the competency practice guide as the main workflow reference.
+- [Spring Boot testing reference](https://docs.spring.io/spring-boot/reference/testing/index.html)
+- [Testcontainers Java docs](https://java.testcontainers.org/) when a real dependency boundary is needed
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: current test behavior, flaky points, boundaries, fixtures, commands, and likely regression risks.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to inspect `docs/backend-test-gap.md`, the Spring Boot API, React API calls, and current mocks to identify what persistence behavior is unprotected.
+2. Review the gap list and decide which behaviors require Spring integration coverage instead of another frontend mock.
+3. Have the agent add backend tests for create, update, invalid transition, not-found, and persistence-readback paths.
+4. Wire a small frontend smoke path to use the API contract or fixture responses that match the integration tests.
+5. Ask the agent to explain which mocks remain and why they do not hide the behavior under test.
+6. Run a clean-context review where a new agent must choose whether a future bug belongs in backend integration coverage or frontend component coverage.
 
 ## Deliver
 
-- Spring Boot integration tests.
-- Backend code fixes where the test gate exposes gaps.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Spring Boot integration or controller/service tests for the missing persistence workflow.
+- Frontend smoke or contract fixture aligned with backend responses.
+- Backend test-gap note updated with protected and still-unprotected behavior.
+- Evidence note separating integration confidence from mocked UI confidence.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Spring integration tests cover the scheduling contract.
-- Smoke testing uses accessible role locators.
-- Trace or report output shows what changed and where failures would be diagnosed.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Backend tests exercise real Spring wiring for the workflow gap that mocks missed.
+- Invalid transitions and not-found paths are covered, not only successful persistence.
+- React expectations match backend response shapes and status behavior.
+- A fresh agent can explain why the new gate catches the original mock blind spot.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

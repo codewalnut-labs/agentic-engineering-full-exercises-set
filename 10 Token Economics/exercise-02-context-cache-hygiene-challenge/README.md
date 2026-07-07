@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [10. Token Economics practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#10-token-economics)
-- Use the competency practice guide as the main workflow reference.
+- [OpenAI prompt caching guide](https://platform.openai.com/docs/guides/prompt-caching)
+- [Anthropic prompt caching guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to audit `docs/bloated-agents-file.md` and `docs/stale-context.md` for always-on instructions, stale commands, one-time notes, duplicated rules, and oversized examples.
+2. Review the audit and classify each item as keep always-on, move to linked reference, delete, or convert to a skill.
+3. Have the agent rewrite the context into a lean rules file plus optional deeper references, preserving only stable guidance that future sessions need.
+4. Add a lightweight size or stale-command check so context bloat is caught before it grows again.
+5. Ask the agent to simulate a handoff using the lean context and record what information was missing or still too noisy.
+6. Revise the context once from the handoff result without adding task-specific instructions back into always-on rules.
 
 ## Deliver
 
-- Lean AGENTS/CLAUDE context plus linked references.
-- Context-size or stale-reference check.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Lean replacement for the bloated context file.
+- Keep, move, delete, or skill conversion table for removed material.
+- Size or stale-command check for future context hygiene.
+- Evidence note from the handoff simulation and final revision.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Context size is reduced or justified without hiding required files.
-- Stale commands are removed or corrected.
-- Handoff simulation shows a fresh agent can continue without extra context.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Always-on context is shorter and contains only stable project guidance.
+- Stale commands and one-time task notes are removed or moved out of the hot path.
+- The hygiene check catches size growth or forbidden stale phrases.
+- A fresh agent can still choose correct commands and boundaries from the lean context.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [07. Docs & Diagrams practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#07-docs-diagrams)
-- Use the competency practice guide as the main workflow reference.
+- [C4 model](https://c4model.com/)
+- [Mermaid sequence diagrams](https://mermaid.js.org/syntax/sequenceDiagram.html)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: workflow, architecture, source files, existing docs, drift risks, and diagram or doc outputs.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to trace the feature from UI action through state, service calls, data transformation, and error handling before drawing anything.
+2. Review the trace and require each diagram node to map to a real component, module, service, or external actor.
+3. Have the agent create a C4-style container or component view from `docs/diagram-request.md` and `docs/mermaid-starter.md`.
+4. Create a sequence diagram for the main success path and at least one error branch, keeping labels close to code names.
+5. Ask the agent to add a trace table linking diagram elements and arrows to files, functions, or tests.
+6. Run a clean-context verification where a new agent compares the diagrams to the code and reports any drift before editing.
 
 ## Deliver
 
-- C4 and sequence diagrams.
-- Trace/test artifact validating diagram accuracy.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- C4-style diagram source for the feature boundary.
+- Sequence diagram source for success and error flow.
+- Trace table mapping nodes and arrows to files or functions.
+- Evidence note listing drift found and fixed during verification.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The diagram has a trace from code files to diagram nodes and flows.
-- File references in the documentation point to real repo files.
-- Error branches are shown and checked, not only the happy path.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Every diagram element corresponds to a real code artifact or external actor.
+- The sequence diagram includes an error or retry path, not only the happy path.
+- The trace table makes the diagrams reviewable without rereading the whole codebase.
+- A fresh agent can identify a diagram-code mismatch if one is introduced.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [01. Toolchain Setup practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#01-toolchain-setup)
-- Use the competency practice guide as the main workflow reference.
+- [Claude Code hooks](https://docs.anthropic.com/en/docs/claude-code/hooks) for pre-tool safety patterns
+- [OWASP Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to inspect `docs/tool-inventory.md`, `docs/hook-policy.md`, and the starter scripts, then list exactly which commands should be allowed, warned, or blocked.
+2. Review the inventory yourself and mark any command that can read secrets, mutate git history, delete files, contact external systems, or write outside the exercise folder.
+3. Have the agent implement a small guardrail policy and hook simulation that classifies commands by risk before execution.
+4. Feed the simulator realistic cases: package install, tests, log reads, secret-file reads, recursive deletes, git history rewrites, and writes outside the starter.
+5. Ask the agent to tighten unclear messages so a blocked user knows what safer command to run instead.
+6. Try one clean-context handoff where the new agent is only given the hook policy and must predict allowed and denied commands before running the simulator.
 
 ## Deliver
 
-- Executable guardrail script and policy config.
-- Automated guardrail test cases.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Executable guardrail policy or simulator in the starter.
+- Updated hook policy showing allowed commands, denied commands, and safer alternatives.
+- Test cases or fixtures for allowed commands, denied commands, and warning-only cases.
+- Short evidence note with the cases tried, simulator result, and remaining unsafe command classes.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The guardrail unit cases pass.
-- The denylist simulation blocks unsafe commands and explains the reason.
-- Allowed command smoke testing shows safe commands still work.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Safe read and test commands are allowed without friction.
+- Secret reads, destructive deletes, path escapes, and git history rewrites are blocked with clear reasons.
+- The simulator has both positive and negative cases, not only a denylist snapshot.
+- A fresh agent can explain the safety boundary from the checked-in policy alone.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

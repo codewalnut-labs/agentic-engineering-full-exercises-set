@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `skill evals / skill optimizer`
+- [OpenAI Evals](https://github.com/openai/evals) for eval mindset
+- [Claude Skills overview](https://docs.anthropic.com/en/docs/claude-code/skills)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to read `docs/eval-plan.md` and `docs/trigger-cases.md`, then define what a good skill run must prove: trigger, process, output, and non-trigger behavior.
+2. Review the scoring rubric and reject binary pass or fail checks that cannot explain why the skill misfired.
+3. Have the agent build a small eval harness that runs positive trigger cases, negative trigger cases, and malformed-input cases.
+4. Ask the agent to score process adherence separately from output shape so a lucky final answer does not hide skipped steps.
+5. Use eval failures to tighten the skill description, references, or output schema.
+6. Run the harness again and capture before/after results plus remaining false positive or false negative risk.
 
 ## Deliver
 
-- Updated SKILL.md with precise use-when and do-not-use boundaries.
-- Eval cases for trigger and output behavior.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Skill eval harness with trigger, process, output, and negative cases.
+- Scoring rubric that explains failures in actionable language.
+- Before/after eval results after at least one skill revision.
+- Evidence note listing false positives, false negatives, and accepted residual risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Trigger cases include positive, negative, and ambiguous prompts.
-- Process checks verify commands, touched files, and required artifacts.
-- Output checks validate schema and reviewer-ready language.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Positive cases prove the skill runs for intended tasks.
+- Negative cases prove the skill does not run for adjacent but wrong tasks.
+- Output checks validate required sections or schema, not just text length.
+- A fresh agent can add a new eval case by following the harness pattern.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

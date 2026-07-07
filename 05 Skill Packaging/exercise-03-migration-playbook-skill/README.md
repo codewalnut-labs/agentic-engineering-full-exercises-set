@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
-- Use the competency practice guide as the main workflow reference.
+- [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/)
+- [Testing Library guiding principles](https://testing-library.com/docs/guiding-principles)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to inspect `docs/legacy-component-map.md`, `docs/migration-notes.md`, and the starter component to extract the repeated migration recipe.
+2. Review the recipe and require it to preserve props, behavior, accessibility labels, error states, and tests before it talks about cleanup.
+3. Have the agent package a migration playbook skill with trigger criteria, prerequisites, step order, rollback hint, and review checklist.
+4. Use the skill to migrate one real starter component to a typed React module with focused tests.
+5. Ask the agent to record where the skill prevented over-broad refactors or missing behavior checks.
+6. Run a negative trigger case where the task is only a tiny bugfix and confirm the migration skill should not run.
 
 ## Deliver
 
-- Migration skill folder.
-- A completed component migration in `starter-react`.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Migration playbook skill with when-to-use and when-not-to-use guidance.
+- One migrated typed React component with preserved behavior.
+- Focused tests or smoke evidence for the migrated component.
+- Evidence note covering skipped refactors, rollback path, and trigger negative case.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Migration eval cases show the playbook handles the target migration.
-- Component behavior stays correct after the migration.
-- Negative trigger cases show the skill stays quiet when it should not run.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- The skill orders characterization, migration, tests, and review before optional cleanup.
+- The migrated component keeps the public props and user-visible behavior intact.
+- Negative trigger guidance prevents using the skill for unrelated tiny edits.
+- A fresh agent can apply the playbook to the next component without reading the original chat.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

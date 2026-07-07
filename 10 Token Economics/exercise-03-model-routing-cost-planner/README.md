@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [10. Token Economics practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#10-token-economics)
-- Use the competency practice guide as the main workflow reference.
+- [OpenAI API pricing](https://openai.com/api/pricing/)
+- [OpenAI prompt caching guide](https://platform.openai.com/docs/guides/prompt-caching)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to read `docs/team-usage-scenarios.md` and `docs/cost-dashboard-sample.md`, then classify work by risk, reversibility, context size, and review burden.
+2. Review the classification and define routing rules for planning, coding, tests, code review, docs, and retrospectives.
+3. Have the agent build a cost planner that estimates model or effort choice, context cost, caching assumptions, and override reason per scenario.
+4. Add override cases where safety, architecture, or review risk justifies a stronger model or slower workflow despite higher cost.
+5. Ask the agent to run the scenarios through the planner and produce a dashboard-style summary with savings and risk notes.
+6. Run a clean-context policy review where a new agent chooses a route for a new task and explains the trade-off.
 
 ## Deliver
 
-- Routing policy in config or code.
-- Cost/latency estimator script.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Model and effort routing policy by task class and risk level.
+- Cost planner or worksheet for the provided scenarios.
+- Scenario output with normal route, override route, and reason.
+- Evidence note showing how routing reduces waste without hiding risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Scenario simulation covers normal, risky, and expensive routing choices.
-- The cost estimator produces explainable totals for the provided scenarios.
-- Risk override cases route work to a safer option even when cheaper options exist.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Routing choices are based on task risk and context needs, not habit.
+- The planner explains assumptions and can be updated when pricing or model options change.
+- Risk overrides choose safer routing when cheaper routing would be irresponsible.
+- A fresh agent can apply the policy to a new scenario and justify the choice.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

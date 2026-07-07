@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [01. Toolchain Setup practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#01-toolchain-setup)
-- Use the competency practice guide as the main workflow reference.
+- [GitHub Actions workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions)
+- [GitHub Actions artifacts](https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to read `docs/ci-plan.md`, `docs/evidence-map.md`, package scripts, and existing check scripts, then draft a local-to-CI gate map.
+2. Review the map and remove any gate that cannot run from this starter or does not produce useful review evidence.
+3. Have the agent wire `agent:check` so it orchestrates the smallest meaningful local gate for type, lint, test, and evidence collection.
+4. Add or update evidence output so failures show command, status, and artifact path without dumping noisy logs into the repo.
+5. Ask the agent to sketch the CI workflow that would run the same gate and upload the evidence bundle, while keeping secrets and generated folders out of scope.
+6. Run a clean-context rehearsal where a new agent reads only the evidence map and explains which checks protect reviewers from trusting a vague green check.
 
 ## Deliver
 
-- CI workflow or `scripts/ci-check` that runs locally.
-- Evidence artifact generator with real command output.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Working local `agent:check` gate for the starter.
+- Evidence map updated with command purpose, artifact location, and reviewer value.
+- CI workflow sketch or checked-in workflow file if the exercise asks for one.
+- Evidence note with one passing run and one intentionally explained failure or limitation.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- agent:check
-- rules command audit
-- The hook simulator accepts safe changes and blocks the intended unsafe changes.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- `agent:check` runs the intended checks in a predictable order.
+- Evidence artifacts are reviewable and stored outside generated dependency or build folders.
+- The CI plan mirrors the local gate instead of inventing a separate path.
+- A fresh agent can identify the gate, artifact path, and cleanup rules without extra chat context.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

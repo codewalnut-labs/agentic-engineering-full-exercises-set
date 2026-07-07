@@ -28,37 +28,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [12. Agentic Retrospective practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#12-agentic-retrospective)
-- Use the competency practice guide as the main workflow reference.
+- [Claude Code hooks](https://docs.anthropic.com/en/docs/claude-code/hooks)
+- [Codex skills guide](https://developers.openai.com/codex/skills)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to inspect `docs/flawed-skill.md` and `docs/hook-failures.md` for trigger misses, bad output shape, unsafe tool use, and noisy false positives.
+2. Review the failure list and decide which problems belong in the skill, which belong in the hook, and which are process expectations.
+3. Have the agent revise the skill description, workflow steps, and output contract before changing the hook.
+4. Update the hook policy to catch unsafe actions that the skill should not have to remember every time.
+5. Build before/after eval cases for trigger accuracy, output shape, allowed hook behavior, and blocked hook behavior.
+6. Run a clean-context trial where the new skill and hook combination handles one good case and one unsafe case.
 
 ## Deliver
 
-- Revised skill and hook implementation.
-- Before/after eval harness and results.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Revised skill with tighter trigger and output contract.
+- Updated hook policy for unsafe or noisy cases.
+- Before/after eval results for skill and hook behavior.
+- Evidence note explaining which failures moved to skill, hook, or process.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Before/after evals show the skill or hook improvement changed behavior.
-- Hook policy tests cover allowed and blocked cases.
-- Negative trigger cases show the skill or hook avoids false positives.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Skill changes improve trigger and output behavior without becoming a broad rule dump.
+- Hook changes block unsafe actions while allowing normal work to continue.
+- Before/after evals show behavior changed for the documented failures.
+- A fresh agent can use the revised skill and understand why the hook exists.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

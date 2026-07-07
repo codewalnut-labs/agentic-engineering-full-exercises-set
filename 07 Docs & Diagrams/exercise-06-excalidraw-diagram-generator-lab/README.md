@@ -29,37 +29,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [07. Docs & Diagrams practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#07-docs-diagrams)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `Excalidraw diagram generator`
-- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 - [Excalidraw diagram generator skill](https://github.com/github/awesome-copilot/blob/main/skills/excalidraw-diagram-generator/SKILL.md)
+- [Excalidraw scene format](https://docs.excalidraw.com/docs/codebase/json-schema)
+- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: workflow, architecture, source files, existing docs, drift risks, and diagram or doc outputs.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to read `docs/diagram-requests.md`, `docs/excalidraw-validation-notes.md`, and the starter workflow before generating JSON.
+2. Review the requested diagram scope and remove branches that would make the Excalidraw scene too dense to read.
+3. Have the agent use the Excalidraw generator pattern to create a `.excalidraw` scene with bounded element count, readable text, and clear arrows.
+4. Ask the agent to validate the JSON schema, root fields, font choices, element positions, and arrow bindings.
+5. Compare every text node and connector against source files or observed UI behavior, then rename or delete anything unsupported.
+6. Run a clean-context opening test where a new agent loads the file, explains the diagram, and identifies one source-backed node.
 
 ## Deliver
 
-- Valid `.excalidraw` file.
-- Diagram validation script or test.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Valid `.excalidraw` scene file for the workflow.
+- Validation script or checklist for JSON structure, font, element count, and bindings.
+- Source trace mapping diagram elements to files or UI actions.
+- Evidence note with readability fixes made after validation.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Excalidraw JSON parses and contains the expected root fields.
-- Every text element uses `fontFamily: 5` and readable font size.
-- Element count stays below 20 or the split is justified.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- The `.excalidraw` file parses and contains expected scene root fields.
+- Text is readable and uses the required font guidance from the exercise notes.
+- Element count and layout stay understandable or the split into multiple diagrams is justified.
+- A fresh agent can open the file and map diagram elements back to code or UI behavior.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

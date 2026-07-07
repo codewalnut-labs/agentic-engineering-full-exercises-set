@@ -24,37 +24,34 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Use These Practices
 
 - [03. Context Engineering practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#03-context-engineering)
-- Use the competency practice guide as the main workflow reference.
+- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/)
+- [WCAG 2.2 Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to map the portal flows, trust boundaries, data entry points, keyboard paths, and performance hotspots before it reports findings.
+2. Review the map and require file references for every security, accessibility, performance, or reliability claim.
+3. Have the agent create a short NFR context pack that future audit agents can reuse, including scope, exclusions, and evidence locations.
+4. Ask the agent to run the NFR audit from that context pack and rank findings by user harm, exploitability, and fix cost.
+5. Choose the top one or two findings and have the agent implement fixes with tests or manual evidence.
+6. Run a clean-context audit rerun to confirm the fixed findings no longer appear and that deferred risks are still visible.
 
 ## Deliver
 
-- At least two code/config/test fixes for high-value NFR gaps.
-- Automated checks for the fixed risks.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- NFR context pack with flow map, boundaries, and evidence locations.
+- Ranked security, accessibility, performance, and reliability findings.
+- Implemented fixes for the highest-value accepted findings.
+- Evidence note showing before and after risk state plus deferred items.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The context pack lets a fresh agent understand the repo shape using only checked-in context.
-- The NFR audit cites concrete files, behavior, and severity.
-- The top findings are fixed with checks.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- NFR findings are grounded in mapped flows and files, not broad best-practice guesses.
+- At least one accepted finding is fixed and rechecked.
+- Accessibility checks include keyboard and screen-reader relevant behavior where the UI changes.
+- A fresh agent can rerun the audit using the context pack without needing the original conversation.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

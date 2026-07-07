@@ -29,36 +29,33 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 - [09. Code Review practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#09-code-review)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `code review graph`
+- [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This
 
-1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
-2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
-3. Ask the agent to make a first focused pass on the goal above.
-4. Review the first result yourself. Check it against the Verify section below.
-5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
-6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
-7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
+1. Ask your coding agent to read `docs/review-graph.md` and `docs/diff-summary.md`, then identify call paths, ownership boundaries, and tests touched by the discount change.
+2. Review the graph and mark any edge that is stale, inferred, or missing source evidence before using it for findings.
+3. Have the agent review the change path-by-path: entry point, domain calculation, UI display, persistence or API boundary, and tests.
+4. Ask for findings that cite both the diff and the graph edge that makes the risk important.
+5. Patch the highest-risk accepted finding and update graph notes if the fix changes ownership or call path.
+6. Run a clean-context review where a new agent starts from the graph and confirms no high-risk discount path is unreviewed.
 
 ## Deliver
 
-- Graph-guided review report.
-- Confirmed blocker fix in React code.
-- Short review note: what you changed after reading the agent's first draft.
-- Fresh-agent or clean-context test note.
-- Evidence note with commands run and final pass/fail result.
+- Graph-guided review plan with verified and uncertain edges.
+- Findings tied to diff lines, graph paths, and ownership boundaries.
+- Patch and check for the top accepted discount-risk finding.
+- Evidence note explaining how graph review changed the review result.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Review starts from diff and issue list, then uses graph paths for risk expansion.
-- Findings are severity-ranked with file references and reproduction steps.
-- NFR pass covers security, accessibility, performance, and maintainability where relevant.
-- You reviewed and improved the agent's first draft.
-- A fresh agent or clean context can explain the work and choose the right checks.
-- The evidence note is short and complete.
+- Review coverage follows structural call paths instead of random file order.
+- Findings cite why the graph relationship increases risk.
+- Unverified graph edges are not used as authoritative evidence.
+- A fresh agent can use the graph to name unreviewed or high-risk paths.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.
