@@ -405,7 +405,7 @@ index 0000000..561910c
 --- /dev/null
 +++ b/src/services/approvalApi.js
 @@ -0,0 +1,32 @@
-+const BILLING_APPROVAL_URL = "https://billing-admin.example.internal/renewals/approve";
++const BILLING_APPROVAL_URL = "https://billing-admin.fixture.example/renewals/approve";
 +
 +export async function approveRenewalInBilling(user, renewal) {
 +  try {

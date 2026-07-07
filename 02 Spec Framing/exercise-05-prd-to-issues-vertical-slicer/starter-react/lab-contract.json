@@ -1,7 +1,7 @@
 {
   "title": "PRD to Issues Vertical Slicer",
   "competency": "02. Spec Framing",
-  "skillPattern": "to-prd and to-issues",
+  "skillPattern": "to-prd / to-issues",
   "domain": "Usage-based upgrade prompt experiment with cohorts, limits, analytics, notification copy, and billing handoff.",
   "mission": "Turn a messy growth experiment conversation into a PRD and independently grabbable vertical slice issues.",
   "outcome": "A broad experiment idea becomes a PRD, dependency graph, and issue set that multiple agents can implement without stepping on each other.",

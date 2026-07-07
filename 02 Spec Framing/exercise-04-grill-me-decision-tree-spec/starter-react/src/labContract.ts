@@ -3,7 +3,7 @@ import type { LabContract } from "./types";
 export const labContract = {
   "title": "Grill-Me Decision Tree Spec",
   "competency": "02. Spec Framing",
-  "skillPattern": "grill-me and grill-with-docs",
+  "skillPattern": "grill-me / grill-with-docs",
   "domain": "B2B entitlement policy editor with plans, seats, billing cycles, admin overrides, child accounts, and audit events.",
   "mission": "Use a grill-me style interview to turn a vague entitlement redesign into a testable implementation contract before coding.",
   "outcome": "A high-risk entitlement change is understood through a decision tree, examples, non-goals, and mergeable slices before implementation begins.",
@@ -49,7 +49,7 @@ export const labContract = {
       "id": "04-01",
       "title": "Enterprise child accounts inherit trial-only entitlements when an override expires.",
       "owner": "agent candidate",
-      "skill": "grill-me and grill-with-docs",
+      "skill": "grill-me / grill-with-docs",
       "risk": "high",
       "done": false
     },
@@ -57,7 +57,7 @@ export const labContract = {
       "id": "04-02",
       "title": "Seat count errors use billing language that support cannot map to the entitlement screen.",
       "owner": "accountable owner",
-      "skill": "grill-me and grill-with-docs",
+      "skill": "grill-me / grill-with-docs",
       "risk": "medium",
       "done": false
     },
@@ -65,7 +65,7 @@ export const labContract = {
       "id": "04-03",
       "title": "The current plan ignores what happens to active overrides during a plan downgrade.",
       "owner": "agent candidate",
-      "skill": "grill-me and grill-with-docs",
+      "skill": "grill-me / grill-with-docs",
       "risk": "critical",
       "done": false
     },
@@ -73,7 +73,7 @@ export const labContract = {
       "id": "04-04",
       "title": "Audit events are written only for successful saves, not blocked entitlement attempts.",
       "owner": "accountable owner",
-      "skill": "grill-me and grill-with-docs",
+      "skill": "grill-me / grill-with-docs",
       "risk": "medium",
       "done": false
     }

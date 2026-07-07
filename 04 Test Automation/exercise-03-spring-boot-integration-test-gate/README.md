@@ -12,7 +12,7 @@ Starter folders:
 - [starter-react](./starter-react)
 - [starter-spring-boot](./starter-spring-boot)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-react"
@@ -20,7 +20,7 @@ npm install
 npm run dev
 ```
 
-Spring Boot starter:
+Spring Boot starter (run from the repository root):
 
 ```bash
 cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-spring-boot"

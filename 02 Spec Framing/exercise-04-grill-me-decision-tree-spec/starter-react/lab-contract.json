@@ -1,7 +1,7 @@
 {
   "title": "Grill-Me Decision Tree Spec",
   "competency": "02. Spec Framing",
-  "skillPattern": "grill-me and grill-with-docs",
+  "skillPattern": "grill-me / grill-with-docs",
   "domain": "B2B entitlement policy editor with plans, seats, billing cycles, admin overrides, child accounts, and audit events.",
   "mission": "Use a grill-me style interview to turn a vague entitlement redesign into a testable implementation contract before coding.",
   "outcome": "A high-risk entitlement change is understood through a decision tree, examples, non-goals, and mergeable slices before implementation begins.",

@@ -3,7 +3,7 @@ import type { LabContract } from "./types";
 export const labContract = {
   "title": "Intent Layer Repo Map",
   "competency": "03. Context Engineering",
-  "skillPattern": "intent-layer and zoom-out",
+  "skillPattern": "intent-layer / zoom-out",
   "domain": "Incident response console with alerts, escalation policies, responder schedules, runbook links, and post-incident summaries.",
   "mission": "Add folder-level intent context so agents understand ownership, constraints, and traps before editing an incident workflow.",
   "outcome": "The repo gets a compact intent layer that guides future agents to the right modules, commands, and review boundaries.",
@@ -49,7 +49,7 @@ export const labContract = {
       "id": "06-01",
       "title": "Agents keep editing the alert list when the bug lives in escalation policy resolution.",
       "owner": "agent candidate",
-      "skill": "intent-layer and zoom-out",
+      "skill": "intent-layer / zoom-out",
       "risk": "high",
       "done": false
     },
@@ -57,7 +57,7 @@ export const labContract = {
       "id": "06-02",
       "title": "A folder contains two similarly named schedule helpers with different time zone assumptions.",
       "owner": "accountable owner",
-      "skill": "intent-layer and zoom-out",
+      "skill": "intent-layer / zoom-out",
       "risk": "medium",
       "done": false
     },
@@ -65,7 +65,7 @@ export const labContract = {
       "id": "06-03",
       "title": "The current context file says all incidents are P2 by default, but code treats missing severity as P3.",
       "owner": "agent candidate",
-      "skill": "intent-layer and zoom-out",
+      "skill": "intent-layer / zoom-out",
       "risk": "critical",
       "done": false
     },
@@ -73,7 +73,7 @@ export const labContract = {
       "id": "06-04",
       "title": "Runbook links are owned by support, not the incident platform team.",
       "owner": "accountable owner",
-      "skill": "intent-layer and zoom-out",
+      "skill": "intent-layer / zoom-out",
       "risk": "medium",
       "done": false
     }

@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/starter-react"

@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "01 Toolchain Setup/exercise-02-guardrailed-cli-workshop/starter-react"

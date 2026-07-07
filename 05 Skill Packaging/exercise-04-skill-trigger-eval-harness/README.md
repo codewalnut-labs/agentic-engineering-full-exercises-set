@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "05 Skill Packaging/exercise-04-skill-trigger-eval-harness/starter-react"
@@ -26,7 +26,7 @@ Seed files:
 ## Use These Practices
 
 - [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `skill evals and skill optimizer`
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `skill evals / skill optimizer`
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This

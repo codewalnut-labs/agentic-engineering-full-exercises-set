@@ -15,7 +15,7 @@ This map captures popular agent skill patterns that are useful for advanced agen
 | graph-to-diagram | Generate diagrams from graph context, then verify them against code. | 07 Docs & Diagrams / Exercise 05 |
 | Excalidraw diagram generator | Produce editable `.excalidraw` JSON diagrams with validation, readable layout, and source verification. | 07 Docs & Diagrams / Exercise 06 |
 | code review graph | Review large diffs by structural call paths and ownership boundaries. | 09 Code Review / Exercise 05 |
-| Ponytail minimal-diff ladder | Skip, reuse, or use platform features before writing new code while preserving safety checks. | 10 Token Economics / Exercise 04 |
+| Ponytail minimal-diff ladder | External minimal-diff skill pattern: skip, reuse, or use platform features before writing new code while preserving safety checks. | 10 Token Economics / Exercise 04 |
 | trace-backed skill optimizer | Turn failed traces into durable skill, rule, hook, or eval improvements. | 12 Agentic Retrospective / Exercise 04 |
 
 ## Selection Notes

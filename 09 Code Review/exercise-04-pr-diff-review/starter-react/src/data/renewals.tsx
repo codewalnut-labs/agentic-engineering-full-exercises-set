@@ -1,3 +1,4 @@
+// Fictional exercise data; names, companies, and emails use placeholder domains.
 export const renewals = [
   {
     id: "ren-1001",

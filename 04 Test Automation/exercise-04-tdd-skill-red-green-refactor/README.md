@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "04 Test Automation/exercise-04-tdd-skill-red-green-refactor/starter-react"

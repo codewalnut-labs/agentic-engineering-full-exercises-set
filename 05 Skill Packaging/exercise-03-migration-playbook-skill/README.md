@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "05 Skill Packaging/exercise-03-migration-playbook-skill/starter-react"

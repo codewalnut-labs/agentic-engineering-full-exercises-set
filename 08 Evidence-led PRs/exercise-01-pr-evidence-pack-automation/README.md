@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/starter-react"

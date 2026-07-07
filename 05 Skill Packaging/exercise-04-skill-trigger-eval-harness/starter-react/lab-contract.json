@@ -1,7 +1,7 @@
 {
   "title": "Skill Trigger Eval Harness",
   "competency": "05. Skill Packaging",
-  "skillPattern": "skill evals and skill optimizer",
+  "skillPattern": "skill evals / skill optimizer",
   "domain": "Team skill catalog for PR review, release notes, incident response, and migration planning workflows.",
   "mission": "Build an eval harness that scores whether team skills trigger, run the right steps, and produce the expected output shape.",
   "outcome": "A skill is treated like production workflow code: trigger cases, process checks, output checks, and regression evidence exist before rollout.",

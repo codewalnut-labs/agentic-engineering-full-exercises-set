@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "02 Spec Framing/exercise-01-ambiguous-bulk-refund-spec/starter-react"

@@ -3,7 +3,7 @@
   "competency": "10. Token Economics",
   "skillPattern": "Ponytail minimal-diff ladder",
   "domain": "Design system migration with component variants, accessibility states, visual review notes, package boundaries, and release coordination.",
-  "mission": "Use the Ponytail ladder to finish a design-system migration slice with the smallest safe diff: skip what is not needed, reuse what exists, prefer platform features, and write new code only after the cheaper rungs fail.",
+  "mission": "Practice Ponytail, an external minimal-diff ladder skill, by finishing a design-system migration slice with the smallest safe diff.",
   "outcome": "A migration task ships with less new code, less context churn, and no hidden loss of validation, accessibility, or error handling.",
   "entities": [
     "ComponentVariant",

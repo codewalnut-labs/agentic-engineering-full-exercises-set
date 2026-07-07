@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "03 Context Engineering/exercise-05-graphify-knowledge-graph-lab/starter-react"

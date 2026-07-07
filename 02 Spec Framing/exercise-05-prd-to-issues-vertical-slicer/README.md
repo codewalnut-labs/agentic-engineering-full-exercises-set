@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "02 Spec Framing/exercise-05-prd-to-issues-vertical-slicer/starter-react"
@@ -26,7 +26,7 @@ Seed files:
 ## Use These Practices
 
 - [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `to-prd and to-issues`
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `to-prd / to-issues`
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This

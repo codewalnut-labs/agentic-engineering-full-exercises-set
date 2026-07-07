@@ -4,14 +4,14 @@
 
 **Goal:** Turn a fragile local setup into a repeatable agent-ready workstation that a new engineer can run in under 30 minutes.
 
-**Outcome:** A new accountable engineer can clone the starter, give it to Codex/Claude Code/Cursor, and get safe, repeatable setup plus checks without a private briefing.
+**Outcome:** A new accountable engineer can clone the starter, give it to Codex/Claude Code/Cursor, and get safe, repeatable setup plus checks using only checked-in context.
 
 ## Start Here
 
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "01 Toolchain Setup/exercise-01-reproducible-agent-workstation/starter-react"

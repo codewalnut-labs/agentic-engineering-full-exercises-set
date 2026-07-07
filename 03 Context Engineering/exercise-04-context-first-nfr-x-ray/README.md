@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "03 Context Engineering/exercise-04-context-first-nfr-x-ray/starter-react"
@@ -53,7 +53,7 @@ cd "03 Context Engineering/exercise-04-context-first-nfr-x-ray/starter-react" &&
 ```
 
 Done when:
-- The context pack lets a fresh agent understand the repo shape without a private briefing.
+- The context pack lets a fresh agent understand the repo shape using only checked-in context.
 - The NFR audit cites concrete files, behavior, and severity.
 - The top findings are fixed with checks.
 - A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.

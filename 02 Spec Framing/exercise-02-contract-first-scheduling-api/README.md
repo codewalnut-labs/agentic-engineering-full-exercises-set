@@ -12,7 +12,7 @@ Starter folders:
 - [starter-react](./starter-react)
 - [starter-spring-boot](./starter-spring-boot)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-react"
@@ -20,7 +20,7 @@ npm install
 npm run dev
 ```
 
-Spring Boot starter:
+Spring Boot starter (run from the repository root):
 
 ```bash
 cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-spring-boot"

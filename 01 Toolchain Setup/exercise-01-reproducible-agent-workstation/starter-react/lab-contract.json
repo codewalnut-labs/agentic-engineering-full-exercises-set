@@ -3,7 +3,7 @@
   "competency": "01. Toolchain Setup - Project rules, hooks, guardrails, and CLI or MCP wiring",
   "domain": "Agent workstation bootstrap for a regulated billing portal",
   "mission": "Turn a fragile local setup into a repeatable agent-ready workstation that a new engineer can run in under 30 minutes.",
-  "outcome": "A new accountable engineer can clone the starter, give it to Codex/Claude Code/Cursor, and get safe, repeatable setup plus checks without a private briefing.",
+  "outcome": "A new accountable engineer can clone the starter, give it to Codex/Claude Code/Cursor, and get safe, repeatable setup plus checks using only checked-in context.",
   "entities": [
     "AGENTS.md contract",
     "doctor command",

@@ -8,4 +8,4 @@ Turn 23: The agent deleted an accessible label to keep the diff small, then call
 
 Turn 29: The agent installed a helper package for a one-line string transform already covered by the platform.
 
-Learners must use the Ponytail ladder to challenge each proposed addition before implementation.
+Learners must use Ponytail, an external minimal-diff ladder skill, to challenge each proposed addition before implementation.

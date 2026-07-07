@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/starter-react"

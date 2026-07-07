@@ -1,7 +1,7 @@
 {
   "title": "Skill Optimizer From Traces",
   "competency": "12. Agentic Retrospective",
-  "skillPattern": "skill optimizer and trace retro",
+  "skillPattern": "trace-backed skill optimizer",
   "domain": "Alert triage agent for on-call incidents, service ownership, SLO impact, customer comms, and escalation notes.",
   "mission": "Analyze failed agent traces and turn repeated skill mistakes into a measured skill improvement, hook, or team rule.",
   "outcome": "A broken alert-triage skill improves because trace evidence reveals trigger misses, repeated reads, skipped checks, and weak output contracts.",

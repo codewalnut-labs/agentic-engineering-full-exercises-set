@@ -3,7 +3,7 @@ import type { LabContract } from "./types";
 export const labContract = {
   "title": "Skill Optimizer From Traces",
   "competency": "12. Agentic Retrospective",
-  "skillPattern": "skill optimizer and trace retro",
+  "skillPattern": "trace-backed skill optimizer",
   "domain": "Alert triage agent for on-call incidents, service ownership, SLO impact, customer comms, and escalation notes.",
   "mission": "Analyze failed agent traces and turn repeated skill mistakes into a measured skill improvement, hook, or team rule.",
   "outcome": "A broken alert-triage skill improves because trace evidence reveals trigger misses, repeated reads, skipped checks, and weak output contracts.",
@@ -49,7 +49,7 @@ export const labContract = {
       "id": "04-01",
       "title": "The skill triggers for generic debugging questions and wastes context.",
       "owner": "agent candidate",
-      "skill": "skill optimizer and trace retro",
+      "skill": "trace-backed skill optimizer",
       "risk": "high",
       "done": false
     },
@@ -57,7 +57,7 @@ export const labContract = {
       "id": "04-02",
       "title": "Agents repeatedly read service ownership files instead of using the cached map.",
       "owner": "accountable owner",
-      "skill": "skill optimizer and trace retro",
+      "skill": "trace-backed skill optimizer",
       "risk": "medium",
       "done": false
     },
@@ -65,7 +65,7 @@ export const labContract = {
       "id": "04-03",
       "title": "The workflow skips customer-impact classification when logs are noisy.",
       "owner": "agent candidate",
-      "skill": "skill optimizer and trace retro",
+      "skill": "trace-backed skill optimizer",
       "risk": "critical",
       "done": false
     },
@@ -73,7 +73,7 @@ export const labContract = {
       "id": "04-04",
       "title": "Retros produce complaints but no skill patch or eval case.",
       "owner": "accountable owner",
-      "skill": "skill optimizer and trace retro",
+      "skill": "trace-backed skill optimizer",
       "risk": "medium",
       "done": false
     }

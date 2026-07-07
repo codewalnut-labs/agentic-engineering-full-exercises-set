@@ -3,7 +3,7 @@ import type { LabContract } from "./types";
 export const labContract = {
   "title": "Kanban Triage Worktree Control Plane",
   "competency": "06. Multi-Agent Workflows",
-  "skillPattern": "triage, to-issues, and vibe-kanban",
+  "skillPattern": "triage / to-issues / kanban board",
   "domain": "Support escalation workspace with customer-impact cards, reproduction links, severity, owner routing, and integration queue.",
   "mission": "Turn a noisy backlog into agent-ready cards, isolated worktrees, review queues, and integration ownership.",
   "outcome": "Multiple agents can work in parallel because the board encodes issue state, ownership, blockers, review gates, and merge order.",
@@ -49,7 +49,7 @@ export const labContract = {
       "id": "04-01",
       "title": "Two cards ask agents to edit the shared escalation schema at the same time.",
       "owner": "agent candidate",
-      "skill": "triage, to-issues, and vibe-kanban",
+      "skill": "triage / to-issues / kanban board",
       "risk": "high",
       "done": false
     },
@@ -57,7 +57,7 @@ export const labContract = {
       "id": "04-02",
       "title": "A ready-for-agent label is applied before reproduction steps exist.",
       "owner": "accountable owner",
-      "skill": "triage, to-issues, and vibe-kanban",
+      "skill": "triage / to-issues / kanban board",
       "risk": "medium",
       "done": false
     },
@@ -65,7 +65,7 @@ export const labContract = {
       "id": "04-03",
       "title": "The merge queue has no owner for resolving cross-card conflicts.",
       "owner": "agent candidate",
-      "skill": "triage, to-issues, and vibe-kanban",
+      "skill": "triage / to-issues / kanban board",
       "risk": "critical",
       "done": false
     },
@@ -73,7 +73,7 @@ export const labContract = {
       "id": "04-04",
       "title": "Human-review cards are mixed with autonomous bugfix cards.",
       "owner": "accountable owner",
-      "skill": "triage, to-issues, and vibe-kanban",
+      "skill": "triage / to-issues / kanban board",
       "risk": "medium",
       "done": false
     }

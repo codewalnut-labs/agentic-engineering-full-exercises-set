@@ -1,7 +1,7 @@
 {
   "title": "Kanban Triage Worktree Control Plane",
   "competency": "06. Multi-Agent Workflows",
-  "skillPattern": "triage, to-issues, and vibe-kanban",
+  "skillPattern": "triage / to-issues / kanban board",
   "domain": "Support escalation workspace with customer-impact cards, reproduction links, severity, owner routing, and integration queue.",
   "mission": "Turn a noisy backlog into agent-ready cards, isolated worktrees, review queues, and integration ownership.",
   "outcome": "Multiple agents can work in parallel because the board encodes issue state, ownership, blockers, review gates, and merge order.",

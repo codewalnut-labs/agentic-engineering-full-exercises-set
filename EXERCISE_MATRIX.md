@@ -93,7 +93,7 @@ Expensive context and reasoning are reserved for judgment-heavy work, while dete
 - Exercise 01: Token Budget Refactor - Plan a refactor with a token budget, choosing context, model effort, and automation deliberately.
 - Exercise 02: Context Cache Hygiene Challenge - Clean up stale instructions and oversized always-on context so future sessions stop rebilling irrelevant information.
 - Exercise 03: Model Routing Cost Planner - Design a model and effort routing policy for a team using agents across planning, coding, reviews, and retros.
-- Exercise 04: Ponytail Minimal-Diff Budget - Use the Ponytail ladder to finish a design-system migration slice with the smallest safe diff while preserving checks and safety exceptions.
+- Exercise 04: Ponytail Minimal-Diff Budget - Practice the Ponytail minimal-diff ladder on a design-system migration slice while preserving checks and safety exceptions.
 
 ## 11. Agentic Refactoring
 

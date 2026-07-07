@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "02 Spec Framing/exercise-04-grill-me-decision-tree-spec/starter-react"
@@ -26,7 +26,7 @@ Seed files:
 ## Use These Practices
 
 - [02. Spec Framing practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#02-spec-framing)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `grill-me and grill-with-docs`
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `grill-me / grill-with-docs`
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This

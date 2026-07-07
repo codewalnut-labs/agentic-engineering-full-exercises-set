@@ -3,7 +3,7 @@ import type { LabContract } from "./types";
 export const labContract = {
   "title": "Skill Trigger Eval Harness",
   "competency": "05. Skill Packaging",
-  "skillPattern": "skill evals and skill optimizer",
+  "skillPattern": "skill evals / skill optimizer",
   "domain": "Team skill catalog for PR review, release notes, incident response, and migration planning workflows.",
   "mission": "Build an eval harness that scores whether team skills trigger, run the right steps, and produce the expected output shape.",
   "outcome": "A skill is treated like production workflow code: trigger cases, process checks, output checks, and regression evidence exist before rollout.",
@@ -49,7 +49,7 @@ export const labContract = {
       "id": "04-01",
       "title": "The release skill triggers on incident prompts because the description is too broad.",
       "owner": "agent candidate",
-      "skill": "skill evals and skill optimizer",
+      "skill": "skill evals / skill optimizer",
       "risk": "high",
       "done": false
     },
@@ -57,7 +57,7 @@ export const labContract = {
       "id": "04-02",
       "title": "The review skill skips the required diff-only inspection step.",
       "owner": "accountable owner",
-      "skill": "skill evals and skill optimizer",
+      "skill": "skill evals / skill optimizer",
       "risk": "medium",
       "done": false
     },
@@ -65,7 +65,7 @@ export const labContract = {
       "id": "04-03",
       "title": "A migration skill leaves scratch files outside the exercise folder.",
       "owner": "agent candidate",
-      "skill": "skill evals and skill optimizer",
+      "skill": "skill evals / skill optimizer",
       "risk": "critical",
       "done": false
     },
@@ -73,7 +73,7 @@ export const labContract = {
       "id": "04-04",
       "title": "The eval report cannot compare v1 and v2 skill behavior.",
       "owner": "accountable owner",
-      "skill": "skill evals and skill optimizer",
+      "skill": "skill evals / skill optimizer",
       "risk": "medium",
       "done": false
     }

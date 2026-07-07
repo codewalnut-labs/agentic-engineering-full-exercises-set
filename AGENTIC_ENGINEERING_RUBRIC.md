@@ -8,7 +8,7 @@ No exercise is complete with only Markdown. Each exercise must produce a working
 
 ## Mastery Gates
 
-- Toolchain Setup: the agent can work safely in the repo without private verbal setup.
+- Toolchain Setup: the agent can work safely in the repo using checked-in setup context.
 - Spec Framing: the implementation starts from testable examples and bounded scope.
 - Context Engineering: project knowledge lives in versioned files and queryable maps, not chat paste.
 - Test Automation: tests fail for real regressions and stay stable across repeated runs.

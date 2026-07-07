@@ -3,7 +3,7 @@ import type { LabContract } from "./types";
 export const labContract = {
   "title": "PRD to Issues Vertical Slicer",
   "competency": "02. Spec Framing",
-  "skillPattern": "to-prd and to-issues",
+  "skillPattern": "to-prd / to-issues",
   "domain": "Usage-based upgrade prompt experiment with cohorts, limits, analytics, notification copy, and billing handoff.",
   "mission": "Turn a messy growth experiment conversation into a PRD and independently grabbable vertical slice issues.",
   "outcome": "A broad experiment idea becomes a PRD, dependency graph, and issue set that multiple agents can implement without stepping on each other.",
@@ -49,7 +49,7 @@ export const labContract = {
       "id": "05-01",
       "title": "The prompt fires for internal test accounts and pollutes analytics.",
       "owner": "agent candidate",
-      "skill": "to-prd and to-issues",
+      "skill": "to-prd / to-issues",
       "risk": "high",
       "done": false
     },
@@ -57,7 +57,7 @@ export const labContract = {
       "id": "05-02",
       "title": "The draft issue list splits work by UI, API, and analytics layers instead of vertical behavior.",
       "owner": "accountable owner",
-      "skill": "to-prd and to-issues",
+      "skill": "to-prd / to-issues",
       "risk": "medium",
       "done": false
     },
@@ -65,7 +65,7 @@ export const labContract = {
       "id": "05-03",
       "title": "Rollback requirements are missing for customers who opt out of usage prompts.",
       "owner": "agent candidate",
-      "skill": "to-prd and to-issues",
+      "skill": "to-prd / to-issues",
       "risk": "critical",
       "done": false
     },
@@ -73,7 +73,7 @@ export const labContract = {
       "id": "05-04",
       "title": "The PRD does not say which metric defines experiment success.",
       "owner": "accountable owner",
-      "skill": "to-prd and to-issues",
+      "skill": "to-prd / to-issues",
       "risk": "medium",
       "done": false
     }

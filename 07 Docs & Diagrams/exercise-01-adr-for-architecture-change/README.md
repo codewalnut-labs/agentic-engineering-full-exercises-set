@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "07 Docs & Diagrams/exercise-01-adr-for-architecture-change/starter-react"

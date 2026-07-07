@@ -12,7 +12,7 @@ Starter folders:
 - [starter-react](./starter-react)
 - [context-server](./context-server)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "03 Context Engineering/exercise-03-mcp-context-server-for-product-data/starter-react"

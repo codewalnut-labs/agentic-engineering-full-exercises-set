@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "06 Multi-Agent Workflows/exercise-04-kanban-triage-worktree-control-plane/starter-react"
@@ -26,7 +26,7 @@ Seed files:
 ## Use These Practices
 
 - [06. Multi-Agent Workflows practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#06-multi-agent-workflows)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `triage, to-issues, and vibe-kanban`
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `triage / to-issues / kanban board`
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This

@@ -8,6 +8,7 @@ import { canApproveRenewal } from "./permissions";
 import { projectedTotal, summarizePortfolio } from "./pricing";
 import { recordApproval } from "./services/auditLog";
 
+// Fictional exercise user for the lab.
 const currentUser = {
   email: "taylor.manager@example.com",
   role: "sales-manager",

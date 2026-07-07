@@ -1,3 +1,4 @@
+// Fictional exercise data; names and emails use placeholder domains.
 export const accessRequests = [
   {
     id: "acc-1001",

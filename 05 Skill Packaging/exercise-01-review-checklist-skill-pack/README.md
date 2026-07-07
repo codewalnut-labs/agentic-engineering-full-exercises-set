@@ -4,14 +4,14 @@
 
 **Goal:** Package a repeated code review checklist into a focused skill and use it against the provided React change.
 
-**Outcome:** A repeated experienced review workflow becomes a runnable team skill with an eval harness.
+**Outcome:** A repeated code review workflow becomes a runnable team skill with an eval harness.
 
 ## Start Here
 
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "05 Skill Packaging/exercise-01-review-checklist-skill-pack/starter-react"
@@ -35,7 +35,7 @@ Seed files:
 2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
 3. Create a focused `SKILL.md` with precise trigger description, when-not-to-use guidance, and a concrete example.
 4. Package reference checklists separately so the skill body stays lean.
-5. Run the skill against the provided diff and capture findings.
+5. Run the skill against the provided React change and capture findings.
 6. Add eval cases that prove the skill triggers correctly and avoids noisy use.
 7. Run the checks below and keep the output for your evidence note.
 8. Commit only the files needed for this exercise.
@@ -58,7 +58,7 @@ cd "05 Skill Packaging/exercise-01-review-checklist-skill-pack/starter-react" &&
 
 Done when:
 - skill trigger eval
-- sample diff review
+- sample React change review
 - schema validation
 - human triage review
 - A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.

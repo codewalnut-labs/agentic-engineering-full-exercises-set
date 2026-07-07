@@ -17,7 +17,7 @@ export const labContract: LabContract = {
   "competency": "05. Skill Packaging - Workflow packaging into reusable skills",
   "domain": "Reusable experienced code-review skill with trigger evals",
   "mission": "Package a repeated code review checklist into a focused skill and use it against the provided React change.",
-  "outcome": "A repeated experienced review workflow becomes a runnable team skill with an eval harness.",
+  "outcome": "A repeated code review workflow becomes a runnable team skill with an eval harness.",
   "entities": [
     "SKILL.md",
     "review checklist",
@@ -31,7 +31,7 @@ export const labContract: LabContract = {
   ],
   "verificationGates": [
     "skill trigger eval",
-    "sample diff review",
+    "sample React change review",
     "schema validation",
     "human triage review"
   ],
@@ -50,7 +50,7 @@ export const labContract: LabContract = {
   "masterySignals": [
     "Create a focused `SKILL.md` with precise trigger description, when-not-to-use guidance, and a concrete example.",
     "Package reference checklists separately so the skill body stays lean.",
-    "Run the skill against the provided diff and capture findings.",
+    "Run the skill against the provided React change and capture findings.",
     "Add eval cases that prove the skill triggers correctly and avoids noisy use."
   ]
 };

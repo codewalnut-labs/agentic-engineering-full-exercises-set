@@ -3,7 +3,7 @@ import type { LabContract } from "./types";
 export const labContract = {
   "title": "Codebase Graph to Diagrams",
   "competency": "07. Docs & Diagrams",
-  "skillPattern": "graphify to diagrams",
+  "skillPattern": "graph-to-diagram",
   "domain": "Notification mesh with campaign triggers, template rendering, channel routing, consent checks, and delivery audit events.",
   "mission": "Convert a codebase graph snapshot into verified C4 and sequence diagrams, then use those diagrams to guide a safe change.",
   "outcome": "Architecture diagrams are generated from actual code relationships and verified by implementing one small notification workflow change.",
@@ -49,7 +49,7 @@ export const labContract = {
       "id": "05-01",
       "title": "The existing sequence diagram skips the consent check.",
       "owner": "agent candidate",
-      "skill": "graphify to diagrams",
+      "skill": "graph-to-diagram",
       "risk": "high",
       "done": false
     },
@@ -57,7 +57,7 @@ export const labContract = {
       "id": "05-02",
       "title": "A graph edge says SMS delivery calls audit directly, but code routes through channel router.",
       "owner": "accountable owner",
-      "skill": "graphify to diagrams",
+      "skill": "graph-to-diagram",
       "risk": "medium",
       "done": false
     },
@@ -65,7 +65,7 @@ export const labContract = {
       "id": "05-03",
       "title": "The runbook says email is the fallback channel for all failures, which is false for opted-out users.",
       "owner": "agent candidate",
-      "skill": "graphify to diagrams",
+      "skill": "graph-to-diagram",
       "risk": "critical",
       "done": false
     },
@@ -73,7 +73,7 @@ export const labContract = {
       "id": "05-04",
       "title": "One diagram labels a batch trigger as synchronous.",
       "owner": "accountable owner",
-      "skill": "graphify to diagrams",
+      "skill": "graph-to-diagram",
       "risk": "medium",
       "done": false
     }

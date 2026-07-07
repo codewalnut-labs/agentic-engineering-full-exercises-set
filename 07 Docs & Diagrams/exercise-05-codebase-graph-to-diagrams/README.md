@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "07 Docs & Diagrams/exercise-05-codebase-graph-to-diagrams/starter-react"
@@ -26,7 +26,7 @@ Seed files:
 ## Use These Practices
 
 - [07. Docs & Diagrams practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#07-docs-diagrams)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `graphify to diagrams`
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `graph-to-diagram`
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This

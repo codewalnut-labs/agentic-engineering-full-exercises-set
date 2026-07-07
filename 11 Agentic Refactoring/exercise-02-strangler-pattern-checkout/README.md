@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/starter-react"

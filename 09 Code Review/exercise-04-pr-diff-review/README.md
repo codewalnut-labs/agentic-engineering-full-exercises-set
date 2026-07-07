@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "09 Code Review/exercise-04-pr-diff-review/starter-react"
@@ -21,6 +21,8 @@ npm run dev
 
 Seed files:
 - [pr/review-target.diff](./pr/review-target.diff)
+
+Fixture note: customer names, people, emails, internal notes, and URLs are fictional exercise data.
 
 ## Use These Practices
 

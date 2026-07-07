@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "03 Context Engineering/exercise-06-intent-layer-repo-map/starter-react"
@@ -26,7 +26,7 @@ Seed files:
 ## Use These Practices
 
 - [03. Context Engineering practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#03-context-engineering)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `intent-layer and zoom-out`
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `intent-layer / zoom-out`
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This

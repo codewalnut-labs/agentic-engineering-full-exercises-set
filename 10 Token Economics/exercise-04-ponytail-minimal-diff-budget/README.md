@@ -2,7 +2,7 @@
 
 # Ponytail Minimal-Diff Budget
 
-**Goal:** Use the Ponytail ladder to finish a design-system migration slice with the smallest safe diff: skip what is not needed, reuse what exists, prefer platform features, and write new code only after the cheaper rungs fail.
+**Goal:** Practice Ponytail, an external minimal-diff ladder skill, by finishing a design-system migration slice with the smallest safe diff.
 
 **Outcome:** A migration task ships with less new code, less context churn, and no hidden loss of validation, accessibility, or error handling.
 
@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "10 Token Economics/exercise-04-ponytail-minimal-diff-budget/starter-react"
@@ -28,7 +28,7 @@ Seed files:
 - [10. Token Economics practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#10-token-economics)
 - [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `Ponytail minimal-diff ladder`
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
-- [Ponytail skill](https://github.com/DietrichGebert/ponytail)
+- [Ponytail skill](https://github.com/DietrichGebert/ponytail) - use its ladder to try skip, reuse, platform, dependency, and new-code options in that order.
 
 ## Do This
 

@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "12 Agentic Retrospective/exercise-04-skill-optimizer-from-traces/starter-react"
@@ -26,7 +26,7 @@ Seed files:
 ## Use These Practices
 
 - [12. Agentic Retrospective practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#12-agentic-retrospective)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `skill optimizer and trace retro`
+- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `trace-backed skill optimizer`
 - [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
 
 ## Do This

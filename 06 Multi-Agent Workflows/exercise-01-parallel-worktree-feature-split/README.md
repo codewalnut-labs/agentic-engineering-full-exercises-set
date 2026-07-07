@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/starter-react"

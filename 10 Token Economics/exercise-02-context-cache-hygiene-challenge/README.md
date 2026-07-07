@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "10 Token Economics/exercise-02-context-cache-hygiene-challenge/starter-react"

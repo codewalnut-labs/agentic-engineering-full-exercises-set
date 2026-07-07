@@ -11,7 +11,7 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter:
+React starter (run from the repository root):
 
 ```bash
 cd "05 Skill Packaging/exercise-02-release-notes-skill-factory/starter-react"
