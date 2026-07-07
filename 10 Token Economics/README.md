@@ -11,4 +11,4 @@ Expensive context and reasoning are reserved for judgment-heavy work, while dete
 - [Exercise 01: Token Budget Refactor](./exercise-01-token-budget-refactor/README.md)
 - [Exercise 02: Context Cache Hygiene Challenge](./exercise-02-context-cache-hygiene-challenge/README.md)
 - [Exercise 03: Model Routing Cost Planner](./exercise-03-model-routing-cost-planner/README.md)
-- [Exercise 04: Caveman Handoff Token Budget](./exercise-04-caveman-handoff-token-budget/README.md)
+- [Exercise 04: Ponytail Minimal-Diff Budget](./exercise-04-ponytail-minimal-diff-budget/README.md)

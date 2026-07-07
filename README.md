@@ -66,6 +66,7 @@ Use the index below to choose a lab, then read the local exercise README for the
 | 07. Docs & Diagrams | 03 | [Runbook Drift Repair](./07%20Docs%20&%20Diagrams/exercise-03-runbook-drift-repair/README.md) | React + TypeScript |
 | 07. Docs & Diagrams | 04 | [Workflow Diagram Reconstruction](./07%20Docs%20&%20Diagrams/exercise-04-workflow-diagram-reconstruction/README.md) | React + TypeScript |
 | 07. Docs & Diagrams | 05 | [Codebase Graph to Diagrams](./07%20Docs%20&%20Diagrams/exercise-05-codebase-graph-to-diagrams/README.md) | React + TypeScript |
+| 07. Docs & Diagrams | 06 | [Excalidraw Diagram Generator Lab](./07%20Docs%20&%20Diagrams/exercise-06-excalidraw-diagram-generator-lab/README.md) | React + TypeScript |
 | 08. Evidence-led PRs | 01 | [PR Evidence Pack Automation](./08%20Evidence-led%20PRs/exercise-01-pr-evidence-pack-automation/README.md) | React + TypeScript |
 | 08. Evidence-led PRs | 02 | [Feature Flag Rollback Proof](./08%20Evidence-led%20PRs/exercise-02-feature-flag-rollback-proof/README.md) | React + TypeScript |
 | 08. Evidence-led PRs | 03 | [Performance and A11y Evidence Gate](./08%20Evidence-led%20PRs/exercise-03-performance-and-a11y-evidence-gate/README.md) | React + TypeScript |
@@ -77,7 +78,7 @@ Use the index below to choose a lab, then read the local exercise README for the
 | 10. Token Economics | 01 | [Token Budget Refactor](./10%20Token%20Economics/exercise-01-token-budget-refactor/README.md) | React + TypeScript |
 | 10. Token Economics | 02 | [Context Cache Hygiene Challenge](./10%20Token%20Economics/exercise-02-context-cache-hygiene-challenge/README.md) | React + TypeScript |
 | 10. Token Economics | 03 | [Model Routing Cost Planner](./10%20Token%20Economics/exercise-03-model-routing-cost-planner/README.md) | React + TypeScript |
-| 10. Token Economics | 04 | [Caveman Handoff Token Budget](./10%20Token%20Economics/exercise-04-caveman-handoff-token-budget/README.md) | React + TypeScript |
+| 10. Token Economics | 04 | [Ponytail Minimal-Diff Budget](./10%20Token%20Economics/exercise-04-ponytail-minimal-diff-budget/README.md) | React + TypeScript |
 | 11. Agentic Refactoring | 01 | [Characterization Test Refactor](./11%20Agentic%20Refactoring/exercise-01-characterization-test-refactor/README.md) | React + TypeScript |
 | 11. Agentic Refactoring | 02 | [Strangler Pattern Checkout](./11%20Agentic%20Refactoring/exercise-02-strangler-pattern-checkout/README.md) | React + TypeScript |
 | 11. Agentic Refactoring | 03 | [Legacy Rules Engine Untangle](./11%20Agentic%20Refactoring/exercise-03-legacy-rules-engine-untangle/README.md) | React + TypeScript, Spring Boot |

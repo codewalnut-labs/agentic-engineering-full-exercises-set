@@ -66,6 +66,7 @@ Decisions, diagrams, and non-obvious system behavior are recorded while context 
 - Exercise 03: Runbook Drift Repair - Update stale support docs and diagrams after verifying how the current app actually handles incidents.
 - Exercise 04: Workflow Diagram Reconstruction - Reverse engineer the feature workflow in the starter app and create diagrams that match the actual implementation, not the intended story in your head.
 - Exercise 05: Codebase Graph to Diagrams - Convert a codebase graph snapshot into verified C4 and sequence diagrams, then use those diagrams to guide a safe change.
+- Exercise 06: Excalidraw Diagram Generator Lab - Generate a valid editable Excalidraw workflow diagram, validate its JSON, and verify every important element against the starter app.
 
 ## 08. Evidence-led PRs
 
@@ -92,7 +93,7 @@ Expensive context and reasoning are reserved for judgment-heavy work, while dete
 - Exercise 01: Token Budget Refactor - Plan a refactor with a token budget, choosing context, model effort, and automation deliberately.
 - Exercise 02: Context Cache Hygiene Challenge - Clean up stale instructions and oversized always-on context so future sessions stop rebilling irrelevant information.
 - Exercise 03: Model Routing Cost Planner - Design a model and effort routing policy for a team using agents across planning, coding, reviews, and retros.
-- Exercise 04: Caveman Handoff Token Budget - Reduce session waste during a long design-system migration by compressing agent output, pruning context, and creating a precise handoff.
+- Exercise 04: Ponytail Minimal-Diff Budget - Use the Ponytail ladder to finish a design-system migration slice with the smallest safe diff while preserving checks and safety exceptions.
 
 ## 11. Agentic Refactoring
 

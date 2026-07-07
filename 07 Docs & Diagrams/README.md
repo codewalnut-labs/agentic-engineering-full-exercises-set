@@ -13,3 +13,4 @@ Decisions, diagrams, and non-obvious system behavior are recorded while context 
 - [Exercise 03: Runbook Drift Repair](./exercise-03-runbook-drift-repair/README.md)
 - [Exercise 04: Workflow Diagram Reconstruction](./exercise-04-workflow-diagram-reconstruction/README.md)
 - [Exercise 05: Codebase Graph to Diagrams](./exercise-05-codebase-graph-to-diagrams/README.md)
+- [Exercise 06: Excalidraw Diagram Generator Lab](./exercise-06-excalidraw-diagram-generator-lab/README.md)
