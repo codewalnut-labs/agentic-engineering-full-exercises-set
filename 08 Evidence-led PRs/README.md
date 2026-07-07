@@ -1,6 +1,6 @@
 # 08. Evidence-led PRs
 
-PR gate evidence and handoff
+Reviewer-ready pull requests
 
 ## What Mastery Looks Like
 

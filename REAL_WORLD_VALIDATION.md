@@ -4,27 +4,31 @@ Validation date: 2026-07-07
 
 ## Current Verdict
 
-The exercise set now uses the 12 competency practice model directly: every exercise README contains a senior lab outcome, practice focus, hands-on scope, working deliverables, evidence gate, and leadership review question. The generated starters have also been strengthened with domain-specific lab contracts and runnable verification gates.
+The exercise set uses the 12 competency practice model directly and now includes explicit labs for popular agent skill patterns such as grill-me, graphify, TDD, handoff, token compression, review graph, triage boards, and skill evals.
 
 - 12 competency folders.
-- 39 exercise folders.
-- 39 exercise READMEs with senior hands-on sections.
-- Generated React starters include a domain-specific lab contract, seeded defects, verification gates, and test / lint / format / agent:check scripts.
+- 51 exercise folders.
+- 51 exercise READMEs with senior hands-on sections.
+- 52 package manifests with test / lint / format / agent:check scripts.
+- New skill-pattern labs require working code, tests or scripts, trace/evidence artifacts, and reviewer-ready deliverables.
 - Imported starters remain preserved as converted React + TypeScript exercises with local instructions.
 
 ## Practice Validation
 
-The exercises were checked against real engineering practices including reliable browser testing, skill packaging, worktree-based parallelism, PR evidence, code review, cost discipline, characterization-first refactoring, and retrospective-driven rule improvement.
+The exercises were checked against real engineering practices including reliable browser testing, skill packaging, worktree-based parallelism, PR evidence, code review, cost discipline, characterization-first refactoring, skill evals, graph-backed context, and retrospective-driven rule improvement.
 
-## Subagent Findings Addressed
+## Skill Pattern Expansion
 
-- Replaced stale realistic/needs-strengthening/toy counts with the current post-revamp verdict.
-- Fixed old artifact-only wording in root agent rules.
-- Enriched the competency practice guide with missing practice behaviors: session-readable specs, focused skills, diff-scoped review, cache-churn avoidance, and not patching tests to force refactors green.
-- Revised Toolchain Setup, Context Engineering, Test Automation, Code Review, and Spec Framing exercises that had drifted toward neighboring competencies.
-- Added domain-specific lab contracts and runnable gates to generated React starters so learners work against concrete seeded systems rather than a purely generic queue shell.
-- Added a scheduling Spring Boot domain package with slots, booking holds, conflicts, timezone validation, OpenAPI notes, and service tests.
+- Spec Framing now includes grill-me and PRD-to-issues workflows.
+- Context Engineering now includes graphify-style knowledge graphs and intent-layer repo maps.
+- Test Automation now includes a TDD skill loop.
+- Skill Packaging now includes trigger evals and cross-agent portability.
+- Multi-Agent Workflows now includes triage and kanban-style control planes.
+- Docs & Diagrams now includes graph-to-diagram verification.
+- Code Review now includes graph-assisted review.
+- Token Economics now includes caveman-style compression, token optimizer discipline, and handoff practice.
+- Agentic Retrospective now includes trace-backed skill optimization.
 
 ## Remaining Review Note
 
-The curriculum is now suitable as a senior practice set, but future improvements should continue replacing shared UI scaffolding with richer full-stack domain implementations where an exercise needs deeper production realism.
+The curriculum is suitable as a senior practice set. Future improvements should continue replacing shared UI scaffolding with deeper full-stack domain implementations where an exercise needs more production realism.

@@ -1,6 +1,6 @@
 # 11. Agentic Refactoring
 
-Test-driven tech-debt cleanup
+Safe behavior-preserving change
 
 ## What Mastery Looks Like
 

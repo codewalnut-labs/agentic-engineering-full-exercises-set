@@ -18,3 +18,15 @@ This file lists public references used to sanity-check the exercise set against 
 - Google Engineering Practices: Code Review: https://google.github.io/eng-practices/review/
 - DORA metrics: https://dora.dev/guides/dora-metrics/
 - Google SRE postmortem culture: https://sre.google/sre-book/postmortem-culture/
+
+## Agent Skill Pattern References
+
+- OpenAI Codex Agent Skills: https://developers.openai.com/codex/skills
+- OpenAI skill eval guidance: https://developers.openai.com/blog/eval-skills
+- OpenAI reusable Codex skills guide: https://developers.openai.com/codex/use-cases/reusable-codex-skills
+- Anthropic Agent Skills overview: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
+- Agent Skills open format: https://agentskills.io/home
+- Matt Pocock skills: https://github.com/mattpocock/skills
+- Graphify: https://github.com/Graphify-Labs/graphify
+- Awesome Agent Skills: https://github.com/VoltAgent/awesome-agent-skills
+- AI Hero daily agent skills: https://www.aihero.dev/5-agent-skills-i-use-every-day

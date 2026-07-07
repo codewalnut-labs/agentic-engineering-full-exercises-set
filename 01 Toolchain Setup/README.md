@@ -1,6 +1,6 @@
 # 01. Toolchain Setup
 
-Project rules, hooks, guardrails, and CLI or MCP wiring
+Project rules, hooks, guardrails, and CLI/MCP wiring
 
 ## What Mastery Looks Like
 
