@@ -11,7 +11,11 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter (run from the repository root):
+Seed files:
+- [docs/ambiguous-ticket.md](./docs/ambiguous-ticket.md)
+- [docs/scenario-fixtures.md](./docs/scenario-fixtures.md)
+
+From the repository root, open the main starter:
 
 ```bash
 cd "02 Spec Framing/exercise-01-ambiguous-bulk-refund-spec/starter-react"
@@ -19,9 +23,7 @@ npm install
 npm run dev
 ```
 
-Seed files:
-- [docs/ambiguous-ticket.md](./docs/ambiguous-ticket.md)
-- [docs/scenario-fixtures.md](./docs/scenario-fixtures.md)
+Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
 
 ## Use These Practices
 
@@ -31,36 +33,32 @@ Seed files:
 
 ## Do This
 
-1. Run the starter and skim the seed files so the agent has real context.
-2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
-3. Use the ambiguous ticket and fixtures to ask product questions, then freeze assumptions in a small implementation contract.
-4. Implement the bulk refund UI behavior for eligible, partially eligible, and blocked orders.
-5. Add validation and failure-state tests from concrete Given/When/Then examples.
-6. Keep non-goals out of the diff and prove the slice is independently reviewable.
-7. Run the checks below and keep the output for your evidence note.
-8. Commit only the files needed for this exercise.
+1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
+2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
+3. Ask the agent to make a first focused pass on the goal above.
+4. Review the first result yourself. Check it against the Verify section below.
+5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
+6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
+7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
 
 ## Deliver
 
 - Working React behavior for the selected refund slice.
 - Unit/component tests covering eligibility, limits, auth, and failure states.
-- A short spec file linked to the tests, not replacing them.
-- Command evidence showing the slice passes build and tests.
+- Short review note: what you changed after reading the agent's first draft.
+- Fresh-agent or clean-context test note.
+- Evidence note with commands run and final pass/fail result.
+
+Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
-Run at least:
-
-```bash
-cd "02 Spec Framing/exercise-01-ambiguous-bulk-refund-spec/starter-react" && npm test
-cd "02 Spec Framing/exercise-01-ambiguous-bulk-refund-spec/starter-react" && npm run agent:check
-```
-
 Done when:
-- eligibility test
-- approval boundary test
-- failure-state smoke
-- session-readable spec check
-- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
+- Refund eligibility cases are covered by tests or clear manual evidence.
+- Approval boundary cases are covered, including the handoff path.
+- Failure states are visible in the app smoke test.
+- You reviewed and improved the agent's first draft.
+- A fresh agent or clean context can explain the work and choose the right checks.
+- The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -12,7 +12,10 @@ Starter folders:
 - [starter-react](./starter-react)
 - [starter-spring-boot](./starter-spring-boot)
 
-React starter (run from the repository root):
+Seed files:
+- [docs/backend-test-gap.md](./docs/backend-test-gap.md)
+
+From the repository root, open the main starter:
 
 ```bash
 cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-react"
@@ -20,15 +23,7 @@ npm install
 npm run dev
 ```
 
-Spring Boot starter (run from the repository root):
-
-```bash
-cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-spring-boot"
-mvn spring-boot:run
-```
-
-Seed files:
-- [docs/backend-test-gap.md](./docs/backend-test-gap.md)
+Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
 
 ## Use These Practices
 
@@ -38,37 +33,32 @@ Seed files:
 
 ## Do This
 
-1. Run the starter and skim the seed files so the agent has real context.
-2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
-3. Add Spring Boot integration tests for transitions, validation, persistence, and audit logs.
-4. Fix the backend behavior those tests expose.
-5. Connect an independent browser smoke flow to deterministic backend fixtures using role locators and web-first assertions.
-6. Preserve Playwright traces/reports and repeated-run evidence so the gate proves UI plus backend reliability.
-7. Run the checks below and keep the output for your evidence note.
-8. Commit only the files needed for this exercise.
+1. Ask your coding agent to scan this exercise and summarize: current test behavior, flaky points, boundaries, fixtures, commands, and likely regression risks.
+2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
+3. Ask the agent to make a first focused pass on the goal above.
+4. Review the first result yourself. Check it against the Verify section below.
+5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
+6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
+7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
 
 ## Deliver
 
 - Spring Boot integration tests.
 - Backend code fixes where the test gate exposes gaps.
-- Frontend smoke path against deterministic data.
-- Evidence from backend and frontend verification commands.
+- Short review note: what you changed after reading the agent's first draft.
+- Fresh-agent or clean-context test note.
+- Evidence note with commands run and final pass/fail result.
+
+Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
-Run at least:
-
-```bash
-cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-react" && npm test
-cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-react" && npm run agent:check
-cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-spring-boot" && mvn test
-```
-
 Done when:
-- Spring integration tests
-- role locator smoke
-- trace/report capture
-- deterministic backend fixture
-- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
+- Spring integration tests cover the scheduling contract.
+- Smoke testing uses accessible role locators.
+- Trace or report output shows what changed and where failures would be diagnosed.
+- You reviewed and improved the agent's first draft.
+- A fresh agent or clean context can explain the work and choose the right checks.
+- The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -11,7 +11,11 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter (run from the repository root):
+Seed files:
+- [docs/quality-gate-brief.md](./docs/quality-gate-brief.md)
+- [docs/sample-reports.md](./docs/sample-reports.md)
+
+From the repository root, open the main starter:
 
 ```bash
 cd "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/starter-react"
@@ -19,9 +23,7 @@ npm install
 npm run dev
 ```
 
-Seed files:
-- [docs/quality-gate-brief.md](./docs/quality-gate-brief.md)
-- [docs/sample-reports.md](./docs/sample-reports.md)
+Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
 
 ## Use These Practices
 
@@ -31,36 +33,32 @@ Seed files:
 
 ## Do This
 
-1. Run the starter and skim the seed files so the agent has real context.
-2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
-3. Run or add automated performance and accessibility checks relevant to the starter.
-4. Fix at least one real issue discovered by those checks.
-5. Capture before/after evidence.
-6. Fail the gate when regressions exceed the chosen threshold.
-7. Run the checks below and keep the output for your evidence note.
-8. Commit only the files needed for this exercise.
+1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
+2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
+3. Ask the agent to make a first focused pass on the goal above.
+4. Review the first result yourself. Check it against the Verify section below.
+5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
+6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
+7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
 
 ## Deliver
 
 - Performance/a11y check configuration.
 - Code fixes for measured issues.
-- Before/after reports or screenshots.
-- Thresholds documented in the PR evidence pack.
+- Short review note: what you changed after reading the agent's first draft.
+- Fresh-agent or clean-context test note.
+- Evidence note with commands run and final pass/fail result.
+
+Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
-Run at least:
-
-```bash
-cd "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/starter-react" && npm test
-cd "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/starter-react" && npm run agent:check
-```
-
 Done when:
-- a11y check
-- performance budget
-- before/after report
-- evidence pack link
-- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
+- Accessibility evidence covers the changed user flow.
+- Performance evidence stays within the stated budget or explains the gap.
+- The before/after report shows what improved and what remains risky.
+- You reviewed and improved the agent's first draft.
+- A fresh agent or clean context can explain the work and choose the right checks.
+- The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -11,13 +11,15 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter (run from the repository root):
+From the repository root, open the main starter:
 
 ```bash
 cd "03 Context Engineering/exercise-04-context-first-nfr-x-ray/starter-react"
 npm install
 npm run dev
 ```
+
+Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
 
 ## Use These Practices
 
@@ -27,35 +29,32 @@ npm run dev
 
 ## Do This
 
-1. Run the starter so the agent can inspect real UI behavior.
-2. Ask your coding agent for a short plan that names files, checks, and NFR risks before it edits.
-3. Build a context pack first: repo map, architecture notes, module owners, safe paths, commands, and NFR checklist.
-4. Use that context pack to run an agent-assisted security, accessibility, performance, reliability, and testability audit.
-5. Choose the top two material findings, implement fixes, and update the context pack with any repeated correction.
-6. Add or update checks that would catch those regressions in a future agent session.
-7. Run the checks below and keep the output for your evidence note.
-8. Commit only the files needed for this exercise.
+1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
+2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
+3. Ask the agent to make a first focused pass on the goal above.
+4. Review the first result yourself. Check it against the Verify section below.
+5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
+6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
+7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
 
 ## Deliver
 
 - At least two code/config/test fixes for high-value NFR gaps.
 - Automated checks for the fixed risks.
-- Severity-ranked audit with evidence from changed files.
-- Before/after command evidence.
+- Short review note: what you changed after reading the agent's first draft.
+- Fresh-agent or clean-context test note.
+- Evidence note with commands run and final pass/fail result.
+
+Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
-
-Run at least:
-
-```bash
-cd "03 Context Engineering/exercise-04-context-first-nfr-x-ray/starter-react" && npm test
-cd "03 Context Engineering/exercise-04-context-first-nfr-x-ray/starter-react" && npm run agent:check
-```
 
 Done when:
 - The context pack lets a fresh agent understand the repo shape using only checked-in context.
 - The NFR audit cites concrete files, behavior, and severity.
 - The top findings are fixed with checks.
-- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
+- You reviewed and improved the agent's first draft.
+- A fresh agent or clean context can explain the work and choose the right checks.
+- The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

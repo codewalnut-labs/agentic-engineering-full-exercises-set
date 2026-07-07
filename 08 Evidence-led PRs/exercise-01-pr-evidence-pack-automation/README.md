@@ -11,7 +11,11 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter (run from the repository root):
+Seed files:
+- [docs/evidence-fixtures.md](./docs/evidence-fixtures.md)
+- [docs/pr-brief.md](./docs/pr-brief.md)
+
+From the repository root, open the main starter:
 
 ```bash
 cd "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/starter-react"
@@ -19,9 +23,7 @@ npm install
 npm run dev
 ```
 
-Seed files:
-- [docs/evidence-fixtures.md](./docs/evidence-fixtures.md)
-- [docs/pr-brief.md](./docs/pr-brief.md)
+Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
 
 ## Use These Practices
 
@@ -31,36 +33,32 @@ Seed files:
 
 ## Do This
 
-1. Run the starter and skim the seed files so the agent has real context.
-2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
-3. Implement an evidence pack script that runs checks, captures output, and writes a PR-ready summary.
-4. Add or repair tests so the evidence pack is meaningful.
-5. Include screenshots, coverage, traces, or logs where useful for the starter.
-6. Make failure states visible rather than silently swallowed.
-7. Run the checks below and keep the output for your evidence note.
-8. Commit only the files needed for this exercise.
+1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
+2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
+3. Ask the agent to make a first focused pass on the goal above.
+4. Review the first result yourself. Check it against the Verify section below.
+5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
+6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
+7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
 
 ## Deliver
 
 - Evidence pack generator.
 - Updated tests/checks feeding the pack.
-- Generated artifact folder with logs and summary.
-- PR template section wired to the generated evidence.
+- Short review note: what you changed after reading the agent's first draft.
+- Fresh-agent or clean-context test note.
+- Evidence note with commands run and final pass/fail result.
+
+Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
-Run at least:
-
-```bash
-cd "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/starter-react" && npm test
-cd "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/starter-react" && npm run agent:check
-```
-
 Done when:
 - evidence generator
-- artifact path check
-- PR template fill
-- failure-output capture
-- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
+- Evidence artifacts are saved in the expected paths and are not generated clutter.
+- The PR template is filled with concise evidence, risk, and rollback notes.
+- You reviewed and improved the agent's first draft.
+- A fresh agent or clean context can explain the work and choose the right checks.
+- The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

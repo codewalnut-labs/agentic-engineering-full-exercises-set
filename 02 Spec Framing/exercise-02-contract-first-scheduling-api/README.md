@@ -12,7 +12,11 @@ Starter folders:
 - [starter-react](./starter-react)
 - [starter-spring-boot](./starter-spring-boot)
 
-React starter (run from the repository root):
+Seed files:
+- [docs/api-brief.md](./docs/api-brief.md)
+- [docs/openapi-stub.md](./docs/openapi-stub.md)
+
+From the repository root, open the main starter:
 
 ```bash
 cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-react"
@@ -20,16 +24,7 @@ npm install
 npm run dev
 ```
 
-Spring Boot starter (run from the repository root):
-
-```bash
-cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-spring-boot"
-mvn spring-boot:run
-```
-
-Seed files:
-- [docs/api-brief.md](./docs/api-brief.md)
-- [docs/openapi-stub.md](./docs/openapi-stub.md)
+Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
 
 ## Use These Practices
 
@@ -39,37 +34,32 @@ Seed files:
 
 ## Do This
 
-1. Run the starter and skim the seed files so the agent has real context.
-2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
-3. Use the OpenAPI draft as the source of truth for slots, holds, conflicts, validation errors, time zones, and concurrency.
-4. Implement or repair the Spring Boot endpoints and React client states against that contract.
-5. Add contract/integration tests for successful holds, stale slots, duplicate holds, invalid time zones, and conflict responses.
-6. Generate a small frontend state matrix from real API payload examples.
-7. Run the checks below and keep the output for your evidence note.
-8. Commit only the files needed for this exercise.
+1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
+2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
+3. Ask the agent to make a first focused pass on the goal above.
+4. Review the first result yourself. Check it against the Verify section below.
+5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
+6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
+7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
 
 ## Deliver
 
 - Spring Boot endpoint behavior matching the contract.
 - React client states for loading, success, validation, conflict, and retry.
-- Backend contract or integration tests plus frontend smoke coverage.
-- Contract notes that cite the tests and payload examples.
+- Short review note: what you changed after reading the agent's first draft.
+- Fresh-agent or clean-context test note.
+- Evidence note with commands run and final pass/fail result.
+
+Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
-Run at least:
-
-```bash
-cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-react" && npm test
-cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-react" && npm run agent:check
-cd "02 Spec Framing/exercise-02-contract-first-scheduling-api/starter-spring-boot" && mvn test
-```
-
 Done when:
-- OpenAPI contract check
-- Spring integration tests
-- frontend state smoke
-- timezone validation test
-- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
+- The OpenAPI contract matches the UI and API behavior.
+- Spring integration tests cover the scheduling contract.
+- Frontend smoke testing covers loading, success, validation, conflict, and retry states.
+- You reviewed and improved the agent's first draft.
+- A fresh agent or clean context can explain the work and choose the right checks.
+- The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

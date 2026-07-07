@@ -11,7 +11,11 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter (run from the repository root):
+Seed files:
+- [docs/ponytail-ladder-ledger.md](./docs/ponytail-ladder-ledger.md)
+- [docs/session-transcript.md](./docs/session-transcript.md)
+
+From the repository root, open the main starter:
 
 ```bash
 cd "10 Token Economics/exercise-04-ponytail-minimal-diff-budget/starter-react"
@@ -19,9 +23,7 @@ npm install
 npm run dev
 ```
 
-Seed files:
-- [docs/ponytail-ladder-ledger.md](./docs/ponytail-ladder-ledger.md)
-- [docs/session-transcript.md](./docs/session-transcript.md)
+Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
 
 ## Use These Practices
 
@@ -32,36 +34,32 @@ Seed files:
 
 ## Do This
 
-1. Run the starter and skim the seed files so the agent has real context.
-2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
-3. Audit the session transcript and starter code for overbuilt migration ideas.
-4. Create a Ponytail ladder ledger showing which rung was accepted or rejected for each proposed change.
-5. Implement one design-system migration task by deleting, reusing, or using native behavior before adding new code.
-6. Add the smallest check that would fail if the chosen shortcut broke behavior.
-7. Run the checks below and keep the output for your evidence note.
-8. Commit only the files needed for this exercise.
+1. Ask your coding agent to scan this exercise and summarize: skill pattern, trigger conditions, source files, expected artifact, checks, and likely failure modes.
+2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
+3. Ask the agent to make a first focused pass on the goal above.
+4. Review the first result yourself. Check it against the Verify section below.
+5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
+6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
+7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
 
 ## Deliver
 
 - Ponytail ladder ledger with accepted and rejected rungs.
 - Working React migration slice.
-- One focused runnable check for non-trivial logic.
-- Short impact note comparing avoided code, changed files, commands, and residual risks.
+- Short review note: what you changed after reading the agent's first draft.
+- Fresh-agent or clean-context test note.
+- Evidence note with commands run and final pass/fail result.
+
+Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
-
-Run at least:
-
-```bash
-cd "10 Token Economics/exercise-04-ponytail-minimal-diff-budget/starter-react" && npm test
-cd "10 Token Economics/exercise-04-ponytail-minimal-diff-budget/starter-react" && npm run agent:check
-```
 
 Done when:
 - Ladder ledger proves skip/reuse/platform/dependency options were considered before new code.
 - Final diff changes fewer files than the overbuilt starter plan while preserving required behavior.
 - Safety exceptions are explicit for validation, accessibility, error handling, and data-loss protection.
-- One focused check proves the implemented migration slice.
-- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
+- You reviewed and improved the agent's first draft.
+- A fresh agent or clean context can explain the work and choose the right checks.
+- The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

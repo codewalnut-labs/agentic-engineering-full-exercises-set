@@ -11,7 +11,11 @@
 Starter folders:
 - [starter-react](./starter-react)
 
-React starter (run from the repository root):
+Seed files:
+- [docs/long-architecture-notes.md](./docs/long-architecture-notes.md)
+- [docs/token-budget-worksheet.md](./docs/token-budget-worksheet.md)
+
+From the repository root, open the main starter:
 
 ```bash
 cd "03 Context Engineering/exercise-02-token-budgeted-feature-delivery/starter-react"
@@ -19,9 +23,7 @@ npm install
 npm run dev
 ```
 
-Seed files:
-- [docs/long-architecture-notes.md](./docs/long-architecture-notes.md)
-- [docs/token-budget-worksheet.md](./docs/token-budget-worksheet.md)
+Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
 
 ## Use These Practices
 
@@ -31,36 +33,32 @@ Seed files:
 
 ## Do This
 
-1. Run the starter and skim the seed files so the agent has real context.
-2. Ask your coding agent for a short plan that names files, checks, and risks before it edits.
-3. Create a project context file with overview, module map, ownership, commands, conventions, and do-not-touch areas.
-4. Implement the requested UI behavior using only files justified by that context layer.
-5. Keep task state in a session-readable spec/plan/scratchpad so a fresh agent can resume after compaction.
-6. Add tests for the changed behavior and update context when the agent misses a project rule.
-7. Run the checks below and keep the output for your evidence note.
-8. Commit only the files needed for this exercise.
+1. Ask your coding agent to scan this exercise and summarize: project purpose, domain behavior, important files, existing commands, risks, expected outputs, and likely files to change.
+2. Review that scan yourself. Remove guesses and ask for file references where the agent made claims.
+3. Ask the agent to make a first focused pass on the goal above.
+4. Review the first result yourself. Check it against the Verify section below.
+5. Tell the agent what to fix or tighten, then have it update the code, docs, tests, or exercise artifact.
+6. Test with a fresh agent or clean context. Ask it to explain the change, name the checks to run, and call out remaining risks.
+7. Save a short evidence note with the scan, your review notes, final changes, commands run, and residual risks.
 
 ## Deliver
 
 - Working feature change in the starter.
 - Focused tests for the feature.
-- Context manifest and budget check.
-- Evidence that build/typecheck/tests pass.
+- Short review note: what you changed after reading the agent's first draft.
+- Fresh-agent or clean-context test note.
+- Evidence note with commands run and final pass/fail result.
+
+Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
-Run at least:
-
-```bash
-cd "03 Context Engineering/exercise-02-token-budgeted-feature-delivery/starter-react" && npm test
-cd "03 Context Engineering/exercise-02-token-budgeted-feature-delivery/starter-react" && npm run agent:check
-```
-
 Done when:
-- context file check
-- repo-map coverage check
-- feature test
-- context budget check
-- A short evidence note lists commands run, pass/fail results, changed behavior, and residual risk.
+- The context file is small, relevant, and grounded in repository files.
+- The repo map covers the files a fresh agent needs without dumping the whole repo.
+- The requested feature behavior is covered by a focused check.
+- You reviewed and improved the agent's first draft.
+- A fresh agent or clean context can explain the work and choose the right checks.
+- The evidence note is short and complete.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.
