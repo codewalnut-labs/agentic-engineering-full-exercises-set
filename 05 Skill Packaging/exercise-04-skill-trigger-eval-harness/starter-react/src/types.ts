@@ -33,7 +33,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
   backlog: WorkCard[];
   evidence: EvidenceItem[];
   decisions: DecisionItem[];

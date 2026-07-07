@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "A short spec file linked to the tests, not replacing them.",
     "Command evidence showing the slice passes build and tests."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Use the ambiguous ticket and fixtures to ask product questions, then freeze assumptions in a small implementation contract.",
     "Implement the bulk refund UI behavior for eligible, partially eligible, and blocked orders.",
     "Add validation and failure-state tests from concrete Given/When/Then examples.",

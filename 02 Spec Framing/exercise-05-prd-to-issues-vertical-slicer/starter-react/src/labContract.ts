@@ -39,7 +39,7 @@ export const labContract = {
     "Working React slice for one upgrade prompt path.",
     "Evidence that the implemented slice passes local gates."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Slices cut through product behavior, not architecture layers.",
     "Unknowns become questions or spikes, not hidden assumptions.",
     "Parallel work can start without re-reading the original conversation."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "05-02",
       "title": "The draft issue list splits work by UI, API, and analytics layers instead of vertical behavior.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "to-prd and to-issues",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "05-04",
       "title": "The PRD does not say which metric defines experiment success.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "to-prd and to-issues",
       "risk": "medium",
       "done": false

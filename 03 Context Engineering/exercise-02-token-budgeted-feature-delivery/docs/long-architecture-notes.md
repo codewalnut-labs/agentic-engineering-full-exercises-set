@@ -1,6 +1,6 @@
 # Long Architecture Notes
 
-This is a seeded senior-lab input for Token-Budgeted Feature Delivery. It gives the learner concrete constraints to inspect, implement, test, and verify.
+This is a seeded lab input for Token-Budgeted Feature Delivery. It gives the learner concrete constraints to inspect, implement, test, and verify.
 
 ## Operating Context
 
@@ -28,4 +28,4 @@ Context-bounded feature delivery for an account health widget
 
 ## Agent Workflow Constraint
 
-The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the senior engineer.
+The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the accountable engineer.

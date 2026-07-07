@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -17,7 +17,7 @@ export const labContract: LabContract = {
   "competency": "06. Multi-Agent Workflows - Parallel agents on isolated tasks",
   "domain": "Three-lane worktree plan for independent UI improvements",
   "mission": "Split three independent improvements across worktrees or subagents and integrate them without overlapping file edits.",
-  "outcome": "Independent changes run in parallel lanes and integrate cleanly under one senior owner.",
+  "outcome": "Independent changes run in parallel lanes and integrate cleanly under one accountable owner.",
   "entities": [
     "worktree lane",
     "branch owner",
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Conflict/risk log and final verification output.",
     "Main-thread integration summary."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Split the requested work into three non-overlapping slices with explicit file ownership.",
     "Use separate branches/worktrees or simulated agent lanes for implementation.",
     "Integrate results deliberately, resolving conflicts instead of hiding them.",

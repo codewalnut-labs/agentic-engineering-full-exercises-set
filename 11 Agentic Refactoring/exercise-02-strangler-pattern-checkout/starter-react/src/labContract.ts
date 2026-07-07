@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Updated app behavior for the selected branch.",
     "Rollback and residual-risk evidence."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Characterize the existing checkout path with tests and sample outputs.",
     "Build the new module behind an adapter, flag, or routing seam.",
     "Compare old and new outputs for preserved cases.",

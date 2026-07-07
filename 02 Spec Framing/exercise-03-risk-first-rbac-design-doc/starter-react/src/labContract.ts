@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Audit event behavior for denied or privileged actions.",
     "A concise design note explaining risk decisions."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Have the agent interview the RBAC request first: product questions, assumptions, non-goals, and missing examples.",
     "Derive PR-sized slices, roles, resources, risky actions, and concrete acceptance criteria from the policy fixtures.",
     "Implement route/action guards in the React starter and mock API enforcement for the selected slice.",

@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Generated artifact folder with logs and summary.",
     "PR template section wired to the generated evidence."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Implement an evidence pack script that runs checks, captures output, and writes a PR-ready summary.",
     "Add or repair tests so the evidence pack is meaningful.",
     "Include screenshots, coverage, traces, or logs where useful for the starter.",

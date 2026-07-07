@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Context manifest and budget check.",
     "Evidence that build/typecheck/tests pass."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Create a project context file with overview, module map, ownership, commands, conventions, and do-not-touch areas.",
     "Implement the requested UI behavior using only files justified by that context layer.",
     "Keep task state in a session-readable spec/plan/scratchpad so a fresh agent can resume after compaction.",

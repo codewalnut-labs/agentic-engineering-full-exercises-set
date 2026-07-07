@@ -37,7 +37,7 @@
     "Working React slice for one upgrade prompt path.",
     "Evidence that the implemented slice passes local gates."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Slices cut through product behavior, not architecture layers.",
     "Unknowns become questions or spikes, not hidden assumptions.",
     "Parallel work can start without re-reading the original conversation."

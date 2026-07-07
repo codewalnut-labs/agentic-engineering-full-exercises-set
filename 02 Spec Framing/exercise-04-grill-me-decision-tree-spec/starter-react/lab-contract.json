@@ -37,7 +37,7 @@
     "Tests or script checks for at least five concrete examples.",
     "Evidence note showing which questions became code and which stayed deferred."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "The agent resists premature planning.",
     "Ambiguity is reduced by examples, not broad prose.",
     "The final slice is small enough to review independently."

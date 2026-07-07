@@ -39,7 +39,7 @@ export const labContract = {
     "Working React migration slice.",
     "Handoff note tested by a fresh planning pass."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Compression keeps signal.",
     "Handoffs avoid lossy compaction.",
     "Cost savings do not hide risk."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "04-02",
       "title": "The context file includes stale component lists that are no longer used.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "caveman, handoff, and token optimizer",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "04-04",
       "title": "The output compression rule accidentally removes required file references.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "caveman, handoff, and token optimizer",
       "risk": "medium",
       "done": false

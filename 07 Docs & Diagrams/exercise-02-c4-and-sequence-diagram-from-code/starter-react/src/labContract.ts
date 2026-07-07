@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Any code or docs fixes needed to remove drift.",
     "Review note explaining verified and intentionally omitted paths."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Trace the feature from UI event through state, service, and persistence/mock boundaries.",
     "Create C4-style and sequence diagrams from that trace.",
     "Add a small script, test, or trace artifact that proves diagram steps still exist in code.",

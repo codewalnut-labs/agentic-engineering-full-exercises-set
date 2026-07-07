@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Behavior category notes tied to tests.",
     "Before/after verification evidence."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Generate a behavior spec from the current code and mark preserve/change/bug categories.",
     "Add characterization tests that pass against the current behavior.",
     "Refactor the messy module without changing preserved behavior.",

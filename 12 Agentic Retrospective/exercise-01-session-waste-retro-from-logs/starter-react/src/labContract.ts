@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Implemented system fix in rules, hook, or skill.",
     "Before/after comparison evidence."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Parse the provided session logs for retry loops, repeated reads, abandoned turns, tool failures, and context bloat.",
     "Build a small metrics script rather than hand-counting.",
     "Implement one rule, hook, skill, or workflow change that targets the top waste source.",

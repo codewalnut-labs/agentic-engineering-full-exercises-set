@@ -1,10 +1,10 @@
 # Skill Eval Cases
 
-This is a seeded senior-lab input for Review Checklist Skill Pack. It gives the learner concrete constraints to inspect, implement, test, and verify.
+This is a seeded lab input for Review Checklist Skill Pack. It gives the learner concrete constraints to inspect, implement, test, and verify.
 
 ## Operating Context
 
-Reusable senior code-review skill with trigger evals
+Reusable experienced code-review skill with trigger evals
 
 ## Concrete Inputs
 
@@ -28,4 +28,4 @@ Reusable senior code-review skill with trigger evals
 
 ## Agent Workflow Constraint
 
-The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the senior engineer.
+The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the accountable engineer.

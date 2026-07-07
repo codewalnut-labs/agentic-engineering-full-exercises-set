@@ -32,7 +32,7 @@ cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-spr
 mvn spring-boot:run
 ```
 
-## Senior Lab Outcome
+## Lab Outcome
 
 Mock-heavy confidence is replaced with backend integration tests and a frontend smoke path.
 
@@ -69,7 +69,7 @@ Mastery signal: Tests fail for regressions, stay green across repeated CI runs, 
 
 ## Agentic Engineering Requirements
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one senior owner accountable for the diff.
+- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner accountable for the diff.
 - Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
 - Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
 - Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.

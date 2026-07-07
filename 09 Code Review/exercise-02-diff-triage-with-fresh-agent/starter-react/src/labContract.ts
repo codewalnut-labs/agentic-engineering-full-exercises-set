@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -17,7 +17,7 @@ export const labContract: LabContract = {
   "competency": "09. Code Review - Code quality and risk review for merge confidence",
   "domain": "Fresh-agent review of cache and workflow-state changes",
   "mission": "Use a fresh review pass to find what the implementing agent missed, then decide which findings are merge blockers.",
-  "outcome": "A fresh agent review produces signal, and the senior owner decides what actually blocks merge.",
+  "outcome": "A fresh agent review produces signal, and the accountable owner decides what actually blocks merge.",
   "entities": [
     "fresh review prompt",
     "local storage cache",
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Triage evidence separating signal from noise.",
     "Final merge confidence note."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Ask a fresh model/session to review the diff with explicit NFR checks.",
     "Verify each finding manually against the surrounding code.",
     "Fix true merge blockers in code and tests.",

@@ -39,7 +39,7 @@ export const labContract = {
     "Evidence of graph-guided file selection.",
     "A short list of graph gaps for future agents."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "The graph reduces file thrash.",
     "Context is durable and queryable.",
     "The agent can explain why each touched file was relevant."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "05-02",
       "title": "A scheduled job writes tenant ids while the React filter expects account ids.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "graphify",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "05-04",
       "title": "The starter context includes duplicate metric definitions in two docs.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "graphify",
       "risk": "medium",
       "done": false

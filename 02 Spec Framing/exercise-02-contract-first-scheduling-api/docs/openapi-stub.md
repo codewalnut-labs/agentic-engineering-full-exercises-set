@@ -1,6 +1,6 @@
 # Openapi Stub
 
-This is a seeded senior-lab input for Contract-First Scheduling API. It gives the learner concrete constraints to inspect, implement, test, and verify.
+This is a seeded lab input for Contract-First Scheduling API. It gives the learner concrete constraints to inspect, implement, test, and verify.
 
 ## Operating Context
 
@@ -28,4 +28,4 @@ Scheduling slots and booking holds across time zones
 
 ## Agent Workflow Constraint
 
-The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the senior engineer.
+The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the accountable engineer.

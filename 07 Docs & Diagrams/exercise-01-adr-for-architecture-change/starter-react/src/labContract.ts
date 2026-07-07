@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "ADR tied to code and test evidence.",
     "Verified diagram or dependency map."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Move workflow state or another meaningful boundary out of an overgrown component into a service/module.",
     "Add tests proving the new boundary preserves behavior.",
     "Write the ADR after implementation evidence exists, including alternatives and trade-offs.",

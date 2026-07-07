@@ -39,7 +39,7 @@ export const labContract = {
     "Regression test or script check.",
     "Triage table for every finding."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Review is neither blind trust nor duplicate implementation.",
     "Graph context broadens risk only where useful.",
     "Findings are actionable and verified."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "05-02",
       "title": "The graph shows checkout adapter depends on audit logging, but tests assert only UI state.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "code review graph",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "05-04",
       "title": "A low-severity copy change hides a high-severity behavioral regression.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "code review graph",
       "risk": "medium",
       "done": false

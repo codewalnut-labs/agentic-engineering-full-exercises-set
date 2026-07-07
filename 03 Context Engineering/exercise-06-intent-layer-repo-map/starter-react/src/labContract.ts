@@ -39,7 +39,7 @@ export const labContract = {
     "Evidence that the agent used the context layer.",
     "Before and after notes for any corrected context."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Context explains why modules exist.",
     "The agent does fewer redundant reads.",
     "The notes help without becoming a second codebase."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "06-02",
       "title": "A folder contains two similarly named schedule helpers with different time zone assumptions.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "intent-layer and zoom-out",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "06-04",
       "title": "Runbook links are owned by support, not the incident platform team.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "intent-layer and zoom-out",
       "risk": "medium",
       "done": false

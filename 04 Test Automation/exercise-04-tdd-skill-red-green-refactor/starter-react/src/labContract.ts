@@ -39,7 +39,7 @@ export const labContract = {
     "Refactor notes explaining protected behavior.",
     "Evidence log showing red, green, and refactor commands."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "The agent follows the loop under pressure.",
     "Tests describe user-visible behavior.",
     "Refactor scope stays bounded by characterization."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "04-02",
       "title": "Enterprise accounts receive consumer dunning copy.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "tdd",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "04-04",
       "title": "Recovered invoices do not clear account hold warnings.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "tdd",
       "risk": "medium",
       "done": false

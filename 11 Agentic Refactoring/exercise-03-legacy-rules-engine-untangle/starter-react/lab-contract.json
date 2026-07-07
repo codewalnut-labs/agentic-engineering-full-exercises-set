@@ -33,7 +33,7 @@
     "React adapter updates only where needed.",
     "Golden-case comparison evidence."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Add characterization and integration tests around the legacy rules endpoint.",
     "Separate validation, rule evaluation, persistence, and side effects.",
     "Preserve API shape, logs, and frontend behavior unless explicitly categorized as bugs.",

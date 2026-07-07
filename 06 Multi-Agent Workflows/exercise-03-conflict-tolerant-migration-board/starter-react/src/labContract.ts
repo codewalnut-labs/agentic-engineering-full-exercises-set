@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Conflict detection script or checklist backed by actual file changes.",
     "Integration verification evidence."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Create a migration board that assigns files, dependencies, and merge order.",
     "Implement at least two migration slices in non-overlapping areas.",
     "Add an integration check that detects shared-file edits or ordering mistakes.",

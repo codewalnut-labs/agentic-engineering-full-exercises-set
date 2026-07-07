@@ -39,7 +39,7 @@ export const labContract = {
     "Working React change or validation check.",
     "Evidence that diagrams match code paths."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Diagrams explain real behavior.",
     "Graph data speeds but does not replace verification.",
     "Docs are useful to the next agent."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "05-02",
       "title": "A graph edge says SMS delivery calls audit directly, but code routes through channel router.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "graphify to diagrams",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "05-04",
       "title": "One diagram labels a batch trigger as synchronous.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "graphify to diagrams",
       "risk": "medium",
       "done": false

@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "React adapter updates only where needed.",
     "Golden-case comparison evidence."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Add characterization and integration tests around the legacy rules endpoint.",
     "Separate validation, rule evaluation, persistence, and side effects.",
     "Preserve API shape, logs, and frontend behavior unless explicitly categorized as bugs.",

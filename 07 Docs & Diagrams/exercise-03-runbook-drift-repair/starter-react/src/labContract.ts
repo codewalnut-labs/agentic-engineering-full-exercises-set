@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Incident smoke test or reproduction script.",
     "Verification evidence for the support path."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Compare the runbook against actual incident handling code and current app behavior.",
     "Fix drift in code, scripts, or docs where the current behavior is wrong or unclear.",
     "Add an incident smoke test or scripted reproduction.",

@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Before/after handoff comparison.",
     "Evidence that starter checks still pass."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Audit oversized or stale agent instructions and split deep detail into linked references.",
     "Implement a size/check script that fails when always-on context grows past the agreed budget.",
     "Update starter rules so repeated corrections live in durable context.",

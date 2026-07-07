@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Triage table with fix/defer/dismiss decisions.",
     "Re-review evidence after the patch."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Use a fresh review pass on `pr/review-target.diff` for security, accessibility, behavior, and tests.",
     "Patch the merge-blocking findings in the starter code.",
     "Add regression tests for each blocker.",

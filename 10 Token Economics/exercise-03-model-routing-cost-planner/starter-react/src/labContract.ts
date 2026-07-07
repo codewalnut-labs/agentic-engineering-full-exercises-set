@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,10 +47,10 @@ export const labContract: LabContract = {
     "Scenario simulation output.",
     "Leadership recommendation for adoption."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Encode model/effort routing rules for planning, routine edits, tests, reviews, and retros.",
     "Build a small estimator or simulation using the provided scenarios and usage logs.",
-    "Run the estimator against at least three senior-engineering workflows.",
+    "Run the estimator against at least three advanced-engineering workflows.",
     "Tune the policy when cost, latency, or risk looks wrong."
   ]
 };

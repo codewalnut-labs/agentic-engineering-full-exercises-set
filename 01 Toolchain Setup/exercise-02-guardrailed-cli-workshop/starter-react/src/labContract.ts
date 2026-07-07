@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Updated starter scripts invoking the guardrail.",
     "Evidence showing blocked and allowed examples."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Create a guardrail policy for secrets, destructive git operations, generated artifacts, and external CLIs.",
     "Implement a local hook simulator or PreToolUse-style script that blocks `.env`, secret manager paths, force pushes, recursive deletes outside the exercise, and unapproved CLIs.",
     "Add tests or table-driven cases for allowed, warned, and blocked commands.",

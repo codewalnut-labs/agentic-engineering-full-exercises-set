@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Regression test or smoke check.",
     "Fresh-agent handoff note showing what context was loaded and why."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Create a compact repo map, architecture/context file, command list, and do-not-touch list.",
     "Seed or use the provided bug report, then have the context guide a real code fix in the starter.",
     "Add a regression test proving the bug is fixed.",

@@ -39,7 +39,7 @@ export const labContract = {
     "Runnable harness or script check.",
     "Versioned report showing improvement."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Skill quality is measured, not guessed.",
     "The description is concise enough for implicit selection.",
     "Regression cases protect the workflow over time."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "04-02",
       "title": "The review skill skips the required diff-only inspection step.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "skill evals and skill optimizer",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "04-04",
       "title": "The eval report cannot compare v1 and v2 skill behavior.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "skill evals and skill optimizer",
       "risk": "medium",
       "done": false

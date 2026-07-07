@@ -37,7 +37,7 @@
     "At least one working card implementation in React.",
     "Integration note with accepted and rejected agent outputs."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Parallelism is intentional, not chaotic.",
     "The main owner keeps control of integration.",
     "Cards are small enough for independent agent execution."

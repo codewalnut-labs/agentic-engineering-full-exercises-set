@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Any app accessibility/testability fixes required for role locators.",
     "Repeated-run evidence and trace/report configuration."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Replace brittle selectors and fixed waits with role locators and web-first assertions.",
     "Mock payment, tax, clock, or third-party boundaries without mocking away checkout behavior.",
     "Make every test independent and parallel-safe.",

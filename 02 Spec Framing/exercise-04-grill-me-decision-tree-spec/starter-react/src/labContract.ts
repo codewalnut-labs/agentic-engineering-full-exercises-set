@@ -39,7 +39,7 @@ export const labContract = {
     "Tests or script checks for at least five concrete examples.",
     "Evidence note showing which questions became code and which stayed deferred."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "The agent resists premature planning.",
     "Ambiguity is reduced by examples, not broad prose.",
     "The final slice is small enough to review independently."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "04-02",
       "title": "Seat count errors use billing language that support cannot map to the entitlement screen.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "grill-me and grill-with-docs",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "04-04",
       "title": "Audit events are written only for successful saves, not blocked entitlement attempts.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "grill-me and grill-with-docs",
       "risk": "medium",
       "done": false

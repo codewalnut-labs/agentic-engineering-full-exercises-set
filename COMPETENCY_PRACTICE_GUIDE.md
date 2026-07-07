@@ -132,7 +132,7 @@ Parallel agents editing overlapping files do not go faster; they create conflict
 
 ### Mastery Signal
 
-Independent work runs side by side, worktrees prevent collisions, and the senior owner integrates rather than babysits.
+Independent work runs side by side, worktrees prevent collisions, and the accountable owner integrates rather than babysits.
 
 
 ## 07. Docs & Diagrams

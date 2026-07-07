@@ -14,7 +14,7 @@ for (const file of files) {
 
 const readme = fs.readFileSync(path.join(process.cwd(), "..", "README.md"), "utf8");
 if (!readme.includes("## Popular Agent Skill Pattern") || !readme.includes("## Practice Focus")) {
-  failures.push("README is missing required senior exercise sections");
+  failures.push("README is missing required exercise sections");
 }
 
 if (failures.length) {

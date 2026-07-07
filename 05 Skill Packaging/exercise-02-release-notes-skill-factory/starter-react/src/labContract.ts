@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Generated release notes from the fixture set.",
     "Eval evidence showing improvements after refinement."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Create a release-notes skill that reads commit/change fixtures and groups work by customer impact.",
     "Build or wire a parser script so deterministic extraction is not spent on expensive model turns.",
     "Add snapshot or fixture tests for grouping, missing evidence, and breaking-change detection.",

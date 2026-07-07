@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Before/after reports or screenshots.",
     "Thresholds documented in the PR evidence pack."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Run or add automated performance and accessibility checks relevant to the starter.",
     "Fix at least one real issue discovered by those checks.",
     "Capture before/after evidence.",

@@ -1,6 +1,6 @@
 # Specialist Prompts
 
-This is a seeded senior-lab input for Subagent NFR Swarm. It gives the learner concrete constraints to inspect, implement, test, and verify.
+This is a seeded lab input for Subagent NFR Swarm. It gives the learner concrete constraints to inspect, implement, test, and verify.
 
 ## Operating Context
 
@@ -28,4 +28,4 @@ Specialist NFR swarm for a risky generated change
 
 ## Agent Workflow Constraint
 
-The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the senior engineer.
+The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the accountable engineer.

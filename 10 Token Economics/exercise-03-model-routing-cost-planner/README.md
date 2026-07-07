@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-## Senior Lab Outcome
+## Lab Outcome
 
 A team routing policy chooses model and effort by task risk, not habit.
 
@@ -49,7 +49,7 @@ Mastery signal: Model and effort are chosen on purpose, cost tracks task difficu
 
 - Encode model/effort routing rules for planning, routine edits, tests, reviews, and retros.
 - Build a small estimator or simulation using the provided scenarios and usage logs.
-- Run the estimator against at least three senior-engineering workflows.
+- Run the estimator against at least three advanced-engineering workflows.
 - Tune the policy when cost, latency, or risk looks wrong.
 
 ## Required Working Deliverables
@@ -61,7 +61,7 @@ Mastery signal: Model and effort are chosen on purpose, cost tracks task difficu
 
 ## Agentic Engineering Requirements
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one senior owner accountable for the diff.
+- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner accountable for the diff.
 - Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
 - Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
 - Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.

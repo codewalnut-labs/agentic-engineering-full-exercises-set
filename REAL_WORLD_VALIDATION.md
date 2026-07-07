@@ -8,7 +8,7 @@ The exercise set uses the 12 competency practice model directly and now includes
 
 - 12 competency folders.
 - 51 exercise folders.
-- 51 exercise READMEs with senior hands-on sections.
+- 51 exercise READMEs with advanced hands-on sections.
 - 52 package manifests with test / lint / format / agent:check scripts.
 - New skill-pattern labs require working code, tests or scripts, trace/evidence artifacts, and reviewer-ready deliverables.
 - Imported starters remain preserved as converted React + TypeScript exercises with local instructions.
@@ -31,4 +31,4 @@ The exercises were checked against real engineering practices including reliable
 
 ## Remaining Review Note
 
-The curriculum is suitable as a senior practice set. Future improvements should continue replacing shared UI scaffolding with deeper full-stack domain implementations where an exercise needs more production realism.
+The curriculum is suitable as a advanced practice set. Future improvements should continue replacing shared UI scaffolding with deeper full-stack domain implementations where an exercise needs more production realism.

@@ -21,7 +21,7 @@ export default function App() {
         <div className="score-card">
           <span>Readiness</span>
           <strong>{score}%</strong>
-          <small>{score >= 75 ? "ready for senior review" : "needs implementation evidence"}</small>
+          <small>{score >= 75 ? "ready for review" : "needs implementation evidence"}</small>
         </div>
       </section>
 
@@ -50,10 +50,10 @@ export default function App() {
       </section>
 
       <section className="panel wide">
-        <p className="kicker">Senior outcome</p>
+        <p className="kicker">Outcome</p>
         <h2>What Good Looks Like</h2>
         <ul className="signal-list">
-          {labContract.seniorSignals.map((signal) => (
+          {labContract.masterySignals.map((signal) => (
             <li key={signal}>{signal}</li>
           ))}
         </ul>

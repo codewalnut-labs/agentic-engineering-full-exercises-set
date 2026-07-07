@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Tests for rule lookup and access boundaries.",
     "Usage notes for Codex/Claude/Cursor."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Build the TypeScript context server around product rules, fixtures, and retrieval boundaries.",
     "Expose focused queries for product limits, eligibility rules, glossary terms, and sample payloads.",
     "Integrate one starter workflow with the server output instead of hard-coded duplicated rules.",

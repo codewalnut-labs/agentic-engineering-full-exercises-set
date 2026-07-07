@@ -37,7 +37,7 @@
     "Evidence of graph-guided file selection.",
     "A short list of graph gaps for future agents."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "The graph reduces file thrash.",
     "Context is durable and queryable.",
     "The agent can explain why each touched file was relevant."

@@ -5,7 +5,7 @@ const root = process.cwd();
 const contract = JSON.parse(fs.readFileSync(path.join(root, "lab-contract.json"), "utf8"));
 const failures = [];
 
-for (const field of ["entities", "seededDefects", "verificationGates", "agentWorkflow", "workingDeliverables", "seniorSignals"]) {
+for (const field of ["entities", "seededDefects", "verificationGates", "agentWorkflow", "workingDeliverables", "masterySignals"]) {
   if (!Array.isArray(contract[field]) || contract[field].length < 3) {
     failures.push(`${field} must contain at least three concrete entries`);
   }

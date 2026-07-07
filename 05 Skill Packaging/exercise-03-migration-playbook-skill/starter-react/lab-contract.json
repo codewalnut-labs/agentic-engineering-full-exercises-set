@@ -33,7 +33,7 @@
     "Tests proving migrated behavior.",
     "Before/after skill eval notes."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Package the migration workflow as a focused skill with references for edge cases.",
     "Apply the skill to convert a legacy component to typed React with tests.",
     "Add an eval case for when the skill should not run.",

@@ -37,7 +37,7 @@
     "Regression test or script check.",
     "Triage table for every finding."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Review is neither blind trust nor duplicate implementation.",
     "Graph context broadens risk only where useful.",
     "Findings are actionable and verified."

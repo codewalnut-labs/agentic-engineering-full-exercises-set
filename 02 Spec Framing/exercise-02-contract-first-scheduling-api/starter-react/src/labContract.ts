@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Backend contract or integration tests plus frontend smoke coverage.",
     "Contract notes that cite the tests and payload examples."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Use the OpenAPI draft as the source of truth for slots, holds, conflicts, validation errors, time zones, and concurrency.",
     "Implement or repair the Spring Boot endpoints and React client states against that contract.",
     "Add contract/integration tests for successful holds, stale slots, duplicate holds, invalid time zones, and conflict responses.",

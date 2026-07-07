@@ -1,6 +1,6 @@
 # Agent Skill Pattern Map
 
-This map captures popular agent skill patterns that are useful for senior agentic engineering practice. The exercises do not require installing any one third-party skill; they teach the workflow patterns behind them.
+This map captures popular agent skill patterns that are useful for advanced agentic engineering practice. The exercises do not require installing any one third-party skill; they teach the workflow patterns behind them.
 
 | Pattern | Practice Value | Added Exercise |
 |---|---|---|
@@ -21,4 +21,4 @@ This map captures popular agent skill patterns that are useful for senior agenti
 
 - Skills should encode repeatable engineering behavior, not just a clever prompt.
 - Good skill exercises include trigger criteria, non-use cases, concrete artifacts, and measurable checks.
-- A senior team should be able to adapt these patterns to its own repo, review rules, release process, and agent surfaces.
+- A experienced team should be able to adapt these patterns to its own repo, review rules, release process, and agent surfaces.

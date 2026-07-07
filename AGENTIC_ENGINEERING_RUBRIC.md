@@ -1,6 +1,6 @@
-# Senior Agentic Engineering Rubric
+# Agentic Engineering Rubric
 
-This curriculum follows a core agentic engineering principle: agents replace typing, not thinking. A senior engineer or leader must set the contract, direct the agent, verify the work, and improve the system around repeated work.
+This curriculum follows a core agentic engineering principle: agents replace typing, not thinking. An accountable engineer or leader must set the contract, direct the agent, verify the work, and improve the system around repeated work.
 
 ## Non-Negotiable Completion Rule
 
@@ -30,6 +30,6 @@ Every exercise solution should include:
 - The commands run with pass/fail results.
 - A short decision note explaining trade-offs, residual risks, and what a reviewer should inspect first.
 
-## Senior Leadership Lens
+## Leadership Lens
 
 For leaders, the goal is not to become the fastest prompt writer. The goal is to design an engineering system where teams can use Codex, Claude Code, Cursor, and future agents with guardrails, evidence, cost discipline, and accountable review.

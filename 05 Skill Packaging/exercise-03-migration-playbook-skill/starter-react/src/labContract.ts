@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Tests proving migrated behavior.",
     "Before/after skill eval notes."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Package the migration workflow as a focused skill with references for edge cases.",
     "Apply the skill to convert a legacy component to typed React with tests.",
     "Add an eval case for when the skill should not run.",

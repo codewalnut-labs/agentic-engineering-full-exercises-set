@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Review summary with severity and evidence.",
     "Residual risk notes for anything deferred."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Ask a fresh model or session to review the supplied diff for behavior drift and NFR risk.",
     "Verify each finding yourself against filtering, sorting, risk scoring, permissions, empty states, accessibility, and performance.",
     "Write tests that fail on the true regressions, then patch the implementation to restore intended behavior.",

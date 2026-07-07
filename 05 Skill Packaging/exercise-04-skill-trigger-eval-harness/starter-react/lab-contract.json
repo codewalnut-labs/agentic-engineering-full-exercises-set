@@ -37,7 +37,7 @@
     "Runnable harness or script check.",
     "Versioned report showing improvement."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Skill quality is measured, not guessed.",
     "The description is concise enough for implicit selection.",
     "Regression cases protect the workflow over time."

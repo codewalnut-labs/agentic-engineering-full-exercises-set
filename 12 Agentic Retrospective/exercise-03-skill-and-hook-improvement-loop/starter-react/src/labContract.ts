@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Any starter code changes needed to exercise the workflow.",
     "Maintenance notes for future retros."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Run the provided flawed skill/hook against seed scenarios and capture failures.",
     "Improve trigger descriptions, references, policy logic, and output shape.",
     "Add an eval harness that compares before and after behavior.",

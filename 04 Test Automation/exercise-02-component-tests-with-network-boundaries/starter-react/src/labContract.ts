@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Code fixes required to make the UI testable and accessible.",
     "Test command evidence."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Add Testing Library tests for loading, empty, error, filtered, and successful states using user-facing queries.",
     "Use MSW or equivalent mocks at the network boundary, not implementation internals.",
     "Add a browser-level smoke or Playwright component flow using role locators and auto-waiting assertions.",

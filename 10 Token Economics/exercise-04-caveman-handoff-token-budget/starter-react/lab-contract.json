@@ -37,7 +37,7 @@
     "Working React migration slice.",
     "Handoff note tested by a fresh planning pass."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Compression keeps signal.",
     "Handoffs avoid lossy compaction.",
     "Cost savings do not hide risk."

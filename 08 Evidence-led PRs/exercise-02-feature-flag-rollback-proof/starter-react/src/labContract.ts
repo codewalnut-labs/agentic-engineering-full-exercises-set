@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Tests for on/off/rollback states.",
     "Rollback evidence suitable for a PR."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Implement a real feature flag around the risky UI behavior.",
     "Add telemetry/audit events for enabled, disabled, and rollback paths.",
     "Build a rollback script or documented command that changes behavior without a deploy.",

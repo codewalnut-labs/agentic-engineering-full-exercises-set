@@ -39,7 +39,7 @@ export const labContract = {
     "At least one working card implementation in React.",
     "Integration note with accepted and rejected agent outputs."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Parallelism is intentional, not chaotic.",
     "The main owner keeps control of integration.",
     "Cards are small enough for independent agent execution."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "04-02",
       "title": "A ready-for-agent label is applied before reproduction steps exist.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "triage, to-issues, and vibe-kanban",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "04-04",
       "title": "Human-review cards are mixed with autonomous bugfix cards.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "triage, to-issues, and vibe-kanban",
       "risk": "medium",
       "done": false

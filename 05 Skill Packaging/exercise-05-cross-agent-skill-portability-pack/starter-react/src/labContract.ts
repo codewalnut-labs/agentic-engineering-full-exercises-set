@@ -39,7 +39,7 @@ export const labContract = {
     "Validator results for hard-coded paths and broad tool assumptions.",
     "Example prompt showing correct and incorrect trigger behavior."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "The skill can be committed for a team.",
     "Tool assumptions are explicit.",
     "Context stays progressively disclosed."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "05-02",
       "title": "The description is too vague for implicit triggering.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "cross-agent skill standardization",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "05-04",
       "title": "Reference material is pasted inline instead of loaded on demand.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "cross-agent skill standardization",
       "risk": "medium",
       "done": false

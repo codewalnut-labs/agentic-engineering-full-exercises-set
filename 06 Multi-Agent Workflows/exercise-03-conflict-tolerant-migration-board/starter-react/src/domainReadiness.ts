@@ -12,7 +12,7 @@ export function calculateReadiness(contract: LabContract) {
   const score = Math.round((passed / requiredSignals.length) * 100);
   return {
     score,
-    status: score === 100 ? "ready for senior lab work" : "needs stronger scaffolding",
+    status: score === 100 ? "ready for lab work" : "needs stronger scaffolding",
   };
 }
 

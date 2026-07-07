@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Context/model budget ledger.",
     "Automation for any repeated deterministic work."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Create a context and model/effort budget before touching code.",
     "Move deterministic edits into a script or small helper where appropriate.",
     "Implement the refactor and tests without loading unrelated files.",

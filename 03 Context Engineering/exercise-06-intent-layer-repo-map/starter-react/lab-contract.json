@@ -37,7 +37,7 @@
     "Evidence that the agent used the context layer.",
     "Before and after notes for any corrected context."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Context explains why modules exist.",
     "The agent does fewer redundant reads.",
     "The notes help without becoming a second codebase."

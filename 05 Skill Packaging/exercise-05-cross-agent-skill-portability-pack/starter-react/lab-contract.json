@@ -37,7 +37,7 @@
     "Validator results for hard-coded paths and broad tool assumptions.",
     "Example prompt showing correct and incorrect trigger behavior."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "The skill can be committed for a team.",
     "Tool assumptions are explicit.",
     "Context stays progressively disclosed."

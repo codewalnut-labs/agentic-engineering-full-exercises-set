@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Frontend smoke path against deterministic data.",
     "Evidence from backend and frontend verification commands."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Add Spring Boot integration tests for transitions, validation, persistence, and audit logs.",
     "Fix the backend behavior those tests expose.",
     "Connect an independent browser smoke flow to deterministic backend fixtures using role locators and web-first assertions.",

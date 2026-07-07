@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Correction history mapped to fixes.",
     "Re-run evidence on seed mistakes."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Cluster repeated corrections from the provided history into root causes.",
     "Choose the right fix type: rule, context file, skill, hook, or human habit.",
     "Implement at least two durable fixes.",

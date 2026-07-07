@@ -39,7 +39,7 @@ export const labContract = {
     "Regression case from a real trace.",
     "Before and after evidence for the improvement."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Retros produce operating-system changes.",
     "Fixes target repeated causes, not one-off annoyance.",
     "The team can measure whether the skill improved."
@@ -56,7 +56,7 @@ export const labContract = {
     {
       "id": "04-02",
       "title": "Agents repeatedly read service ownership files instead of using the cached map.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "skill optimizer and trace retro",
       "risk": "medium",
       "done": false
@@ -72,7 +72,7 @@ export const labContract = {
     {
       "id": "04-04",
       "title": "Retros produce complaints but no skill patch or eval case.",
-      "owner": "senior owner",
+      "owner": "accountable owner",
       "skill": "skill optimizer and trace retro",
       "risk": "medium",
       "done": false

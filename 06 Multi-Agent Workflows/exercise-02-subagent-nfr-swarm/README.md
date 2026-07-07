@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-## Senior Lab Outcome
+## Lab Outcome
 
 Specialist review agents produce actionable NFR findings and the main thread implements the right fixes.
 
@@ -43,7 +43,7 @@ Practice signals for this exercise:
 
 Common mistake to avoid: Parallel agents editing overlapping files do not go faster; they create conflict cleanup.
 
-Mastery signal: Independent work runs side by side, worktrees prevent collisions, and the senior owner integrates rather than babysits.
+Mastery signal: Independent work runs side by side, worktrees prevent collisions, and the accountable owner integrates rather than babysits.
 
 ## Hands-On Scope
 
@@ -61,7 +61,7 @@ Mastery signal: Independent work runs side by side, worktrees prevent collisions
 
 ## Agentic Engineering Requirements
 
-- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one senior owner accountable for the diff.
+- Use Codex, Claude Code, Cursor, or another coding agent as a collaborator, but keep one accountable owner accountable for the diff.
 - Start by having the agent inspect the starter and propose a plan; revise that plan before implementation.
 - Do not accept a large opaque rewrite. Work in small, reviewable chunks and keep the verification gate green.
 - Record only the decisions and evidence future humans or agents need. Markdown supports the work; it is not the work.

@@ -33,7 +33,7 @@
     "Generated release notes from the fixture set.",
     "Eval evidence showing improvements after refinement."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Create a release-notes skill that reads commit/change fixtures and groups work by customer impact.",
     "Build or wire a parser script so deterministic extraction is not spent on expensive model turns.",
     "Add snapshot or fixture tests for grouping, missing evidence, and breaking-change detection.",

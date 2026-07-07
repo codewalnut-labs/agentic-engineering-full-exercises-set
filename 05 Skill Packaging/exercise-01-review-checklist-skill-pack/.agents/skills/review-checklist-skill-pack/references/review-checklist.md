@@ -1,4 +1,4 @@
-# Senior Review Checklist
+# advanced Review Checklist
 
 - Behavior: changed logic matches the requested user outcome and preserves edge cases.
 - Security: no unsafe rendering, secret exposure, overbroad access, or unvalidated privileged action.

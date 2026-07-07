@@ -9,7 +9,7 @@ export interface LabContract {
   verificationGates: string[];
   agentWorkflow: string[];
   workingDeliverables: string[];
-  seniorSignals: string[];
+  masterySignals: string[];
 }
 
 export const labContract: LabContract = {
@@ -17,7 +17,7 @@ export const labContract: LabContract = {
   "competency": "01. Toolchain Setup - Project rules, hooks, guardrails, and CLI or MCP wiring",
   "domain": "Agent workstation bootstrap for a regulated billing portal",
   "mission": "Turn a fragile local setup into a repeatable agent-ready workstation that a new engineer can run in under 30 minutes.",
-  "outcome": "A new senior engineer can clone the starter, give it to Codex/Claude Code/Cursor, and get safe, repeatable setup plus checks without a private briefing.",
+  "outcome": "A new accountable engineer can clone the starter, give it to Codex/Claude Code/Cursor, and get safe, repeatable setup plus checks without a private briefing.",
   "entities": [
     "AGENTS.md contract",
     "doctor command",
@@ -47,7 +47,7 @@ export const labContract: LabContract = {
     "Agent rules file plus a short evidence note showing a fresh-agent handoff.",
     "Command output from install, typecheck/build/test, and the doctor script."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Add a lean in-exercise `AGENTS.md` or `CLAUDE.md` that teaches the agent only stable project rules, commands, forbidden paths, and review expectations.",
     "Implement a runnable setup or doctor command in `starter-react` that verifies Node version, package manager, required scripts, and fixture availability.",
     "Wire package scripts so an agent can run `format`, `lint`, `typecheck`, `test`, and a one-command `agent:check` gate.",

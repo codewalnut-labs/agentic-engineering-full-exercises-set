@@ -1,16 +1,16 @@
 # Agentic Engineering Full Exercises Set
 
-This project turns 12 agentic engineering competencies into hands-on senior engineering labs. Each competency has multiple medium-sized exercises with starter code, working deliverables, verification evidence, and a leadership review bar.
+This project turns 12 agentic engineering competencies into hands-on engineering labs. Each competency has multiple medium-sized exercises with starter code, working deliverables, verification evidence, and a leadership review bar.
 
 The format follows the public CodeWalnut exercise repo pattern while raising the completion standard: a short exercise README, a starter codebase, a focused agent workflow, and a working change kept inside the exercise folder.
 
-## Senior Curriculum Rule
+## Curriculum Rule
 
-These exercises are for senior software engineers and engineering leaders learning to master Codex, Claude Code, Cursor, and similar coding agents. They are not Markdown-only writing drills.
+These exercises are for experienced software engineers and engineering leaders learning to master Codex, Claude Code, Cursor, and similar coding agents. They are not Markdown-only writing drills.
 
 Every exercise requires a working change in code, tests, automation, configuration, skills, hooks, CI, or team operating workflow. Markdown artifacts are used only to frame intent, preserve evidence, and make review easier.
 
-See [COMPETENCY_PRACTICE_GUIDE.md](./COMPETENCY_PRACTICE_GUIDE.md) for the competency definitions and practice behaviors, [AGENT_SKILL_PATTERNS.md](./AGENT_SKILL_PATTERNS.md) for the popular skill pattern map, and [SENIOR_AGENTIC_ENGINEERING_RUBRIC.md](./SENIOR_AGENTIC_ENGINEERING_RUBRIC.md) for the shared completion bar.
+See [COMPETENCY_PRACTICE_GUIDE.md](./COMPETENCY_PRACTICE_GUIDE.md) for the competency definitions and practice behaviors, [AGENT_SKILL_PATTERNS.md](./AGENT_SKILL_PATTERNS.md) for the popular skill pattern map, and [AGENTIC_ENGINEERING_RUBRIC.md](./AGENTIC_ENGINEERING_RUBRIC.md) for the shared completion bar.
 
 ## How Learners Should Use This Repo
 

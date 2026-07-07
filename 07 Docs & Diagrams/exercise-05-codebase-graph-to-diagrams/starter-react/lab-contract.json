@@ -37,7 +37,7 @@
     "Working React change or validation check.",
     "Evidence that diagrams match code paths."
   ],
-  "seniorSignals": [
+  "masterySignals": [
     "Diagrams explain real behavior.",
     "Graph data speeds but does not replace verification.",
     "Docs are useful to the next agent."
