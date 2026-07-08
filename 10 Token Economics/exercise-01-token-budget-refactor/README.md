@@ -2,9 +2,9 @@
 
 # Token Budget Refactor
 
-**Goal:** Plan a refactor with a token budget, choosing context, model effort, and automation deliberately.
+**Goal:** Refactor the starter with a written token budget that controls context reads, model effort, and scripted verification.
 
-**Outcome:** A refactor is planned and executed with expensive reasoning reserved for judgment-heavy work.
+**Outcome:** The refactor ships with a context manifest, planned-versus-actual budget comparison, and checks that avoid rereading the large doc pack.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -35,18 +35,19 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Do This
 
 1. Ask your coding agent to read `docs/usage-log.md` and skim `docs/large-doc-pack.md` only enough to propose a refactor context budget.
-2. Review the budget and assign model or effort tiers by task type: planning, mechanical edit, test update, and review.
-3. Have the agent create a context manifest that includes the minimum source files, excludes stale docs, and records why each file is worth reading.
+2. Review the budget and assign effort tiers by task type: planning, mechanical edit, test update, and review.
+3. Create a context manifest with minimum source files, excluded stale docs, deferred reads, and the reason each included file is worth reading.
 4. Execute the refactor in small steps, moving deterministic checks into scripts where that saves repeated reasoning.
-5. Ask the agent to compare planned versus actual context and note where the budget changed because of real code discoveries.
-6. Run a clean-context review using only the manifest and final diff to confirm the refactor can be understood without rebilling the whole doc pack.
+5. Compare planned versus actual context and note where the budget changed because of real code discoveries.
+6. Run final checks and capture output.
+7. Run a clean-context review using only the manifest and final diff to confirm the refactor can be understood without rebilling the whole doc pack.
 
 ## Deliver
 
 - Token and effort budget plan for the refactor.
-- Context manifest with include, exclude, and reason columns.
+- Context manifest with include, exclude, deferred, added-later, and reason columns.
 - Refactor implementation with focused checks.
-- Evidence note comparing planned context, actual context, and remaining cost risk.
+- Evidence note comparing planned context, actual context, final command output, and remaining cost risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

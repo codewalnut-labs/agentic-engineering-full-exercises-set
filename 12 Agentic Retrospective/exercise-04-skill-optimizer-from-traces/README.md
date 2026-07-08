@@ -2,9 +2,9 @@
 
 # Skill Optimizer From Traces
 
-**Goal:** Analyze failed agent traces and turn repeated skill mistakes into a measured skill improvement, hook, or team rule.
+**Goal:** Optimize the broken alert-triage skill by mining failed traces, adding one trace-derived eval, and measuring before/after behavior.
 
-**Outcome:** A broken alert-triage skill improves because trace evidence reveals trigger misses, repeated reads, skipped checks, and weak output contracts.
+**Outcome:** The skill change is justified by trace evidence and proven by an eval before it is treated as an improvement.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -36,17 +36,18 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 1. Ask your coding agent to mine `docs/trace-samples.md` and `docs/skill-regression.md` for trigger misses, repeated reads, skipped checks, wrong tool choice, and weak final evidence.
 2. Review the trace labels and separate skill defects from missing repo context, missing hooks, or impossible user requests.
-3. Have the agent propose one optimizer change to the skill, one eval case that would catch the regression, and one optional hook or rule if the trace proves it is needed.
+3. Propose one optimizer change to the alert-triage skill, one eval case that catches the regression, and one optional hook or rule only if the trace proves it is needed.
 4. Apply the smallest skill change first, keeping references and examples lean.
-5. Run before/after evals on the trace-derived cases and record whether the optimizer reduced false triggers, skipped steps, or weak outputs.
-6. Run a clean-context replay where a new agent uses the optimized skill on a trace-like task and produces stronger evidence.
+5. Run before/after evals on the trace-derived case and record whether the optimizer reduced false triggers, skipped steps, or weak outputs.
+6. Capture final eval output and remaining regression risk.
+7. Run a clean-context replay where a new agent uses the optimized skill on a trace-like task and produces stronger evidence.
 
 ## Deliver
 
 - Trace analysis table with defect type, evidence, and chosen fix.
-- Optimized skill, eval case, and optional hook or rule update.
+- Optimized alert-triage skill, trace-derived eval case, and optional hook or rule update.
 - Before/after eval results from trace-derived cases.
-- Evidence note describing improved behavior and remaining regression risk.
+- Evidence note describing improved behavior, final eval output, and remaining regression risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

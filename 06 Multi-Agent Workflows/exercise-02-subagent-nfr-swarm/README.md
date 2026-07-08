@@ -2,9 +2,9 @@
 
 # Subagent NFR Swarm
 
-**Goal:** Use specialist subagents for security, accessibility, performance, and testability review while one main thread owns the decision log.
+**Goal:** Run four specialist review agents against the starter, then have the main thread fix the highest-value NFR findings.
 
-**Outcome:** Specialist review agents produce actionable NFR findings and the main thread implements the right fixes.
+**Outcome:** Security, accessibility, performance, and testability findings are triaged into one owner decision log with implemented fixes and recheck evidence.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -35,19 +35,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your main agent to read `docs/nfr-risk-seeds.md` and `docs/specialist-prompts.md`, then define separate security, accessibility, performance, and testability briefs.
-2. Review the briefs and make sure each specialist has a different question, evidence format, and file scope.
-3. Run the specialist reviews in parallel or simulate them with separate prompts, while the main thread keeps the decision log.
-4. Normalize findings into one table with severity, evidence, owner decision, fix/defer/dismiss reason, and verification path.
-5. Implement the highest-value accepted fixes without letting specialists edit outside their review scope.
-6. Ask a clean-context agent to challenge one accepted fix and one dismissed finding for weak evidence.
+1. Ask your main agent to read `docs/nfr-risk-seeds.md` and `docs/specialist-prompts.md`, then write separate briefs for security, accessibility, performance, and testability.
+2. Review the briefs and make sure each specialist has a different question, file scope, evidence format, and no implementation authority.
+3. Run the four specialist reviews in parallel or simulate them with separate prompts while the main thread keeps the decision log.
+4. Normalize findings into one table with severity, file evidence, owner decision, fix/defer/dismiss reason, and verification path.
+5. Implement the highest-value accepted fixes in the starter from the main thread.
+6. Recheck accepted fixes through the relevant specialist lens.
+7. Ask a clean-context agent to challenge one accepted fix and one dismissed finding for weak evidence.
 
 ## Deliver
 
 - Specialist briefs for security, accessibility, performance, and testability.
-- Merged NFR finding table with evidence and owner decisions.
+- Merged NFR finding table with evidence, owner decisions, and verification path.
 - Implemented fixes for the accepted top findings.
-- Evidence note showing specialist outputs, triage decisions, and recheck results.
+- Evidence note showing specialist outputs, triage decisions, recheck results, and final command output.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
@@ -57,6 +58,6 @@ Done when:
 - Each specialist report answers a distinct NFR question with file-level evidence.
 - The main thread accepts, defers, or dismisses every finding with a reason.
 - Accepted fixes are rechecked by the relevant NFR lens.
-- A fresh agent can tell which findings are still open and why.
+- A fresh agent can tell which findings are fixed, deferred, dismissed, or still open.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

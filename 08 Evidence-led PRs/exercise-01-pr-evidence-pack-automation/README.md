@@ -2,9 +2,9 @@
 
 # PR Evidence Pack Automation
 
-**Goal:** Create a PR evidence pack that automatically gathers test output, build proof, screenshots, and residual risks.
+**Goal:** Build a PR evidence-pack script or template for the starter change that gathers checks, smoke proof, screenshots or notes, and residual risks.
 
-**Outcome:** A PR can explain itself with automated proof instead of reviewer guesswork.
+**Outcome:** A reviewer can read the generated evidence pack and know what changed, what passed, what artifacts exist, and what risk remains.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -34,19 +34,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to read `docs/pr-brief.md`, `docs/evidence-fixtures.md`, and package scripts, then map which evidence a reviewer needs before reading the diff.
+1. Ask your coding agent to read `docs/pr-brief.md`, `docs/evidence-fixtures.md`, and package scripts, then map the exact evidence a reviewer needs before reading the diff.
 2. Review the evidence map and remove noisy artifacts that do not prove behavior, risk, or rollback readiness.
-3. Have the agent implement an evidence pack script or template that gathers command results, screenshots or smoke notes, changed behavior, and residual risks.
-4. Make the evidence paths deterministic and keep generated outputs out of source control unless the exercise explicitly asks for checked-in fixtures.
-5. Ask the agent to fill a PR summary from the generated evidence and cite artifacts by path.
-6. Run a clean-context review where a new agent reads only the evidence pack and decides what still needs reviewer attention.
+3. Implement an evidence-pack script or template that gathers command results, smoke notes or screenshots, changed behavior, artifact paths, and residual risks.
+4. Make generated paths deterministic and keep generated outputs out of source control unless the exercise explicitly asks for checked-in fixtures.
+5. Fill a PR summary from the generated evidence and cite artifacts by path.
+6. Run the evidence-pack command and capture output.
+7. Run a clean-context review where a new agent reads only the evidence pack and decides what still needs reviewer attention.
 
 ## Deliver
 
-- Evidence pack script, template, or generated sample for the PR.
+- Evidence-pack script, template, or generated sample for the PR.
 - PR summary with intent, changed behavior, checks, artifacts, risks, and rollback note.
-- Artifact path map showing what is generated and what is committed.
-- Evidence note showing one complete evidence-pack run.
+- Artifact path map showing what is generated, ignored, and committed.
+- Evidence note showing one complete evidence-pack run and final command output.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

@@ -2,9 +2,9 @@
 
 # Cross-Agent Skill Portability Pack
 
-**Goal:** Package a compliance review workflow so it works cleanly across Codex, Claude Code, Cursor, Gemini CLI, and other skill-aware agents.
+**Goal:** Rewrite the flawed compliance-review skill so it can be used from Codex, Claude Code, Cursor, Gemini CLI, or plain Markdown without machine-specific assumptions.
 
-**Outcome:** A reusable team skill has precise metadata, portable paths, scoped tool assumptions, references, and install notes that do not depend on one machine.
+**Outcome:** The portable skill has relative references, scoped tool assumptions, agent-specific adapter notes, and smoke outputs for at least two agent surfaces.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -34,26 +34,27 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to audit `docs/bad-skill.md` and `docs/portability-matrix.md` for path assumptions, tool assumptions, missing triggers, and agent-specific language.
-2. Review the audit and decide which behavior belongs in the portable skill versus adapter notes for Codex, Claude Code, Cursor, or other agents.
-3. Have the agent rewrite the compliance review skill with relative paths, explicit inputs, fallback behavior, and minimal tool assumptions.
-4. Create installation or usage notes for each agent surface in the matrix without promising unsupported features.
-5. Ask the agent to run portability checks against sample prompts for each supported surface and record incompatibilities.
-6. Do a clean-context test where the skill is read as plain Markdown and still produces the expected compliance review output.
+1. Ask your coding agent to audit `docs/bad-skill.md` and `docs/portability-matrix.md` for absolute paths, hidden tools, missing triggers, vendor-specific language, and unsupported install claims.
+2. Review the audit and decide which behavior belongs in the portable skill versus adapter notes for Codex, Claude Code, Cursor, Gemini CLI, or plain Markdown.
+3. Rewrite the compliance-review skill with relative paths, explicit inputs, fallback behavior, output contract, and minimal tool assumptions.
+4. Create installation or usage notes for each supported agent surface without promising unsupported features.
+5. Run portability checks against sample prompts for at least two supported surfaces and the plain-Markdown fallback.
+6. Record incompatibilities and update the matrix with limitations and fallback notes.
+7. Do a clean-context test where the skill is read as plain Markdown and still produces the expected compliance review output.
 
 ## Deliver
 
-- Portable compliance review skill with scoped assumptions and relative references.
-- Portability matrix updated with supported surfaces, limitations, and fallback notes.
-- Sample outputs or smoke checks for at least two agent surfaces.
-- Evidence note explaining which original bad-skill patterns were removed.
+- Portable compliance-review skill with scoped assumptions, relative references, and output contract.
+- Portability matrix updated with supported surfaces, limitations, install/use notes, and fallback notes.
+- Sample outputs or smoke checks for at least two agent surfaces plus plain Markdown.
+- Evidence note explaining removed bad-skill patterns, final checks, and remaining incompatibilities.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The skill does not depend on a local machine path, hidden tool, or one agent vendor feature for core behavior.
+- The skill does not depend on a local machine path, hidden tool, or one vendor feature for core behavior.
 - Agent-specific notes are separated from the main reusable workflow.
 - Trigger and non-trigger cases are clear across the portability matrix.
 - A fresh agent can use the skill from repository files alone.

@@ -2,9 +2,9 @@
 
 # Skill Trigger Eval Harness
 
-**Goal:** Build an eval harness that scores whether team skills trigger, run the right steps, and produce the expected output shape.
+**Goal:** Build an eval harness that scores one team skill for correct triggering, step adherence, output shape, and non-trigger behavior.
 
-**Outcome:** A skill is treated like production workflow code: trigger cases, process checks, output checks, and regression evidence exist before rollout.
+**Outcome:** The skill improves because failing trigger cases produce a measured revision instead of subjective prompt edits.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -34,19 +34,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to read `docs/eval-plan.md` and `docs/trigger-cases.md`, then define what a good skill run must prove: trigger, process, output, and non-trigger behavior.
-2. Review the scoring rubric and reject binary pass or fail checks that cannot explain why the skill misfired.
-3. Have the agent build a small eval harness that runs positive trigger cases, negative trigger cases, and malformed-input cases.
-4. Ask the agent to score process adherence separately from output shape so a lucky final answer does not hide skipped steps.
-5. Use eval failures to tighten the skill description, references, or output schema.
-6. Run the harness again and capture before/after results plus remaining false positive or false negative risk.
+1. Ask your coding agent to read `docs/eval-plan.md` and `docs/trigger-cases.md`, then pick the skill under test and define what a good run must prove.
+2. Review the scoring rubric and reject binary pass/fail checks that cannot explain why the skill misfired.
+3. Build a small eval harness that runs positive trigger cases, negative trigger cases, malformed-input cases, and output-shape checks.
+4. Score process adherence separately from output shape so a lucky final answer does not hide skipped steps.
+5. Run the harness once, then use failures to tighten the skill description, references, or output schema.
+6. Run the harness again and compare before/after scores.
+7. Capture remaining false positive, false negative, and process-skip risks.
 
 ## Deliver
 
-- Skill eval harness with trigger, process, output, and negative cases.
+- Skill eval harness with positive trigger, negative trigger, malformed input, process, and output cases.
 - Scoring rubric that explains failures in actionable language.
 - Before/after eval results after at least one skill revision.
-- Evidence note listing false positives, false negatives, and accepted residual risk.
+- Evidence note listing changed skill text, false positives, false negatives, process skips, and accepted residual risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
@@ -54,7 +55,7 @@ Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache fo
 
 Done when:
 - Positive cases prove the skill runs for intended tasks.
-- Negative cases prove the skill does not run for adjacent but wrong tasks.
+- Negative cases prove the skill stays quiet for adjacent but wrong tasks.
 - Output checks validate required sections or schema, not just text length.
 - A fresh agent can add a new eval case by following the harness pattern.
 

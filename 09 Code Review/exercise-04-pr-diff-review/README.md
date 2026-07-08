@@ -2,9 +2,9 @@
 
 # PR Diff Review
 
-**Goal:** Review the supplied PR diff under a timebox, then verify findings against surrounding code before deciding what blocks merge.
+**Goal:** Timebox a review of the supplied PR diff, verify blocker candidates against surrounding code, and fix the top merge blocker.
 
-**Outcome:** Timed review practice ends with fixed blockers and proof, not only comments.
+**Outcome:** The review ends with a merge decision, blocker disposition table, top-blocker patch, and verification evidence.
 
 ## Start Here
 
@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -37,17 +37,18 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 1. Ask your coding agent to review `pr/review-target.diff` under a timebox and produce only severity-ranked findings with file references and suspected impact.
 2. Review the first pass yourself and discard style-only comments unless they hide correctness, security, accessibility, or maintainability risk.
-3. Ask the agent to verify each possible blocker against the surrounding starter code and existing checks before proposing a fix.
+3. Verify each possible blocker against the surrounding starter code and existing checks before proposing a fix.
 4. Choose the top blocker, patch it, and add the smallest test or manual check that would catch the same issue next time.
-5. Ask the agent to rewrite the review summary as a merge decision: block, approve with follow-up, or approve, with reasons.
-6. Run a clean-context review focused on the patched blocker and confirm it no longer blocks merge.
+5. Rewrite the review summary as a merge decision: block, approve with follow-up, or approve, with reasons.
+6. Run final checks and capture output.
+7. Run a clean-context review focused on the patched blocker and confirm it no longer blocks merge.
 
 ## Deliver
 
 - Timeboxed review findings with severity and evidence.
 - Merge decision summary with accepted, deferred, and dismissed findings.
 - Patch and verification for the top blocker.
-- Evidence note with first-pass review, verification, fix, and second-pass result.
+- Evidence note with first-pass review, verification, fix, final command output, and second-pass result.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

@@ -2,9 +2,9 @@
 
 # Review Regression Lab
 
-**Goal:** Find subtle regressions in a large agent-written UI diff that appears clean at first glance.
+**Goal:** Find, prove, and fix a subtle behavior or accessibility regression hidden in the supplied large agent-written UI diff.
 
-**Outcome:** Subtle clean-looking regressions are caught by behavior tests and review discipline.
+**Outcome:** At least one clean-looking regression is reproduced with a failing check, fixed narrowly, and rechecked for adjacent risk.
 
 ## Start Here
 
@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -35,19 +35,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to review `docs/review-diff.md` and `docs/regression-seeds.md` for subtle behavior, accessibility, state, and data regressions that may look clean in the diff.
-2. Review the suspected regressions and demand reproduction steps or a failing test idea before accepting any finding.
-3. Have the agent write a failing regression test or manual reproduction for the highest-signal issue.
+1. Ask your coding agent to review `docs/review-diff.md`, `docs/regression-seeds.md`, and `pr/review-target.diff` for subtle behavior, accessibility, state, and data regressions.
+2. Review suspected regressions and require reproduction steps or a failing test idea before accepting any finding.
+3. Write a failing regression test or manual reproduction for the highest-signal issue.
 4. Patch the issue with the smallest diff that keeps the intended generated change intact.
-5. Ask the agent to re-run the regression checklist for adjacent risks introduced by the patch.
-6. Run a clean-context review where a new agent explains why the final diff is safe despite the original clean-looking change.
+5. Re-run the regression checklist for adjacent risks introduced by the patch.
+6. Run final checks and capture output.
+7. Run a clean-context review where a new agent explains why the final diff is safe despite the original clean-looking change.
 
 ## Deliver
 
 - Regression finding list with reproduction or test strategy.
 - Failing-then-passing regression check for the top issue.
-- Small patch preserving intended behavior.
-- Evidence note showing which subtle risks were checked and which remain.
+- Small patch preserving intended generated behavior.
+- Evidence note showing checked subtle risks, adjacent recheck, final command output, and remaining risks.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

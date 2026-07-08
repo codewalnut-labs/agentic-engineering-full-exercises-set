@@ -2,9 +2,9 @@
 
 # Excalidraw Diagram Generator Lab
 
-**Goal:** Use an Excalidraw diagram generator skill to convert a messy workflow request into a valid, readable `.excalidraw` file that matches the starter app and can be opened directly in Excalidraw.
+**Goal:** Use the Excalidraw diagram generator skill to create architecture and user-flow `.excalidraw` diagrams for the provided starter project.
 
-**Outcome:** The final diagram is a real Excalidraw JSON artifact with readable layout, bounded scope, consistent styling, and evidence that each node and arrow reflects the implementation.
+**Outcome:** The repo contains readable architecture and flow diagrams that open in Excalidraw and trace every node and arrow back to source files or observed UI behavior.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -36,28 +36,31 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Do This
 
 1. Install or open the public skill first. Run `npx skills add https://github.com/github/awesome-copilot --skill excalidraw-diagram-generator`, or keep the linked `SKILL.md` open if your agent cannot install skills.
-2. Ask your coding agent to read `docs/diagram-requests.md`, `docs/excalidraw-validation-notes.md`, and the starter workflow before generating JSON.
-3. Review the requested diagram scope and remove branches that would make the Excalidraw scene too dense to read.
-4. Have the agent use the Excalidraw generator pattern to create a `.excalidraw` scene with bounded element count, readable text, and clear arrows.
-5. Ask the agent to validate the JSON schema, root fields, font choices, element positions, and arrow bindings.
-6. Compare every text node and connector against source files or observed UI behavior, then rename or delete anything unsupported.
-7. Run a clean-context opening test where a new agent loads the file, explains the diagram, and identifies one source-backed node.
+2. Ask your coding agent to read `docs/diagram-requests.md`, `docs/excalidraw-validation-notes.md`, and the starter code before generating JSON.
+3. Have the agent scan the starter and list the architecture elements, user actions, state changes, and evidence panels that must appear in the diagrams.
+4. Review the list and choose two outputs: one architecture diagram and one user-flow diagram. Remove branches that would make either scene too dense.
+5. Use the Excalidraw generator pattern to create `architecture.excalidraw` and `user-flow.excalidraw` with readable text, bounded element count, and clear arrows.
+6. Validate JSON schema, root fields, font choices, element positions, arrow bindings, and openability in Excalidraw.
+7. Compare every text node and connector against source files or observed UI behavior, then rename or delete anything unsupported.
+8. Run a clean-context opening test where a new agent loads both files, explains the diagrams, and identifies source-backed nodes.
 
 ## Deliver
 
-- Valid `.excalidraw` scene file for the workflow.
-- Validation script or checklist for JSON structure, font, element count, and bindings.
-- Source trace mapping diagram elements to files or UI actions.
-- Evidence note with readability fixes made after validation.
+- Valid `architecture.excalidraw` scene for the starter project.
+- Valid `user-flow.excalidraw` scene for the main workflow.
+- Validation script or checklist for JSON structure, font, element count, bindings, and openability.
+- Source trace mapping diagram elements to files, functions, UI actions, or observed behavior.
+- Evidence note with readability fixes and final validation output.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The `.excalidraw` file parses and contains expected scene root fields.
+- Both `.excalidraw` files parse and contain expected scene root fields.
 - Text is readable and uses the required font guidance from the exercise notes.
-- Element count and layout stay understandable or the split into multiple diagrams is justified.
-- A fresh agent can open the file and map diagram elements back to code or UI behavior.
+- Architecture and flow diagrams stay understandable as separate scenes.
+- Every node and arrow maps to code, UI behavior, or an explicitly marked external actor.
+- A fresh agent can open both files and map diagram elements back to source evidence.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

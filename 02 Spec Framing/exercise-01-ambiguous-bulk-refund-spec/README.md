@@ -2,9 +2,9 @@
 
 # Ambiguous Bulk Refund Spec
 
-**Goal:** Convert a vague product request for bulk refunds into a testable spec before touching the React implementation.
+**Goal:** Define and implement a bulk-refund workflow for the React starter that handles eligible refunds, approval-required refunds, rejected refunds, partial success, and system failure.
 
-**Outcome:** A vague refund request becomes a shippable vertical slice with acceptance tests, not a prettier requirements document.
+**Outcome:** The ambiguous ticket becomes a working refund slice with a decision table, UI behavior, and acceptance checks tied to the provided scenarios.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -34,28 +34,29 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to interrogate `docs/ambiguous-ticket.md` and `docs/scenario-fixtures.md` for missing refund rules, actor permissions, limits, failure states, and audit needs.
-2. Turn the agent questions into a short spec decision table: eligible, needs approval, rejected, partial success, and system failure.
-3. Have the agent convert the decision table into acceptance examples before touching the React code.
-4. Implement the smallest UI and domain change that makes the scenario fixtures executable or manually checkable.
-5. Ask the agent to add tests or scripted checks for eligibility boundaries, approval boundaries, and failure messaging.
-6. Review the final spec and remove any invented product rule that was not supported by the ticket, fixtures, or your explicit decision.
+1. Ask your coding agent to read `docs/ambiguous-ticket.md`, `docs/scenario-fixtures.md`, and the existing refund UI, then list the exact missing rules for selection, amount limits, permissions, approval, partial success, and failure messaging.
+2. Review the questions and decide the minimum rules needed for a first shippable bulk-refund slice.
+3. Have the agent write a decision table with these outcomes: eligible refund, approval required, rejected request, partial success, and system failure.
+4. Convert the table into acceptance examples before changing code.
+5. Implement the smallest React/domain change that makes those examples visible or executable in the starter.
+6. Add tests or scripted checks for empty selection, over-limit refund, permission failure, mixed outcomes, and failure messaging.
+7. Review the final spec and remove any product rule not supported by the ticket, fixtures, or your explicit decision.
 
 ## Deliver
 
-- Refund spec or decision table grounded in the ambiguous ticket and fixtures.
-- React behavior for eligible, approval-needed, rejected, partial, and failed bulk refunds.
-- Acceptance checks proving the important scenarios.
-- Evidence note listing product questions resolved, assumptions kept, and assumptions rejected.
+- Bulk-refund decision table grounded in the ticket and fixtures.
+- React behavior for eligible, approval-needed, rejected, partial, and failed refund paths.
+- Acceptance examples and checks for the highest-risk refund boundaries.
+- Evidence note listing resolved questions, rejected assumptions, final command output, and remaining product unknowns.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Every implemented rule maps to a ticket phrase, fixture, or explicit decision.
-- Refund boundaries are covered, including empty selection, over-limit refund, permission failure, and mixed outcomes.
-- Failure states are visible to the user and do not imply a refund succeeded when it did not.
-- A fresh agent can read the spec and know what not to build.
+- Every implemented refund rule maps to a ticket phrase, fixture, or explicit decision.
+- Empty selection, over-limit refund, permission failure, mixed outcomes, and backend failure are covered.
+- Failure states are visible and never imply that a refund succeeded when it did not.
+- A fresh agent can read the spec and name the allowed, approval, rejected, partial, and failed paths.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

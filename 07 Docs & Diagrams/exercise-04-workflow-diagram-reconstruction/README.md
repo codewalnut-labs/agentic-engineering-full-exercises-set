@@ -2,9 +2,9 @@
 
 # Workflow Diagram Reconstruction
 
-**Goal:** Reverse engineer the feature workflow in the starter app and create diagrams that match the implementation, not the intended story in your head.
+**Goal:** Reverse engineer the starter workflow and create a state-flow diagram plus sequence diagram that match the implementation.
 
-**Outcome:** The diagram work produces verified system understanding, not decorative pictures.
+**Outcome:** The diagrams are verified by a trace script, test, or checklist, and every label maps to code or UI behavior.
 
 ## Start Here
 
@@ -19,7 +19,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -30,19 +30,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to reverse engineer the workflow from the starter code by tracing user actions, state transitions, service calls, and rendered evidence panels.
+1. Ask your coding agent to reverse engineer the workflow from starter code by tracing user actions, state transitions, service calls, and rendered evidence panels.
 2. Review the trace and remove guessed product intentions that are not visible in code or UI behavior.
-3. Have the agent create a compact flow diagram for state transitions and a sequence diagram for the main user action.
-4. Ask the agent to write a trace script, test, or manual checklist that proves the diagram steps happen in the app.
+3. Create a compact state-flow diagram and a sequence diagram for the main user action.
+4. Write a trace script, test, or manual checklist that proves the diagram steps happen in the app.
 5. Update diagram labels until they match actual file, function, state, or user-action names.
-6. Run a clean-context diagram review where a new agent starts from the diagram and finds the corresponding code path.
+6. Run the trace evidence and record mismatches.
+7. Run a clean-context diagram review where a new agent starts from the diagram and finds the corresponding code path.
 
 ## Deliver
 
-- Workflow flow diagram source.
-- Sequence diagram source for the main action.
+- State-flow diagram source for the workflow.
+- Sequence diagram source for the main user action.
 - Trace script, test, or manual checklist proving the diagram path.
-- Evidence note listing labels changed after code verification.
+- Evidence note listing labels changed after code verification and final trace output.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

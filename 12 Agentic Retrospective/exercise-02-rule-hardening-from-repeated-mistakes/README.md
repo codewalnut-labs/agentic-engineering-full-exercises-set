@@ -2,9 +2,9 @@
 
 # Rule Hardening From Repeated Mistakes
 
-**Goal:** Turn repeated agent corrections into durable AGENTS.md rules, skills, or hooks with clear trigger criteria.
+**Goal:** Harden the provided `AGENTS.md` draft using repeated correction history, then add a rule-quality or hook check for the highest-risk mistake.
 
-**Outcome:** Repeated agent mistakes become durable rules, skills, or hooks with tests.
+**Outcome:** The new rules are shorter, evidence-backed, tested against positive and negative cases, and proven in a clean-context handoff.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -34,19 +34,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to compare `docs/correction-history.md` with `docs/agents-md-before.md` and cluster repeated corrections by trigger, missing context, and consequence.
+1. Ask your coding agent to compare `docs/correction-history.md` with `docs/agents-md-before.md`, then cluster repeated corrections by trigger, missing context, and consequence.
 2. Review the clusters and decide whether each needs a rule, hook, skill, script, or no durable change.
-3. Have the agent rewrite the rules file with only stable, specific rules that prevent repeated mistakes without bloating every session.
-4. Add a small rule-quality or hook simulation check for the highest-risk repeated mistake.
-5. Ask the agent to test the new rule against positive and negative examples from the correction history.
-6. Run a clean-context handoff where a new agent reads the hardened rules and avoids the repeated mistake while still completing a normal task.
+3. Rewrite the rules file with only stable, specific rules that prevent repeated mistakes without bloating every session.
+4. Add a rule-quality or hook simulation check for the highest-risk repeated mistake.
+5. Test the new rule against positive and negative examples from the correction history.
+6. Run the check and capture output.
+7. Run a clean-context handoff where a new agent reads the hardened rules and avoids the repeated mistake while still completing a normal task.
 
 ## Deliver
 
 - Correction clusters with chosen fix type and reason.
 - Hardened rules file or hook/skill update derived from repeated evidence.
-- Rule-quality or hook simulation check.
-- Evidence note from positive, negative, and clean-context rule tests.
+- Rule-quality or hook simulation check for the top repeated mistake.
+- Evidence note from positive, negative, command-output, and clean-context rule tests.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

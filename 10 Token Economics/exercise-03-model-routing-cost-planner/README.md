@@ -2,9 +2,9 @@
 
 # Model Routing Cost Planner
 
-**Goal:** Design a model and effort routing policy for a team using agents across planning, coding, reviews, and retros.
+**Goal:** Build a model and effort routing planner for the provided team scenarios, including cost, context size, risk, and override reasons.
 
-**Outcome:** A team routing policy chooses model and effort by task risk, not habit.
+**Outcome:** The planner routes planning, coding, testing, review, docs, and retro work by risk and cost instead of habit.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -34,19 +34,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to read `docs/team-usage-scenarios.md` and `docs/cost-dashboard-sample.md`, then classify work by risk, reversibility, context size, and review burden.
+1. Ask your coding agent to read `docs/team-usage-scenarios.md` and `docs/cost-dashboard-sample.md`, then classify each scenario by risk, reversibility, context size, and review burden.
 2. Review the classification and define routing rules for planning, coding, tests, code review, docs, and retrospectives.
-3. Have the agent build a cost planner that estimates model or effort choice, context cost, caching assumptions, and override reason per scenario.
+3. Build a cost planner or worksheet that estimates model or effort choice, context cost, caching assumption, and override reason per scenario.
 4. Add override cases where safety, architecture, or review risk justifies a stronger model or slower workflow despite higher cost.
-5. Ask the agent to run the scenarios through the planner and produce a dashboard-style summary with savings and risk notes.
-6. Run a clean-context policy review where a new agent chooses a route for a new task and explains the trade-off.
+5. Run the scenarios through the planner and produce a dashboard-style summary with savings and risk notes.
+6. Add one new scenario and route it through the policy as a smoke test.
+7. Run a clean-context policy review where a new agent chooses a route for a new task and explains the trade-off.
 
 ## Deliver
 
 - Model and effort routing policy by task class and risk level.
 - Cost planner or worksheet for the provided scenarios.
-- Scenario output with normal route, override route, and reason.
-- Evidence note showing how routing reduces waste without hiding risk.
+- Scenario output with normal route, override route, cost assumption, and reason.
+- Evidence note showing how routing reduces waste without hiding risk plus one new-scenario smoke result.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

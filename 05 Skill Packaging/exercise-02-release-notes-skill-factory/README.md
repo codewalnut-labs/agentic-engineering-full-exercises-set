@@ -2,9 +2,9 @@
 
 # Release Notes Skill Factory
 
-**Goal:** Turn a messy release-note prompt into a reusable skill that reads changes, groups them, and flags missing evidence.
+**Goal:** Build a release-notes skill that turns the supplied changelog fixtures into categorized release notes and flags items missing evidence.
 
-**Outcome:** Release-note generation becomes a repeatable workflow backed by parsing, grouping, and evidence checks.
+**Outcome:** The skill produces golden release-note output for normal, missing-evidence, breaking-change, and no-user-facing-change cases.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -34,19 +34,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to compare `docs/release-prompt-history.md` with `docs/changelog-fixtures.md` and identify the repeatable release-note workflow.
-2. Review the workflow and decide how changes should be grouped, what evidence each item needs, and what should be flagged as missing.
-3. Have the agent package a release-notes skill with inputs, grouping rules, unsupported cases, and output format.
+1. Ask your coding agent to compare `docs/release-prompt-history.md` with `docs/changelog-fixtures.md`, then extract the repeatable release-note workflow.
+2. Review the workflow and decide categories, required evidence, exclusion rules, and how missing evidence should be flagged.
+3. Package a release-notes skill with trigger, inputs, grouping rules, unsupported cases, and output format.
 4. Build or update a parser fixture that turns the supplied changelog data into categorized release notes.
-5. Ask the agent to add snapshot or golden output for normal release, missing evidence, breaking change, and no-user-facing-change cases.
-6. Run a clean-context skill trial and ask the agent to explain which notes were excluded and why.
+5. Add snapshot or golden output for normal release, missing evidence, breaking change, and no-user-facing-change cases.
+6. Run the harness and revise the skill if output groups or evidence flags are wrong.
+7. Run a clean-context skill trial and ask the agent to explain which notes were excluded and why.
 
 ## Deliver
 
-- Release-notes skill with clear trigger and grouping rules.
+- Release-notes skill with clear trigger, categories, evidence rules, and exclusion rules.
 - Parser or fixture harness for the changelog examples.
-- Golden or snapshot release-note output.
-- Evidence note showing missing-evidence flags and excluded-change decisions.
+- Golden or snapshot release-note output for the required cases.
+- Evidence note showing missing-evidence flags, excluded-change decisions, and final command output.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

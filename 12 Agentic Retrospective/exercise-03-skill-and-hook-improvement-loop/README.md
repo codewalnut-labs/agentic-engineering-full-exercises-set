@@ -2,9 +2,9 @@
 
 # Skill and Hook Improvement Loop
 
-**Goal:** Run a mini retro on a flawed team skill and hook setup, then revise both to reduce future rework.
+**Goal:** Improve the flawed team skill and hook policy using the provided failure evidence, then prove the revised pair handles one good case and one unsafe case.
 
-**Outcome:** A flawed skill and hook setup is improved using real session evidence and evals.
+**Outcome:** Trigger misses, weak output shape, unsafe tool use, and noisy hook behavior are assigned to the right fix: skill, hook, or process.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -36,17 +36,18 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 1. Ask your coding agent to inspect `docs/flawed-skill.md` and `docs/hook-failures.md` for trigger misses, bad output shape, unsafe tool use, and noisy false positives.
 2. Review the failure list and decide which problems belong in the skill, which belong in the hook, and which are process expectations.
-3. Have the agent revise the skill description, workflow steps, and output contract before changing the hook.
+3. Revise the skill description, workflow steps, and output contract before changing the hook.
 4. Update the hook policy to catch unsafe actions that the skill should not have to remember every time.
 5. Build before/after eval cases for trigger accuracy, output shape, allowed hook behavior, and blocked hook behavior.
-6. Run a clean-context trial where the new skill and hook combination handles one good case and one unsafe case.
+6. Run the evals and capture before/after results.
+7. Run a clean-context trial where the new skill and hook combination handles one good case and one unsafe case.
 
 ## Deliver
 
 - Revised skill with tighter trigger and output contract.
 - Updated hook policy for unsafe or noisy cases.
 - Before/after eval results for skill and hook behavior.
-- Evidence note explaining which failures moved to skill, hook, or process.
+- Evidence note explaining which failures moved to skill, hook, or process plus final trial output.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

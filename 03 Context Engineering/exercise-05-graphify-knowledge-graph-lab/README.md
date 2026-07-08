@@ -2,9 +2,9 @@
 
 # Graphify Knowledge Graph Lab
 
-**Goal:** Create and verify a codebase knowledge graph before asking an agent to make a cross-cutting billing analytics change.
+**Goal:** Use Graphify to build a verified knowledge graph for the starter, then use that graph to implement the billing analytics summary change.
 
-**Outcome:** Agents answer architecture questions from a durable graph of code, docs, schema, jobs, and ownership instead of repeatedly scanning raw files.
+**Outcome:** The graph answers real impact questions, guides the billing analytics change, and records which edges changed after implementation.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -37,26 +37,26 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Do This
 
 1. Install or open Graphify first. With Python 3.10+, run `pip install graphifyy && graphify install`, then use `/graphify ./raw` or the current command from the Graphify docs. If you cannot install it, follow the Graphify output shape manually.
-2. Ask your coding agent to read `docs/graph-extract.md`, `docs/graph-questions.md`, and the starter entry points, then propose graph nodes for modules, data, jobs, owners, and tests.
-3. Review the node list and remove low-value raw-file duplication; keep relationships that answer real change-impact questions.
+2. Ask your coding agent to read `docs/graph-extract.md`, `docs/graph-questions.md`, and the starter entry points, then propose nodes for modules, data flows, jobs, owners, and tests.
+3. Review the node list and remove low-value raw-file duplication; keep only relationships that answer billing change-impact questions.
 4. Run Graphify or have the agent produce a machine-readable graph with edge types such as calls, owns, reads, writes, tests, and depends-on.
-5. Ask the graph questions from `docs/graph-questions.md` and require answers to cite graph edges plus source files.
-6. Use the verified graph to implement the billing analytics change with a narrow impact path.
-7. After the change, ask the agent to update only the graph edges that actually changed and record stale or uncertain edges.
+5. Ask the questions in `docs/graph-questions.md` and require each answer to cite graph edges plus source files.
+6. Use the verified graph to implement the billing analytics summary change through the narrowest impact path.
+7. After implementation, update only graph edges that changed and mark stale or uncertain edges explicitly.
 
 ## Deliver
 
 - Codebase knowledge graph with typed nodes and edges.
-- Answers to graph questions with source-file evidence.
-- Billing analytics change guided by the graph impact path.
-- Evidence note listing graph edges added, changed, rejected, or marked uncertain.
+- Answers to billing graph questions with source-file evidence.
+- Billing analytics summary change guided by the graph impact path.
+- Evidence note listing graph edges added, changed, rejected, stale, or uncertain plus final checks.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The graph helps answer impact questions that would otherwise require repeated raw-file scans.
+- The graph helps answer billing impact questions that would otherwise require repeated raw-file scans.
 - Every important edge is backed by a source file, fixture, or doc reference.
 - The implemented change follows the graph path and updates affected tests or checks.
 - A fresh agent can use the graph to explain the billing analytics flow before editing.

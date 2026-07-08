@@ -2,9 +2,9 @@
 
 # TDD Skill Red-Green Refactor
 
-**Goal:** Use a TDD-style skill loop to implement invoice retry rules without letting the agent jump straight to a broad rewrite.
+**Goal:** Use the TDD skill to implement invoice retry rules one failing test at a time, then refactor only after the retry suite is green.
 
-**Outcome:** Payment retry behavior is specified test-first, implemented one rule at a time, and refactored only after the suite proves behavior.
+**Outcome:** Retry delay, retry limit, permanent failure, and user-visible invoice status behavior are protected by a red-green-refactor log and working code.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -37,28 +37,28 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Do This
 
 1. Install or open the public skill first. Run `npx skills@latest add mattpocock/skills`, select `tdd`, and run `/setup-matt-pocock-skills` if your agent installed it. If your tool cannot install skills, use the linked guide as the workflow.
-2. Ask your coding agent to read `docs/behavior-contract.md` and `docs/red-green-log.md`, then list the invoice retry rules in the order they should be tested.
-3. Review the list and block any broad rewrite plan that does not start with one failing behavior test.
+2. Ask your coding agent to read `docs/behavior-contract.md` and `docs/red-green-log.md`, then order the invoice retry rules: retry delay, retry limit, permanent failure, manual retry, and user-visible status.
+3. Review the list and reject any broad rewrite plan that does not start with one failing behavior test.
 4. Invoke `/tdd` or have the agent follow the linked guide to write the first failing test for the highest-risk retry rule and capture the red result in the log.
-5. Ask the agent to implement only enough production code to make that test pass, then repeat for the next rule.
-6. After the retry suite is green, ask for a refactor pass that reduces duplication without changing the test contract.
+5. Implement only enough production code to make that test pass, then repeat for the next retry rule.
+6. After the retry suite is green, run a refactor pass that removes duplication without changing the behavior contract.
 7. Review the red-green log and require evidence that each refactor happened after green, not before behavior was protected.
 
 ## Deliver
 
 - Ordered retry-rule test list tied to the behavior contract.
-- Red-green log showing failing test, minimal implementation, and refactor steps.
-- Working retry behavior in the starter.
-- Evidence note with final checks and any rule deferred from the contract.
+- Red-green log showing failing test, minimal implementation, green result, and refactor step for each rule.
+- Working invoice retry behavior in the starter.
+- Evidence note with final checks, deferred rules, and any contract ambiguity.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- Each implemented rule has a test that failed before the code change or a clear reason it could not be demonstrated.
+- Each implemented retry rule has a test that failed before the code change or a clear reason it could not be demonstrated.
 - Production changes stay narrow until the corresponding test is green.
-- Refactoring preserves the retry contract and does not delete meaningful edge coverage.
+- Refactoring preserves retry delay, retry limit, permanent failure, manual retry, and status coverage.
 - A fresh agent can continue the loop from the red-green log.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

@@ -2,9 +2,9 @@
 
 # ADR for Architecture Change
 
-**Goal:** Write an ADR for moving workflow state out of React-only local state into a service boundary.
+**Goal:** Write and implement an ADR that moves workflow state from React-only local state into a small service boundary.
 
-**Outcome:** An architecture decision is implemented, tested, and documented while context is fresh.
+**Outcome:** The ADR records the decision, alternatives, consequences, and verification while the starter proves the new boundary with working code.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -34,19 +34,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to read `docs/architecture-change-brief.md`, `docs/adr-template.md`, and the current workflow-state code to identify the decision pressure.
-2. Review the options and force the agent to compare keeping local state, extracting a service boundary, and deferring the change.
-3. Have the agent draft the ADR before implementation with context, decision, consequences, rejected options, and verification plan.
+1. Ask your coding agent to read `docs/architecture-change-brief.md`, `docs/adr-template.md`, and the workflow-state code, then identify why local state is causing change risk.
+2. Review the options and require comparison of keeping local state, extracting a service boundary, and deferring the change.
+3. Draft the ADR before implementation with context, decision, consequences, rejected options, and verification plan.
 4. Implement the smallest service-boundary change that proves the decision without moving unrelated UI concerns.
-5. Ask the agent to update the ADR after implementation with actual trade-offs, test evidence, and any decision drift.
-6. Run a clean-context review where a new agent reads the ADR and identifies which future changes it permits or forbids.
+5. Add tests or smoke evidence for the moved workflow state.
+6. Update the ADR after implementation with actual trade-offs, test evidence, and any decision drift.
+7. Run a clean-context review where a new agent reads the ADR and identifies which future changes it permits or forbids.
 
 ## Deliver
 
-- ADR following the provided template with real alternatives and consequences.
+- ADR following the provided template with real alternatives, decision, and consequences.
 - Service-boundary implementation slice tied to the ADR.
 - Tests or smoke evidence for the moved workflow state.
-- Evidence note showing what changed between draft ADR and final ADR.
+- Evidence note showing draft-to-final ADR changes and final command output.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

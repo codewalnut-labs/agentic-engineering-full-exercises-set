@@ -2,9 +2,9 @@
 
 # Strangler Pattern Checkout
 
-**Goal:** Replace one path of a tangled checkout workflow with a new module while preserving external behavior.
+**Goal:** Strangle one checkout workflow branch into a new module behind an adapter or flag while preserving external behavior.
 
-**Outcome:** One branch of a tangled checkout workflow is replaced safely behind an adapter or flag.
+**Outcome:** One checkout branch routes through new code, old/new comparison checks pass, and rollback returns to the legacy path.
 
 ## Start Here
 
@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -33,19 +33,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to read `docs/checkout-legacy-map.md` and trace the checkout path to find one branch that can be strangled safely.
-2. Review the branch choice and require a comparison contract for old path versus new path before any extraction.
-3. Have the agent introduce an adapter or flag boundary that can route the chosen branch to new code while leaving other branches untouched.
-4. Implement the new branch module and run old/new comparison tests for totals, validation, errors, and confirmation state.
-5. Ask the agent to document rollback behavior and conditions for expanding the strangler to the next branch.
-6. Run a clean-context review where a new agent proves it can disable the new path and explain what remains in legacy checkout.
+1. Ask your coding agent to read `docs/checkout-legacy-map.md` and trace checkout to find one branch that can be strangled safely.
+2. Review the branch choice and require an old/new comparison contract before extraction.
+3. Introduce an adapter or flag boundary that routes the chosen branch to new code while leaving other branches untouched.
+4. Implement the new branch module.
+5. Run old/new comparison tests for totals, validation, errors, and confirmation state.
+6. Document rollback behavior and conditions for expanding the strangler to the next branch.
+7. Run a clean-context review where a new agent proves it can disable the new path and explain what remains in legacy checkout.
 
 ## Deliver
 
 - Chosen checkout branch with old/new comparison contract.
 - Adapter or flag boundary for routing between legacy and new behavior.
 - New branch module plus comparison tests or smoke evidence.
-- Evidence note with rollback path and remaining legacy scope.
+- Evidence note with rollback path, final command output, and remaining legacy scope.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

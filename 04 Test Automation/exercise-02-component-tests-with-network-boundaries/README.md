@@ -2,9 +2,9 @@
 
 # Component Tests With Network Boundaries
 
-**Goal:** Backfill useful React component tests around loading, empty, error, and filtered states without coupling to implementation details.
+**Goal:** Add React component tests for the starter dashboard's loading, empty, success, error, and filtered states while mocking only the network boundary.
 
-**Outcome:** Component tests prove user-visible behavior while isolating flaky network boundaries.
+**Outcome:** User-visible dashboard behavior is protected by Testing Library tests and realistic MSW or equivalent network responses.
 
 ## Start Here
 
@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -33,19 +33,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to read `docs/test-plan.md`, the data-fetching path, and visible UI states before choosing test cases.
-2. Review the proposed cases and require each one to assert user-visible behavior rather than component internals.
-3. Have the agent create network-boundary mocks for loading, empty, success, server error, and filtered data states.
+1. Ask your coding agent to read `docs/test-plan.md`, the data-fetching path, and the visible dashboard states before choosing test cases.
+2. Review the proposed cases and require each one to assert user-visible behavior instead of component internals.
+3. Have the agent create network-boundary mocks for loading, empty, success, server error, and filtered data responses.
 4. Add component tests that drive the UI through roles, labels, and text while keeping API details inside the mock layer.
-5. Ask the agent to include one regression case that would have passed with a mocked component but fails when network behavior is wrong.
-6. Review the final tests for over-mocking, brittle timing, and assertions that only prove implementation details.
+5. Include one regression case that would pass if the component were mocked but fail when the network response shape is wrong.
+6. Run the component tests and fix brittle timing or over-mocking.
+7. Review the final test names and assertions so a future agent can add another network state by copying the pattern.
 
 ## Deliver
 
-- React component tests for loading, empty, success, error, and filtered states.
-- Network mock setup with realistic response bodies and failure codes.
-- Test-plan update explaining why each boundary is mocked there.
-- Evidence note showing which UI risks are covered and which remain manual.
+- Component tests for dashboard loading, empty, success, server error, and filtered states.
+- Network mock setup with realistic response bodies, latency or loading behavior, and failure codes.
+- Test-plan update explaining why the network boundary is mocked there.
+- Evidence note showing covered UI risks, final command output, and remaining manual risks.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
@@ -54,7 +55,7 @@ Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache fo
 Done when:
 - Tests read like user behavior, not component implementation snapshots.
 - Network responses are mocked at the boundary instead of replacing the component under test.
-- Error and empty states are covered as deliberately as the happy path.
-- A fresh agent can add one more state by following the test pattern.
+- Error, empty, loading, success, and filtered states are all covered deliberately.
+- A fresh agent can add one more network state by following the test pattern.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

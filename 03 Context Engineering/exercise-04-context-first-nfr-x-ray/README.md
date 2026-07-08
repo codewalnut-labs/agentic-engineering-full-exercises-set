@@ -2,9 +2,9 @@
 
 # Context-First NFR X-Ray
 
-**Goal:** Build the context layer a fresh agent needs before it audits the production workflow portal, then use that audit to fix the highest-value findings.
+**Goal:** Map the production workflow portal first, then fix the highest-value security, accessibility, performance, or reliability issue found in that mapped flow.
 
-**Outcome:** The NFR review produces prioritized fixes and verification, not a report that stops before engineering work begins.
+**Outcome:** The exercise produces a reusable NFR context pack, a ranked audit, at least one implemented fix, and before/after evidence.
 
 ## Start Here
 
@@ -19,7 +19,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -30,19 +30,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to map the portal flows, trust boundaries, data entry points, keyboard paths, and performance hotspots before it reports findings.
+1. Ask your coding agent to map the portal flow in `starter-react`: entry points, trust boundaries, data entry fields, keyboard paths, state transitions, and performance hotspots.
 2. Review the map and require file references for every security, accessibility, performance, or reliability claim.
-3. Have the agent create a short NFR context pack that future audit agents can reuse, including scope, exclusions, and evidence locations.
-4. Ask the agent to run the NFR audit from that context pack and rank findings by user harm, exploitability, and fix cost.
-5. Choose the top one or two findings and have the agent implement fixes with tests or manual evidence.
-6. Run a clean-context audit rerun to confirm the fixed findings no longer appear and that deferred risks are still visible.
+3. Have the agent create a short NFR context pack with scope, exclusions, evidence locations, and audit commands.
+4. Ask the agent to run the audit from that pack and rank findings by user harm, exploitability, likelihood, and fix cost.
+5. Choose the top one or two findings and have the agent implement fixes in the starter with tests or manual evidence.
+6. Re-run the audit or targeted checks to prove the accepted findings no longer appear.
+7. Run a clean-context audit rerun where a new agent uses the context pack and still sees deferred risks.
 
 ## Deliver
 
-- NFR context pack with flow map, boundaries, and evidence locations.
+- NFR context pack with flow map, boundaries, audit commands, and evidence locations.
 - Ranked security, accessibility, performance, and reliability findings.
-- Implemented fixes for the highest-value accepted findings.
-- Evidence note showing before and after risk state plus deferred items.
+- Implemented fix for the highest-value accepted finding, plus test or manual evidence.
+- Evidence note showing before/after risk state, final command output, and deferred items.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

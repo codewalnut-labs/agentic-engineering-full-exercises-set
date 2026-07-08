@@ -2,9 +2,9 @@
 
 # C4 and Sequence Diagram From Code
 
-**Goal:** Reverse engineer the feature and create C4-style and sequence diagrams that match the actual code paths.
+**Goal:** Generate a C4-style component diagram and a sequence diagram for the starter feature directly from traced code paths.
 
-**Outcome:** Diagrams are generated from real code paths and verified by a trace or test.
+**Outcome:** The diagrams show the real UI, state, service, data transformation, success path, and error path, with a trace table tying every node to code.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -34,19 +34,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to trace the feature from UI action through state, service calls, data transformation, and error handling before drawing anything.
+1. Ask your coding agent to trace the requested feature from UI action through state, service calls, data transformation, and error handling before drawing anything.
 2. Review the trace and require each diagram node to map to a real component, module, service, or external actor.
-3. Have the agent create a C4-style container or component view from `docs/diagram-request.md` and `docs/mermaid-starter.md`.
-4. Create a sequence diagram for the main success path and at least one error branch, keeping labels close to code names.
-5. Ask the agent to add a trace table linking diagram elements and arrows to files, functions, or tests.
-6. Run a clean-context verification where a new agent compares the diagrams to the code and reports any drift before editing.
+3. Create a C4-style component view from `docs/diagram-request.md` and `docs/mermaid-starter.md`.
+4. Create a sequence diagram for the main success path and at least one error or retry branch, keeping labels close to code names.
+5. Add a trace table linking diagram elements and arrows to files, functions, tests, or observed UI behavior.
+6. Run a diagram syntax check or render check where possible.
+7. Run a clean-context verification where a new agent compares the diagrams to the code and reports drift before editing.
 
 ## Deliver
 
 - C4-style diagram source for the feature boundary.
-- Sequence diagram source for success and error flow.
-- Trace table mapping nodes and arrows to files or functions.
-- Evidence note listing drift found and fixed during verification.
+- Sequence diagram source for success and error or retry flow.
+- Trace table mapping nodes and arrows to files, functions, tests, or UI behavior.
+- Evidence note listing drift found, fixes made, and final diagram/check output.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

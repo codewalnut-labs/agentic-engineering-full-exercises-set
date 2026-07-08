@@ -2,9 +2,9 @@
 
 # Legacy Rules Engine Untangle
 
-**Goal:** Refactor a Spring Boot rules endpoint and React UI adapter without changing the contract clients depend on.
+**Goal:** Untangle the Spring Boot rules endpoint into clearer decision, validation, and side-effect boundaries while preserving the React adapter contract.
 
-**Outcome:** A Spring Boot rules endpoint is refactored only after API behavior and logs are protected.
+**Outcome:** Golden API cases protect status codes, response fields, errors, and logs before backend refactoring begins.
 
 ## Start Here
 
@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -36,18 +36,19 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Do This
 
 1. Ask your coding agent to inspect `docs/legacy-case-table.md`, `docs/rules-contract.md`, the Spring Boot workflow service, and the React adapter to identify public behavior that must not change.
-2. Review the behavior list and create golden API cases for valid decisions, invalid transitions, missing workflow items, and log or response shape expectations.
-3. Have the agent add Spring characterization or integration tests before refactoring backend rules.
+2. Review the behavior list and create golden API cases for valid decisions, invalid transitions, missing workflow items, error shapes, and log expectations.
+3. Add Spring characterization or integration tests before refactoring backend rules.
 4. Refactor the rules code into clearer decision, validation, and side-effect boundaries while keeping API output stable.
-5. Ask the agent to smoke the React adapter against the same response cases so UI assumptions are still valid.
-6. Run a clean-context review where a new agent compares the rules contract to final code and names any behavior intentionally left messy.
+5. Smoke the React adapter against the same response cases so UI assumptions remain valid.
+6. Run backend and frontend checks.
+7. Run a clean-context review where a new agent compares the rules contract to final code and names any behavior intentionally left messy.
 
 ## Deliver
 
 - Golden case table or tests for the Spring rules endpoint.
 - Refactored backend rules code with public contract preserved.
 - React adapter smoke or fixture evidence for key responses.
-- Evidence note showing before/after API comparison and residual refactor risk.
+- Evidence note showing before/after API comparison, final command output, and residual refactor risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

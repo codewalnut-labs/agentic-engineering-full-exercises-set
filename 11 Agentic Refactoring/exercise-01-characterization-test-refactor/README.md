@@ -2,9 +2,9 @@
 
 # Characterization Test Refactor
 
-**Goal:** Capture existing behavior around a messy rules module before refactoring it into clearer pieces.
+**Goal:** Characterize the messy rules module, then refactor it into clearer decision, validation, scoring, and formatting pieces without changing preserved behavior.
 
-**Outcome:** Legacy behavior is characterized before structure changes, then refactored in small green steps.
+**Outcome:** Must-preserve behavior is locked by tests before refactoring, and every refactor step stays green.
 
 ## Start Here
 
@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -35,17 +35,18 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 1. Ask your coding agent to inspect `docs/legacy-behavior-notes.md`, existing tests, and the messy rules module, then list current behaviors before suggesting structure changes.
 2. Review the list and classify each behavior as must preserve, intentionally change, suspected bug, or unknown.
-3. Have the agent write characterization tests for the must-preserve and suspected-bug cases and get a green baseline.
+3. Write characterization tests for must-preserve and suspected-bug cases, then get a green baseline.
 4. Refactor in one small step at a time, keeping I/O, validation, scoring, and UI formatting changes separate.
-5. Ask the agent to run the characterization suite after each step and update the preserve/change/bug table only when evidence changes.
-6. Run a clean-context review where a new agent compares before and after behavior without seeing the original refactor plan.
+5. Run the characterization suite after each step and update the preserve/change/bug table only when evidence changes.
+6. Capture before/after verification output.
+7. Run a clean-context review where a new agent compares final code to the behavior table without seeing the original refactor plan.
 
 ## Deliver
 
-- Preserve, change, bug, and unknown behavior table.
+- Preserve, intentionally-change, suspected-bug, and unknown behavior table.
 - Characterization tests proving the green baseline.
-- Refactored rules code with behavior-preserving commits or notes.
-- Evidence note showing test results after each refactor step.
+- Refactored rules code with behavior-preserving step notes.
+- Evidence note showing test results after each refactor step and final command output.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 

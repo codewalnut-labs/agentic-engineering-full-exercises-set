@@ -2,9 +2,9 @@
 
 # PRD to Issues Vertical Slicer
 
-**Goal:** Turn a messy growth experiment conversation into a PRD and independently grabbable vertical slice issues.
+**Goal:** Use `to-prd` and `to-issues` to turn the messy growth experiment conversation into a PRD and an issue board with one implementable vertical slice.
 
-**Outcome:** A broad experiment idea becomes a PRD, dependency graph, and issue set that multiple agents can implement without stepping on each other.
+**Outcome:** The repo contains a PRD, a dependency-aware issue board, and one proven slice that a future agent can pick up without hidden context.
 
 ## Start Here
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -38,28 +38,28 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 ## Do This
 
 1. Install or open the public skills first. Run `npx skills@latest add mattpocock/skills`, select `to-prd`, `to-issues`, and `/setup-matt-pocock-skills`, then run `/setup-matt-pocock-skills` if your agent installed it. If your tool cannot install skills, use the linked guides as the workflow.
-2. Ask your coding agent to extract goals, users, constraints, metrics, risks, and open questions from `docs/product-conversation.md` without creating issues yet.
-3. Review the extraction and decide what belongs in the PRD, what is an assumption, and what must be left out of scope.
-4. Invoke `/to-prd` or have the agent follow the linked guide to draft a PRD with success metric, release guardrail, non-goals, and acceptance criteria that can be tested in the starter.
-5. Invoke `/to-issues` or have the agent follow the linked guide to convert the PRD into vertical issues using `docs/slice-board.md`; each card should have independent files, checks, dependencies, and review evidence.
-6. Ask the agent to implement or dry-run one thin slice so the issue format is proven by real work, not only planning.
+2. Ask your coding agent to extract goals, target users, constraints, metrics, risks, and open questions from `docs/product-conversation.md` without creating issues yet.
+3. Review the extraction and decide what belongs in the PRD, what is only an assumption, and what is out of scope for the experiment.
+4. Invoke `/to-prd` or have the agent follow the linked guide to draft a PRD with success metric, guardrail metric, non-goals, and acceptance criteria that can be tested in the starter.
+5. Invoke `/to-issues` or have the agent follow the linked guide to convert the PRD into vertical issues using `docs/slice-board.md`; each card must name files, checks, dependencies, and review evidence.
+6. Implement or dry-run the smallest issue card so the board format is proven by real starter work.
 7. Run a handoff review where a fresh agent chooses the next safe issue and explains why it can be worked independently.
 
 ## Deliver
 
-- PRD grounded in the product conversation with explicit non-goals and open questions.
-- Vertical slice issue board with owners, dependencies, acceptance criteria, and checks.
-- One proven slice or dry-run showing the issue format is actionable.
-- Evidence note documenting assumption changes and any issue that is not independently grabbable yet.
+- PRD grounded in the product conversation with success metric, guardrail, non-goals, and open questions.
+- Vertical slice issue board with files, dependencies, acceptance criteria, checks, and review evidence.
+- One implemented or dry-run issue proving the board is actionable.
+- Evidence note documenting assumption changes, final command output, and any issue that is not independently grabbable yet.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
 ## Verify
 
 Done when:
-- The PRD separates user value, metric, scope, and release risk clearly.
+- The PRD separates user value, metric, scope, guardrail, and release risk clearly.
 - Each issue can be implemented and reviewed without requiring a hidden shared rewrite.
 - Dependencies are shown explicitly instead of buried in prose.
-- A fresh agent can pick a card and name the files and checks before editing.
+- A fresh agent can pick one card and name the files, checks, and review evidence before editing.
 
 A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.

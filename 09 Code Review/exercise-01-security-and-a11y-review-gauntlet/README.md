@@ -2,9 +2,9 @@
 
 # Security and A11y Review Gauntlet
 
-**Goal:** Review a generated React change for security, accessibility, and behavioral regressions before approving it.
+**Goal:** Review the supplied generated React diff for security, accessibility, and behavior regressions, then fix the highest-risk confirmed blocker.
 
-**Outcome:** A generated PR is reviewed, patched, and re-verified before merge.
+**Outcome:** The top blocker from the generated diff is fixed with regression evidence, and all remaining findings are accepted, deferred, or dismissed with reasons.
 
 ## Start Here
 
@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-Use the running app only as a smoke test. The main work is the agent workflow, review loop, code/docs change, and evidence.
+Use the running app to inspect the current behavior, then complete the concrete deliverables below.
 
 ## Use These Practices
 
@@ -35,19 +35,20 @@ Use the running app only as a smoke test. The main work is the agent workflow, r
 
 ## Do This
 
-1. Ask your coding agent to read `docs/review-diff.md`, `docs/risk-checklist.md`, and surrounding source files, then list possible security, accessibility, behavior, and test regressions.
+1. Ask your coding agent to read `docs/review-diff.md`, `docs/risk-checklist.md`, `pr/review-target.diff`, and surrounding source files, then list possible security, accessibility, behavior, and test regressions.
 2. Review the findings yourself and require each blocker candidate to include file reference, user impact, and exploit or failure path.
-3. Have the agent fix the highest-risk confirmed blocker while preserving the intended change.
-4. Ask the agent to add a regression check for the fixed blocker and a manual accessibility check where automation cannot prove behavior.
+3. Choose the highest-risk confirmed blocker and have the agent fix it while preserving the intended change.
+4. Add a regression check for the fixed blocker and a manual accessibility check where automation cannot prove behavior.
 5. Re-review the patched diff with the original checklist and triage every remaining finding as fix, defer, or dismiss.
-6. Run a clean-context review where a new agent tries to find a missed security or accessibility blocker.
+6. Run the relevant checks and capture output.
+7. Run a clean-context review where a new agent tries to find a missed security or accessibility blocker.
 
 ## Deliver
 
 - Severity-ranked review findings with evidence and disposition.
-- Patch for the top confirmed blocker.
+- Patch for the top confirmed security, accessibility, or behavior blocker.
 - Regression test or manual check for the fix.
-- Evidence note showing re-review results and remaining risk.
+- Evidence note showing first review, fix, re-review, final command output, and remaining risk.
 
 Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
 
