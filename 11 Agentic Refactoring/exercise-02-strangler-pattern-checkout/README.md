@@ -1,4 +1,4 @@
-# Exercise 02 : jscodeshift Strangler Checkout
+# Exercise 02 : jscodeshift Strangler Checkout Slice
 
 ## Your Mission
 
@@ -20,6 +20,6 @@ Ask your coding agent to inspect `checkout-strangler-app/`, create the strangler
 
 ## Evidence
 
-Produce the strangler change, codemod notes, and verification output.
+Produce the strangler change, old/new behavior comparison, codemod notes, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.

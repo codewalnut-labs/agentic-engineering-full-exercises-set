@@ -14,12 +14,12 @@ The duration for this challenge is 30 min or less.
 
 ## How To Go About It
 
-Use the [Excalidraw diagram-generator skill](https://github.com/github/awesome-copilot/blob/main/skills/excalidraw-diagram-generator/SKILL.md) or any diagram drawing skill.
+Use the [Excalidraw diagram-generator skill](https://github.com/github/awesome-copilot/blob/main/skills/excalidraw-diagram-generator/SKILL.md) on the provided workflow.
 
 Ask your coding agent to inspect `workflow-reconstruction-app/`, trace the workflow, generate diagrams, and verify each diagram against code.
 
 ## Evidence
 
-Produce the reconstructed diagrams and verification notes.
+Produce the Excalidraw diagram, trace notes, and verification notes.
 
 Raise the completed work as a PR for getting verified with our team.

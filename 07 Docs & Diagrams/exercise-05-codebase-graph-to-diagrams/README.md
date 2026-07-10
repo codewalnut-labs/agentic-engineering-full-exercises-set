@@ -1,4 +1,4 @@
-# Exercise 05 : Graphiti Codebase Graph to Diagrams
+# Exercise 05 : Graphify Codebase Graph to Diagrams
 
 ## Your Mission
 
@@ -14,12 +14,12 @@ The duration for this challenge is 30 min or less.
 
 ## How To Go About It
 
-Use [Graphiti](https://github.com/getzep/graphiti) or an equivalent codebase graph workflow.
+Use [Graphify](https://github.com/Graphify-Labs/graphify) on the provided notification project.
 
 Ask your coding agent to inspect `notification-mesh-app/`, create graph-backed diagrams, implement one safe notification change, and verify it.
 
 ## Evidence
 
-Produce the graph notes, diagrams, working change, and verification output.
+Produce the graph notes, diagrams, safe notification change, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.

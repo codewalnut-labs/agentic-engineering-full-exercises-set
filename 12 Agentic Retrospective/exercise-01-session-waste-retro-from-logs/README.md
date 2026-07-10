@@ -14,12 +14,12 @@ The duration for this challenge is 30 min or less.
 
 ## How To Go About It
 
-Use [Promptfoo](https://www.promptfoo.dev/docs/intro/) or a small eval rubric to score before-and-after behavior.
+Use [Promptfoo](https://www.promptfoo.dev/docs/intro/) or a small local rubric to score before-and-after behavior.
 
 Ask your coding agent to inspect `session-waste-app/`, analyze the traces, implement one durable improvement, and verify it.
 
 ## Evidence
 
-Produce the retro notes, improvement change, and verification output.
+Produce the waste report, improvement change, before/after check, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.

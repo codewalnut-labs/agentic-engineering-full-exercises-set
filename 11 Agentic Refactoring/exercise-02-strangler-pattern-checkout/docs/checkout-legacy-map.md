@@ -1,6 +1,6 @@
 # Checkout Legacy Map
 
-This is a seeded lab input for Strangler Pattern Checkout. It gives the learner concrete constraints to inspect, implement, test, and verify.
+This is a seeded lab input for jscodeshift Strangler Checkout Slice. It gives the learner concrete constraints to inspect, implement, test, and verify.
 
 ## Operating Context
 

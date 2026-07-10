@@ -1,6 +1,6 @@
 # Legacy Case Table
 
-This is a seeded lab input for Legacy Rules Engine Untangle. It gives the learner concrete constraints to inspect, implement, test, and verify.
+This is a seeded lab input for OpenRewrite Contract-Safe Rules Slice. It gives the learner concrete constraints to inspect, implement, test, and verify.
 
 ## Operating Context
 

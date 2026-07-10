@@ -1,8 +1,8 @@
-# Exercise 03 : OpenRewrite Legacy Rules Untangle
+# Exercise 03 : OpenRewrite Contract-Safe Rules Slice
 
 ## Your Mission
 
-Your mission is to refactor a legacy rules boundary without breaking dependent clients.
+Your mission is to refactor one legacy rules slice without breaking dependent clients.
 
 You are given API and app repositories where rule names, DTOs, and adapters have drifted over time.
 
@@ -20,6 +20,6 @@ Ask your coding agent to inspect both repositories, protect the contract, refact
 
 ## Evidence
 
-Produce the refactor, contract evidence, and verification output from both repositories.
+Produce the refactor, contract evidence, API/app verification output, and rollback note.
 
 Raise the completed work as a PR for getting verified with our team.

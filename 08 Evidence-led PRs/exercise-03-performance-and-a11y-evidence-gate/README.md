@@ -1,4 +1,4 @@
-# Exercise 03 : Lighthouse CI Evidence Gate
+# Exercise 03 : Performance & A11y Evidence Gate
 
 ## Your Mission
 
@@ -14,12 +14,12 @@ The duration for this challenge is 30 min or less.
 
 ## How To Go About It
 
-Use [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) or equivalent browser quality checks.
+Use [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) for browser quality evidence.
 
 Ask your coding agent to inspect `quality-gate-app/`, make the UI change, run the quality gate, and document any residual risk.
 
 ## Evidence
 
-Produce the UI change, Lighthouse evidence, and verification output.
+Produce the UI change, Lighthouse evidence, residual-risk note, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.

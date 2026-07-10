@@ -1,0 +1,42 @@
+{
+  "title": "Specialist Subagent NFR Review",
+  "competency": "06. Multi-Agent Workflows - Parallel agents on isolated tasks",
+  "domain": "Specialist NFR swarm for a risky generated change",
+  "mission": "Use specialist subagents for security, accessibility, performance, and testability review while one main thread owns the decision log.",
+  "outcome": "Specialist review agents produce actionable NFR findings and the main thread implements the right fixes.",
+  "entities": [
+    "security review",
+    "accessibility review",
+    "performance review",
+    "main-thread decision log"
+  ],
+  "seededDefects": [
+    "specialist findings are merged without triage",
+    "accessibility pass lacks keyboard coverage",
+    "performance finding has no measurement"
+  ],
+  "verificationGates": [
+    "specialist report schema",
+    "fix/defer/dismiss table",
+    "implemented top fixes",
+    "post-fix recheck"
+  ],
+  "agentWorkflow": [
+    "Ask the coding agent to inspect this lab contract, starter code, docs, and tests before proposing a plan.",
+    "Revise the agent plan so it exercises the competency practice and avoids the common mistake.",
+    "Implement the smallest working change that addresses the seeded defects.",
+    "Run the verification gates and capture command evidence before writing the final review note."
+  ],
+  "workingDeliverables": [
+    "Specialist review summaries.",
+    "Implemented NFR fixes.",
+    "Tests or checks for the fixed risks.",
+    "Main-thread decision log."
+  ],
+  "masterySignals": [
+    "Run separate security, accessibility, performance, and testability review passes.",
+    "Triage findings into fix, defer, or dismiss with evidence.",
+    "Implement the top fixes in the starter.",
+    "Re-run checks after changes and record residual risk."
+  ]
+}

@@ -14,12 +14,12 @@ The duration for this challenge is 30 min or less.
 
 ## How To Go About It
 
-Use the common [Agent Skills](https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/) pattern or AGENTS.md rules where appropriate.
+Use the [Agent Skills](https://docs.github.com/copilot/concepts/agents/about-agent-skills) pattern or AGENTS.md rules where appropriate.
 
 Ask your coding agent to inspect `rule-hardening-app/`, extract repeated mistakes, harden the rules, make one proving change, and verify it.
 
 ## Evidence
 
-Produce the hardened rules, proving change, and verification output.
+Produce the clustered mistakes, hardened rules, proving change, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.

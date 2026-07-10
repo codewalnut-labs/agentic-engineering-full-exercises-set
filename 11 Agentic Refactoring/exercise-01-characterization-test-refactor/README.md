@@ -1,4 +1,4 @@
-# Exercise 01 : Characterization Test Refactor
+# Exercise 01 : Vitest Characterization Test Refactor
 
 ## Your Mission
 
@@ -14,12 +14,12 @@ The duration for this challenge is 30 min or less.
 
 ## How To Go About It
 
-Use a characterization-test workflow before allowing the agent to change structure.
+Use [Vitest](https://vitest.dev/) or the repository test runner to characterize behavior before changing structure.
 
 Ask your coding agent to inspect `rules-refactor-app/`, capture behavior with tests, refactor one slice, and verify the suite.
 
 ## Evidence
 
-Produce the characterization tests, refactor, and verification output.
+Produce the characterization tests, preserve/change/bug notes, refactor, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.

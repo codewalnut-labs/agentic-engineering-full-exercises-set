@@ -1,4 +1,4 @@
-# Exercise 01 : Semgrep Security Review Gauntlet
+# Exercise 01 : Semgrep Security & A11y Review Gauntlet
 
 ## Your Mission
 
@@ -20,6 +20,6 @@ Ask your coding agent to inspect `review-gauntlet-app/`, run static checks, revi
 
 ## Evidence
 
-Produce the review findings, fixes, and verification output.
+Produce the severity-ranked findings, fixes, static-check output, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.

@@ -13,7 +13,7 @@ export interface LabContract {
 }
 
 export const labContract: LabContract = {
-  "title": "Legacy Rules Engine Untangle",
+  "title": "OpenRewrite Contract-Safe Rules Slice",
   "competency": "11. Agentic Refactoring - Test-driven tech-debt cleanup",
   "domain": "Spring Boot rules endpoint refactor with preserved contract",
   "mission": "Refactor a Spring Boot rules endpoint and React UI adapter without changing the contract clients depend on.",
