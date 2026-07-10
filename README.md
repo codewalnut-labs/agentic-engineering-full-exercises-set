@@ -1,36 +1,27 @@
 # Agentic Engineering Full Exercises Set
 
-This project turns 12 agentic engineering competencies into hands-on engineering labs. Each competency has multiple medium-sized exercises with a named repository, working deliverables, verification evidence, and a review bar.
+This project turns 12 agentic engineering competencies into hands-on practice. Each competency has multiple exercises with a named repository and clear evidence to produce.
 
-Each lab follows a consistent structure: a short exercise README, a project repository, a focused agent workflow, and a working change kept inside the exercise folder.
+Each exercise folder contains a short challenge README and the project repository or supporting files needed for the task.
 
 ## Curriculum Rule
 
-These exercises are for experienced software engineers and engineering leaders learning to master Codex, Claude Code, Cursor, and similar coding agents. They are not Markdown-only writing drills.
+These exercises are for experienced software engineers and engineering leaders learning to master agentic engineering.
 
-Every exercise requires a working change in code, tests, automation, configuration, skills, hooks, CI, or team operating workflow. Markdown artifacts are used only to frame intent, preserve evidence, and make review easier.
-
-See [COMPETENCY_PRACTICE_GUIDE.md](./COMPETENCY_PRACTICE_GUIDE.md) for the competency definitions and practice behaviors, [AGENT_SKILL_PATTERNS.md](./AGENT_SKILL_PATTERNS.md) for the popular skill pattern map, and [AGENTIC_ENGINEERING_RUBRIC.md](./AGENTIC_ENGINEERING_RUBRIC.md) for the shared completion bar.
+Each exercise asks for concrete evidence such as code changes, tests, configuration, diagrams, specs, skills, hooks, CI output, or workflow artifacts.
 
 ## How Learners Should Use This Repo
 
 1. Pick one competency folder.
 2. Pick one exercise.
 3. Work only inside that exercise folder.
-4. Use your coding agent to inspect, plan, implement, verify, review, and improve the system around the work.
-5. Do not stop at a Markdown artifact; ship the working change and the evidence that proves it.
+4. Use your coding agent to inspect, plan, implement or produce the requested artifact, verify, review, and improve the work.
+5. Produce the evidence requested in the exercise README.
 6. Commit your solution as if opening a PR for review.
-
-## Requirements
-
-- Node.js 20+ for app repositories.
-- npm or pnpm.
-- Java 21 and Maven for API repositories.
-- Claude Code, Codex, Cursor, or another AI coding agent.
 
 ## Exercise Index
 
-Use the index below to choose a lab, then read the local exercise README for the challenge, project repository, and evidence request.
+Use the index below to choose an exercise, then read the local exercise README for the challenge, project repository, and evidence request.
 
 | Competency | # | Exercise | Project |
 |---|---:|---|---|
