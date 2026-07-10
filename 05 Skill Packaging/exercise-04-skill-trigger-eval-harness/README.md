@@ -1,62 +1,25 @@
-**Exercise 04**
+# Exercise 04 : Promptfoo Skill Trigger Eval Harness
 
-# Skill Trigger Eval Harness
+## Your Mission
 
-**Goal:** Build an eval harness that scores one team skill for correct triggering, step adherence, output shape, and non-trigger behavior.
+Your mission is to build an eval harness that checks whether agent skills trigger at the right time.
 
-**Outcome:** The skill improves because failing trigger cases produce a measured revision instead of subjective prompt edits.
+You are given a repository with several overlapping skill descriptions and inconsistent agent behavior.
 
-## Start Here
+The duration for this challenge is 30 min or less.
 
-Starter folders:
-- [starter-react](./starter-react)
+## Project
 
-Seed files:
-- [docs/eval-plan.md](./docs/eval-plan.md)
-- [docs/trigger-cases.md](./docs/trigger-cases.md)
+[skill-eval-app](./skill-eval-app) contains the skill evaluation workflow for this exercise.
 
-From the repository root, open the main starter:
+## How To Go About It
 
-```bash
-cd "05 Skill Packaging/exercise-04-skill-trigger-eval-harness/starter-react"
-npm install
-npm run dev
-```
+Use [Promptfoo](https://www.promptfoo.dev/docs/intro/) to score skill trigger and output behavior.
 
-Use the running app to inspect the current behavior, then complete the concrete deliverables below.
+Ask your coding agent to inspect `skill-eval-app/`, create trigger test cases, run the eval, and improve the weakest skill description.
 
-## Use These Practices
+## Evidence
 
-- [05. Skill Packaging practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#05-skill-packaging)
-- [OpenAI Evals](https://github.com/openai/evals) for eval mindset
-- [Claude Skills overview](https://docs.anthropic.com/en/docs/claude-code/skills)
-- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
+Produce the eval config, results, improved skill text, and verification output.
 
-## Do This
-
-1. Ask your coding agent to read `docs/eval-plan.md` and `docs/trigger-cases.md`, then pick the skill under test and define what a good run must prove.
-2. Review the scoring rubric and reject binary pass/fail checks that cannot explain why the skill misfired.
-3. Build a small eval harness that runs positive trigger cases, negative trigger cases, malformed-input cases, and output-shape checks.
-4. Score process adherence separately from output shape so a lucky final answer does not hide skipped steps.
-5. Run the harness once, then use failures to tighten the skill description, references, or output schema.
-6. Run the harness again and compare before/after scores.
-7. Capture remaining false positive, false negative, and process-skip risks.
-
-## Deliver
-
-- Skill eval harness with positive trigger, negative trigger, malformed input, process, and output cases.
-- Scoring rubric that explains failures in actionable language.
-- Before/after eval results after at least one skill revision.
-- Evidence note listing changed skill text, false positives, false negatives, process skips, and accepted residual risk.
-
-Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
-
-## Verify
-
-Done when:
-- Positive cases prove the skill runs for intended tasks.
-- Negative cases prove the skill stays quiet for adjacent but wrong tasks.
-- Output checks validate required sections or schema, not just text length.
-- A fresh agent can add a new eval case by following the harness pattern.
-
-A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.
+Raise the completed work as a PR for getting verified with our team.

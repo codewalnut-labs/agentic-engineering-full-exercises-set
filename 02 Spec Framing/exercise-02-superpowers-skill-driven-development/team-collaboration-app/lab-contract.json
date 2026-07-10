@@ -1,0 +1,38 @@
+{
+  "title": "Superpowers Skill Driven Development",
+  "competency": "02. Spec Framing - Requirements decomposition and testable spec creation",
+  "mission": "Use agent skills to turn a vague feature request into a well-planned engineering implementation.",
+  "domain": "Team collaboration workspace with roles, workspace membership, invitation policy questions, and no implemented invitation workflow.",
+  "outcome": "The learner installs Superpowers skills, uses them to investigate and plan, then implements team invitation functionality safely with evidence.",
+  "entities": [
+    "Workspace",
+    "Team member",
+    "Role permission",
+    "Invitation",
+    "Superpowers workflow evidence"
+  ],
+  "seededDefects": [
+    "The request does not define who can invite users.",
+    "Invitation expiry, rejection, and duplicate-email behavior are unspecified.",
+    "Roles exist in the codebase but are not connected to invitation policy.",
+    "There is no implementation plan or skill workflow evidence."
+  ],
+  "verificationGates": [
+    ".superpowers evidence exists.",
+    "implementation-plan.md explains assumptions, small changes, and verification.",
+    "Team invitation behavior is implemented safely.",
+    "The final result is verified with project checks."
+  ],
+  "agentWorkflow": [
+    "Install and configure Superpowers skills.",
+    "Use the skills to explore code before coding.",
+    "Plan role, expiry, rejection, and failure scenarios.",
+    "Implement in small verified changes."
+  ],
+  "workingDeliverables": [
+    ".superpowers workflow evidence",
+    "implementation-plan.md",
+    "Working team invitation functionality",
+    "Verification output"
+  ]
+}

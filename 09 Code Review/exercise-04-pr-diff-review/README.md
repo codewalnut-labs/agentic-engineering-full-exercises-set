@@ -1,63 +1,25 @@
-**Exercise 04**
+# Exercise 04 : Gitleaks PR Diff Review
 
-# PR Diff Review
+## Your Mission
 
-**Goal:** Timebox a review of the supplied PR diff, verify blocker candidates against surrounding code, and fix the top merge blocker.
+Your mission is to review a PR diff for secret leakage and behavior risk.
 
-**Outcome:** The review ends with a merge decision, blocker disposition table, top-blocker patch, and verification evidence.
+You are given a repository with a supplied diff that appears small but touches sensitive configuration paths.
 
-## Start Here
+The duration for this challenge is 30 min or less.
 
-Starter folders:
-- [starter-react](./starter-react)
+## Project
 
-Seed files:
-- [pr/review-target.diff](./pr/review-target.diff)
+[pr-diff-app](./pr-diff-app) contains the PR diff review workflow for this exercise.
 
-Fixture note: customer names, people, emails, internal notes, and URLs are fictional exercise data.
+## How To Go About It
 
-From the repository root, open the main starter:
+Use [Gitleaks](https://github.com/gitleaks/gitleaks) plus focused surrounding-code review.
 
-```bash
-cd "09 Code Review/exercise-04-pr-diff-review/starter-react"
-npm install
-npm run dev
-```
+Ask your coding agent to inspect `pr-diff-app/`, scan the diff, review adjacent code, fix confirmed issues, and verify the result.
 
-Use the running app to inspect the current behavior, then complete the concrete deliverables below.
+## Evidence
 
-## Use These Practices
+Produce the scan output, review findings, fixes, and verification output.
 
-- [09. Code Review practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#09-code-review)
-- [GitHub pull request review docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests)
-- [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)
-- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
-
-## Do This
-
-1. Ask your coding agent to review `pr/review-target.diff` under a timebox and produce only severity-ranked findings with file references and suspected impact.
-2. Review the first pass yourself and discard style-only comments unless they hide correctness, security, accessibility, or maintainability risk.
-3. Verify each possible blocker against the surrounding starter code and existing checks before proposing a fix.
-4. Choose the top blocker, patch it, and add the smallest test or manual check that would catch the same issue next time.
-5. Rewrite the review summary as a merge decision: block, approve with follow-up, or approve, with reasons.
-6. Run final checks and capture output.
-7. Run a clean-context review focused on the patched blocker and confirm it no longer blocks merge.
-
-## Deliver
-
-- Timeboxed review findings with severity and evidence.
-- Merge decision summary with accepted, deferred, and dismissed findings.
-- Patch and verification for the top blocker.
-- Evidence note with first-pass review, verification, fix, final command output, and second-pass result.
-
-Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
-
-## Verify
-
-Done when:
-- Every blocker is verified against code outside the diff before it is treated as blocking.
-- The top blocker has a fix and a regression check or clear manual proof.
-- Non-blocking findings have explicit defer or dismiss reasons.
-- A fresh agent can read the review summary and understand the merge decision.
-
-A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.
+Raise the completed work as a PR for getting verified with our team.

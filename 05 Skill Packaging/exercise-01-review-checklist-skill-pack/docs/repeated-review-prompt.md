@@ -22,7 +22,7 @@ Reusable experienced code-review skill with trigger evals
 ## Verification Expectations
 
 - skill trigger eval
-- sample React change review
+- sample app change review
 - schema validation
 - human triage review
 

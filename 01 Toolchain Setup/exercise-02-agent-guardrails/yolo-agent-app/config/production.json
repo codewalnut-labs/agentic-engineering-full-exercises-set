@@ -1,0 +1,6 @@
+{
+  "environment": "production",
+  "deployWindowUtc": "02:00-03:00",
+  "rollbackRequired": true,
+  "approvalGroup": "release-managers"
+}

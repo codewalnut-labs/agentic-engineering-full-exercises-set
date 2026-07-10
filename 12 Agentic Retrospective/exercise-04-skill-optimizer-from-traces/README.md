@@ -1,62 +1,25 @@
-**Exercise 04**
+# Exercise 04 : OpenAI Evals Skill Optimizer
 
-# Skill Optimizer From Traces
+## Your Mission
 
-**Goal:** Optimize the broken alert-triage skill by mining failed traces, adding one trace-derived eval, and measuring before/after behavior.
+Your mission is to optimize a skill using trace evidence and a small evaluation set.
 
-**Outcome:** The skill change is justified by trace evidence and proven by an eval before it is treated as an improvement.
+You are given a repository with failed agent traces and a skill that produces inconsistent results.
 
-## Start Here
+The duration for this challenge is 30 min or less.
 
-Starter folders:
-- [starter-react](./starter-react)
+## Project
 
-Seed files:
-- [docs/skill-regression.md](./docs/skill-regression.md)
-- [docs/trace-samples.md](./docs/trace-samples.md)
+[skill-optimizer-app](./skill-optimizer-app) contains the skill optimizer workflow for this exercise.
 
-From the repository root, open the main starter:
+## How To Go About It
 
-```bash
-cd "12 Agentic Retrospective/exercise-04-skill-optimizer-from-traces/starter-react"
-npm install
-npm run dev
-```
+Use [OpenAI Evals](https://github.com/openai/evals) or an equivalent eval loop to measure the skill change.
 
-Use the running app to inspect the current behavior, then complete the concrete deliverables below.
+Ask your coding agent to inspect `skill-optimizer-app/`, build the trace eval, revise the skill, and verify before/after results.
 
-## Use These Practices
+## Evidence
 
-- [12. Agentic Retrospective practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#12-agentic-retrospective)
-- [Agent skill pattern map](../../AGENT_SKILL_PATTERNS.md) - use `trace-backed skill optimizer`
-- [OpenAI Evals](https://github.com/openai/evals) for regression-minded evaluation
-- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
+Produce the eval cases, improved skill, before/after results, and verification notes.
 
-## Do This
-
-1. Ask your coding agent to mine `docs/trace-samples.md` and `docs/skill-regression.md` for trigger misses, repeated reads, skipped checks, wrong tool choice, and weak final evidence.
-2. Review the trace labels and separate skill defects from missing repo context, missing hooks, or impossible user requests.
-3. Propose one optimizer change to the alert-triage skill, one eval case that catches the regression, and one optional hook or rule only if the trace proves it is needed.
-4. Apply the smallest skill change first, keeping references and examples lean.
-5. Run before/after evals on the trace-derived case and record whether the optimizer reduced false triggers, skipped steps, or weak outputs.
-6. Capture final eval output and remaining regression risk.
-7. Run a clean-context replay where a new agent uses the optimized skill on a trace-like task and produces stronger evidence.
-
-## Deliver
-
-- Trace analysis table with defect type, evidence, and chosen fix.
-- Optimized alert-triage skill, trace-derived eval case, and optional hook or rule update.
-- Before/after eval results from trace-derived cases.
-- Evidence note describing improved behavior, final eval output, and remaining regression risk.
-
-Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
-
-## Verify
-
-Done when:
-- Trace findings are tied to concrete failed steps, not general dissatisfaction.
-- The skill optimizer change is measured by an eval before it is considered better.
-- Hooks or rules are added only when traces show the skill alone cannot prevent recurrence.
-- A fresh agent produces stronger output on a trace-like task without extra coaching.
-
-A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.
+Raise the completed work as a PR for getting verified with our team.

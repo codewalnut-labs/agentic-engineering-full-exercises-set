@@ -1,0 +1,39 @@
+{
+  "title": "Agent Onboarding Kit",
+  "competency": "01. Toolchain Setup - Project rules, hooks, guardrails, and CLI or MCP wiring",
+  "mission": "Configure a coding agent so it can understand and work on a repository like a new engineering teammate.",
+  "domain": "Internal support case router with limited documentation, mixed data-access patterns, hidden ownership rules, and missing onboarding instructions.",
+  "outcome": "A fresh coding agent can inspect the repository, follow documented boundaries, run the correct checks, and produce a reviewable change without repeated human re-explanation.",
+  "entities": [
+    "Support case queue",
+    "Escalation routing policy",
+    "Customer segment ownership",
+    "Agent setup documentation"
+  ],
+  "seededDefects": [
+    "The repository has no agent rules or architecture map.",
+    "The data and routing layers use different naming conventions.",
+    "Testing and review expectations are spread across package scripts and sparse notes.",
+    "Ownership rules are only implied by code and sample data."
+  ],
+  "verificationGates": [
+    "Agent setup files exist in .agent with concrete repository guidance.",
+    "AGENTS.md or CLAUDE.md explains safe commands, avoided commands, and PR expectations.",
+    "Architecture notes name the app, service, data, and ownership boundaries.",
+    "Testing notes tell a fresh agent which commands prove the work."
+  ],
+  "agentWorkflow": [
+    "Inspect package scripts, src folders, services, data, and docs before writing rules.",
+    "Map architecture boundaries from code rather than inventing a generic template.",
+    "Document safe commands and risky commands with repository-specific reasons.",
+    "Create the onboarding layer without refactoring unrelated application behavior."
+  ],
+  "workingDeliverables": [
+    ".agent/rules.md",
+    ".agent/architecture.md",
+    ".agent/workflows.md",
+    ".agent/testing.md",
+    ".agent/conventions.md",
+    "AGENTS.md or CLAUDE.md"
+  ]
+}

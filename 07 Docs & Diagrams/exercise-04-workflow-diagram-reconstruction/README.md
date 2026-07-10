@@ -1,58 +1,25 @@
-**Exercise 04**
+# Exercise 04 : Excalidraw Workflow Reconstruction
 
-# Workflow Diagram Reconstruction
+## Your Mission
 
-**Goal:** Reverse engineer the starter workflow and create a state-flow diagram plus sequence diagram that match the implementation.
+Your mission is to reconstruct workflow diagrams from the implementation, not from assumptions.
 
-**Outcome:** The diagrams are verified by a trace script, test, or checklist, and every label maps to code or UI behavior.
+You are given a repository with a workflow that differs from the old product description.
 
-## Start Here
+The duration for this challenge is 30 min or less.
 
-Starter folders:
-- [starter-react](./starter-react)
+## Project
 
-From the repository root, open the main starter:
+[workflow-reconstruction-app](./workflow-reconstruction-app) contains the workflow reconstruction source for this exercise.
 
-```bash
-cd "07 Docs & Diagrams/exercise-04-workflow-diagram-reconstruction/starter-react"
-npm install
-npm run dev
-```
+## How To Go About It
 
-Use the running app to inspect the current behavior, then complete the concrete deliverables below.
+Use the [Excalidraw diagram-generator skill](https://github.com/github/awesome-copilot/blob/main/skills/excalidraw-diagram-generator/SKILL.md) or any diagram drawing skill.
 
-## Use These Practices
+Ask your coding agent to inspect `workflow-reconstruction-app/`, trace the workflow, generate diagrams, and verify each diagram against code.
 
-- [07. Docs & Diagrams practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#07-docs-diagrams)
-- [Mermaid flowchart syntax](https://mermaid.js.org/syntax/flowchart.html)
-- [Mermaid sequence diagrams](https://mermaid.js.org/syntax/sequenceDiagram.html)
-- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
+## Evidence
 
-## Do This
+Produce the reconstructed diagrams and verification notes.
 
-1. Ask your coding agent to reverse engineer the workflow from starter code by tracing user actions, state transitions, service calls, and rendered evidence panels.
-2. Review the trace and remove guessed product intentions that are not visible in code or UI behavior.
-3. Create a compact state-flow diagram and a sequence diagram for the main user action.
-4. Write a trace script, test, or manual checklist that proves the diagram steps happen in the app.
-5. Update diagram labels until they match actual file, function, state, or user-action names.
-6. Run the trace evidence and record mismatches.
-7. Run a clean-context diagram review where a new agent starts from the diagram and finds the corresponding code path.
-
-## Deliver
-
-- State-flow diagram source for the workflow.
-- Sequence diagram source for the main user action.
-- Trace script, test, or manual checklist proving the diagram path.
-- Evidence note listing labels changed after code verification and final trace output.
-
-Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
-
-## Verify
-
-Done when:
-- Diagram nodes map to actual files, functions, states, or user actions.
-- The trace evidence proves the main path rather than describing it by hand.
-- Any mismatch between diagram and code is fixed or recorded as residual risk.
-- A fresh agent can navigate from diagram node to source file.
-
-A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.
+Raise the completed work as a PR for getting verified with our team.

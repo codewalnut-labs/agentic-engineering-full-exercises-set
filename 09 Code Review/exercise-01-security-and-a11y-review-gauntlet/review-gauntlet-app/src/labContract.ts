@@ -1,0 +1,56 @@
+export interface LabContract {
+  title: string;
+  competency: string;
+  domain: string;
+  mission: string;
+  outcome: string;
+  entities: string[];
+  seededDefects: string[];
+  verificationGates: string[];
+  agentWorkflow: string[];
+  workingDeliverables: string[];
+  masterySignals: string[];
+}
+
+export const labContract: LabContract = {
+  "title": "Security and A11y Review Gauntlet",
+  "competency": "09. Code Review - Code quality and risk review for merge confidence",
+  "domain": "Security and accessibility review of a generated approval UI",
+  "mission": "Review a generated app change for security, accessibility, and behavioral regressions before approving it.",
+  "outcome": "A generated PR is reviewed, patched, and re-verified before merge.",
+  "entities": [
+    "review diff",
+    "unsafe rendering",
+    "keyboard navigation",
+    "severity finding"
+  ],
+  "seededDefects": [
+    "dangerous HTML preview is introduced",
+    "queue rows lose button semantics",
+    "high-priority approval bypasses evidence"
+  ],
+  "verificationGates": [
+    "fresh review",
+    "security test",
+    "a11y regression test",
+    "fix/defer/dismiss triage"
+  ],
+  "agentWorkflow": [
+    "Ask the coding agent to inspect this lab contract, starter code, docs, and tests before proposing a plan.",
+    "Revise the agent plan so it exercises the competency practice and avoids the common mistake.",
+    "Implement the smallest working change that addresses the seeded defects.",
+    "Run the verification gates and capture command evidence before writing the final review note."
+  ],
+  "workingDeliverables": [
+    "Patched starter code.",
+    "Regression tests for security/a11y/behavior blockers.",
+    "Triage table with fix/defer/dismiss decisions.",
+    "Re-review evidence after the patch."
+  ],
+  "masterySignals": [
+    "Use a fresh review pass on `pr/review-target.diff` for security, accessibility, behavior, and tests.",
+    "Patch the merge-blocking findings in the starter code.",
+    "Add regression tests for each blocker.",
+    "Re-review after fixes and explicitly dismiss or defer remaining findings."
+  ]
+};

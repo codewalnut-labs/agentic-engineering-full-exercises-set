@@ -4,8 +4,8 @@ This repository is an exercise source. Learner solutions should stay inside the 
 
 ## Commands
 
-- React starters: `npm install`, `npm run dev`, `npm run build`, and when present `npm test` or `npm run test:e2e`.
-- Spring Boot starters: `mvn test` and `mvn spring-boot:run`.
+- app repositories: `npm install`, `npm run dev`, `npm run build`, and when present `npm test` or `npm run test:e2e`.
+- API repositories: `mvn test` and `mvn spring-boot:run`.
 
 ## Conventions
 

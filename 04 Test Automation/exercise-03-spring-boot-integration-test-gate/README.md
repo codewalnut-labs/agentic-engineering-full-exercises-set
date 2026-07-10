@@ -1,62 +1,25 @@
-**Exercise 03**
+# Exercise 03 : Pact Contract Test Gate
 
-# Spring Boot Integration Test Gate
+## Your Mission
 
-**Goal:** Add Spring Boot integration coverage for the task-board persistence workflow that frontend mocks failed to protect.
+Your mission is to create a contract test gate between a workflow UI and its rules API.
 
-**Outcome:** Create, update, invalid transition, not-found, and readback behavior are protected by backend tests, with the React smoke path aligned to real API responses.
+You are given two repositories whose integration keeps breaking because the UI and API evolve separately.
 
-## Start Here
+The duration for this challenge is 30 min or less.
 
-Starter folders:
-- [starter-react](./starter-react)
-- [starter-spring-boot](./starter-spring-boot)
+## Project
 
-Seed files:
-- [docs/backend-test-gap.md](./docs/backend-test-gap.md)
+[workflow-gate-app](./workflow-gate-app) and [workflow-rules-api](./workflow-rules-api) contain the workflow contract for this exercise.
 
-From the repository root, open the main starter:
+## How To Go About It
 
-```bash
-cd "04 Test Automation/exercise-03-spring-boot-integration-test-gate/starter-react"
-npm install
-npm run dev
-```
+Use [Pact](https://docs.pact.io/) or an equivalent consumer-driven contract testing workflow.
 
-Use the running app to inspect the current behavior, then complete the concrete deliverables below.
+Ask your coding agent to inspect both repositories, add the contract test gate, and verify the UI/API agreement.
 
-## Use These Practices
+## Evidence
 
-- [04. Test Automation practice guide](../../COMPETENCY_PRACTICE_GUIDE.md#04-test-automation)
-- [Spring Boot testing reference](https://docs.spring.io/spring-boot/reference/testing/index.html)
-- [Testcontainers Java docs](https://java.testcontainers.org/) when a real dependency boundary is needed
-- [Completion rubric](../../AGENTIC_ENGINEERING_RUBRIC.md)
+Produce the contract tests and verification output from both sides.
 
-## Do This
-
-1. Ask your coding agent to inspect `docs/backend-test-gap.md`, the Spring Boot API, React API calls, and current mocks, then list persistence behaviors not protected by mocks.
-2. Review the gap list and choose which behaviors require Spring integration coverage instead of another frontend mock.
-3. Add backend tests for task create, update, invalid status transition, not-found update, and persistence readback.
-4. Wire a small React smoke path or contract fixture to the same response shapes used by the backend tests.
-5. Ask the agent to document which mocks remain and why they do not hide the tested persistence behavior.
-6. Run backend tests and the React smoke/check command.
-7. Run a clean-context review where a new agent must choose whether a future bug belongs in backend integration coverage or frontend component coverage.
-
-## Deliver
-
-- Spring Boot integration or controller/service tests for task create, update, invalid transition, not-found, and readback paths.
-- Frontend smoke path or contract fixture aligned with backend responses.
-- Backend test-gap note updated with protected and still-unprotected behavior.
-- Evidence note separating integration confidence from mocked UI confidence plus final command output.
-
-Do not commit `node_modules`, `dist`, `*.tsbuildinfo`, local env files, cache folders, or temporary logs.
-
-## Verify
-
-Done when:
-- Backend tests exercise real Spring wiring for the persistence gap that mocks missed.
-- Invalid transitions and not-found paths are covered, not only successful persistence.
-- React expectations match backend response shapes and status behavior.
-- A fresh agent can explain why the new gate catches the original mock blind spot.
-
-A README-only answer is not enough; the exercise is complete only when the working change and evidence are in place.
+Raise the completed work as a PR for getting verified with our team.
