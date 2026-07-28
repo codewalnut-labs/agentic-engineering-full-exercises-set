@@ -1,0 +1,340 @@
+openapi: 3.1.0
+info:
+  title: Subscription Management Contract
+  version: 1.0.0
+  description: Authoritative options, quote, confirmation, status, and withdrawal contract.
+paths:
+  /accounts/{accountId}/subscription-management/options:
+    get:
+      summary: Get current subscription, role capabilities, and eligible plans
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      responses:
+        "200":
+          description: Current management options
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ManagementOptions"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /accounts/{accountId}/subscription-change-quotes:
+    post:
+      summary: Create a version-bound change quote
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuoteRequest"
+      responses:
+        "201":
+          description: Quote created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeQuote"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "422":
+          $ref: "#/components/responses/Invalid"
+  /accounts/{accountId}/subscription-change-requests:
+    post:
+      summary: Confirm a current quote idempotently
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            minLength: 16
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [quoteId, expectedSubscriptionVersion]
+              properties:
+                quoteId:
+                  type: string
+                expectedSubscriptionVersion:
+                  type: string
+      responses:
+        "201":
+          description: Change request accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeRequest"
+        "200":
+          description: Idempotent replay of the original result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeRequest"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          $ref: "#/components/responses/Conflict"
+        "410":
+          description: Quote expired
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          $ref: "#/components/responses/Invalid"
+  /accounts/{accountId}/subscription-change-requests/{requestId}:
+    get:
+      summary: Get request status
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - $ref: "#/components/parameters/RequestId"
+      responses:
+        "200":
+          description: Current request status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeRequest"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: Request not found
+    delete:
+      summary: Withdraw a reversible pending request
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - $ref: "#/components/parameters/RequestId"
+      responses:
+        "200":
+          description: Request withdrawn
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChangeRequest"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          $ref: "#/components/responses/Conflict"
+components:
+  parameters:
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      schema:
+        type: string
+    RequestId:
+      name: requestId
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    Forbidden:
+      description: Current user role cannot perform this action
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Conflict:
+      description: Subscription version or pending-request conflict
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Invalid:
+      description: Request violates plan, seat, or state rules
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+  schemas:
+    Money:
+      type: object
+      required: [minorUnits, currency]
+      properties:
+        minorUnits:
+          type: integer
+        currency:
+          type: string
+          pattern: "^[A-Z]{3}$"
+    Subscription:
+      type: object
+      required: [id, planId, planName, seats, assignedSeats, cadence, renewalDate, status, role, currency, locale, version]
+      properties:
+        id:
+          type: string
+        planId:
+          type: string
+        planName:
+          type: string
+        seats:
+          type: integer
+          minimum: 1
+        assignedSeats:
+          type: integer
+          minimum: 0
+        cadence:
+          type: string
+          enum: [monthly, annual]
+        renewalDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum: [active, cancel_scheduled, cancelled]
+        role:
+          type: string
+          enum: [account_owner, billing_admin, viewer]
+        currency:
+          type: string
+        locale:
+          type: string
+        version:
+          type: string
+    Capability:
+      type: string
+      enum: [change_plan, change_seats, change_cadence, cancel, withdraw]
+    PlanOption:
+      type: object
+      required: [id, name, minimumSeats, maximumSeats, supportedCadences, eligible]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        minimumSeats:
+          type: integer
+          minimum: 1
+        maximumSeats:
+          type: integer
+          minimum: 1
+        supportedCadences:
+          type: array
+          items:
+            type: string
+            enum: [monthly, annual]
+        eligible:
+          type: boolean
+        ineligibilityReason:
+          type: string
+    ManagementOptions:
+      type: object
+      required: [subscription, capabilities, plans]
+      properties:
+        subscription:
+          $ref: "#/components/schemas/Subscription"
+        capabilities:
+          type: array
+          items:
+            $ref: "#/components/schemas/Capability"
+        plans:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlanOption"
+        pendingRequest:
+          $ref: "#/components/schemas/ChangeRequest"
+    QuoteRequest:
+      type: object
+      required: [changeType, expectedSubscriptionVersion]
+      properties:
+        changeType:
+          type: string
+          enum: [plan, seats, cadence, cancel]
+        planId:
+          type: string
+        seats:
+          type: integer
+          minimum: 1
+        cadence:
+          type: string
+          enum: [monthly, annual]
+        expectedSubscriptionVersion:
+          type: string
+    ChangeQuote:
+      type: object
+      required: [id, accountId, changeType, currentState, proposedState, amountImpact, effectiveDate, renewalDate, expiresAt, subscriptionVersion]
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        changeType:
+          type: string
+          enum: [plan, seats, cadence, cancel]
+        currentState:
+          $ref: "#/components/schemas/Subscription"
+        proposedState:
+          type: object
+          additionalProperties: true
+        amountImpact:
+          $ref: "#/components/schemas/Money"
+        effectiveDate:
+          type: string
+          format: date-time
+        renewalDate:
+          type: string
+          format: date
+        expiresAt:
+          type: string
+          format: date-time
+        subscriptionVersion:
+          type: string
+        consequences:
+          type: array
+          items:
+            type: string
+    ChangeRequest:
+      type: object
+      required: [id, accountId, quoteId, changeType, requestedBy, submittedAt, effectiveAt, status]
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        quoteId:
+          type: string
+        changeType:
+          type: string
+          enum: [plan, seats, cadence, cancel]
+        requestedBy:
+          type: string
+        submittedAt:
+          type: string
+          format: date-time
+        effectiveAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [scheduled, processing, applied, failed, withdrawn]
+        reversibleUntil:
+          type: string
+          format: date-time
+        failureCode:
+          type: string
+        failureMessage:
+          type: string
+    Error:
+      type: object
+      required: [code, message, retrySafe]
+      properties:
+        code:
+          type: string
+          enum: [forbidden, conflict, quote_expired, invalid, indeterminate, not_found]
+        message:
+          type: string
+        retrySafe:
+          type: boolean
+        currentSubscriptionVersion:
+          type: string
+        pendingRequestId:
+          type: string
