@@ -1,0 +1,12 @@
+Semgrep 1.172.0
+Command: semgrep --config semgrep.yml src/components --no-git-ignore
+
+Scan completed successfully.
+Rules run: 2
+Targets scanned: 11
+Parsed lines: ~100.0%
+Findings: 0 (0 blocking)
+
+Dependency audit:
+npm audit
+0 vulnerabilities

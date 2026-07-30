@@ -26,6 +26,9 @@ export function ActionComposer({ item, onSave }: ActionComposerProps) {
   return (
     <section className="action-composer" aria-label="Action composer">
       <h2>Draft next action</h2>
+      <div className="review-preview" data-testid="review-preview">
+        {note}
+      </div>
       <label>
         Owner
         <input value={owner} onChange={(event) => setOwner(event.target.value)} />
