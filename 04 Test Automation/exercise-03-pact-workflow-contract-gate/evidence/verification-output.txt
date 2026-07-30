@@ -1,0 +1,39 @@
+Exercise 03 - Pact Workflow Contract Gate
+Verified: 2026-07-30
+
+Consumer command
+  cd workflow-gate-app
+  npm run agent:check
+
+Consumer result
+  lint-check passed
+  agent-check passed for Pact Workflow Contract Gate
+  Contract test files: 1 passed
+  Contract tests: 2 passed
+  TypeScript typecheck passed
+  Vite production build passed (31 modules transformed)
+
+Covered consumer interactions
+  GET /api/workflows
+  POST /api/workflows/wf-102/decisions
+
+Generated contract
+  pacts/workflow-gate-app-workflow-rules-api.json
+  Pact specification: V4
+
+Provider command
+  cd workflow-rules-api
+  mvn test
+
+Provider result
+  Pact interactions verified: 2
+  Total tests: 4
+  Failures: 0
+  Errors: 0
+  Skipped: 0
+  BUILD SUCCESS
+
+Exposed integration fix
+  The UI service used local fixtures and never crossed the rules API boundary.
+  It now calls the provider and maps the UI draft field "note" to the provider
+  request field "evidenceNote"; provider responses are mapped back to WorkItem.
