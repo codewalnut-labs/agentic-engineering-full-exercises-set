@@ -19,8 +19,13 @@ interface CheckoutFixtures {
   boundaryCalls: BoundaryCalls;
 }
 
-export const test = base.extend<CheckoutFixtures>({
-  boundaryCalls: async ({ page }, use) => {
+interface CheckoutOptions {
+  paymentOutcome: "approved" | "declined";
+}
+
+export const test = base.extend<CheckoutFixtures & CheckoutOptions>({
+  paymentOutcome: ["approved", { option: true }],
+  boundaryCalls: async ({ page, paymentOutcome }, use) => {
     const boundaryCalls: BoundaryCalls = {
       tax: [],
       payments: [],
@@ -45,10 +50,16 @@ export const test = base.extend<CheckoutFixtures>({
       boundaryCalls.payments.push(request);
       await route.fulfill({
         contentType: "application/json",
-        json: {
-          status: "approved",
-          orderId: "ORDER-1042",
-        },
+        json:
+          paymentOutcome === "approved"
+            ? {
+                status: "approved",
+                orderId: "ORDER-1042",
+              }
+            : {
+                status: "declined",
+                reason: "Card was declined",
+              },
         status: 200,
       });
     });

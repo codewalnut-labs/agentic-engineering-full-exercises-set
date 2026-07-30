@@ -58,6 +58,8 @@ export default function App() {
           orderId: result.orderId,
           total: quote.total,
         });
+      } else {
+        setError(result.reason);
       }
     } catch {
       setError("Payment could not be processed. Please try again.");
