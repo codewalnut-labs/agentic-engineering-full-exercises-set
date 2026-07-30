@@ -1,0 +1,26 @@
+[
+  {
+    "name": "release-notes",
+    "description": "Create release notes from merged pull requests, changelogs, release diffs, and shipped change evidence. Use when the requested artifact is a release note or changelog. Do not use for incidents, postmortems, outage summaries, conceptual explanations, or general PR summaries.",
+    "triggers": ["release notes", "merged prs", "changelog", "release diff", "shipped changes"],
+    "exclusions": ["incident", "postmortem", "outage", "conceptually"]
+  },
+  {
+    "name": "incident-response",
+    "description": "Summarize active incidents, outages, incident pull requests, and postmortems for responders or leadership.",
+    "triggers": ["incident", "outage", "postmortem", "incident pr", "leadership"],
+    "exclusions": ["release notes", "changelog"]
+  },
+  {
+    "name": "pr-review",
+    "description": "Review diffs for security, accessibility, correctness, and regression risks.",
+    "triggers": ["review", "diff", "security", "accessibility"],
+    "exclusions": ["release notes"]
+  },
+  {
+    "name": "migration-planning",
+    "description": "Plan bounded legacy component or codemod migrations.",
+    "triggers": ["migration", "legacy component", "codemod"],
+    "exclusions": ["greenfield"]
+  }
+]

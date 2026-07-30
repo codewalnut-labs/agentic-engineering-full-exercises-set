@@ -1,0 +1,22 @@
+description: Skill trigger and output contract regression harness
+prompts:
+  - "{{request}}"
+providers:
+  - id: file://eval/provider.mjs
+tests:
+  - file://eval/cases.yaml
+defaultTest:
+  vars:
+    catalogVersion: v2
+  assert:
+    - type: javascript
+      value: |
+        const result = JSON.parse(output);
+        return result.selectedSkill === context.vars.expectedSkill;
+    - type: javascript
+      value: |
+        const result = JSON.parse(output);
+        return typeof result.rationale === 'string'
+          && Array.isArray(result.inspectedFiles)
+          && result.artifact?.status === 'ready'
+          && result.artifact?.schemaVersion === '1.0';

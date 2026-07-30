@@ -1,0 +1,1097 @@
+{
+  "evalId": "eval-2Ck-2026-07-30T14:27:05",
+  "results": {
+    "version": 3,
+    "timestamp": "2026-07-30T14:27:05.843Z",
+    "prompts": [
+      {
+        "id": "22eb8f0afffc11b6efb148227297c1ad363b71d58431ce186abbdbb5a91b5364",
+        "raw": "{{request}}",
+        "label": "{{request}}",
+        "provider": "skill-trigger-selector",
+        "metrics": {
+          "score": 8,
+          "testPassCount": 8,
+          "testFailCount": 0,
+          "testErrorCount": 0,
+          "assertPassCount": 16,
+          "assertFailCount": 0,
+          "totalLatencyMs": 76,
+          "tokenUsage": {
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "total": 0,
+            "numRequests": 8,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0
+              }
+            }
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "namedScoreWeights": {},
+          "cost": 0
+        }
+      }
+    ],
+    "results": [
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+              }
+            }
+          ]
+        },
+        "id": "7dafaa9b-1fd1-4dea-b5d3-d9ffbe306b54",
+        "latencyMs": 16,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Turn these merged PRs into release notes with missing evidence called out.",
+          "label": "{{request}}",
+          "config": {}
+        },
+        "promptId": "22eb8f0afffc11b6efb148227297c1ad363b71d58431ce186abbdbb5a91b5364",
+        "promptIdx": 0,
+        "provider": {
+          "id": "skill-trigger-selector",
+          "label": ""
+        },
+        "response": {
+          "output": "{\"selectedSkill\":\"release-notes\",\"rationale\":\"release-notes matched the strongest explicit workflow terms.\",\"inspectedFiles\":[],\"artifact\":{\"status\":\"ready\",\"schemaVersion\":\"1.0\"}}",
+          "tokenUsage": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "release notes positive",
+          "vars": {
+            "catalogVersion": "v2",
+            "request": "Turn these merged PRs into release notes with missing evidence called out.",
+            "expectedSkill": "release-notes"
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "catalogVersion": "v2",
+          "request": "Turn these merged PRs into release notes with missing evidence called out.",
+          "expectedSkill": "release-notes"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+              }
+            }
+          ]
+        },
+        "id": "05c229ce-89ad-4c33-bed6-d41e46d8898b",
+        "latencyMs": 15,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Produce a changelog from this release diff.",
+          "label": "{{request}}",
+          "config": {}
+        },
+        "promptId": "22eb8f0afffc11b6efb148227297c1ad363b71d58431ce186abbdbb5a91b5364",
+        "promptIdx": 0,
+        "provider": {
+          "id": "skill-trigger-selector",
+          "label": ""
+        },
+        "response": {
+          "output": "{\"selectedSkill\":\"release-notes\",\"rationale\":\"release-notes matched the strongest explicit workflow terms.\",\"inspectedFiles\":[],\"artifact\":{\"status\":\"ready\",\"schemaVersion\":\"1.0\"}}",
+          "tokenUsage": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "release diff positive",
+          "vars": {
+            "catalogVersion": "v2",
+            "request": "Produce a changelog from this release diff.",
+            "expectedSkill": "release-notes"
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 1,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "catalogVersion": "v2",
+          "request": "Produce a changelog from this release diff.",
+          "expectedSkill": "release-notes"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+              }
+            }
+          ]
+        },
+        "id": "16a1dbfc-7c16-4527-9e39-df14dd8831bc",
+        "latencyMs": 15,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Review this auth diff for security and accessibility findings.",
+          "label": "{{request}}",
+          "config": {}
+        },
+        "promptId": "22eb8f0afffc11b6efb148227297c1ad363b71d58431ce186abbdbb5a91b5364",
+        "promptIdx": 0,
+        "provider": {
+          "id": "skill-trigger-selector",
+          "label": ""
+        },
+        "response": {
+          "output": "{\"selectedSkill\":\"pr-review\",\"rationale\":\"pr-review matched the strongest explicit workflow terms.\",\"inspectedFiles\":[],\"artifact\":{\"status\":\"ready\",\"schemaVersion\":\"1.0\"}}",
+          "tokenUsage": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "review positive",
+          "vars": {
+            "catalogVersion": "v2",
+            "request": "Review this auth diff for security and accessibility findings.",
+            "expectedSkill": "pr-review"
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 2,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "catalogVersion": "v2",
+          "request": "Review this auth diff for security and accessibility findings.",
+          "expectedSkill": "pr-review"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+              }
+            }
+          ]
+        },
+        "id": "1440ccdd-c589-4824-a5f2-0a7d9669a165",
+        "latencyMs": 14,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Plan a safe codemod migration for this legacy component.",
+          "label": "{{request}}",
+          "config": {}
+        },
+        "promptId": "22eb8f0afffc11b6efb148227297c1ad363b71d58431ce186abbdbb5a91b5364",
+        "promptIdx": 0,
+        "provider": {
+          "id": "skill-trigger-selector",
+          "label": ""
+        },
+        "response": {
+          "output": "{\"selectedSkill\":\"migration-planning\",\"rationale\":\"migration-planning matched the strongest explicit workflow terms.\",\"inspectedFiles\":[],\"artifact\":{\"status\":\"ready\",\"schemaVersion\":\"1.0\"}}",
+          "tokenUsage": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "migration positive",
+          "vars": {
+            "catalogVersion": "v2",
+            "request": "Plan a safe codemod migration for this legacy component.",
+            "expectedSkill": "migration-planning"
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 3,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "catalogVersion": "v2",
+          "request": "Plan a safe codemod migration for this legacy component.",
+          "expectedSkill": "migration-planning"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+              }
+            }
+          ]
+        },
+        "id": "707cdfdf-451d-4e3d-989d-d5046f3256ab",
+        "latencyMs": 4,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Summarize this incident PR for leadership.",
+          "label": "{{request}}",
+          "config": {}
+        },
+        "promptId": "22eb8f0afffc11b6efb148227297c1ad363b71d58431ce186abbdbb5a91b5364",
+        "promptIdx": 0,
+        "provider": {
+          "id": "skill-trigger-selector",
+          "label": ""
+        },
+        "response": {
+          "output": "{\"selectedSkill\":\"incident-response\",\"rationale\":\"incident-response matched the strongest explicit workflow terms.\",\"inspectedFiles\":[],\"artifact\":{\"status\":\"ready\",\"schemaVersion\":\"1.0\"}}",
+          "tokenUsage": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "incident ambiguity regression",
+          "vars": {
+            "catalogVersion": "v2",
+            "request": "Summarize this incident PR for leadership.",
+            "expectedSkill": "incident-response"
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 4,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "catalogVersion": "v2",
+          "request": "Summarize this incident PR for leadership.",
+          "expectedSkill": "incident-response"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+              }
+            }
+          ]
+        },
+        "id": "374b42aa-9cf3-433c-8ecf-40d1839e93f3",
+        "latencyMs": 4,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Summarize the checkout outage for responders.",
+          "label": "{{request}}",
+          "config": {}
+        },
+        "promptId": "22eb8f0afffc11b6efb148227297c1ad363b71d58431ce186abbdbb5a91b5364",
+        "promptIdx": 0,
+        "provider": {
+          "id": "skill-trigger-selector",
+          "label": ""
+        },
+        "response": {
+          "output": "{\"selectedSkill\":\"incident-response\",\"rationale\":\"incident-response matched the strongest explicit workflow terms.\",\"inspectedFiles\":[],\"artifact\":{\"status\":\"ready\",\"schemaVersion\":\"1.0\"}}",
+          "tokenUsage": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "outage negative for release notes",
+          "vars": {
+            "catalogVersion": "v2",
+            "request": "Summarize the checkout outage for responders.",
+            "expectedSkill": "incident-response"
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 5,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "catalogVersion": "v2",
+          "request": "Summarize the checkout outage for responders.",
+          "expectedSkill": "incident-response"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+              }
+            }
+          ]
+        },
+        "id": "097c9084-3401-477a-8e39-c3a11fb786fd",
+        "latencyMs": 3,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Explain how OAuth works conceptually.",
+          "label": "{{request}}",
+          "config": {}
+        },
+        "promptId": "22eb8f0afffc11b6efb148227297c1ad363b71d58431ce186abbdbb5a91b5364",
+        "promptIdx": 0,
+        "provider": {
+          "id": "skill-trigger-selector",
+          "label": ""
+        },
+        "response": {
+          "output": "{\"selectedSkill\":\"none\",\"rationale\":\"Conceptual request; no workflow skill should trigger.\",\"inspectedFiles\":[],\"artifact\":{\"status\":\"ready\",\"schemaVersion\":\"1.0\"}}",
+          "tokenUsage": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "conceptual negative",
+          "vars": {
+            "catalogVersion": "v2",
+            "request": "Explain how OAuth works conceptually.",
+            "expectedSkill": "none"
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 6,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "catalogVersion": "v2",
+          "request": "Explain how OAuth works conceptually.",
+          "expectedSkill": "none"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+              }
+            }
+          ]
+        },
+        "id": "bc88ed02-0582-4351-a667-0e3a0679d4dd",
+        "latencyMs": 5,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Create a new pricing card from this design.",
+          "label": "{{request}}",
+          "config": {}
+        },
+        "promptId": "22eb8f0afffc11b6efb148227297c1ad363b71d58431ce186abbdbb5a91b5364",
+        "promptIdx": 0,
+        "provider": {
+          "id": "skill-trigger-selector",
+          "label": ""
+        },
+        "response": {
+          "output": "{\"selectedSkill\":\"none\",\"rationale\":\"No candidate crossed the trigger threshold.\",\"inspectedFiles\":[],\"artifact\":{\"status\":\"ready\",\"schemaVersion\":\"1.0\"}}",
+          "tokenUsage": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "unrelated negative",
+          "vars": {
+            "catalogVersion": "v2",
+            "request": "Create a new pricing card from this design.",
+            "expectedSkill": "none"
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+            },
+            {
+              "type": "javascript",
+              "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 7,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "catalogVersion": "v2",
+          "request": "Create a new pricing card from this design.",
+          "expectedSkill": "none"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      }
+    ],
+    "stats": {
+      "successes": 8,
+      "failures": 0,
+      "errors": 0,
+      "tokenUsage": {
+        "prompt": 0,
+        "completion": 0,
+        "cached": 0,
+        "total": 0,
+        "numRequests": 8,
+        "completionDetails": {
+          "reasoning": 0,
+          "acceptedPrediction": 0,
+          "rejectedPrediction": 0,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0
+        },
+        "assertions": {
+          "total": 0,
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          }
+        }
+      },
+      "durationMs": 169,
+      "evaluationDurationMs": 169
+    }
+  },
+  "config": {
+    "tags": {},
+    "description": "Skill trigger and output contract regression harness",
+    "prompts": [
+      "{{request}}"
+    ],
+    "providers": [
+      {
+        "id": "file://eval/provider.mjs"
+      }
+    ],
+    "tests": [
+      "file://eval/cases.yaml"
+    ],
+    "env": {},
+    "defaultTest": {
+      "vars": {
+        "catalogVersion": "v2"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "const result = JSON.parse(output);\nreturn result.selectedSkill === context.vars.expectedSkill;\n"
+        },
+        {
+          "type": "javascript",
+          "value": "const result = JSON.parse(output);\nreturn typeof result.rationale === 'string'\n  && Array.isArray(result.inspectedFiles)\n  && result.artifact?.status === 'ready'\n  && result.artifact?.schemaVersion === '1.0';\n"
+        }
+      ],
+      "options": {},
+      "metadata": {}
+    },
+    "outputPath": [
+      "evidence/improved-results.json"
+    ],
+    "extensions": [],
+    "metadata": {},
+    "evaluateOptions": {}
+  },
+  "shareableUrl": null,
+  "metadata": {
+    "promptfooVersion": "0.121.19",
+    "nodeVersion": "v24.11.0",
+    "platform": "win32",
+    "arch": "x64",
+    "exportedAt": "2026-07-30T14:27:06.106Z",
+    "evaluationCreatedAt": "2026-07-30T14:27:05.843Z"
+  },
+  "vars": [
+    "catalogVersion",
+    "request",
+    "expectedSkill"
+  ],
+  "runtimeOptions": {
+    "eventSource": "cli",
+    "showProgressBar": true,
+    "repeat": 1,
+    "maxConcurrency": 4,
+    "cache": false
+  }
+}
