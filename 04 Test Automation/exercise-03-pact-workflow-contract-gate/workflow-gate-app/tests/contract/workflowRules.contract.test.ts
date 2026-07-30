@@ -17,7 +17,10 @@ const pact = new Pact({
 const providerItem = {
   id: Matchers.like("wf-101"),
   customer: Matchers.like("Atlas Co"),
-  status: Matchers.like("Blocked"),
+  status: Matchers.regex(
+    "^(Queued|Ready|In Review|Blocked|Escalated)$",
+    "Blocked",
+  ),
   score: Matchers.like(91),
   owner: Matchers.like("Asha"),
   note: Matchers.like("Evidence missing"),
@@ -72,7 +75,7 @@ describe("workflow rules API contract", () => {
           ...providerItem,
           id: Matchers.like("wf-102"),
           customer: Matchers.like("Brightline"),
-          status: Matchers.like("Blocked"),
+          status: "Blocked",
           owner: Matchers.like("Rina"),
           note: Matchers.like("Waiting for signed approval"),
         })

@@ -1,4 +1,4 @@
-import type { ActionDraft, WorkItem } from "../types";
+import type { ActionDraft, WorkItem, WorkflowStatus } from "../types";
 
 interface ProviderWorkflow {
   id: string;
@@ -10,13 +10,20 @@ interface ProviderWorkflow {
 }
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const workflowStatuses = new Set<WorkflowStatus>([
+  "Queued",
+  "Ready",
+  "In Review",
+  "Blocked",
+  "Escalated",
+]);
 
 function resolveBaseUrl(baseUrl?: string): string {
   if (baseUrl) {
     return baseUrl;
   }
   if (typeof window !== "undefined") {
-    return window.location.origin;
+    return import.meta.env.VITE_WORKFLOW_RULES_API_URL || window.location.origin;
   }
   throw new Error("A workflow API base URL is required outside the browser");
 }
@@ -46,11 +53,30 @@ function toWorkItem(item: ProviderWorkflow): WorkItem {
   };
 }
 
+function isProviderWorkflow(value: unknown): value is ProviderWorkflow {
+  if (typeof value !== "object" || value === null) return false;
+  const item = value as Record<string, unknown>;
+  return (
+    typeof item.id === "string" &&
+    typeof item.customer === "string" &&
+    typeof item.status === "string" &&
+    workflowStatuses.has(item.status as WorkflowStatus) &&
+    typeof item.score === "number" &&
+    Number.isFinite(item.score) &&
+    typeof item.owner === "string" &&
+    typeof item.note === "string"
+  );
+}
+
 async function readWorkflow(response: Response): Promise<ProviderWorkflow> {
   if (!response.ok) {
     throw new Error(`Workflow API request failed with status ${response.status}`);
   }
-  return (await response.json()) as ProviderWorkflow;
+  const item: unknown = await response.json();
+  if (!isProviderWorkflow(item)) {
+    throw new Error("Workflow API returned an invalid workflow");
+  }
+  return item;
 }
 
 export async function fetchWorkItems(baseUrl?: string): Promise<WorkItem[]> {
@@ -60,7 +86,10 @@ export async function fetchWorkItems(baseUrl?: string): Promise<WorkItem[]> {
   if (!response.ok) {
     throw new Error(`Workflow API request failed with status ${response.status}`);
   }
-  const items = (await response.json()) as ProviderWorkflow[];
+  const items: unknown = await response.json();
+  if (!Array.isArray(items) || !items.every(isProviderWorkflow)) {
+    throw new Error("Workflow API returned an invalid workflow list");
+  }
   return items.map(toWorkItem);
 }
 

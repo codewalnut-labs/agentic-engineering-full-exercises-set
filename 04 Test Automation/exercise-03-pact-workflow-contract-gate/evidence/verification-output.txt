@@ -8,7 +8,8 @@ Consumer command
 Consumer result
   lint-check passed
   agent-check passed for Pact Workflow Contract Gate
-  Contract test files: 1 passed
+  Test files: 2 passed
+  UI boundary smoke tests: 1 passed
   Contract tests: 2 passed
   TypeScript typecheck passed
   Vite production build passed (31 modules transformed)

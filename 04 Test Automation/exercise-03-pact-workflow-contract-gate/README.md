@@ -44,3 +44,7 @@ mvn test
 The consumer test exercises the production API client for both workflow listing
 and decision submission. The provider test starts Spring Boot on a random port
 and verifies those same interactions against the generated Pact artifact.
+
+During local development, Vite proxies `/api` to `http://127.0.0.1:8080`.
+Override that target with `WORKFLOW_RULES_API_URL`; deployed clients can use
+`VITE_WORKFLOW_RULES_API_URL` when the API is hosted on a separate origin.
