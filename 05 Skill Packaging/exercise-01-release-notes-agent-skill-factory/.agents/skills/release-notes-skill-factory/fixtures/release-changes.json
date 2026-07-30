@@ -1,0 +1,76 @@
+{
+  "product": "Product release dashboard",
+  "version": "2.4.0",
+  "date": "2026-07-30",
+  "compare": "v2.3.0...v2.4.0",
+  "diffFiles": [
+    "src/api/export.ts",
+    "src/api/workflows.ts",
+    "src/audit/permissions.ts",
+    "src/components/ReleaseTable.tsx",
+    "src/internal/queryCache.ts"
+  ],
+  "changes": [
+    {
+      "id": "RN-101",
+      "type": "Added",
+      "summary": "Export filtered release results as CSV from the dashboard.",
+      "customerFacing": true,
+      "breaking": false,
+      "owner": "Priya",
+      "files": ["src/api/export.ts", "src/components/ReleaseTable.tsx"],
+      "evidence": ["npm test -- export-csv"],
+      "rollout": "Available to all dashboard users.",
+      "rollback": "Disable the release-export feature flag."
+    },
+    {
+      "id": "RN-102",
+      "type": "Changed",
+      "summary": "Workflow responses now use the v2 status values.",
+      "customerFacing": true,
+      "breaking": true,
+      "owner": "Mateo",
+      "files": ["src/api/workflows.ts"],
+      "evidence": ["npm test -- workflow-v2-contract"],
+      "migration": "Replace queued_pending with queued before upgrading.",
+      "rollout": "Deploy API compatibility monitoring before enabling v2.",
+      "rollback": "Restore the v1 response adapter."
+    },
+    {
+      "id": "RN-103",
+      "type": "Security",
+      "summary": "Permission changes now produce an immutable audit event.",
+      "customerFacing": true,
+      "breaking": false,
+      "owner": "Asha",
+      "files": ["src/audit/permissions.ts"],
+      "evidence": ["npm test -- permission-audit"],
+      "rollout": "Enabled with the standard audit pipeline.",
+      "rollback": "Revert the audit writer deployment."
+    },
+    {
+      "id": "RN-104",
+      "type": "Fixed",
+      "summary": "Release table filters remain selected after refresh.",
+      "customerFacing": true,
+      "breaking": false,
+      "owner": "Rina",
+      "files": ["src/components/ReleaseTable.tsx"],
+      "evidence": [],
+      "rollout": "Standard web deployment.",
+      "rollback": "Revert the filter persistence change."
+    },
+    {
+      "id": "RN-105",
+      "type": "Internal",
+      "summary": "Refactor query cache key construction.",
+      "customerFacing": false,
+      "breaking": false,
+      "owner": "Nikhil",
+      "files": ["src/internal/queryCache.ts"],
+      "evidence": ["npm test -- query-cache"],
+      "rollout": "No customer rollout.",
+      "rollback": "Revert the cache refactor."
+    }
+  ]
+}
