@@ -1,0 +1,26 @@
+[
+  {
+    "name": "release-notes",
+    "description": "Summarize changes and PRs for teams and leadership.",
+    "triggers": ["summarize", "pr", "leadership", "changes"],
+    "exclusions": []
+  },
+  {
+    "name": "incident-response",
+    "description": "Summarize incidents, outages, and postmortems.",
+    "triggers": ["incident", "outage", "postmortem", "incident pr"],
+    "exclusions": ["release notes", "changelog"]
+  },
+  {
+    "name": "pr-review",
+    "description": "Review diffs for security, accessibility, correctness, and regression risks.",
+    "triggers": ["review", "diff", "security", "accessibility"],
+    "exclusions": ["release notes"]
+  },
+  {
+    "name": "migration-planning",
+    "description": "Plan bounded legacy component or codemod migrations.",
+    "triggers": ["migration", "legacy component", "codemod"],
+    "exclusions": ["greenfield"]
+  }
+]

@@ -23,3 +23,17 @@ Ask your coding agent to inspect `skill-eval-app/`, create trigger test cases, r
 Produce the eval config, positive and negative cases, results, improved skill text, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Run the completed harness
+
+```sh
+cd skill-eval-app
+npm install
+npm run eval:baseline
+npm run eval:improved
+npm run agent:check
+```
+
+The baseline command intentionally exits non-zero because it preserves the
+release-notes collision. The improved run must pass all cases. Versioned JSON
+results are written to `skill-eval-app/evidence/`.

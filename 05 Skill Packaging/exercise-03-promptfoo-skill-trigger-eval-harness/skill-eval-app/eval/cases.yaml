@@ -1,0 +1,32 @@
+- description: release notes positive
+  vars:
+    request: Turn these merged PRs into release notes with missing evidence called out.
+    expectedSkill: release-notes
+- description: release diff positive
+  vars:
+    request: Produce a changelog from this release diff.
+    expectedSkill: release-notes
+- description: review positive
+  vars:
+    request: Review this auth diff for security and accessibility findings.
+    expectedSkill: pr-review
+- description: migration positive
+  vars:
+    request: Plan a safe codemod migration for this legacy component.
+    expectedSkill: migration-planning
+- description: incident ambiguity regression
+  vars:
+    request: Summarize this incident PR for leadership.
+    expectedSkill: incident-response
+- description: outage negative for release notes
+  vars:
+    request: Summarize the checkout outage for responders.
+    expectedSkill: incident-response
+- description: conceptual negative
+  vars:
+    request: Explain how OAuth works conceptually.
+    expectedSkill: none
+- description: unrelated negative
+  vars:
+    request: Create a new pricing card from this design.
+    expectedSkill: none

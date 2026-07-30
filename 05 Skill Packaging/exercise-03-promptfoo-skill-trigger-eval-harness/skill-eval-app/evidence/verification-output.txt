@@ -1,0 +1,28 @@
+Exercise 03 - Promptfoo Skill Trigger Eval Harness
+Date: 2026-07-30
+
+Baseline catalog (v1)
+  8 cases
+  5 passed
+  3 failed
+  Weakest description: release-notes
+  Collisions: incident PR, outage summary, unrelated creation request
+
+Improved catalog (v2)
+  8 cases
+  8 passed
+  0 failed
+  0 errors
+
+Output contract
+  selectedSkill
+  rationale
+  inspectedFiles
+  artifact.status = ready
+  artifact.schemaVersion = 1.0
+
+Unit coverage
+  Explicit release selection
+  Incident/release ambiguity
+  Conceptual no-trigger request
+  Reviewer-ready output schema
