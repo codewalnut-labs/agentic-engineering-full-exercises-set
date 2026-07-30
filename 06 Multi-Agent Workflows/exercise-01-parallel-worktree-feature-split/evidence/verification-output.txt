@@ -1,0 +1,26 @@
+Exercise 01 - Parallel Worktree Feature Split
+Date: 2026-07-30
+
+Lane verification
+  filter-reset: 1 file, 2 tests passed
+  due-label: 1 file, 4 tests passed
+  activity-empty-state: 1 file, 2 tests passed
+
+Ownership audit
+  filter lane: FilterBar.tsx and FilterBar.test.tsx
+  detail lane: DetailPanel.tsx and DetailPanel.test.tsx
+  activity lane: ActivityFeed.tsx and ActivityFeed.test.tsx
+  integration owner: App.tsx, package.json, docs, and evidence
+  overlapping lane files: 0
+
+Integration
+  cherry-picks: 3
+  conflicts: 0
+
+Final app gate
+  lint-check: passed
+  test files: 4 passed
+  tests: 9 passed
+  format-check: passed
+  typecheck: passed
+  production build: passed
