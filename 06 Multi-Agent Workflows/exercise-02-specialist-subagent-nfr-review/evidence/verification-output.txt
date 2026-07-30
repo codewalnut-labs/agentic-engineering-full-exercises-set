@@ -33,3 +33,9 @@ Final integrated gate
   typecheck: passed
   production build: passed
   production JavaScript: 64.01 kB gzip
+
+Final-review fixes
+  preserve same-item save success feedback
+  key async panels by selected item to prevent status bleed
+  add selection-during-pending coverage
+  recheck security evidence after mounting synthetic fixtures

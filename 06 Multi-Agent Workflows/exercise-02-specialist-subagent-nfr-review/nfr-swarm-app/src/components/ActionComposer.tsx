@@ -22,7 +22,7 @@ export function ActionComposer({ item, onSave }: ActionComposerProps) {
     setNote(item.note);
     setMessage("");
     setError("");
-  }, [item.id, item.note, item.owner, item.status]);
+  }, [item.id]);
 
   async function submit() {
     setSaving(true);

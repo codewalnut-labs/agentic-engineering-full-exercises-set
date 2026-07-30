@@ -65,4 +65,19 @@ describe("ActionComposer NFR behavior", () => {
       "second note",
     )
   })
+
+  it("preserves success feedback when the same item receives saved props", async () => {
+    const onSave = vi.fn().mockResolvedValue(undefined)
+    const { rerender } = render(
+      <ActionComposer item={item("a", "Asha", "first note")} onSave={onSave} />,
+    )
+
+    fireEvent.click(screen.getByRole("button", { name: "Save draft" }))
+    expect((await screen.findByRole("status")).textContent).toContain("Draft saved")
+
+    rerender(
+      <ActionComposer item={item("a", "Mateo", "saved note")} onSave={onSave} />,
+    )
+    expect(screen.getByRole("status").textContent).toContain("Draft saved")
+  })
 })

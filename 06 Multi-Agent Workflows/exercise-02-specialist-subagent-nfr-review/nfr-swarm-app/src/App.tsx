@@ -62,13 +62,18 @@ export default function App() {
           <DetailPanel item={selected} />
           <ScenarioBoard focus={labContract.verificationGates} />
           <EvidencePanel
+            key={`evidence-${selected.id}`}
             item={selected}
             evidence={evidence[selected.id] ?? []}
             onCollect={collectSelectedEvidence}
           />
         </div>
         <div className="side-stack">
-          <ActionComposer item={selected} onSave={saveSelected} />
+          <ActionComposer
+            key={`action-${selected.id}`}
+            item={selected}
+            onSave={saveSelected}
+          />
           <ActivityFeed events={activityEvents} />
         </div>
       </section>

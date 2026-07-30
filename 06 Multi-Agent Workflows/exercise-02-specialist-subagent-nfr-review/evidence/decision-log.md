@@ -17,7 +17,7 @@ Accountable owner: integration/main thread
 | PERF-01: route splitting | Dismiss | Measured entry bundle was 61.7 kB gzip; no evidence supports added splitting complexity. |
 | PERF-02: memoize fixed small lists | Dismiss | Current list sizes are tiny; this is a micro-optimization without measurable benefit. |
 | PERF-03: simulated waits affect initial load | Dismiss | The review confirmed the dormant service was absent from the original shipped entry. After mounting, waits affect only explicit actions and have visible pending state. Re-measure when a real API exists. |
-| DIS-01/02/03 security hypotheses | Dismiss | React escaping, absence of a real mutation endpoint, and synthetic fixtures mean there is no current XSS, CSRF, or data-disclosure defect. |
+| DIS-01/02/03 security hypotheses | Dismiss after recheck | React escaping and absence of a real mutation endpoint remain valid. Mounted records are synthetic fixtures with no real identifiers or secrets; real records require server-side authorization and data minimization. |
 
 ## Residual risk
 

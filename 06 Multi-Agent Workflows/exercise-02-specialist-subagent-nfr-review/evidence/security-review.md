@@ -77,3 +77,17 @@ production bundle for representative fixture strings such as
 Dependency vulnerability status was not assessed because the requested review
 excluded broad verification. No conclusion about transitive package
 vulnerabilities should be inferred from this source review.
+
+## Post-integration recheck
+
+The final `App.tsx` now mounts the workflow and ships `workItems`, invalidating
+the original tree-shaking rationale in DIS-03. The records are synthetic
+exercise fixtures: invented organizations with no credentials, tokens, email
+addresses, or real personal identifiers. Shipping them is acceptable for this
+training app, so the dismissal is narrowed to synthetic data only. Before
+substituting real records, enforce server-side authorization and data
+minimization; client-side filtering is not an access-control boundary.
+
+DIS-01 remains valid because values still use React interpolation. DIS-02
+remains valid because the service is still an in-memory simulator with no
+network mutation endpoint.
