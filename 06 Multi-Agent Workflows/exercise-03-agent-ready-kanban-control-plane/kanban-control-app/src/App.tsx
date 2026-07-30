@@ -1,4 +1,5 @@
 import { DecisionLog } from "./components/DecisionLog";
+import { AgentControlBoard } from "./components/AgentControlBoard";
 import { EvidenceLedger } from "./components/EvidenceLedger";
 import { SkillPatternBoard } from "./components/SkillPatternBoard";
 import { labContract } from "./labContract";
@@ -42,6 +43,8 @@ export default function App() {
           <small>of {labContract.evidence.length} gates</small>
         </article>
       </section>
+
+      <AgentControlBoard />
 
       <section className="grid">
         <SkillPatternBoard contract={labContract} />
