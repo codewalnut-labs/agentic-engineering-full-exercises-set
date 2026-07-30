@@ -5,6 +5,14 @@ interface DetailPanelProps {
   item: WorkItem;
 }
 
+export function formatDueInDays(days: number) {
+  if (days === 0) {
+    return "Today";
+  }
+
+  return days === 1 ? "1 day" : `${days} days`;
+}
+
 export function DetailPanel({ item }: DetailPanelProps) {
   const risk = calculateRisk(item);
 
@@ -34,7 +42,7 @@ export function DetailPanel({ item }: DetailPanelProps) {
         </div>
         <div>
           <dt>Due</dt>
-          <dd>{item.dueInDays === 0 ? "Today" : `${item.dueInDays} days`}</dd>
+          <dd>{formatDueInDays(item.dueInDays)}</dd>
         </div>
       </dl>
       <p>{item.note}</p>
