@@ -8,16 +8,20 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc -b --pretty false",
-    "test": "node ./scripts/agent-check.mjs",
+    "test": "vitest run",
+    "test:component": "vitest run",
+    "test:e2e": "playwright test",
+    "test:contract": "node ./scripts/agent-check.mjs",
     "lint": "node ./scripts/lint-check.mjs",
     "format": "node ./scripts/format-check.mjs",
-    "agent:check": "npm run lint && npm run test && npm run format && npm run typecheck && npm run build"
+    "agent:check": "npm run lint && npm run test:contract && npm run test:component && npm run format && npm run typecheck && npm run build"
   },
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@playwright/test": "1.62.0",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@testing-library/jest-dom": "^6.9.1",
@@ -25,6 +29,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@vitejs/plugin-react": "^5.0.4",
     "jsdom": "^27.0.1",
+    "msw": "2.15.0",
     "typescript": "^5.9.3",
     "vite": "^7.1.12",
     "vitest": "^3.2.4"

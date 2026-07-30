@@ -1,0 +1,46 @@
+Exercise 02 verification output
+Date: 2026-07-30
+
+Baseline
+--------
+npx vitest run --reporter=verbose
+Test Files  1 passed (1)
+Tests       2 passed (2)
+Coverage at baseline: scoring utilities only; no rendered dashboard tests.
+
+Final repository gate
+---------------------
+npm run agent:check
+lint-check passed
+agent-check passed for MSW Component Network Boundary Tests
+Test Files  2 passed (2)
+Tests       7 passed (7)
+format-check passed
+typecheck passed
+production build passed (32 modules transformed)
+
+Component stability
+-------------------
+10 fresh Vitest processes
+component run 1 passed
+component run 2 passed
+component run 3 passed
+component run 4 passed
+component run 5 passed
+component run 6 passed
+component run 7 passed
+component run 8 passed
+component run 9 passed
+component run 10 passed
+
+Browser stability
+-----------------
+npm run test:e2e -- --repeat-each=10 --workers=2
+Running 10 tests using 2 workers
+10 passed (1.4m)
+
+Browser artifacts
+-----------------
+evidence/browser/case-dashboard-filtered.png
+Playwright HTML report, one trace per run, and a unique screenshot attachment
+per test result generated locally.
