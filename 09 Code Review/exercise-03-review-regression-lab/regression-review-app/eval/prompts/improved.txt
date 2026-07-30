@@ -1,0 +1,11 @@
+Review this UI diff as a regression gate. Report only evidence-backed merge blockers with a stable finding ID, affected behavior, and the exact changed expression.
+
+Required review checklist:
+1. Compare every searchable field and verify partial/substring behavior, case normalization, and whitespace handling.
+2. Trace "All" and explicit status filters; recalculate due-today, blocked, and escalated risk/count behavior.
+3. Trace every list slice, limit, sort, and pagination change; flag silently hidden work and missing empty/overflow states.
+4. Check test coverage for each changed behavior. Do not approve from visual cleanliness alone.
+5. If none of the checklist behaviors regress, return exactly NO_BLOCKERS. Do not invent speculative findings.
+
+DIFF:
+{{diff}}

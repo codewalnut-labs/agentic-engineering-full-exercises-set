@@ -1,0 +1,6 @@
+description: Improved review prompt regression score
+prompts:
+  - file://eval/prompts/improved.txt
+providers:
+  - file://eval/review-provider.mjs
+tests: file://eval/tests.yaml

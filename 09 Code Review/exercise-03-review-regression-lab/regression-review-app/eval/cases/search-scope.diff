@@ -1,0 +1,8 @@
+diff --git a/src/utils/filters.ts b/src/utils/filters.ts
+@@
+-      [item.name, item.owner, item.summary, item.note, ...item.tags]
++      [item.name, item.summary, ...item.tags]
+         .join(" ")
+         .toLowerCase()
+-        .includes(filters.query.toLowerCase());
++        .startsWith(filters.query.toLowerCase());
