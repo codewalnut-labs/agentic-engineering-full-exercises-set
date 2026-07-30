@@ -23,3 +23,12 @@ Ask your coding agent to inspect `fresh-review-app/`, run the fresh review, clas
 Produce the review report, blocker fixes, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Completed evidence
+
+- Fresh-agent findings and accountable-owner triage: [`docs/fresh-agent-review.md`](./docs/fresh-agent-review.md)
+- Red/green cache regressions: [`evidence/red-green-output.txt`](./evidence/red-green-output.txt)
+- Final verification: [`evidence/verification-output.txt`](./evidence/verification-output.txt)
+
+Run `npm run test:review` for the focused cache suite or `npm run agent:check`
+for the complete project gate.

@@ -1,0 +1,32 @@
+Focused cache regression evidence
+
+Before fixes
+Command: npm run test:review
+Exit code: 1
+Test files: 1 failed
+Tests: 4 failed
+- malformed cached JSON threw during fetch
+- sorting a frozen shared fixture threw
+- successful save left cached item unchanged
+- evidence collection overwrote persisted edits
+
+After fixes
+Command: npm run test:review
+Exit code: 0
+Test files: 1 passed
+Tests: 8 passed
+Duration: 3.73s
+
+Fresh re-review follow-up
+- mounted the reviewed API in a compatible workflow App
+- canonicalized ordering across fetch, save, and reload
+- guarded storage get/remove failures
+- made storage write failures explicit
+- added focused coverage for ordering and storage failures
+- scoped evidence by work item and surfaced save failures in the UI
+- final focused suite: 2 files, 10 tests passed
+- final fresh review: no remaining Critical or Important issues
+
+Patch applicability
+Command: git apply ../pr/review-target.diff
+Result: rejected as corrupt at line 22; App hunk context does not exist in the supplied base App.
