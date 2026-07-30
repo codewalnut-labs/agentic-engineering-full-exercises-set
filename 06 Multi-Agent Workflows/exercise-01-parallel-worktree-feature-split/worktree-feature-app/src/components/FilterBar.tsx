@@ -1,4 +1,4 @@
-import type { Filters } from "../utils/filters";
+import { defaultFilters, type Filters } from "../utils/filters";
 
 interface FilterBarProps {
   filters: Filters;
@@ -9,6 +9,11 @@ const priorities = ["All", "Low", "Medium", "High"] as const;
 const statuses = ["All", "Queued", "Ready", "In Review", "Blocked", "Escalated"] as const;
 
 export function FilterBar({ filters, onChange }: FilterBarProps) {
+  const filtersAreDefault =
+    filters.query === defaultFilters.query &&
+    filters.priority === defaultFilters.priority &&
+    filters.status === defaultFilters.status;
+
   return (
     <section className="filter-bar" aria-label="Filters">
       <label>
@@ -41,6 +46,14 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
           ))}
         </select>
       </label>
+      <button
+        type="button"
+        aria-label="Reset filters"
+        disabled={filtersAreDefault}
+        onClick={() => onChange(defaultFilters)}
+      >
+        Reset filters
+      </button>
     </section>
   );
 }

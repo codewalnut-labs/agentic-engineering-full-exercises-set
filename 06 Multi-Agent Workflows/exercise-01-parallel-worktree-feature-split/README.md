@@ -23,3 +23,15 @@ Ask your coding agent to inspect `worktree-feature-app/`, divide the work, run e
 Produce the integrated change, ownership map, worktree log, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Run the integrated result
+
+```sh
+cd worktree-feature-app
+npm install
+npm run agent:check
+```
+
+See `docs/file-ownership-map.md` for lane boundaries and
+`evidence/worktree-log.md` for branch, commit, verification, and merge-order
+evidence.

@@ -1,31 +1,11 @@
 # Task Board
 
-This is a seeded lab input for Parallel Worktree Feature Split. It gives the learner concrete constraints to inspect, implement, test, and verify.
+| Lane | Improvement | Status | Stop condition |
+|---|---|---|---|
+| Filter reset | Add an explicit reset action, disabled when filters are clear | In progress | Do not edit filter utilities or `App.tsx` |
+| Due label | Render singular/plural due labels consistently | In progress | Do not edit types or shared data |
+| Activity empty state | Add a useful empty state and semantic time elements | In progress | Do not edit activity data or styles |
+| Integration | Wire the existing workflow dashboard and cherry-pick lanes | Owned | Run the complete gate once after integration |
 
-## Operating Context
-
-Three-lane worktree plan for independent UI improvements
-
-## Concrete Inputs
-
-- worktree lane
-- branch owner
-- file ownership
-- integration gate
-
-## Seeded Risks
-
-- two lanes claim the same shared filter file
-- one lane lacks a verification command
-- integration owner is not assigned
-
-## Verification Expectations
-
-- file ownership audit
-- lane verification reports
-- merge-order simulation
-- final integration check
-
-## Agent Workflow Constraint
-
-The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the accountable engineer.
+Merge order is filter, detail, activity. Since ownership is disjoint, the
+order is a reproducibility choice rather than a hidden dependency.
