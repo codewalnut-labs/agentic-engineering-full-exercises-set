@@ -23,3 +23,14 @@ Ask your coding agent to inspect `kanban-control-app/`, write agent-ready cards,
 Produce the agent-ready cards, ownership map, completed lane, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Run the completed control plane
+
+```sh
+cd kanban-control-app
+npm install
+npm run agent:check
+```
+
+See `docs/agent-board.md`, `docs/ownership-map.md`, and `evidence/` for the
+cards, isolation boundaries, completed lane, and integration record.
