@@ -1,0 +1,29 @@
+- description: catches lost owner/note partial search
+  vars:
+    diff: file://eval/cases/search-scope.diff
+  assert:
+    - type: contains
+      value: owner and note search
+
+- description: catches blocked filtering and risk downgrade
+  vars:
+    diff: file://eval/cases/blocked-risk.diff
+  assert:
+    - type: contains
+      value: blocked work
+    - type: contains
+      value: due-today risk
+
+- description: catches silent queue truncation
+  vars:
+    diff: file://eval/cases/queue-truncation.diff
+  assert:
+    - type: contains
+      value: silently hides every item after the fifth
+
+- description: avoids a false blocker on a safe button-type change
+  vars:
+    diff: file://eval/cases/clean-control.diff
+  assert:
+    - type: equals
+      value: NO_BLOCKERS

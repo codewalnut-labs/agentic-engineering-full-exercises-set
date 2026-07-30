@@ -1,0 +1,19 @@
+Verification summary — 30 July 2026
+
+npm test
+- Baseline Promptfoo run: 1/4 passed (25%)
+- Improved Promptfoo run: 4/4 passed (100%)
+- Score change: +75 percentage points
+- Per-case evidence verifier: passed
+- Project agent-check smoke test: passed
+
+Harness integrity
+- Expected answer phrases are absent from both review prompts.
+- The deterministic provider inspects changed expressions, not fixture names.
+- The clean control requires exactly NO_BLOCKERS.
+- npm test regenerates both result artifacts before validating them.
+
+Dependency reproducibility
+- Promptfoo pinned to 0.121.19.
+- package-lock.json committed as the immutable dependency manifest.
+- npm audit --omit=dev: 0 production vulnerabilities.

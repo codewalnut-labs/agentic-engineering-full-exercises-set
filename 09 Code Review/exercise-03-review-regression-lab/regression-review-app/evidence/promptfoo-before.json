@@ -1,0 +1,583 @@
+{
+  "evalId": "eval-2h7-2026-07-30T17:56:28",
+  "results": {
+    "version": 3,
+    "timestamp": "2026-07-30T17:56:28.596Z",
+    "prompts": [
+      {
+        "raw": "Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\n{{diff}}",
+        "label": "eval\\prompts\\baseline.txt: Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\n{{diff}}",
+        "id": "64ef5d7282b77d61b486e5f1932ca4174c85ce82f9ac09743ae762cf050f10f0",
+        "provider": "deterministic-review-provider",
+        "metrics": {
+          "score": 1,
+          "testPassCount": 1,
+          "testFailCount": 3,
+          "testErrorCount": 0,
+          "assertPassCount": 1,
+          "assertFailCount": 4,
+          "totalLatencyMs": 15,
+          "tokenUsage": {
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "total": 0,
+            "numRequests": 4,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0
+              }
+            }
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "namedScoreWeights": {},
+          "cost": 0
+        }
+      }
+    ],
+    "results": [
+      {
+        "cost": 0,
+        "error": "Expected output to contain \"owner and note search\"",
+        "gradingResult": {
+          "pass": false,
+          "score": 0,
+          "reason": "Expected output to contain \"owner and note search\"",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Expected output to contain \"owner and note search\"",
+              "assertion": {
+                "type": "contains",
+                "value": "owner and note search"
+              }
+            }
+          ]
+        },
+        "id": "6c5594e4-633e-44bc-820f-aed536a6bdf1",
+        "latencyMs": 7,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\ndiff --git a/src/utils/filters.ts b/src/utils/filters.ts\n@@\n-      [item.name, item.owner, item.summary, item.note, ...item.tags]\n+      [item.name, item.summary, ...item.tags]\n         .join(\" \")\n         .toLowerCase()\n-        .includes(filters.query.toLowerCase());\n+        .startsWith(filters.query.toLowerCase());",
+          "label": "eval\\prompts\\baseline.txt: Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\n{{diff}}",
+          "config": {}
+        },
+        "promptId": "64ef5d7282b77d61b486e5f1932ca4174c85ce82f9ac09743ae762cf050f10f0",
+        "promptIdx": 0,
+        "provider": {
+          "id": "deterministic-review-provider",
+          "label": ""
+        },
+        "response": {
+          "output": "NO_BLOCKERS"
+        },
+        "score": 0,
+        "success": false,
+        "testCase": {
+          "description": "catches lost owner/note partial search",
+          "vars": {
+            "diff": "file://eval\\cases\\search-scope.diff"
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "owner and note search"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "diff": "file://eval\\cases\\search-scope.diff"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 1
+      },
+      {
+        "cost": 0,
+        "error": "Expected output to contain \"due-today risk\"",
+        "gradingResult": {
+          "pass": false,
+          "score": 0,
+          "reason": "Expected output to contain \"due-today risk\"",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Expected output to contain \"blocked work\"",
+              "assertion": {
+                "type": "contains",
+                "value": "blocked work"
+              }
+            },
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Expected output to contain \"due-today risk\"",
+              "assertion": {
+                "type": "contains",
+                "value": "due-today risk"
+              }
+            }
+          ]
+        },
+        "id": "d0a0dcd5-5b7a-4ded-b264-befe05320d3b",
+        "latencyMs": 2,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\ndiff --git a/src/utils/filters.ts b/src/utils/filters.ts\n@@\n-    const matchesStatus = filters.status === \"All\" || item.status === filters.status;\n+    const matchesStatus = filters.status === \"All\" || item.status !== \"Blocked\";\ndiff --git a/src/utils/scoring.ts b/src/utils/scoring.ts\n@@\n-  const urgency = item.dueInDays === 0 ? 24 : Math.max(0, 20 - item.dueInDays);\n-  const statusPenalty = item.status === \"Blocked\" || item.status === \"Escalated\" ? 18 : 6;\n+  const urgency = item.dueInDays < 3 ? 12 : 0;\n+  const statusPenalty = item.status === \"Escalated\" ? 12 : 0;",
+          "label": "eval\\prompts\\baseline.txt: Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\n{{diff}}",
+          "config": {}
+        },
+        "promptId": "64ef5d7282b77d61b486e5f1932ca4174c85ce82f9ac09743ae762cf050f10f0",
+        "promptIdx": 0,
+        "provider": {
+          "id": "deterministic-review-provider",
+          "label": ""
+        },
+        "response": {
+          "output": "NO_BLOCKERS"
+        },
+        "score": 0,
+        "success": false,
+        "testCase": {
+          "description": "catches blocked filtering and risk downgrade",
+          "vars": {
+            "diff": "file://eval\\cases\\blocked-risk.diff"
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "blocked work"
+            },
+            {
+              "type": "contains",
+              "value": "due-today risk"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 1,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "diff": "file://eval\\cases\\blocked-risk.diff"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 1
+      },
+      {
+        "cost": 0,
+        "error": "Expected output to contain \"silently hides every item after the fifth\"",
+        "gradingResult": {
+          "pass": false,
+          "score": 0,
+          "reason": "Expected output to contain \"silently hides every item after the fifth\"",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": false,
+              "score": 0,
+              "reason": "Expected output to contain \"silently hides every item after the fifth\"",
+              "assertion": {
+                "type": "contains",
+                "value": "silently hides every item after the fifth"
+              }
+            }
+          ]
+        },
+        "id": "0fa89710-2945-4566-86fc-e3517854b39a",
+        "latencyMs": 5,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\ndiff --git a/src/components/WorkQueue.tsx b/src/components/WorkQueue.tsx\n@@\n+  const visibleItems = items.slice(0, 5);\n@@\n-      {items.map((item) => {\n+      {visibleItems.map((item) => {",
+          "label": "eval\\prompts\\baseline.txt: Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\n{{diff}}",
+          "config": {}
+        },
+        "promptId": "64ef5d7282b77d61b486e5f1932ca4174c85ce82f9ac09743ae762cf050f10f0",
+        "promptIdx": 0,
+        "provider": {
+          "id": "deterministic-review-provider",
+          "label": ""
+        },
+        "response": {
+          "output": "NO_BLOCKERS"
+        },
+        "score": 0,
+        "success": false,
+        "testCase": {
+          "description": "catches silent queue truncation",
+          "vars": {
+            "diff": "file://eval\\cases\\queue-truncation.diff"
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "silently hides every item after the fifth"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 2,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "diff": "file://eval\\cases\\queue-truncation.diff"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 1
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "equals",
+                "value": "NO_BLOCKERS"
+              }
+            }
+          ]
+        },
+        "id": "f13d63b4-da67-4a68-81fe-d5a9a4276552",
+        "latencyMs": 1,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\ndiff --git a/src/components/WorkQueue.tsx b/src/components/WorkQueue.tsx\n@@\n           <button\n             className={item.id === selectedId ? \"queue-item active\" : \"queue-item\"}\n             key={item.id}\n             onClick={() => onSelect(item)}\n+            type=\"button\"\n           >",
+          "label": "eval\\prompts\\baseline.txt: Review this UI diff for correctness and report any merge blockers.\n\nDIFF:\n{{diff}}",
+          "config": {}
+        },
+        "promptId": "64ef5d7282b77d61b486e5f1932ca4174c85ce82f9ac09743ae762cf050f10f0",
+        "promptIdx": 0,
+        "provider": {
+          "id": "deterministic-review-provider",
+          "label": ""
+        },
+        "response": {
+          "output": "NO_BLOCKERS"
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "avoids a false blocker on a safe button-type change",
+          "vars": {
+            "diff": "file://eval\\cases\\clean-control.diff"
+          },
+          "assert": [
+            {
+              "type": "equals",
+              "value": "NO_BLOCKERS"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 3,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "diff": "file://eval\\cases\\clean-control.diff"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      }
+    ],
+    "stats": {
+      "successes": 1,
+      "failures": 3,
+      "errors": 0,
+      "tokenUsage": {
+        "prompt": 0,
+        "completion": 0,
+        "cached": 0,
+        "total": 0,
+        "numRequests": 4,
+        "completionDetails": {
+          "reasoning": 0,
+          "acceptedPrediction": 0,
+          "rejectedPrediction": 0,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0
+        },
+        "assertions": {
+          "total": 0,
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          }
+        }
+      },
+      "durationMs": 317,
+      "evaluationDurationMs": 317
+    }
+  },
+  "config": {
+    "tags": {},
+    "description": "Baseline review prompt regression score",
+    "prompts": [
+      "file://C:\\Users\\jenso\\Documents\\test-agentic skill\\wt-promptfoo-review-ex03\\09 Code Review\\exercise-03-review-regression-lab\\regression-review-app\\eval\\prompts\\baseline.txt"
+    ],
+    "providers": [
+      "file://eval/review-provider.mjs"
+    ],
+    "tests": [
+      {
+        "description": "catches lost owner/note partial search",
+        "vars": {
+          "diff": "file://eval/cases/search-scope.diff"
+        },
+        "assert": [
+          {
+            "type": "contains",
+            "value": "owner and note search"
+          }
+        ]
+      },
+      {
+        "description": "catches blocked filtering and risk downgrade",
+        "vars": {
+          "diff": "file://eval/cases/blocked-risk.diff"
+        },
+        "assert": [
+          {
+            "type": "contains",
+            "value": "blocked work"
+          },
+          {
+            "type": "contains",
+            "value": "due-today risk"
+          }
+        ]
+      },
+      {
+        "description": "catches silent queue truncation",
+        "vars": {
+          "diff": "file://eval/cases/queue-truncation.diff"
+        },
+        "assert": [
+          {
+            "type": "contains",
+            "value": "silently hides every item after the fifth"
+          }
+        ]
+      },
+      {
+        "description": "avoids a false blocker on a safe button-type change",
+        "vars": {
+          "diff": "file://eval/cases/clean-control.diff"
+        },
+        "assert": [
+          {
+            "type": "equals",
+            "value": "NO_BLOCKERS"
+          }
+        ]
+      }
+    ],
+    "env": {},
+    "outputPath": [
+      "evidence/promptfoo-before.json"
+    ],
+    "extensions": [],
+    "metadata": {},
+    "evaluateOptions": {}
+  },
+  "shareableUrl": null,
+  "metadata": {
+    "promptfooVersion": "0.121.19",
+    "nodeVersion": "v24.11.0",
+    "platform": "win32",
+    "arch": "x64",
+    "exportedAt": "2026-07-30T17:56:29.202Z",
+    "evaluationCreatedAt": "2026-07-30T17:56:28.596Z"
+  },
+  "vars": [
+    "diff"
+  ],
+  "runtimeOptions": {
+    "eventSource": "cli",
+    "showProgressBar": false,
+    "repeat": 1,
+    "maxConcurrency": 4,
+    "cache": false
+  }
+}

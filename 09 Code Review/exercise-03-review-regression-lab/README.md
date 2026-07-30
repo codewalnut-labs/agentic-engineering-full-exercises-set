@@ -23,3 +23,15 @@ Ask your coding agent to inspect `regression-review-app/`, build the eval cases,
 Produce the eval config, before/after results, improved review prompt, and verification notes.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Completed evaluation
+
+- Baseline and improved configs: `regression-review-app/promptfoo.before.yaml`
+  and `regression-review-app/promptfoo.after.yaml`
+- Improved prompt: `regression-review-app/eval/prompts/improved.txt`
+- Regression cases and clean control: `regression-review-app/eval/cases/`
+- Before/after evidence: `regression-review-app/evidence/`
+- Verification notes: `docs/verification-notes.md`
+
+Run `npm run eval:review` to regenerate both Promptfoo result files. Run
+`npm test` to verify the checked-in score improved from 25% to 100%.

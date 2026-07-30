@@ -1,0 +1,8 @@
+diff --git a/src/components/WorkQueue.tsx b/src/components/WorkQueue.tsx
+@@
+           <button
+             className={item.id === selectedId ? "queue-item active" : "queue-item"}
+             key={item.id}
+             onClick={() => onSelect(item)}
++            type="button"
+           >

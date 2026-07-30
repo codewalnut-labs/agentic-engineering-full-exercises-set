@@ -1,0 +1,6 @@
+description: Baseline review prompt regression score
+prompts:
+  - file://eval/prompts/baseline.txt
+providers:
+  - file://eval/review-provider.mjs
+tests: file://eval/tests.yaml

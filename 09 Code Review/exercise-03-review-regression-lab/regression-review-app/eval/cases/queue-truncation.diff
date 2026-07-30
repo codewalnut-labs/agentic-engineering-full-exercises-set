@@ -1,0 +1,6 @@
+diff --git a/src/components/WorkQueue.tsx b/src/components/WorkQueue.tsx
+@@
++  const visibleItems = items.slice(0, 5);
+@@
+-      {items.map((item) => {
++      {visibleItems.map((item) => {
