@@ -23,3 +23,13 @@ Ask your coding agent to inspect `nfr-swarm-app/`, run focused specialist review
 Produce the specialist findings, fix/defer/dismiss table, implementation change, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Run the completed review
+
+```sh
+cd nfr-swarm-app
+npm install
+npm run agent:check
+```
+
+Specialist reports and the fix/defer/dismiss table are in `evidence/`.

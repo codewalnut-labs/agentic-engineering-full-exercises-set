@@ -1,74 +1,77 @@
-import { calculateReadiness, groupByRisk } from "./domainReadiness";
-import { labContract } from "./labContract";
-import "./styles.css";
+import { useMemo, useState } from "react"
+
+import { ActionComposer } from "./components/ActionComposer"
+import { ActivityFeed } from "./components/ActivityFeed"
+import { DetailPanel } from "./components/DetailPanel"
+import { EvidencePanel } from "./components/EvidencePanel"
+import { FilterBar } from "./components/FilterBar"
+import { MetricStrip } from "./components/MetricStrip"
+import { PageHeader } from "./components/PageHeader"
+import { ScenarioBoard } from "./components/ScenarioBoard"
+import { WorkQueue } from "./components/WorkQueue"
+import { activityEvents, workItems as initialWorkItems } from "./data/workItems"
+import { labContract } from "./labContract"
+import { collectEvidence, saveAction } from "./services/workflowApi"
+import type { ActionDraft, WorkItem } from "./types"
+import { defaultFilters, filterItems } from "./utils/filters"
+import "./styles.css"
 
 export default function App() {
-  const readiness = calculateReadiness(labContract);
-  const groupedRisks = groupByRisk(labContract.seededDefects);
+  const [items, setItems] = useState(initialWorkItems)
+  const [selectedId, setSelectedId] = useState(initialWorkItems[0].id)
+  const [filters, setFilters] = useState(defaultFilters)
+  const [evidence, setEvidence] = useState<Record<string, string[]>>({})
+  const filteredItems = useMemo(() => filterItems(items, filters), [filters, items])
+  const selected = items.find((item) => item.id === selectedId) ?? initialWorkItems[0]
+
+  async function saveSelected(draft: ActionDraft) {
+    const updated = await saveAction(selected.id, draft)
+    setItems((current) =>
+      current.map((item) => (item.id === updated.id ? updated : item)),
+    )
+  }
+
+  async function collectSelectedEvidence() {
+    const entries = await collectEvidence(selected)
+    setEvidence((current) => ({ ...current, [selected.id]: entries }))
+  }
+
+  function selectItem(item: WorkItem) {
+    setSelectedId(item.id)
+  }
 
   return (
     <main className="app-shell">
-      <section className="page-header">
-        <div>
-          <p className="eyebrow">{labContract.competency}</p>
-          <h1>{labContract.title}</h1>
-          <p>{labContract.domain}</p>
-        </div>
-        <div className="metric-card">
-          <span>Readiness</span>
-          <strong>{readiness.score}%</strong>
-          <small>{readiness.status}</small>
-        </div>
-      </section>
-
+      <PageHeader
+        competency={labContract.competency}
+        title={labContract.title}
+        subtitle={labContract.domain}
+      />
+      <MetricStrip
+        metrics={[
+          { label: "Visible work", value: filteredItems.length, hint: `${items.length} total` },
+          { label: "High priority", value: items.filter((item) => item.priority === "High").length, hint: "needs review" },
+          { label: "Blocked", value: items.filter((item) => item.status === "Blocked").length, hint: "workflow risk" },
+          { label: "Evidence", value: evidence[selected.id]?.length ?? 0, hint: `for ${selected.name}` },
+        ]}
+      />
+      <FilterBar filters={filters} onChange={setFilters} />
       <section className="workspace-grid">
-        <article className="panel">
-          <h2>Domain Model</h2>
-          <ul>
-            {labContract.entities.map((entity) => (
-              <li key={entity}>{entity}</li>
-            ))}
-          </ul>
-        </article>
-
-        <article className="panel">
-          <h2>Seeded Defects</h2>
-          <ul>
-            {labContract.seededDefects.map((defect) => (
-              <li key={defect}>{defect}</li>
-            ))}
-          </ul>
-        </article>
-
-        <article className="panel">
-          <h2>Verification Gates</h2>
-          <ul>
-            {labContract.verificationGates.map((gate) => (
-              <li key={gate}>{gate}</li>
-            ))}
-          </ul>
-        </article>
-      </section>
-
-      <section className="workspace-grid">
-        <article className="panel wide">
-          <h2>Agent Workflow</h2>
-          <ol>
-            {labContract.agentWorkflow.map((step) => (
-              <li key={step}>{step}</li>
-            ))}
-          </ol>
-        </article>
-
-        <article className="panel">
-          <h2>Risk Groups</h2>
-          {Object.entries(groupedRisks).map(([risk, items]) => (
-            <p key={risk}>
-              <strong>{risk}</strong>: {items.length}
-            </p>
-          ))}
-        </article>
+        <WorkQueue items={filteredItems} selectedId={selected.id} onSelect={selectItem} />
+        <div className="center-stack">
+          <DetailPanel item={selected} />
+          <ScenarioBoard focus={labContract.verificationGates} />
+          <EvidencePanel
+            item={selected}
+            evidence={evidence[selected.id] ?? []}
+            onCollect={collectSelectedEvidence}
+          />
+        </div>
+        <div className="side-stack">
+          <ActionComposer item={selected} onSave={saveSelected} />
+          <ActivityFeed events={activityEvents} />
+        </div>
       </section>
     </main>
-  );
+  )
 }
