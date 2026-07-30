@@ -3,7 +3,9 @@ Date: 2026-07-30
 
 Control plane
   cards triaged: 4
-  states represented: needs-info, ready-for-agent, ready-for-human, blocked, done
+  states supported: needs-info, ready-for-agent, ready-for-human, blocked, done
+  current card states: needs-info, ready-for-human, blocked, done
+  ESC-120 transition: ready-for-agent -> in-review -> done
   integration owner: assigned
   merge order: explicit
   shared-file parallel collisions: rejected

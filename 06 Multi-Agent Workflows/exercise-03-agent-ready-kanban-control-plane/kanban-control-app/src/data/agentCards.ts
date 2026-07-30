@@ -9,6 +9,7 @@ export interface AgentReadyCard {
   id: string
   title: string
   state: TriageState
+  previousState?: TriageState
   owner: string
   area: string
   branch: string
@@ -41,6 +42,7 @@ export const agentCards: AgentReadyCard[] = [
     id: "ESC-120",
     title: "Correct inherited-incident severity",
     state: "done",
+    previousState: "ready-for-agent",
     owner: "Severity agent",
     area: "severity resolution",
     branch: "lane/esc-120-severity",

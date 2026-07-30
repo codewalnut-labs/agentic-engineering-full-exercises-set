@@ -24,7 +24,8 @@
 
 ## ESC-120 - Correct inherited-incident severity
 
-- State: `ready-for-agent` (implementation lane completed)
+- State: `done`
+- State history: `ready-for-agent` -> `in-review` -> `done`
 - Owner: Severity agent; reviewer: escalation domain owner
 - Branch/worktree: `lane/esc-120-severity` / `wt-kanban-lane-esc120`
 - Reproduction: an inherited incident with parent severity `critical` and local
@@ -53,7 +54,7 @@
 
 ## Merge queue
 
-1. ESC-120 severity utility - integration owner reviews and cherry-picks.
+1. ESC-120 severity utility - completed and integrated as `b5d186a`.
 2. ESC-118 only after reproduction and schema-collision review.
 3. ESC-119 only after human copy approval.
 4. ESC-121 only after measurement and service-owner approval.

@@ -17,6 +17,9 @@ export function AgentControlBoard() {
               <strong>{card.id}</strong>
               <p>{card.title}</p>
               <span>{card.state}</span>
+              {card.previousState ? (
+                <small>Previous state: {card.previousState}</small>
+              ) : null}
             </div>
             <dl>
               <dt>Owner</dt>
