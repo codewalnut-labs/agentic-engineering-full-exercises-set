@@ -23,3 +23,19 @@ Ask your coding agent to inspect `migration-playbook-app/`, package the migratio
 Produce the skill package, codemod or migration helper, migrated slice, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Run the completed playbook
+
+From `migration-playbook-app/`:
+
+```sh
+npm install
+npm run migration:page-header:dry
+npm run migration:page-header
+npm run agent:check
+```
+
+The implemented slice is intentionally limited to `PageHeader.tsx`. The gate
+checks the transform fixture, idempotence, an unchanged control fixture,
+server-rendered component behavior, skill trigger cases, type safety, and the
+production build.

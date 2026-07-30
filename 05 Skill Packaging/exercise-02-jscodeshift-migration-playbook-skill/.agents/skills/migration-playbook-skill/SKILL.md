@@ -1,34 +1,37 @@
 ---
 name: migration-playbook-skill
-description: Use when practicing the Migration Playbook Skill workflow for Legacy support case console.
+description: Plan and execute small, behavior-preserving JavaScript or TypeScript migrations with jscodeshift. Use for legacy React or legacy JSX component upgrades, repeatable codemods, migration inventories, characterization tests, dry runs, idempotence checks, batch stop conditions, and reviewer-facing before/after evidence.
 ---
 
 # Migration Playbook Skill
 
-## Use When
-
-- Migrating legacy React components to typed, tested modules.
-- The task needs phases, stop conditions, behavior preservation, and review notes.
-- A migration must avoid shared foundations unless explicitly approved.
-
-## Do Not Use When
-
-- The learner has not yet read the exercise README.
-- The task is a greenfield component or simple copy edit.
-- The requested output is outside this exercise folder.
-
 ## Workflow
 
 1. Read `references/migration-phases.md`.
-2. Identify the component boundary, public props, keyboard behavior, visual states, and tests before editing.
-3. Add characterization tests for current behavior.
-4. Migrate one component at a time; stop before shared foundation edits unless the exercise explicitly grants ownership.
-5. Run typecheck, tests, and review notes after each phase.
-6. Update eval cases when the skill triggers too broadly or misses behavior preservation.
+2. Inventory the target files, owners, public APIs, interaction behavior, and
+   shared dependencies. Define the batch and stop condition before editing.
+3. Add characterization coverage and input/output fixtures.
+4. Run the transform against fixtures, then confirm it is idempotent.
+5. Run jscodeshift in dry mode on the batch and inspect the proposed diff.
+6. Apply only the approved slice. Never expand into shared foundations, public
+   API changes, routing, or global styling without explicit ownership.
+7. Run behavior tests, typecheck, build, and the codemod tests.
+8. Record changed files, preserved behavior, intentional changes, command
+   output, and the next safe slice.
+
+## Commands
+
+For the included readonly-props slice, run from `migration-playbook-app/`:
+
+```sh
+npm run migration:page-header:dry
+npm run migration:page-header
+npm run agent:check
+```
 
 ## Output Contract
 
-- Component boundary and owner.
+- Component boundary, owner, batch size, and stop condition.
 - Preserved behaviors and intentional changes.
-- Tests added before and after migration.
-- Stop condition reached or next safe slice.
+- Codemod fixture, idempotence, and behavior-test results.
+- Applied diff plus the next safe slice.

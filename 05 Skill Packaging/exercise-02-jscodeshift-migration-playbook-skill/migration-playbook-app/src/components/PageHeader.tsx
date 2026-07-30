@@ -1,7 +1,7 @@
 interface PageHeaderProps {
-  title: string;
-  subtitle: string;
-  competency: string;
+  readonly title: string
+  readonly subtitle: string
+  readonly competency: string
 }
 
 export function PageHeader({ title, subtitle, competency }: PageHeaderProps) {

@@ -1,31 +1,30 @@
 # Migration Notes
 
-This is a seeded lab input for jscodeshift Migration Playbook Skill. It gives the learner concrete constraints to inspect, implement, test, and verify.
+## Applied slice
 
-## Operating Context
+- Target: `src/components/PageHeader.tsx`
+- Owner boundary: the component-local `PageHeaderProps` interface
+- Change: mark all three public props `readonly`
+- Batch size: one component
+- Tool: jscodeshift with the `tsx` parser
 
-Legacy component migration skill with before/after evals
+## Preserved behavior
 
-## Concrete Inputs
+- Title, subtitle, and competency text remain unchanged.
+- Both native buttons remain `type="button"`.
+- The action group retains `aria-label="Exercise actions"`.
+- No event, keyboard, styling, routing, or shared-foundation code changed.
 
-- legacy component
-- migration phase
-- stop condition
-- skill eval
+## Safety evidence
 
-## Seeded Risks
+- Fixture transform passed.
+- Second transform is identical to the first.
+- An unrelated props interface remains unchanged.
+- Server-rendered behavior test covers content, controls, and the ARIA label.
+- Dry run reported one target file, zero errors, and one proposed change.
 
-- skill migrates shared foundations without owner approval
-- converted component loses keyboard behavior
-- when-not-to-use case still triggers the migration
+## Stop condition
 
-## Verification Expectations
-
-- migration eval
-- component behavior test
-- trigger negative case
-- before/after skill comparison
-
-## Agent Workflow Constraint
-
-The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the accountable engineer.
+The slice stops after `PageHeader.tsx`. Migrating other prop interfaces is the
+next safe batch only after component ownership and behavior coverage are
+confirmed; shared types and global styles remain out of scope.
