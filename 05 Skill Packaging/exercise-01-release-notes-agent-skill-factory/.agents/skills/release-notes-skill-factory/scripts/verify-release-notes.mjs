@@ -2,10 +2,10 @@ import fs from "node:fs"
 import path from "node:path"
 import { isComplete, publishedTypes, renderReleaseNotes } from "./release-notes-lib.mjs"
 
-const [, , inputArg, outputArg, triggerArg] = process.argv
-if (!inputArg || !outputArg || !triggerArg) {
+const [, , inputArg, outputArg, triggerArg, skillArg] = process.argv
+if (!inputArg || !outputArg || !triggerArg || !skillArg) {
   console.error(
-    "Usage: node verify-release-notes.mjs <input.json> <output.md> <trigger-cases.json>",
+    "Usage: node verify-release-notes.mjs <input.json> <output.md> <trigger-cases.json> <SKILL.md>",
   )
   process.exit(2)
 }
@@ -14,6 +14,7 @@ const readJson = (file) => JSON.parse(fs.readFileSync(path.resolve(file), "utf8"
 const release = readJson(inputArg)
 const actual = fs.readFileSync(path.resolve(outputArg), "utf8")
 const triggerCases = readJson(triggerArg)
+const skillText = fs.readFileSync(path.resolve(skillArg), "utf8")
 const failures = []
 
 if (actual !== renderReleaseNotes(release)) {
@@ -59,12 +60,24 @@ for (const change of release.changes) {
   }
 }
 
+const descriptionMatch = skillText.match(/^---\s*[\s\S]*?^description:\s*(.+)$/m)
+if (!descriptionMatch) failures.push("SKILL.md is missing its trigger description")
+const triggerDescription = descriptionMatch?.[1]?.toLowerCase() ?? ""
+const triggerTerms = [
+  "release notes",
+  "changelog",
+  "breaking changes",
+  "customer impact",
+  "rollout",
+  "rollback",
+].filter((term) => triggerDescription.includes(term))
+
 function triggerDecision(prompt) {
   const text = prompt.toLowerCase()
-  return (
-    text.includes("release note") ||
-    text.includes("changelog") ||
-    (text.includes("breaking change") && text.includes("customer"))
+  return triggerTerms.some(
+    (term) =>
+      text.includes(term) ||
+      text.includes(term.replace(/s$/, "")),
   )
 }
 

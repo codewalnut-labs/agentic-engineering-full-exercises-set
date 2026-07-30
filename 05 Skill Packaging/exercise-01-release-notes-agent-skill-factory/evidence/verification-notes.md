@@ -5,7 +5,8 @@
 - Skill package: `.agents/skills/release-notes-skill-factory/`
 - Input fixture: 5 changes mapped to 5 files in `v2.3.0...v2.4.0`
 - Output: `evidence/RELEASE_NOTES.md`
-- Trigger smoke cases: 2 positive and 2 negative prompts
+- Trigger smoke cases: 2 positive and 2 negative prompts evaluated against the
+  packaged `SKILL.md` trigger description
 
 ## Seeded risk coverage
 

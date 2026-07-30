@@ -11,8 +11,10 @@ function isComplete(change) {
     change.owner.trim().length > 0 &&
     Array.isArray(change.files) &&
     change.files.length > 0 &&
+    change.rollout?.trim().length > 0 &&
+    change.rollback?.trim().length > 0 &&
     (!change.breaking ||
-      (change.migration?.trim().length > 0 && change.rollback?.trim().length > 0))
+      change.migration?.trim().length > 0)
   )
 }
 
@@ -85,8 +87,9 @@ export function renderReleaseNotes(release) {
       if (!hasEvidence(change)) missing.push("verification evidence")
       if (!change.owner?.trim()) missing.push("owner")
       if (!change.files?.length) missing.push("diff mapping")
+      if (!change.rollout?.trim()) missing.push("rollout guidance")
+      if (!change.rollback?.trim()) missing.push("rollback guidance")
       if (change.breaking && !change.migration?.trim()) missing.push("migration guidance")
-      if (change.breaking && !change.rollback?.trim()) missing.push("rollback guidance")
       sections.push(`- **${change.id}:** ${change.summary} Missing ${missing.join(", ")}.`)
     }
     sections.push("")
