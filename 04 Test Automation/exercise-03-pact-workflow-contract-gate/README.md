@@ -23,3 +23,28 @@ Ask your coding agent to inspect both repositories, add the contract test gate, 
 Produce the consumer contract, provider verification, any exposed fix, and verification output from both sides.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Run the contract gate
+
+Generate and verify the consumer contract first:
+
+```sh
+cd workflow-gate-app
+npm install
+npm run agent:check
+```
+
+Then verify the provider against the generated Pact in `pacts/`:
+
+```sh
+cd ../workflow-rules-api
+mvn test
+```
+
+The consumer test exercises the production API client for both workflow listing
+and decision submission. The provider test starts Spring Boot on a random port
+and verifies those same interactions against the generated Pact artifact.
+
+During local development, Vite proxies `/api` to `http://127.0.0.1:8080`.
+Override that target with `WORKFLOW_RULES_API_URL`; deployed clients can use
+`VITE_WORKFLOW_RULES_API_URL` when the API is hosted on a separate origin.
