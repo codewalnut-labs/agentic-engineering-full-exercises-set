@@ -1,31 +1,11 @@
 # File Ownership Map
 
-This is a seeded lab input for Parallel Worktree Feature Split. It gives the learner concrete constraints to inspect, implement, test, and verify.
+| Lane | Branch | Owner | Owned files | Verification |
+|---|---|---|---|---|
+| Filter reset | `lane/filter-reset` | filter agent | `FilterBar.tsx`, `FilterBar.test.tsx` | focused Vitest run |
+| Due label | `lane/due-label` | detail agent | `DetailPanel.tsx`, `DetailPanel.test.tsx` | focused Vitest run |
+| Activity empty state | `lane/activity-empty-state` | activity agent | `ActivityFeed.tsx`, `ActivityFeed.test.tsx` | focused Vitest run |
+| Integration | `feat/parallel-worktree-feature-split` | accountable integration owner | `App.tsx`, `package.json`, documentation, evidence | full `npm run agent:check` |
 
-## Operating Context
-
-Three-lane worktree plan for independent UI improvements
-
-## Concrete Inputs
-
-- worktree lane
-- branch owner
-- file ownership
-- integration gate
-
-## Seeded Risks
-
-- two lanes claim the same shared filter file
-- one lane lacks a verification command
-- integration owner is not assigned
-
-## Verification Expectations
-
-- file ownership audit
-- lane verification reports
-- merge-order simulation
-- final integration check
-
-## Agent Workflow Constraint
-
-The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the accountable engineer.
+No implementation file is owned by more than one lane. Only the integration
+owner may change shared wiring or evidence.
