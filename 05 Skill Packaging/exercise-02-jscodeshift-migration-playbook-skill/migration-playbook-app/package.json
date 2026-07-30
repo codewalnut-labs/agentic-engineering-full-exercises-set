@@ -8,7 +8,12 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc -b --pretty false",
-    "test": "node ./scripts/agent-check.mjs",
+    "test": "node ./scripts/agent-check.mjs && npm run test:codemod && npm run test:behavior && npm run test:triggers",
+    "test:codemod": "node --test tests/codemod.test.mjs",
+    "test:behavior": "vitest run tests/PageHeader.test.tsx",
+    "test:triggers": "node ./scripts/verify-trigger-cases.mjs",
+    "migration:page-header:dry": "jscodeshift src/components/PageHeader.tsx --transform ../.agents/skills/migration-playbook-skill/transforms/readonly-component-props.cjs --parser=tsx --interfaceName=PageHeaderProps --dry --print",
+    "migration:page-header": "jscodeshift src/components/PageHeader.tsx --transform ../.agents/skills/migration-playbook-skill/transforms/readonly-component-props.cjs --parser=tsx --interfaceName=PageHeaderProps",
     "lint": "node ./scripts/lint-check.mjs",
     "format": "node ./scripts/format-check.mjs",
     "agent:check": "npm run lint && npm run test && npm run format && npm run typecheck && npm run build"
@@ -22,6 +27,8 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.0.4",
     "typescript": "^5.9.3",
-    "vite": "^7.1.12"
+    "jscodeshift": "17.4.0",
+    "vite": "^7.1.12",
+    "vitest": "3.2.4"
   }
 }

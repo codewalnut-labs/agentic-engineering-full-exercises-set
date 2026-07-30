@@ -13,5 +13,10 @@
     "name": "should_not_trigger_on_small_style_fix",
     "prompt": "Change the button margin from 8px to 12px.",
     "shouldTrigger": false
+  },
+  {
+    "name": "should_not_trigger_on_greenfield_component",
+    "prompt": "Create a new pricing card component from this design.",
+    "shouldTrigger": false
   }
 ]
