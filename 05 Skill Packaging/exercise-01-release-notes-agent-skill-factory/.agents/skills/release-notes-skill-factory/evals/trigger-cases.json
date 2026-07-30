@@ -13,5 +13,10 @@
     "name": "should_not_trigger_on_code_review",
     "prompt": "Review this React diff for accessibility bugs.",
     "shouldTrigger": false
+  },
+  {
+    "name": "should_not_trigger_on_deployment",
+    "prompt": "Deploy the current build to the staging environment.",
+    "shouldTrigger": false
   }
 ]

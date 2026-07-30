@@ -23,3 +23,24 @@ Ask your coding agent to inspect `release-notes-app/`, create the release-note s
 Produce the skill package, generated release notes, trigger smoke case, and verification notes.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Run the completed skill
+
+From `release-notes-app/`:
+
+```sh
+npm install
+npm run agent:check
+```
+
+The gate generates `evidence/RELEASE_NOTES.md`, compares every published or
+blocked item with the structured diff fixture, confirms internal-only changes
+are excluded, checks the deterministic snapshot, and runs the trigger smoke
+cases.
+
+To run the reusable workflow independently:
+
+```sh
+npm run release:generate
+npm run release:verify
+```

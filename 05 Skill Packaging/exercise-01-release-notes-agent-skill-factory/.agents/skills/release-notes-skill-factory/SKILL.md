@@ -1,34 +1,30 @@
 ---
 name: release-notes-skill-factory
-description: Use when practicing the Release Notes Skill Factory workflow for Product release dashboard.
+description: Generate or review customer-facing release notes from commits, pull requests, diffs, changelogs, and verification evidence. Use when asked to group changes by impact, identify breaking changes, exclude internal-only work, add rollout or rollback guidance, or flag release items that lack evidence.
 ---
 
 # Release Notes Skill Factory
 
-## Use When
-
-- Turning commits, PR summaries, and evidence notes into customer-facing release notes.
-- The task asks to group changes by customer impact, flag missing evidence, or identify breaking changes.
-- A team needs repeatable release-note output from the same source data.
-
-## Do Not Use When
-
-- The learner has not yet read the exercise README.
-- The task is a code review, migration, or implementation task with no release communication output.
-- The requested output is outside this exercise folder.
-
 ## Workflow
 
 1. Read `references/release-note-taxonomy.md`.
-2. Parse commit and PR fixtures before summarizing.
-3. Group changes into Added, Changed, Fixed, Deprecated, Removed, Security, and Internal.
-4. Mark customer-facing impact, breaking changes, rollout flags, missing evidence, and owner.
-5. Exclude purely internal refactors unless they affect customers or operations.
-6. Run trigger evals and update examples when the skill over-includes or misses risk.
+2. Collect the compare range, changed files, commit or PR summaries, owner, rollout
+   notes, rollback notes, and verification evidence.
+3. Normalize the inputs to the schema demonstrated in
+   `fixtures/release-changes.json`.
+4. Run `node scripts/generate-release-notes.mjs <input.json> <output.md>`.
+5. Review every generated item against the diff. Do not infer features from a
+   filename or commit subject when the evidence is incomplete.
+6. Run `node scripts/verify-release-notes.mjs <input.json> <output.md>
+   evals/trigger-cases.json`.
+7. Return the generated notes plus any publication blockers.
 
 ## Output Contract
 
-- One concise release note per customer-facing change.
-- Evidence link or command for each item.
-- Explicit breaking-change and rollback notes.
-- Missing-evidence section for changes that should not ship yet.
+- Put breaking changes first and include migration and rollback guidance.
+- Group publishable items as Added, Changed, Fixed, Security, Deprecated, or Removed.
+- Write one concise, customer-focused entry per change with owner and evidence.
+- Exclude `Internal` items unless they have operational or customer impact.
+- Put changes without evidence in `Not ready for publication`; do not duplicate
+  them in published sections.
+- Preserve source change IDs so verification can trace notes back to the diff.

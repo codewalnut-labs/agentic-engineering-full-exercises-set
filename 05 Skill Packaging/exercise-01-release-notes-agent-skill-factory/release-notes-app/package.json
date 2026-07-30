@@ -8,10 +8,12 @@
                     "build":  "tsc -b \u0026\u0026 vite build",
                     "preview":  "vite preview --host 127.0.0.1",
                     "typecheck":  "tsc -b --pretty false",
-                    "test":  "node ./scripts/agent-check.mjs",
+                    "test":  "node ./scripts/agent-check.mjs && npm run release:verify",
+                    "release:generate": "node ../.agents/skills/release-notes-skill-factory/scripts/generate-release-notes.mjs ../.agents/skills/release-notes-skill-factory/fixtures/release-changes.json ../evidence/RELEASE_NOTES.md",
+                    "release:verify": "node ../.agents/skills/release-notes-skill-factory/scripts/verify-release-notes.mjs ../.agents/skills/release-notes-skill-factory/fixtures/release-changes.json ../evidence/RELEASE_NOTES.md ../.agents/skills/release-notes-skill-factory/evals/trigger-cases.json ../.agents/skills/release-notes-skill-factory/SKILL.md",
                     "lint":  "node ./scripts/lint-check.mjs",
                     "format":  "node ./scripts/format-check.mjs",
-                    "agent:check":  "npm run lint \u0026\u0026 npm run test \u0026\u0026 npm run format \u0026\u0026 npm run typecheck \u0026\u0026 npm run build"
+                    "agent:check":  "npm run lint && npm run release:generate && npm run test && npm run format && npm run typecheck && npm run build"
                 },
     "dependencies":  {
                          "react":  "^19.2.0",
