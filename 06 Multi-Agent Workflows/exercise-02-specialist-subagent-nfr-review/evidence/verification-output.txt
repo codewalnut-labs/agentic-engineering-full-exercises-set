@@ -1,0 +1,41 @@
+Exercise 02 - Specialist Subagent NFR Review
+Date: 2026-07-30
+
+Specialist passes
+  security: 1 Low, 3 dismissed
+  accessibility: 2 Medium, 1 Low
+  performance: 0 actionable, 3 measured dismissals
+  testability: 1 P0, 4 P1
+
+Decisions
+  fixes: workflow reachability; stale draft; runtime test gate;
+         selection/status semantics; save error; validation help
+  deferred: deployment headers; repository fixture isolation; injected scheduler
+  dismissed: unsupported security hypotheses and unmeasured micro-optimizations
+
+Focused red/green evidence
+  App + ActionComposer: 2 files, 4 tests passed
+  EvidencePanel: 1 file, 1 test passed
+
+Post-fix specialist recheck
+  testability findings 1, 4, 5: addressed
+  testability findings 2, 3: intentionally deferred
+  accessibility findings 2, 3: addressed
+  accessibility finding 1: source recheck partial, then completed with
+    evidence pending/completion state and focused coverage
+
+Final integrated gate
+  contract check: passed
+  test files: 3 passed
+  tests: 5 passed
+  lint-check: passed
+  format-check: passed
+  typecheck: passed
+  production build: passed
+  production JavaScript: 64.01 kB gzip
+
+Final-review fixes
+  preserve same-item save success feedback
+  key async panels by selected item to prevent status bleed
+  add selection-during-pending coverage
+  recheck security evidence after mounting synthetic fixtures

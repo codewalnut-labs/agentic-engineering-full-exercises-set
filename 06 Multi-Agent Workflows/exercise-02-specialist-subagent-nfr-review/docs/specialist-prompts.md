@@ -1,31 +1,21 @@
 # Specialist Prompts
 
-This is a seeded lab input for Specialist Subagent NFR Review. It gives the learner concrete constraints to inspect, implement, test, and verify.
+Each read-only specialist received the same report contract:
 
-## Operating Context
+1. Review only `nfr-swarm-app`.
+2. Report severity, exact file/line evidence, failure or user-impact scenario,
+   recommended action, and a concrete verification method.
+3. Distinguish actionable findings from plausible but unsupported risks.
+4. Do not edit application code; the main thread owns triage and fixes.
 
-Specialist NFR swarm for a risky generated change
+Specialist lenses:
 
-## Concrete Inputs
+- Security/privacy: injection, authorization boundaries, data exposure, and
+  deployment controls.
+- Accessibility: keyboard behavior, semantics, labels, focus/status feedback,
+  contrast, and async states.
+- Performance: measured bundle/runtime cost and reproducible measurement.
+- Testability: production reachability, deterministic seams, state coupling,
+  and executable runtime coverage.
 
-- security review
-- accessibility review
-- performance review
-- main-thread decision log
-
-## Seeded Risks
-
-- specialist findings are merged without triage
-- accessibility pass lacks keyboard coverage
-- performance finding has no measurement
-
-## Verification Expectations
-
-- specialist report schema
-- fix/defer/dismiss table
-- implemented top fixes
-- post-fix recheck
-
-## Agent Workflow Constraint
-
-The learner must use an agent to inspect and plan, but the final implementation, review, and verification remain owned by the accountable engineer.
+Post-fix rechecks are scoped to the findings selected for implementation.

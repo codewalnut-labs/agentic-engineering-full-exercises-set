@@ -17,6 +17,7 @@ export function WorkQueue({ items, selectedId, onSelect }: WorkQueueProps) {
             className={item.id === selectedId ? "queue-item active" : "queue-item"}
             key={item.id}
             onClick={() => onSelect(item)}
+            aria-pressed={item.id === selectedId}
             type="button"
           >
             <span>
