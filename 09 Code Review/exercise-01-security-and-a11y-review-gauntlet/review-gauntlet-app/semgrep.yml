@@ -1,0 +1,17 @@
+rules:
+  - id: react-dangerous-html-from-state
+    message: "Do not interpret reviewer-controlled content as HTML."
+    severity: ERROR
+    languages: [typescript]
+    patterns:
+      - pattern: '<$TAG ... dangerouslySetInnerHTML={{ __html: $VALUE }} ... />'
+
+  - id: clickable-noninteractive-queue-item
+    message: "Queue selection must use a native interactive element."
+    severity: WARNING
+    languages: [typescript]
+    patterns:
+      - pattern: '<$TAG ... className=$CLASS ... onClick=$HANDLER ...>...</$TAG>'
+      - metavariable-regex:
+          metavariable: $TAG
+          regex: ^(div|span)$

@@ -23,3 +23,14 @@ Ask your coding agent to inspect `review-gauntlet-app/`, run static checks, revi
 Produce the severity-ranked findings, fixes, static-check output, and verification output.
 
 Raise the completed work as a PR for getting verified with our team.
+
+## Completed Review
+
+- Severity-ranked triage: [`docs/severity-ranked-findings.md`](./docs/severity-ranked-findings.md)
+- Semgrep rules: [`review-gauntlet-app/semgrep.yml`](./review-gauntlet-app/semgrep.yml)
+- Static evidence: [`evidence/static-check-before.txt`](./evidence/static-check-before.txt) and [`evidence/static-check-after.txt`](./evidence/static-check-after.txt)
+- Verification evidence: [`evidence/verification-output.txt`](./evidence/verification-output.txt)
+
+Run focused regressions with `npm run test:review`. Run the full project gate with
+`npm run agent:check`. With Semgrep installed, run the project rules with
+`npm run semgrep`.

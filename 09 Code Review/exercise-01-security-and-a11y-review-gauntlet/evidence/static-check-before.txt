@@ -1,0 +1,15 @@
+Semgrep 1.172.0
+Command: semgrep --config semgrep.yml src/components --no-git-ignore
+
+Scan completed successfully.
+Rules run: 2
+Targets scanned: 9
+Findings: 2 (2 blocking)
+
+ERROR react-dangerous-html-from-state
+src/components/ActionComposer.tsx:31
+Do not interpret reviewer-controlled content as HTML.
+
+WARNING clickable-noninteractive-queue-item
+src/components/WorkQueue.tsx:16
+Queue selection must use a native interactive element.
