@@ -1,0 +1,32 @@
+Exercise 03 - Agent-Ready Kanban Control Plane
+Date: 2026-07-30
+
+Control plane
+  cards triaged: 4
+  states supported: needs-info, ready-for-agent, ready-for-human, blocked, done
+  current card states: needs-info, ready-for-human, blocked, done
+  ESC-120 transition: ready-for-agent -> in-review -> done
+  integration owner: assigned
+  merge order: explicit
+  shared-file parallel collisions: rejected
+
+Completed lane
+  card: ESC-120
+  worktree: wt-kanban-lane-esc120
+  branch: lane/esc-120-severity
+  source commit: acab4d0
+  integrated commit: b5d186a
+  owned files: 2
+  focused tests: 3 passed
+
+Control-plane UI
+  focused App tests: 2 passed
+
+Final integrated gate
+  agent contract check: passed
+  test files: 2 passed
+  tests: 5 passed
+  lint-check: passed
+  format-check: passed
+  typecheck: passed
+  production build: passed
