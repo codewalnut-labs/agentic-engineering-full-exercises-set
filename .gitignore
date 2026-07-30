@@ -5,6 +5,8 @@ coverage/
 .next/
 .turbo/
 .vite/
+playwright-report/
+test-results/
 
 *.log
 *.tsbuildinfo
