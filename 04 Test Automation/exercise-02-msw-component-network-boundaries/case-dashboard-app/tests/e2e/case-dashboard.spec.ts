@@ -27,7 +27,7 @@ const browserCases = [
   },
 ];
 
-test("loads and filters the network-backed case queue", async ({ page }) => {
+test("loads and filters the network-backed case queue", async ({ page }, testInfo) => {
   await page.route("**/api/cases", async (route) => {
     await route.fulfill({ json: browserCases });
   });
@@ -45,8 +45,9 @@ test("loads and filters the network-backed case queue", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Cedar Labs" })).toBeHidden();
   await expect(page.getByText("1 case", { exact: true })).toBeVisible();
 
-  await page.screenshot({
-    path: "evidence/browser/case-dashboard-filtered.png",
-    fullPage: true,
+  const screenshot = await page.screenshot({ fullPage: true });
+  await testInfo.attach("filtered-case-dashboard", {
+    body: screenshot,
+    contentType: "image/png",
   });
 });

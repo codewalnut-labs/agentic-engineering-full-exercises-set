@@ -26,6 +26,7 @@ test, and closes after the suite.
 ## Browser evidence
 
 The role- and label-based browser smoke fulfills the API response at the network
-boundary, loads the case queue, filters to High priority, and captures
-`browser/case-dashboard-filtered.png`. Playwright tracing is enabled for every
+boundary, loads the case queue, filters to High priority, and attaches a unique
+screenshot to every test result. `browser/case-dashboard-filtered.png` is the
+separately reviewed canonical image. Playwright tracing is enabled for every
 browser run.

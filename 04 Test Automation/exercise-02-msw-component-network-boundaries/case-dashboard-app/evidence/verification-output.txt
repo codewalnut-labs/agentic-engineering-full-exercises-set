@@ -42,4 +42,5 @@ Running 10 tests using 2 workers
 Browser artifacts
 -----------------
 evidence/browser/case-dashboard-filtered.png
-Playwright HTML report and one trace per run generated locally.
+Playwright HTML report, one trace per run, and a unique screenshot attachment
+per test result generated locally.
