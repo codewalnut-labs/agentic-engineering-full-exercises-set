@@ -1,25 +1,37 @@
-# Exercise 04 : Excalidraw Workflow Reconstruction
+# Exercise 04 : Implementation-Backed Workflow Reconstruction
 
 ## Your Mission
 
-Your mission is to reconstruct workflow diagrams from the implementation, not from assumptions.
+Your mission is to reconstruct an access-provisioning workflow from code when the existing product description is no longer reliable.
 
-You are given a repository with a workflow that differs from the old product description.
+You are given normal and high-risk approval paths, provisioning failure, and rollback behavior. The legacy description skips security review and claims failed provisioning retries automatically.
+
+Create diagrams that show the real state transitions and actor interactions, then prove every important edge with a source reference.
 
 The duration for this challenge is 30 min or less.
 
 ## Project
 
-[workflow-reconstruction-app](./workflow-reconstruction-app) contains the workflow reconstruction source for this exercise.
+[workflow-reconstruction-app](./workflow-reconstruction-app) contains the implemented workflow. [legacy workflow description](./docs/legacy-workflow-description.md) is intentionally stale and must not be treated as authoritative.
 
 ## How To Go About It
 
-Use the [Excalidraw diagram-generator skill](https://github.com/github/awesome-copilot/blob/main/skills/excalidraw-diagram-generator/SKILL.md) on the provided workflow.
+Trace `nextStepFor`, the supplied scenarios, and failure behavior before drawing. Produce a Mermaid state diagram and sequence diagram for both the high-risk success path and failed-provisioning rollback path.
 
-Ask your coding agent to inspect `workflow-reconstruction-app/`, trace the workflow, generate diagrams, and verify each diagram against code.
+Create a traceability table mapping each non-obvious diagram edge to a function, condition, or fixture. Record contradictions instead of silently choosing the product description.
 
 ## Evidence
 
-Produce the Excalidraw diagram, trace notes, and verification notes.
+Submit `diagrams/access-state.mmd`, `diagrams/access-sequence.mmd`, `evidence/traceability.md`, and `evidence/verification.md` containing render results and contradiction decisions.
 
-Raise the completed work as a PR for getting verified with our team.
+Run `npm run test:submission` and `npm run agent:check` from `workflow-reconstruction-app`.
+
+Raise a focused PR containing only this exercise. Follow the [submission standard](../../docs/SUBMISSION_STANDARD.md).
+
+## Evaluation
+
+Reviewers will check high-risk security review, normal routing, provisioning failure, rollback, actors, and source-backed edges. Both Mermaid files must render successfully.
+
+The exercise is incomplete if diagrams reproduce the stale description, omit failure behavior, use unsupported edges, or lack source traceability.
+
+See the [Implementation-Backed Workflow Reconstruction rubric](../../docs/EVALUATION_RUBRICS.md#implementation-backed-workflow-reconstruction).

@@ -1,31 +1,37 @@
-# Exercise 06 : Feature visualization
+# Exercise 06 : Payment Retry Visualization and Fix
 
 ## Your Mission
 
-Your mission is to create visual documentation for the payment integration workflow.
+Your mission is to expose and repair a duplicate-payment risk by visualizing the real payment workflow.
 
-You are given a repository that contains the payment integration workflow. To create visual documentation,
-Use Excalidraw or any diagram drawing skill and create these 4 diagrams:
+You are given authorization, capture, ledger, receipt, and webhook code. The webhook reconciler records the same captured event twice and the original feature brief does not explain idempotency or invalid signatures.
 
-- Architecture diagram
-- Process flow diagram
-- Sequence diagram
-- ER diagram
+Create the diagrams needed to reason about the incident, fix the reconciliation boundary, and verify that the diagrams still match the corrected code.
 
 The duration for this challenge is 30 min or less.
 
 ## Project
 
-[payment-workflow-app](./payment-workflow-app) contains the payment integration workflow for this exercise.
+[payment-workflow-app](./payment-workflow-app) contains the payment implementation. [duplicate webhook incident](./docs/duplicate-webhook-incident.md) defines the failure to investigate.
 
 ## How To Go About It
 
-Use the [Excalidraw diagram-generator skill](https://www.skills.sh/github/awesome-copilot/excalidraw-diagram-generator) or any other diagram drawing skill on the provided payment feature.
+Trace the happy path, declined authorization, invalid signature, repeated webhook, and rollback implications. Produce architecture, state/process, sequence, and data-relationship diagrams in Mermaid or Excalidraw source format.
 
-Ask your coding agent to inspect `src/payment/`, understand the workflow, and generate the four diagrams.
+Fix duplicate reconciliation without weakening signature validation. Add a traceability file that maps every failure edge and data relationship to code or tests.
 
 ## Evidence
 
-Produce 4 diagrams in a `diagrams` folder.
+Submit the fix and tests, four source diagrams under `diagrams/`, `evidence/traceability.md`, and `evidence/diagram-verification.md` with render output.
 
-Raise the completed work as a PR for getting verified with our team.
+Run `npm run test:webhooks`, `npm run test:submission`, and `npm run agent:check` from `payment-workflow-app`.
+
+Raise a focused PR containing only this exercise. Follow the [submission standard](../../docs/SUBMISSION_STANDARD.md).
+
+## Evaluation
+
+Reviewers will check authorization, capture, decline, signature failure, duplicate delivery, ledger, receipt, and webhook relationships in both code and diagrams. Repeated events must be idempotent.
+
+The exercise is incomplete if diagrams show only the happy path, duplicate capture remains possible, signatures are bypassed, or diagram edges lack source evidence.
+
+See the [Payment Retry Visualization and Fix rubric](../../docs/EVALUATION_RUBRICS.md#payment-retry-visualization-and-fix).
