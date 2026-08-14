@@ -2,28 +2,65 @@
 
 ## Your Mission
 
-Your mission is to configure a coding agent so it can understand and work on a repository like a new engineering teammate.
+Your mission is to configure a coding agent to work safely and consistently in an unfamiliar repository.
 
-You are given a repository that contains a working application with limited documentation, mixed coding patterns, hidden conventions, and missing onboarding instructions.
+The application has limited documentation, hidden conventions, mixed patterns, and duplicated business rules. Without guidance, an agent may copy the existing bad practice while implementing a feature.
 
-Create the complete agent setup by documenting the project rules, architecture, workflows, testing process, and coding conventions.
+Create the agent onboarding instructions and compare the agent's implementation before and after adding them.
 
 The duration for this challenge is 30 min or less.
 
 ## Project
 
-[agent-onboarding-app](./agent-onboarding-app) contains the application code for this exercise.
+[agent-onboarding-app](./agent-onboarding-app) contains the application code and an intentional antipattern: important business rules are duplicated across multiple files.
+
+Use this request for both agent runs:
+
+> Add a Needs Attention filter that shows cases that have waited too long or have high customer revenue risk. Use the existing business rules and keep the filter count, displayed results, and sorting consistent.
 
 ## How To Go About It
 
-Ask your coding agent to inspect `agent-onboarding-app/`, understand the codebase structure, existing patterns, commands, and development workflow.
+Start a fresh agent session without `AGENTS.md` or `.agent` documents. Provide the feature request, save the first implementation and observations, then revert the implementation.
 
-Create an agent configuration layer that helps the coding agent work safely and consistently on this repository.
+Inspect the application structure, business rules, coding patterns, commands, tests, and development workflow.
+
+Create:
+
+- `agent-onboarding-app/AGENTS.md`
+- `agent-onboarding-app/.agent/architecture.md`
+- `agent-onboarding-app/.agent/development-workflow.md`
+- `agent-onboarding-app/.agent/testing.md`
+
+The instructions must explain:
+
+- Where shared business rules belong.
+- How to avoid copying existing bad patterns.
+- How to implement and verify repository changes.
+- Which checks must pass before completion.
+
+Start another fresh agent session with the onboarding files available and provide the same feature request. Keep the improved implementation.
+
+Use the same agent, model, tools, permissions, prompt, time limit, and first attempt for both runs. Do not rerun either attempt.
 
 ## Evidence
 
-Produce agent setup files in a `.agent` folder.
+Submit:
 
-Produce `AGENTS.md` or `CLAUDE.md`.
+- `AGENTS.md` and the required `.agent` files.
+- `evidence/before.md` and `evidence/before.patch`.
+- `evidence/after.md` and `evidence/after.patch`.
+- `evidence/comparison.md` explaining what improved and which instructions influenced the result.
+- Output from `npm run agent:check` and `npm run test:follow-up`.
+- A focused pull request containing only the exercise changes.
 
-Raise the completed work as a PR for getting verified with our team.
+Use the [evidence template](./docs/evidence-template.md) and follow the repository [submission standard](../../docs/SUBMISSION_STANDARD.md).
+
+## Evaluation
+
+The onboarding instructions must be clear, repository-specific, and sufficient for a fresh agent to complete the feature without duplicating business rules.
+
+The final implementation must use one source of business rules and keep the filter count, displayed results, and sorting consistent.
+
+The exercise is incomplete if the runs are not comparable, onboarding files contain generic guidance, the final implementation copies the antipattern, protected inputs are changed, or the required checks fail.
+
+See the [evaluation rubric](../../docs/EVALUATION_RUBRICS.md#agent-onboarding-kit).

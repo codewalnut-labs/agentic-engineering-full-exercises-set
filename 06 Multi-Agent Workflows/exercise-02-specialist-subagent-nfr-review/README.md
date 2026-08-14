@@ -1,25 +1,37 @@
-# Exercise 02 : Specialist Subagent NFR Review
+# Exercise 02 : Specialist Review Merge Gate
 
 ## Your Mission
 
-Your mission is to use specialist subagent passes for security, accessibility, performance, and testability.
+Your mission is to use specialist agents to review one risky access-approval change and make a single accountable merge decision.
 
-You are given a repository with a feature that looks complete but has hidden non-functional risk.
+You are given unsafe HTML rendering, mouse-only queue rows, expensive render work, and an approval service that trusts the UI. Specialist reports can also conflict or describe different commits.
+
+Run security, accessibility, performance, and testability reviews against the same SHA, triage every finding, fix supported blockers, and make the specialists recheck the final SHA.
 
 The duration for this challenge is 30 min or less.
 
 ## Project
 
-[nfr-swarm-app](./nfr-swarm-app) contains the NFR review workflow for this exercise.
+[nfr-swarm-app](./nfr-swarm-app) contains the access-review workflow and seeded risks. Use the supplied [specialist prompts](./docs/specialist-prompts.md) and shared report schema.
 
 ## How To Go About It
 
-Use [Superpowers](https://github.com/obra/superpowers) planning and review skills for the specialist passes.
+Give each specialist the same commit, scope, severity rules, and evidence format. Findings must include a file and line, reproduction, impact, and proposed verification.
 
-Ask your coding agent to inspect `nfr-swarm-app/`, run focused specialist reviews, choose fixes, implement them, and verify the result.
+The integration owner classifies each finding as fix, defer, or dismiss with an owner and residual risk. After fixes, rerun every affected specialist instead of relying on the original report.
 
 ## Evidence
 
-Produce the specialist findings, fix/defer/dismiss table, implementation change, and verification output.
+Submit four reports under `evidence/specialists/`, `evidence/decision-log.md`, before-and-after performance JSON, keyboard or assistive-technology evidence, and the final SHA and check output.
 
-Raise the completed work as a PR for getting verified with our team.
+Run `npm run measure:baseline`, `npm run test:submission`, and `npm run agent:check` from `nfr-swarm-app`.
+
+Raise a focused PR containing only this exercise. Follow the [submission standard](../../docs/SUBMISSION_STANDARD.md).
+
+## Evaluation
+
+Reviewers will check that specialists reviewed the same code, evidence supports each finding, privileged approval is enforced at the service boundary, keyboard operation works, and performance claims use comparable measurements.
+
+The exercise is incomplete if reports are blindly merged, findings lack evidence, different SHAs are compared without explanation, or the final code is not re-reviewed.
+
+See the [Specialist Review Merge Gate rubric](../../docs/EVALUATION_RUBRICS.md#specialist-review-merge-gate).
