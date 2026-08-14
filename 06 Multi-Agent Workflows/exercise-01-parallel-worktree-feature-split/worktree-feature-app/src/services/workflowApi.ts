@@ -1,5 +1,6 @@
-import type { ActionDraft, WorkItem } from "../types";
+import type { ActionDraft, EvidenceBundle, WorkItem } from "../types";
 import { workItems } from "../data/workItems";
+import { calculateRisk } from "../utils/scoring";
 
 const wait = (ms: number) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
@@ -30,4 +31,32 @@ export async function collectEvidence(item: WorkItem): Promise<string[]> {
     `Owner: ${item.owner}`,
     `Tags: ${item.tags.join(", ")}`,
   ];
+}
+
+export function createEvidenceBundle(item: WorkItem, evidence: string[]): EvidenceBundle {
+  return {
+    id: item.id,
+    owner: item.owner,
+    status: item.status,
+    calculatedRisk: calculateRisk(item),
+    evidence: [...evidence],
+  };
+}
+
+export function serializeEvidenceBundle(bundle: EvidenceBundle): string {
+  return `${JSON.stringify(bundle, null, 2)}\n`;
+}
+
+export function downloadEvidenceBundle(item: WorkItem, evidence: string[]): EvidenceBundle {
+  const bundle = createEvidenceBundle(item, evidence);
+  const blob = new Blob([serializeEvidenceBundle(bundle)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = `${item.id}-evidence.json`;
+  link.click();
+  URL.revokeObjectURL(url);
+
+  return bundle;
 }
