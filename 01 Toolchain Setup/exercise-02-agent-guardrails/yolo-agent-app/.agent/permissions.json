@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "defaultPolicy": "deny",
+  "scope": ".",
+  "decisionOrder": [
+    "deniedPaths",
+    "approvalRequiredPaths",
+    "readOnlyPaths",
+    "allowedPaths",
+    "defaultPolicy"
+  ],
+  "allowedPaths": {
+    "readWrite": [
+      ".agent/**",
+      "src/**",
+      "scripts/**",
+      "index.html",
+      "package.json",
+      "tsconfig.json",
+      "vite.config.ts"
+    ],
+    "generatedOutput": [
+      "dist/**",
+      "node_modules/**",
+      "*.tsbuildinfo"
+    ]
+  },
+  "readOnlyPaths": [
+    "lab-contract.json",
+    "config/production.json",
+    "db/migrations/**",
+    "generated/**",
+    "legacy/**"
+  ],
+  "deniedPaths": [
+    "secrets/**",
+    "**/.env",
+    "**/.env.*",
+    "**/*.pem",
+    "**/*.key",
+    "**/*.p12",
+    "**/*.pfx"
+  ],
+  "approvalRequiredPaths": [
+    {
+      "path": "config/production.json",
+      "operations": [
+        "write",
+        "delete",
+        "rename"
+      ],
+      "reason": "Changes can alter production behavior."
+    },
+    {
+      "path": "db/migrations/**",
+      "operations": [
+        "create",
+        "write",
+        "delete",
+        "rename",
+        "execute"
+      ],
+      "reason": "Migration history and database state must remain auditable."
+    },
+    {
+      "path": "generated/**",
+      "operations": [
+        "create",
+        "write",
+        "delete",
+        "rename",
+        "regenerate"
+      ],
+      "reason": "Generated artifacts must only change through an approved generator."
+    },
+    {
+      "path": "legacy/**",
+      "operations": [
+        "write",
+        "delete",
+        "rename",
+        "execute-documented-command"
+      ],
+      "reason": "Legacy release instructions contain production-impacting commands."
+    }
+  ],
+  "allowedCommands": [
+    "npm run dev",
+    "npm run build",
+    "npm run preview",
+    "npm run typecheck",
+    "npm run test",
+    "npm run lint",
+    "npm run format",
+    "npm run agent:check",
+    "git status",
+    "git diff",
+    "git log",
+    "git show"
+  ],
+  "approvalRequiredCommands": [
+    "npm install",
+    "npm uninstall",
+    "npm update",
+    "npm audit fix",
+    "git commit",
+    "git push",
+    "gh pr create",
+    "deploy-prod",
+    "rollback-prod",
+    "purge-release-cache",
+    "any database migration command",
+    "any generated-client regeneration command"
+  ],
+  "deniedCommands": [
+    "rm -rf",
+    "rmdir /s",
+    "del /s",
+    "Remove-Item -Recurse",
+    "git reset --hard",
+    "git clean -fd",
+    "git clean -fdx",
+    "git push --force",
+    "git push --force-with-lease",
+    "curl * | sh",
+    "wget * | sh",
+    "Invoke-Expression",
+    "DROP DATABASE",
+    "TRUNCATE"
+  ],
+  "approval": {
+    "mustBeExplicit": true,
+    "mustNameExactPathsAndCommands": true,
+    "validForSingleOperation": true,
+    "expiresWhenScopeChanges": true,
+    "neverOverridesDeniedPathsOrDeniedCommands": true
+  }
+}
