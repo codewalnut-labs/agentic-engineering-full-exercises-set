@@ -1,0 +1,2 @@
+> node ./scripts/generate-pr-evidence.mjs --fixture ../fixtures/check-results.json --sha 20f968187098d5cfcbcc9d3887f3cac45f862c1e --output ../evidence/generated
+exit: 1
