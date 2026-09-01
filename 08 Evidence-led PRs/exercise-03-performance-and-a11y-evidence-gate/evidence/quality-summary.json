@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "sourceSha": "f08168d623b36ad079c544befbada93239c3eb2d",
+  "route": "/",
+  "aggregation": "pessimistic",
+  "thresholds": {
+    "minimumPerformance": 0.9,
+    "minimumAccessibility": 1,
+    "maximumLargestContentfulPaintMs": 2500,
+    "maximumAxeViolations": 0
+  },
+  "lighthouseRuns": [
+    {
+      "file": "run-1.json",
+      "sha256": "937ac085b12e98f2c3b33751659033e5e83ca4bf8ebdc2e7c54f2b8d5b0038da",
+      "fetchTime": "2026-09-01T05:39:19.975Z",
+      "lighthouseVersion": "13.4.1",
+      "finalUrl": "http://127.0.0.1:41305/",
+      "route": "/",
+      "environment": {
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36",
+        "browserMajor": "151",
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "performance": 1,
+      "accessibility": 1,
+      "largestContentfulPaintMs": 1354.779
+    },
+    {
+      "file": "run-2.json",
+      "sha256": "fc0464230540f585f7e29f16483fc3978bc16dcdfd5113b01ed9318649bb08ba",
+      "fetchTime": "2026-09-01T05:39:26.172Z",
+      "lighthouseVersion": "13.4.1",
+      "finalUrl": "http://127.0.0.1:41305/",
+      "route": "/",
+      "environment": {
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36",
+        "browserMajor": "151",
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "performance": 1,
+      "accessibility": 1,
+      "largestContentfulPaintMs": 1352.3174
+    },
+    {
+      "file": "run-3.json",
+      "sha256": "7b43bde7c55c3fcd3acbfa58b2ba0e325f5d2ee5adbf1d0aa5f39867dbee49de",
+      "fetchTime": "2026-09-01T05:39:32.250Z",
+      "lighthouseVersion": "13.4.1",
+      "finalUrl": "http://127.0.0.1:41305/",
+      "route": "/",
+      "environment": {
+        "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+        "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Mobile Safari/537.36",
+        "browserMajor": "151",
+        "formFactor": "mobile",
+        "throttlingMethod": "simulate",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        }
+      },
+      "performance": 1,
+      "accessibility": 1,
+      "largestContentfulPaintMs": 1351.9378
+    }
+  ],
+  "axe": {
+    "file": "axe.json",
+    "sha256": "40033ca7df3b79fdf12c5b7296b00b432abdf64c6e7db4480fe0130192dcc538",
+    "testedUrl": "http://127.0.0.1:41305/",
+    "route": "/",
+    "generatedAt": "2026-09-01T05:39:38.157Z",
+    "browser": {
+      "name": "chromium",
+      "version": "151.0.7922.34"
+    },
+    "captureEnvironment": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "violations": []
+  },
+  "worstCase": {
+    "performance": 1,
+    "accessibility": 1,
+    "largestContentfulPaintMs": 1354.779,
+    "axeViolations": 0
+  },
+  "failures": [],
+  "releaseDecision": "passed"
+}
