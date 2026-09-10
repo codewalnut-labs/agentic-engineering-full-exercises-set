@@ -1,0 +1,57 @@
+diff --git a/11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/src/rules/legacyEligibility.mjs b/11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/src/rules/legacyEligibility.mjs
+index 14914eb4ee0601134335de1156baea32b081bbb4..e7274c896fd32b4b7ca1549c1fbd597233fd25f0 100644
+--- a/11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/src/rules/legacyEligibility.mjs	
++++ b/11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/src/rules/legacyEligibility.mjs	
+@@ -1,25 +1,31 @@
++function result(status, discountPercent, reason) {
++  return { status, discountPercent, reason };
++}
++
++function evaluateEnterpriseEligibility(account) {
++  if (!(account.monthsActive >= 12)) {
++    return result("ineligible", 0, "plan-not-supported");
++  }
++
++  if (!(account.latePayments < 2)) {
++    return result("manual-review", 0, "payment-history");
++  }
++
++  return result("eligible", 15, "enterprise-tenure");
++}
++
+ export function evaluateRenewalEligibility(account) {
+-  let status = "ineligible";
+-  let discountPercent = 0;
+-  let reason = "plan-not-supported";
+   if (account.supportOverride === true) {
+-    status = "eligible";
+-    reason = "legacy-support-override";
+-  } else if (account.tier === "enterprise") {
+-    if (account.monthsActive >= 12) {
+-      if (account.latePayments < 2) {
+-        status = "eligible";
+-        discountPercent = 15;
+-        reason = "enterprise-tenure";
+-      } else {
+-        status = "manual-review";
+-        reason = "payment-history";
+-      }
+-    }
+-  } else if (account.tier === "pro" && account.monthsActive >= 6 && account.latePayments === 0) {
+-    status = "eligible";
+-    discountPercent = 10;
+-    reason = "pro-tenure";
++    return result("eligible", 0, "legacy-support-override");
+   }
+-  return { status, discountPercent, reason };
++
++  if (account.tier === "enterprise") {
++    return evaluateEnterpriseEligibility(account);
++  }
++
++  if (account.tier === "pro" && account.monthsActive >= 6 && account.latePayments === 0) {
++    return result("eligible", 10, "pro-tenure");
++  }
++
++  return result("ineligible", 0, "plan-not-supported");
+ }
