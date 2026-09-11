@@ -1,0 +1,29 @@
+Command: npm run evidence:verify
+Repository commit: c5325e976a0f1b1b300f1e006b487ef6242420ff
+Started at: 2026-09-17T10:28:48.910Z
+Finished at: 2026-09-17T10:28:49.349Z
+Duration ms: 439
+
+STDOUT
+
+> session-waste-app@0.1.0 evidence:verify
+> npm run test:analysis && npm run retro:verify
+
+
+> session-waste-app@0.1.0 test:analysis
+> node ./scripts/run-analysis-tests.mjs && node ./src/retro/analyzeSession.test.mjs
+
+PASS baseline metrics, classification traps, schema rejection, and executable retry preflight
+PASS participant analyzer boundary and retry-preflight tests
+
+> session-waste-app@0.1.0 retro:verify
+> node ./scripts/verify-retro-submission.mjs
+
+Source SHA: 38a49357550273e1f53817a3952ea5a7e7a4732a
+PASS preventable calls 4 -> 0
+PASS unchanged retries eliminated and final correctness verified
+
+STDERR
+
+
+exit code: 0
