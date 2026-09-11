@@ -1,0 +1,123 @@
+.../dev/agentic/exercise/workflow/DecisionPolicy.java | 19 +++++++++++++++++++
+ .../agentic/exercise/workflow/WorkflowService.java    | 12 +++++++++---
+ 2 files changed, 28 insertions(+), 3 deletions(-)
+
+diff --git a/11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/main/java/dev/agentic/exercise/workflow/DecisionPolicy.java b/11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/main/java/dev/agentic/exercise/workflow/DecisionPolicy.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..1ae13d2f61ff421e44ee87dcf4e3db21116f4354
+--- /dev/null
++++ b/11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/main/java/dev/agentic/exercise/workflow/DecisionPolicy.java	
+@@ -0,0 +1,19 @@
++package dev.agentic.exercise.workflow;
++
++import org.springframework.stereotype.Component;
++
++/**
++ * Applies the validation rules for a proposed workflow decision.
++ *
++ * <p>This policy deliberately has no repository dependency: looking up the current workflow item,
++ * constructing its accepted replacement, and persisting that replacement remain orchestration
++ * responsibilities of {@link WorkflowService}.
++ */
++@Component
++public class DecisionPolicy {
++  public void validate(WorkflowDecision decision) {
++    if ("Ready".equals(decision.status()) && decision.evidenceNote().length() < 12) {
++      throw new InvalidWorkflowDecisionException("Ready decisions require a longer evidence note");
++    }
++  }
++}
+diff --git a/11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/main/java/dev/agentic/exercise/workflow/WorkflowService.java b/11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/main/java/dev/agentic/exercise/workflow/WorkflowService.java
+index 57f8a6dfa976e27b0cb93e7c97789a4b4f1631d0..862d451aa104991a994d07f5ab6d9ccc899389ab 100644
+--- a/11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/main/java/dev/agentic/exercise/workflow/WorkflowService.java	
++++ b/11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/main/java/dev/agentic/exercise/workflow/WorkflowService.java	
+@@ -1,14 +1,22 @@
+ package dev.agentic.exercise.workflow;
+ 
+ import java.util.Collection;
++import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.stereotype.Service;
+ 
+ @Service
+ public class WorkflowService {
+   private final WorkflowRepository repository;
++  private final DecisionPolicy decisionPolicy;
+ 
+   public WorkflowService(WorkflowRepository repository) {
++    this(repository, new DecisionPolicy());
++  }
++
++  @Autowired
++  public WorkflowService(WorkflowRepository repository, DecisionPolicy decisionPolicy) {
+     this.repository = repository;
++    this.decisionPolicy = decisionPolicy;
+   }
+ 
+   public Collection<WorkflowItem> list() {
+@@ -19,9 +27,7 @@ public class WorkflowService {
+     WorkflowItem item = repository.findById(id)
+         .orElseThrow(() -> new WorkflowNotFoundException(id));
+ 
+-    if ("Ready".equals(decision.status()) && decision.evidenceNote().length() < 12) {
+-      throw new InvalidWorkflowDecisionException("Ready decisions require a longer evidence note");
+-    }
++    decisionPolicy.validate(decision);
+ 
+     return repository.save(new WorkflowItem(
+         item.id(),
+
+Changes:
+
+11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/main/java/dev/agentic/exercise/workflow/DecisionPolicy.java
+  @@ -0,0 +1,19 @@
+  +package dev.agentic.exercise.workflow;
+  +
+  +import org.springframework.stereotype.Component;
+  +
+  +/**
+  + * Applies the validation rules for a proposed workflow decision.
+  + *
+  + * <p>This policy deliberately has no repository dependency: looking up the current workflow item,
+  + * constructing its accepted replacement, and persisting that replacement remain orchestration
+  + * responsibilities of {@link WorkflowService}.
+  + */
+  +@Component
+  +public class DecisionPolicy {
+  +  public void validate(WorkflowDecision decision) {
+  +    if ("Ready".equals(decision.status()) && decision.evidenceNote().length() < 12) {
+  +      throw new InvalidWorkflowDecisionException("Ready decisions require a longer evidence note");
+  +    }
+  +  }
+  +}
+  +19 -0
+
+11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/main/java/dev/agentic/exercise/workflow/WorkflowService.java
+  @@ -1,14 +1,22 @@
+  +import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.stereotype.Service;
+   
+   @Service
+   public class WorkflowService {
+     private final WorkflowRepository repository;
+  +  private final DecisionPolicy decisionPolicy;
+   
+     public WorkflowService(WorkflowRepository repository) {
+  +    this(repository, new DecisionPolicy());
+  +  }
+  +
+  +  @Autowired
+  +  public WorkflowService(WorkflowRepository repository, DecisionPolicy decisionPolicy) {
+       this.repository = repository;
+  +    this.decisionPolicy = decisionPolicy;
+     }
+   
+     public Collection<WorkflowItem> list() {
+  @@ -19,9 +27,7 @@ public class WorkflowService {
+  -    if ("Ready".equals(decision.status()) && decision.evidenceNote().length() < 12) {
+  -      throw new InvalidWorkflowDecisionException("Ready decisions require a longer evidence note");
+  -    }
+  +    decisionPolicy.validate(decision);
+   
+       return repository.save(new WorkflowItem(
+           item.id(),
+  +9 -3
