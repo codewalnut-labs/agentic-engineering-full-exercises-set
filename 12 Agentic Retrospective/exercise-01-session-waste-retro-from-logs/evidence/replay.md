@@ -1,0 +1,7 @@
+# POLICY-217 replay report
+
+POLICY-217 is a controlled constructed replay from `tasks/policy-217-replay.md`. The original application and provider trace are unavailable, so `replay-events.json` is not described as exported telemetry. It uses a new session, `replay-policy-217-20260911`, while retaining the same agent, same model, same prompt hash, capture mode, source revision, and 20-minute limit recorded for the baseline simulated profile.
+
+The replay first selects the 3,200-byte contract context, reads source and focused test inputs, and records a failed focused test at policy-217-replay-004 with exit code 1. Rather than repeating that command unchanged, policy-217-replay-005 records the root-cause diagnosis. The relevant contract is then read, source changes at policy-217-replay-007 advance the workspace revision, and the focused test passes at policy-217-replay-008.
+
+Before the improvement, analyzer output reports four preventable calls, including two unchanged retries, and no final verification after the write. After the improvement, analyzer output reports zero preventable calls and zero unchanged retries. Final verification policy-217-replay-009 passes with exit code 0 after the last write; only then does policy-217-replay-010 record the completion decision. This ordering makes `correctnessPassed` true while retaining the useful initial failure and diagnosis as evidence.

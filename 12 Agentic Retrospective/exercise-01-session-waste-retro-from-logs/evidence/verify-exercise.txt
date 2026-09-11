@@ -1,0 +1,47 @@
+Command: npm run verify:exercise
+Repository commit: 05029508085c99fc528de574cb8513ecf8576eb1
+
+> node ../../../scripts/run-clean-verification.mjs
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+Verified 22 protected challenge inputs.
+> node ./scripts/lint-check.mjs
+lint-check passed
+> node ./scripts/test-retro-verifier.mjs && node ./scripts/agent-check.mjs
+session retrospective verifier self-test passed
+agent-check passed for Trace-Measured Session Waste Reduction
+> node ./scripts/format-check.mjs
+format-check passed
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+> node ../../../scripts/run-vite-build.mjs
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../exercise-vite-build-sjN3rx/dist/index.html                   0.42 kB │ gzip:  0.29 kB
+../../../../exercise-vite-build-sjN3rx/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+../../../../exercise-vite-build-sjN3rx/dist/assets/index-CxNIPl47.js   196.22 kB │ gzip: 61.67 kB
+✓ built in 872ms
+> npm run test:analysis
+> node ./scripts/run-analysis-tests.mjs && node ./src/retro/analyzeSession.test.mjs
+PASS baseline metrics, classification traps, schema rejection, and executable retry preflight
+PASS participant analyzer boundary and retry-preflight tests
+> node ../../../scripts/comparable-evidence.mjs .. --allow-identical-patches && npm run test:submission
+PASS before and after runs use matching conditions and valid Git patches
+PASS both patches match their recorded implementation commits
+PASS protected manifests and inputs match the starting commit
+PASS identical first-attempt patches are allowed by this exercise contract
+> npm run test:analysis && npm run retro:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+> node ./scripts/run-analysis-tests.mjs && node ./src/retro/analyzeSession.test.mjs
+PASS baseline metrics, classification traps, schema rejection, and executable retry preflight
+PASS participant analyzer boundary and retry-preflight tests
+> node ./scripts/verify-retro-submission.mjs
+Source SHA: 05029508085c99fc528de574cb8513ecf8576eb1
+PASS preventable calls 4 -> 0
+PASS unchanged retries eliminated and final correctness verified
+Verified Trace-Measured Session Waste Reduction: 15 files and 0 directories.
+PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged
+
+Result: exit code 0
