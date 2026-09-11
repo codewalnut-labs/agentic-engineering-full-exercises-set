@@ -8,7 +8,7 @@
 - Time limit: 15 minutes
 - Human hints: 0
 - Retries: 0
-- Patch SHA-256: 0903f5e13953f4642eee4fe6e2266792ca93c544f1bc4eeebaf75904ad986cd0
+- Patch SHA-256: 75141ac53a91c6fd387a99cca0813872c366f2b841dae50bdaeebdc1c68cdd61
 - Patch path: evidence/after.patch
 - Maven tests discovered: 15; all 15 passed, including 4 participant characterization tests.
 - Backend contract result: PASS for architecture, service behavior, persistence effects, and strict HTTP JSON.
