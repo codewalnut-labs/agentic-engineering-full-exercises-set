@@ -1,0 +1,100 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index f1f6194..627e81e 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -2,6 +2,10 @@ import { workflows } from "./data/workflows";
+ import { classifyWorkflow, summarizeGuardrailGap } from "./services/approvalEngine";
+ 
+ export default function App() {
++  const classifications = workflows.map((workflow) => classifyWorkflow(workflow));
++  const editableCount = classifications.filter((classification) => classification.agentEditable).length;
++  const approvalCount = classifications.filter((classification) => classification.requiresApproval).length;
++
+   return (
+     <main className="shell">
+       <section className="hero">
+@@ -10,6 +14,23 @@ export default function App() {
+         <p>{summarizeGuardrailGap(workflows)}</p>
+       </section>
+ 
++      <section className="readiness-summary" aria-labelledby="readiness-summary-title">
++        <div>
++          <p className="eyebrow">Release readiness</p>
++          <h2 id="readiness-summary-title">Release Readiness Summary</h2>
++        </div>
++        <dl>
++          <div>
++            <dt>Editable by agent</dt>
++            <dd>{editableCount}</dd>
++          </div>
++          <div>
++            <dt>Requires human approval</dt>
++            <dd>{approvalCount}</dd>
++          </div>
++        </dl>
++      </section>
++
+       <section className="workflow-list">
+         {workflows.map((workflow) => {
+           const classification = classifyWorkflow(workflow);
+diff --git a/src/styles.css b/src/styles.css
+index 8330d13..7a861b3 100644
+--- a/src/styles.css
++++ b/src/styles.css
+@@ -33,6 +33,35 @@ body {
+   color: #526178;
+ }
+ 
++.readiness-summary {
++  display: grid;
++  grid-template-columns: 1fr auto;
++  gap: 24px;
++  align-items: center;
++  margin-top: 20px;
++  padding: 24px 28px;
++  border: 1px solid #b9c8e5;
++  border-radius: 8px;
++  background: #eef4ff;
++}
++
++.readiness-summary h2 {
++  margin: 0;
++  font-size: 24px;
++}
++
++.readiness-summary dl {
++  display: flex;
++  gap: 32px;
++  margin: 0;
++}
++
++.readiness-summary dt {
++  color: #526178;
++  font-size: 12px;
++}
++
++.readiness-summary dd {
++  margin: 4px 0 0;
++  color: #1f4f9a;
++  font-size: 28px;
++  font-weight: 800;
++}
++
+ .eyebrow {
+   margin: 0 0 8px;
+   color: #526178;
+@@ -83,3 +112,14 @@ body {
+   margin: 0;
+   font-weight: 800;
+ }
++
++@media (max-width: 640px) {
++  .readiness-summary {
++    grid-template-columns: 1fr;
++  }
++
++  .readiness-summary dl {
++    justify-content: space-between;
++    gap: 16px;
++  }
++}
