@@ -1,0 +1,84 @@
+diff --git a/01 Toolchain Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app/src/App.tsx b/01 Toolchain Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app/src/App.tsx
+index 2157c31..932beff 100644
+--- a/01 Toolchain Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app/src/App.tsx
++++ b/01 Toolchain Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app/src/App.tsx
+@@ -1,19 +1,25 @@
+ import { useMemo, useState } from "react";
+ import { sampleCases, queuePolicy } from "./data/cases";
+-import { describePolicy, getRoutingHint, sortCasesForTriage } from "./services/caseRouter";
++import { describePolicy, getRoutingHint, needsAttention, sortCasesForTriage } from "./services/caseRouter";
+ import type { CaseStatus } from "./types";
+ 
+-const statuses: Array<CaseStatus | "all"> = ["all", "new", "triaged", "waiting", "blocked"];
++type Filter = CaseStatus | "all" | "needs-attention";
++
++const filters: Filter[] = ["all", "new", "triaged", "waiting", "blocked", "needs-attention"];
+ 
+ export default function App() {
+-  const [status, setStatus] = useState<CaseStatus | "all">("all");
++  const [filter, setFilter] = useState<Filter>("all");
+   const visibleCases = useMemo(() => {
+-    const filtered = status === "all" ? sampleCases : sampleCases.filter((item) => item.status === status);
+-    return sortCasesForTriage(filtered).map((item) => ({
++    const filtered = filter === "all"
++      ? sampleCases
++      : filter === "needs-attention"
++        ? sampleCases.filter((item) => needsAttention(item, queuePolicy))
++        : sampleCases.filter((item) => item.status === filter);
++    return sortCasesForTriage(filtered, queuePolicy).map((item) => ({
+       item,
+       hint: getRoutingHint(item, queuePolicy)
+     }));
+-  }, [status]);
++  }, [filter]);
+@@ -30,14 +36,14 @@
+       </section>
+ 
+       <section className="toolbar" aria-label="Case status filters">
+-        {statuses.map((option) => (
++        {filters.map((option) => (
+           <button
+-            className={option === status ? "active" : ""}
++            className={option === filter ? "active" : ""}
+             key={option}
+-            onClick={() => setStatus(option)}
++            onClick={() => setFilter(option)}
+             type="button"
+           >
+-            {option}
++            {option === "needs-attention" ? "Needs Attention" : option}
+           </button>
+         ))}
+diff --git a/01 Toolchain Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app/src/services/caseRouter.ts b/01 Toolchain Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app/src/services/caseRouter.ts
+index 08759a5..78264b6 100644
+--- a/01 Toolchain Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app/src/services/caseRouter.ts
++++ b/01 Toolchain Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app/src/services/caseRouter.ts
+@@ -36,10 +36,14 @@ export function getRoutingHint(item: SupportCase, policy: QueuePolicy): RoutingH
+   };
+ }
+ 
+-export function sortCasesForTriage(items: SupportCase[]) {
++export function needsAttention(item: SupportCase, policy: QueuePolicy) {
++  return item.lastActivityHours >= policy.staleAfterHours || item.revenueRiskUsd >= policy.criticalRevenueFloor;
++}
++
++export function sortCasesForTriage(items: SupportCase[], policy: QueuePolicy) {
+   return [...items].sort((first, second) => {
+-    const firstRisk = getRoutingHint(first, defaultPolicyMirror).riskScore;
+-    const secondRisk = getRoutingHint(second, defaultPolicyMirror).riskScore;
++    const firstRisk = getRoutingHint(first, policy).riskScore;
++    const secondRisk = getRoutingHint(second, policy).riskScore;
+     return secondRisk - firstRisk;
+   });
+ }
+@@ -47,10 +51,3 @@ export function sortCasesForTriage(items: SupportCase[]) {
+ export function describePolicy(policy: QueuePolicy) {
+   return `Escalate after ${policy.staleAfterHours} hours or when revenue risk reaches $${policy.criticalRevenueFloor.toLocaleString()}.`;
+ }
+-
+-const defaultPolicyMirror: QueuePolicy = {
+-  staleAfterHours: 18,
+-  criticalRevenueFloor: 75000,
+-  defaultOwner: "support-platform",
+-  restrictedTags: ["billing-export", "vip-contract"]
+-};

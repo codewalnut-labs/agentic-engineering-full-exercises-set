@@ -1,19 +1,25 @@
 import { useMemo, useState } from "react";
 import { sampleCases, queuePolicy } from "./data/cases";
-import { describePolicy, getRoutingHint, sortCasesForTriage } from "./services/caseRouter";
+import { describePolicy, getRoutingHint, needsAttention, sortCasesForTriage } from "./services/caseRouter";
 import type { CaseStatus } from "./types";
 
-const statuses: Array<CaseStatus | "all"> = ["all", "new", "triaged", "waiting", "blocked"];
+type Filter = CaseStatus | "all" | "needs-attention";
+
+const filters: Filter[] = ["all", "new", "triaged", "waiting", "blocked", "needs-attention"];
 
 export default function App() {
-  const [status, setStatus] = useState<CaseStatus | "all">("all");
+  const [filter, setFilter] = useState<Filter>("all");
   const visibleCases = useMemo(() => {
-    const filtered = status === "all" ? sampleCases : sampleCases.filter((item) => item.status === status);
-    return sortCasesForTriage(filtered).map((item) => ({
+    const filtered = filter === "all"
+      ? sampleCases
+      : filter === "needs-attention"
+        ? sampleCases.filter((item) => needsAttention(item, queuePolicy))
+        : sampleCases.filter((item) => item.status === filter);
+    return sortCasesForTriage(filtered, queuePolicy).map((item) => ({
       item,
       hint: getRoutingHint(item, queuePolicy)
     }));
-  }, [status]);
+  }, [filter]);
 
   return (
     <main className="shell">
@@ -30,14 +36,14 @@ export default function App() {
       </section>
 
       <section className="toolbar" aria-label="Case status filters">
-        {statuses.map((option) => (
+        {filters.map((option) => (
           <button
-            className={option === status ? "active" : ""}
+            className={option === filter ? "active" : ""}
             key={option}
-            onClick={() => setStatus(option)}
+            onClick={() => setFilter(option)}
             type="button"
           >
-            {option}
+            {option === "needs-attention" ? "Needs Attention" : option}
           </button>
         ))}
       </section>
