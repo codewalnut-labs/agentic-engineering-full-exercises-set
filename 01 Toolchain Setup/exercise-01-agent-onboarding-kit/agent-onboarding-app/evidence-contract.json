@@ -1,0 +1,21 @@
+{
+  "name": "Prepare a Project for Agentic Development",
+  "mode": "observation",
+  "outputs": [
+    { "path": "agent-onboarding-app/AGENTS.md" },
+    { "path": "agent-onboarding-app/docs/agent-setup.md" },
+    { "path": "evidence/requirements.md", "headings": ["Known facts", "Questions", "Unresolved decisions"] },
+    { "path": "evidence/research.md", "headings": ["Recommendation", "Sources", "Limitations"] },
+    { "path": "evidence/tdd.md", "headings": ["Interface", "Existing assertion", "Next test", "Baseline", "Limits"] },
+    { "path": "evidence/review.md", "headings": ["Requirements", "Standards", "Findings", "Remaining uncertainty"] }
+  ],
+  "topics": ["commands", "boundaries", "requirements", "research", "tdd", "review"],
+  "sourceRoots": [
+    "agent-onboarding-app/src/",
+    "agent-onboarding-app/docs/support-notes.md",
+    "agent-onboarding-app/tests/",
+    "agent-onboarding-app/package.json",
+    "fixtures/review/"
+  ],
+  "extraEvidence": ["evidence/skills.json", "evidence/readiness.json", "evidence/session.txt", "evidence/commands/baseline.txt"]
+}

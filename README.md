@@ -27,7 +27,7 @@ Use the index below to choose an exercise, then read the local exercise README f
 
 | Competency | # | Exercise | Project |
 |---|---:|---|---|
-| 01. Toolchain Setup | 01 | [Agent Onboarding Kit](./01%20Toolchain%20Setup/exercise-01-agent-onboarding-kit/README.md) | [agent-onboarding-app](./01%20Toolchain%20Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app) |
+| 01. Toolchain Setup | 01 | [Prepare a Project for Agentic Development](./01%20Toolchain%20Setup/exercise-01-agent-onboarding-kit/README.md) | [agent-onboarding-app](./01%20Toolchain%20Setup/exercise-01-agent-onboarding-kit/agent-onboarding-app) |
 | 01. Toolchain Setup | 02 | [Agent Guardrails](./01%20Toolchain%20Setup/exercise-02-agent-guardrails/README.md) | [yolo-agent-app](./01%20Toolchain%20Setup/exercise-02-agent-guardrails/yolo-agent-app) |
 | 02. Spec Framing | 01 | [Spec Driven Feature Development](./02%20Spec%20Framing/exercise-01-spec-driven-feature-development/README.md) | [subscription-management-app](./02%20Spec%20Framing/exercise-01-spec-driven-feature-development/subscription-management-app) |
 | 02. Spec Framing | 02 | [Superpowers Feature Implementation](./02%20Spec%20Framing/exercise-02-superpowers-skill-driven-development/README.md) | [team-collaboration-app](./02%20Spec%20Framing/exercise-02-superpowers-skill-driven-development/team-collaboration-app) |

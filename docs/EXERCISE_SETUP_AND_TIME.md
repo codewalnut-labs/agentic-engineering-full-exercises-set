@@ -38,6 +38,7 @@ Prepare the full session count before starting a multi-agent exercise. These are
 
 | Exercise | Minimum fresh sessions |
 |---|---:|
+| 1.1 Prepare a Project for Agentic Development | A setup session followed by 1 fresh readiness session; selected skills may require additional agents and human interaction |
 | 3.1 Session Handover from Claude to Codex | 1 preparation session using Handoff, then 1 fresh Codex continuation; the prior Claude session is a supplied training snapshot |
 | 3.2 Generate AGENTS.md for a Brownfield Repository | 2 implementation sessions under identical conditions, without and with onboarding |
 | 7.4 Extract a Domain Model from the Entire Repository | A discovery session plus 1 fresh agent session that answers business questions using only the submitted business documents |
@@ -46,6 +47,8 @@ Prepare the full session count before starting a multi-agent exercise. These are
 | 9.3 Code Review Skill Hardening | 6 review sessions: 3 without the skill and 3 fresh sessions with the skill |
 
 The integration owner checks and combines the outputs. Do not reuse one session across required lanes, specialists, or rechecks.
+
+For 1.1, install the base tools and application dependencies before timing. Skill selection, installation, repository instructions, and readiness demonstrations are the challenge itself. Follow its local setup and evidence guides: there are no matched feature implementations or before/after patches. The TDD scenario checks an existing baseline and a proposed test interface; it does not require a completed red/green cycle.
 
 For 3.3, prepare Graphify using the exercise's setup guide before timing the challenge. For 7.4, prepare Domain Analysis from Tech Leads Club and Domain Modeling from Matt Pocock using the exercise's setup guide. Record each skill's revision and use. Apply only business-domain analysis: the glossary and domain document must not contain architecture or implementation recommendations. Diagram exercises use Mermaid parsing locally and do not require a hosted diagram account.
 
