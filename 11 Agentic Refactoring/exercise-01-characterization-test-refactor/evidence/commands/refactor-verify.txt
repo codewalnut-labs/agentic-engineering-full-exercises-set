@@ -1,0 +1,13 @@
+Command: npm run refactor:verify
+Working directory: rules-refactor-app
+Exit code: 0
+
+> rules-refactor-app@0.1.0 refactor:verify
+> node ./scripts/verify-refactor-submission.mjs
+
+Characterization SHA: d2b2dcec249d9661bde003746cab68414d53dc4a
+Refactor SHA: d0eb445de725270d29bafe7759d6330420f4e8bc
+PASS characterization test and before output preceded production edits
+PASS all ten before and after public outputs are identical
+PASS refactor commit changes only the legacy rule module
+PASS suspected bugs documented and later history limited to evidence
