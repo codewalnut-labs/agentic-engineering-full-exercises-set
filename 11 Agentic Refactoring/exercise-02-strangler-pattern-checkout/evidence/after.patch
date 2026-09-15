@@ -1,0 +1,126 @@
+diff --git a/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/cardCheckout.mjs b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/cardCheckout.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..c66b2ade9b991da442ea1293d5882f6a81ee3c16
+--- /dev/null
++++ b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/cardCheckout.mjs	
+@@ -0,0 +1,45 @@
++function totalCents(request) {
++  const taxCents = Math.round(request.subtotalCents * request.taxRateBps / 10000);
++  return request.subtotalCents + taxCents;
++}
++
++function paymentResult(request, total, approved) {
++  return approved
++    ? {
++        orderId: request.orderId,
++        status: "paid",
++        totalCents: total,
++        errorCode: null,
++      }
++    : {
++        orderId: request.orderId,
++        status: "failed",
++        totalCents: total,
++        errorCode: "PAYMENT_DECLINED",
++      };
++}
++
++/**
++ * Create the card-only checkout slice.
++ *
++ * This duplicates the card branch's observable behavior at the strangler seam:
++ * the tax calculation, authorization request, and public payment result are the
++ * same as legacyCheckout. The legacy implementation is deliberately unchanged
++ * so the router can switch card traffic back to it immediately.
++ *
++ * Authorization errors cross this boundary untouched. Only the router knows
++ * whether an error proves that authorization was never created and can therefore
++ * decide whether invoking legacy checkout would be safe.
++ */
++export function createCardCheckout({ authorize }) {
++  return async function cardCheckout(request) {
++    const total = totalCents(request);
++    const authorization = await authorize({
++      orderId: request.orderId,
++      amountCents: total,
++      paymentToken: request.paymentToken,
++    });
++
++    return paymentResult(request, total, authorization.approved);
++  };
++}
+diff --git a/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.mjs b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.mjs
+index 010f28c5293510316f9704cf6c7e3c866a0fa1fb..08dd0db5b40cd4cc6dbffcadac4323e4a0d460c4 100644
+--- a/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.mjs	
++++ b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.mjs	
+@@ -1,4 +1,68 @@
+-/** Seeded router: all payment types still flow through the legacy implementation. */
++const PUBLIC_RESULT_KEYS = ["errorCode", "orderId", "status", "totalCents"];
++
++function totalCents(request) {
++  return request.subtotalCents + Math.round(request.subtotalCents * request.taxRateBps / 10000);
++}
++
++function paymentStateUnknown(request) {
++  return {
++    orderId: request.orderId,
++    status: "failed",
++    totalCents: totalCents(request),
++    errorCode: "PAYMENT_STATE_UNKNOWN",
++  };
++}
++
++function canonicalPublicResult(result, request) {
++  if (result === null || typeof result !== "object" || Array.isArray(result)) {
++    return null;
++  }
++
++  const keys = Object.keys(result).sort();
++  if (keys.length !== PUBLIC_RESULT_KEYS.length
++      || keys.some((key, index) => key !== PUBLIC_RESULT_KEYS[index])) {
++    return null;
++  }
++
++  const isPaid = result.status === "paid" && result.errorCode === null;
++  const isKnownFailure = result.status === "failed"
++    && (result.errorCode === "PAYMENT_DECLINED"
++      || result.errorCode === "PAYMENT_STATE_UNKNOWN");
++  if (result.orderId !== request.orderId
++      || result.totalCents !== totalCents(request)
++      || (!isPaid && !isKnownFailure)) {
++    return null;
++  }
++
++  return {
++    orderId: result.orderId,
++    status: result.status,
++    totalCents: result.totalCents,
++    errorCode: result.errorCode,
++  };
++}
++
++function isExplicitlyPreAuthorization(failure) {
++  return failure !== null
++    && typeof failure === "object"
++    && !Array.isArray(failure)
++    && Object.prototype.hasOwnProperty.call(failure, "authorizationCreated")
++    && failure.authorizationCreated === false;
++}
++
+ export async function routeCheckout(request, implementations) {
+-  return implementations.legacy(request);
++  if (request.paymentType !== "card" || implementations.cardSliceEnabled !== true) {
++    return implementations.legacy(request);
++  }
++
++  try {
++    return await implementations.card(request);
++  } catch (failure) {
++    if (isExplicitlyPreAuthorization(failure)) {
++      return implementations.legacy(request);
++    }
++
++    return canonicalPublicResult(failure?.result, request)
++      ?? paymentStateUnknown(request);
++  }
+ }
