@@ -1,0 +1,255 @@
+diff --git a/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/clarifications.md b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/clarifications.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..296614daabc5fe88208b188be2d836f1522b7fed
+--- /dev/null
++++ b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/clarifications.md	
+@@ -0,0 +1,43 @@
++# Clarifications
++
++Evidence-based decisions that block safe implementation of subscription self-service management.
++
++## Q1: Who may cancel a subscription?
++
++- Category: Authorization
++- Repository evidence: `docs/stakeholder-notes.md` (Security) states it is unclear whether every billing admin may cancel an account or whether cancellation is restricted to the account owner. `docs/stakeholder-notes.md` (Product) says account owners and billing admins should manage plans. `src/types.ts` defines `OwnerRole` as `account_owner`, `billing_admin`, or `viewer` without per-action permissions.
++- Status: Assumption
++- Decision: Only `account_owner` may cancel a subscription. `billing_admin` may upgrade, downgrade, and change seats but cannot cancel.
++- Consequence: Authorization requirements and acceptance criteria must distinguish cancellation from other management actions. The UI must hide or disable cancel controls for billing admins.
++
++## Q2: When do downgrades and cancellations take effect?
++
++- Category: Billing
++- Repository evidence: `docs/stakeholder-notes.md` (Finance) says downgrades and cancellations should take effect at the next renewal date. `docs/stakeholder-notes.md` (Support) says some customers expect downgrades or cancellations to take effect immediately. This is an unresolved conflict between Finance and Support. `docs/billing-constraints.md` confirms the provider can schedule downgrades and cancellations for the end of the current billing term and does not support automatic immediate cancellation refunds.
++- Status: Confirmed
++- Decision: Downgrades and cancellations are scheduled for the end of the current billing term. They do not take effect immediately and no immediate refund is issued.
++- Consequence: Acceptance criteria must test end-of-term scheduling. The UI must communicate the effective date before confirmation so Support can set customer expectations.
++
++## Q3: What happens when a pending plan-change request already exists?
++
++- Category: Billing, Failure
++- Repository evidence: `docs/billing-constraints.md` states only one plan-change request may be pending per account and a second request returns a conflict response. `docs/stakeholder-notes.md` (Support) says a customer with an existing pending request must not accidentally create a conflicting second request. `src/data/subscriptions.ts` seeds account ACCT-1188 with `pendingChange: "seat increase requested by procurement"`.
++- Status: Confirmed
++- Decision: When a pending request exists, block all new change submissions and display the current pending state with its status.
++- Consequence: Requirements must cover conflict prevention, pending-state display, and disabled change controls while a request is in flight.
++
++## Q4: How should provider failures and asynchronous results be handled?
++
++- Category: Failure
++- Repository evidence: `docs/billing-constraints.md` states a request can be accepted before its final result arrives through a webhook, retrying without the same idempotency key can create a duplicate charge, and provider errors include internal details that must be translated into a safe customer message. `docs/stakeholder-notes.md` (Support) says agents need a clear state when a change is pending, rejected, or fails after submission.
++- Status: Confirmed
++- Decision: Show explicit states of pending, succeeded, rejected, and failed. Retries must reuse the same idempotency key. Provider errors are translated to safe customer-facing messages without internal details.
++- Consequence: Requirements must define observable recovery behavior, idempotent retry rules, and error message safety for both the UI and API integration layer.
++
++## Q5: Is an enterprise approval workflow included in the first release?
++
++- Category: Scope
++- Repository evidence: `docs/stakeholder-notes.md` (Product) says enterprise customers may need an approval workflow but this has not been decided, and the first release should feel complete even if some subscription actions remain out of scope. `docs/feature-request.md` lists upgrades, downgrades, cancellations, and seat changes as the requested actions with no approved acceptance criteria.
++- Status: Assumption
++- Decision: Enterprise approval workflows are out of scope for the first release. Self-service actions proceed without an internal approval step.
++- Consequence: The specification must list enterprise approval as explicitly out of scope and avoid designing approval gates, routing, or notification flows in v1 tasks.
+diff --git a/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/plan.md b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/plan.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..28606b0913652d85554c4780d951f34ad578a848
+--- /dev/null
++++ b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/plan.md	
+@@ -0,0 +1,37 @@
++# Technical Plan
++
++## PLAN-001: Authorization and role-gated controls
++
++Implement per-action permission checks based on `ownerRole`. Reference REQ-001, REQ-007.
++
++- Add permission helpers distinguishing viewer, billing_admin, and account_owner capabilities
++- Disable all change controls for viewers
++- Allow billing_admin to upgrade, downgrade, and change seats but restrict cancel to account_owner only
++- Document enterprise approval as out of scope in UI copy
++
++## PLAN-002: Billing change workflow with preview and scheduling
++
++Build the core subscription change flow integrating provider preview and scheduling APIs. Reference REQ-002, REQ-003, REQ-004.
++
++- Call billing provider preview endpoint before confirming charged changes
++- Apply upgrades and seat increases immediately with proration
++- Schedule downgrades and cancellations for end of current billing term
++- Display effective date and price impact before confirmation
++
++## PLAN-003: Pending request guard and state display
++
++Prevent conflicting requests and surface pending state. Reference REQ-005.
++
++- Check for existing `pendingChange` before enabling submission
++- Block new requests when a pending request exists
++- Display pending state text and status in subscription summary
++- Handle provider conflict response on duplicate submission
++
++## PLAN-004: Failure recovery and safe error handling
++
++Handle asynchronous results, retries, and provider errors. Reference REQ-006.
++
++- Track request lifecycle states: pending, succeeded, rejected, failed
++- Store and reuse idempotency keys across retries
++- Translate provider error details into safe customer-facing messages
++- Offer retry action that reuses the same idempotency key
+diff --git a/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/spec.md b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/spec.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..12b07ec157801183c73501082a68ff8aab49046d
+--- /dev/null
++++ b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/spec.md	
+@@ -0,0 +1,98 @@
++# Subscription Management Specification
++
++## Overview
++
++Allow account owners and billing admins to upgrade, downgrade, change seat counts, and cancel subscriptions through a self-service workflow. Viewers have read-only access. Changes respect billing-provider constraints on timing, pending requests, idempotency, and error translation.
++
++## Requirements
++
++### REQ-001: Role-based management permissions
++
++Account owners and billing admins may initiate plan upgrades, downgrades, and seat changes. Viewers have read-only access. Only account owners may cancel a subscription.
++
++### REQ-002: Immediate upgrades and seat increases with proration
++
++Upgrades and seat increases apply immediately. The customer is charged with proration after confirming a billing preview.
++
++### REQ-003: End-of-term downgrades and cancellations
++
++Downgrades and cancellations are scheduled for the end of the current billing term. No immediate refund is issued.
++
++### REQ-004: Billing preview before charged changes
++
++Before confirming any upgrade or seat increase, the customer sees a billing preview showing price impact and proration.
++
++### REQ-005: Single pending request enforcement
++
++Only one plan-change request may be pending per account. When a pending request exists, new change submissions are blocked and the current pending state is displayed.
++
++### REQ-006: Request lifecycle and failure recovery
++
++Submitted changes progress through pending, succeeded, rejected, or failed states. Retries reuse the same idempotency key. Provider errors are translated into safe customer-facing messages.
++
++### REQ-007: Out-of-scope boundaries
++
++Enterprise approval workflows, payment method management, and invoice history are not included in this release.
++
++## Acceptance Criteria
++
++### AC-001: Viewer cannot submit changes
++
++Given a user with the viewer role viewing an account subscription
++When the user attempts to change the plan, seat count, or cancel
++Then all change controls are disabled and no request is submitted
++
++### AC-002: Billing admin cannot cancel
++
++Given a user with the billing_admin role viewing an account subscription
++When the user views management actions
++Then upgrade, downgrade, and seat change controls are available but cancel is not offered
++
++### AC-003: Account owner can cancel at end of term
++
++Given an account owner with an active subscription
++When the owner confirms cancellation after reviewing the effective date
++Then the subscription remains active until the renewal date and cancellation is scheduled for that date
++
++### AC-004: Upgrade applies immediately with proration
++
++Given an account owner on the Growth plan
++When the owner upgrades to Enterprise and confirms the billing preview
++Then the plan changes immediately and a prorated charge is applied
++
++### AC-005: Downgrade scheduled for end of billing term
++
++Given a billing admin on the Enterprise plan
++When the admin downgrades to Growth and confirms after seeing the effective date
++Then the current plan remains active until the renewal date and the downgrade is scheduled for that date
++
++### AC-006: Billing preview shown before charged change
++
++Given a user initiating an upgrade or seat increase
++When the user selects the new plan or seat count
++Then a billing preview displays the prorated amount before the user can confirm
++
++### AC-007: Second request blocked while pending
++
++Given an account with a pending plan-change request such as ACCT-1188
++When a user attempts to submit another plan or seat change
++Then the submission is blocked and the existing pending state is displayed
++
++### AC-008: Failed request shows safe error and allows idempotent retry
++
++Given a submitted change that the billing provider rejects
++When the final result arrives with a provider error
++Then the UI shows a safe customer-facing message without internal details and offers retry using the same idempotency key
++
++### AC-009: Enterprise approval is not offered
++
++Given an enterprise account user viewing management options
++When the user initiates any self-service change
++Then no approval workflow step is presented and the change follows the standard preview-and-confirm flow
++
++## Out of Scope
++
++- Enterprise approval workflows (Q5)
++- Payment method management
++- Invoice history
++- Immediate downgrade or cancellation with refund
+diff --git a/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/tasks.md b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/tasks.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..6d9533f27f51023dfeb4b7bdcf4713948ccb0ca8
+--- /dev/null
++++ b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/tasks.md	
+@@ -0,0 +1,53 @@
++# Implementation Tasks
++
++## TASK-001: Add per-action permission helpers
++
++Implement role-based gating that distinguishes cancellation from other management actions.
++
++- References: REQ-001, AC-001, AC-002
++- Add `canManageSubscription(role)` and `canCancelSubscription(role)` helpers in subscription service
++- Conditionally render upgrade, downgrade, seat, and cancel controls based on role
++
++## TASK-002: Build upgrade and seat increase flow with billing preview
++
++Implement immediate upgrade and seat increase with provider preview integration.
++
++- References: REQ-002, REQ-004, AC-004, AC-006
++- Add plan and seat selection UI
++- Call billing provider preview endpoint before confirmation
++- Submit confirmed upgrade with proration
++
++## TASK-003: Build end-of-term downgrade and cancellation flow
++
++Implement scheduled downgrade and cancellation with effective-date communication.
++
++- References: REQ-003, AC-003, AC-005
++- Add downgrade action with effective-date preview
++- Add cancel action restricted to account_owner
++- Schedule changes for end of billing term via provider API
++
++## TASK-004: Enforce single pending request and display pending state
++
++Block conflicting submissions and show pending request status.
++
++- References: REQ-005, AC-007
++- Check `pendingChange` on account before enabling change controls
++- Disable submission and show existing pending state when a request is in flight
++- Handle provider conflict response for duplicate submissions
++
++## TASK-005: Implement request lifecycle states and safe error recovery
++
++Handle asynchronous results, idempotent retries, and error translation.
++
++- References: REQ-006, AC-008
++- Track pending, succeeded, rejected, and failed states per request
++- Store idempotency key and reuse on retry
++- Translate provider errors to safe customer-facing messages
++
++## TASK-006: Document out-of-scope boundaries in UI
++
++Ensure enterprise approval and other excluded features are not surfaced.
++
++- References: REQ-007, AC-009
++- Omit approval workflow steps from all change flows
++- Add out-of-scope note for enterprise approval in management UI
