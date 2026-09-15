@@ -2,7 +2,7 @@
 > notification-mesh-app@0.1.0 graph:query
 > node ./scripts/query-code-graph.mjs --symbol selectNotificationRoute
 
-Source SHA: 84d9c5136a2aa9a9334e7862c63d3aea1471418a
+Source SHA: 3f4eed7f35deeee8575a6c8373758d1097d5736d
 Node: function:src/notification/routeNotification.mjs#selectNotificationRoute (src/notification/routeNotification.mjs:5)
 Incoming: 0
 Outgoing: 6
