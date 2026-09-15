@@ -1,0 +1,30 @@
+Command: npm run evidence:verify
+Repository commit: 6f31089f9ac49e1dcc34e6cc8f05a34543bb9c51
+Started at: 2026-09-15T11:15:18.671Z
+Finished at: 2026-09-15T11:15:19.249Z
+Duration ms: 578
+
+STDOUT
+
+> workflow-optimizer-app@0.1.0 evidence:verify
+> npm run eval:fixtures && npm run workflow:verify
+
+
+> workflow-optimizer-app@0.1.0 eval:fixtures
+> node ./scripts/validate-replay-fixtures.mjs
+
+PASS 6 train, 2 held-out, unique requests, leakage phrases, and critical assertions
+
+> workflow-optimizer-app@0.1.0 workflow:verify
+> node ./scripts/verify-workflow-results.mjs
+
+Baseline SHA: fb48d936ec2e6e205478614a4af4d2550662f650
+Candidate SHA: 6f31089f9ac49e1dcc34e6cc8f05a34543bb9c51
+PASS train 0.833 -> 0.900
+PASS held-out 1.000 -> 1.000
+PASS all critical, variance, token, duration, integrity, and history gates
+
+STDERR
+
+
+exit code: 0
