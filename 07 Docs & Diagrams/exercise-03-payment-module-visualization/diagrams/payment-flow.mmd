@@ -1,0 +1,26 @@
+flowchart TD
+  subgraph Checkout[Checkout]
+    Start([Shopper confirms checkout]) --> Intent[Create payment intent]
+    Intent --> Authorization[Authorize through gateway adapter]
+    Authorization --> Approved{Authorization approved?}
+    Approved -- Yes --> Capture[Capture authorization]
+    Capture --> PaidLedger[Write authorization and capture ledger records]
+    PaidLedger --> SentReceipt[Create sent receipt status]
+    SentReceipt --> BuildEvent[buildGatewayWebhook returns generated event]
+    BuildEvent --> ApprovedOutcome([Approved checkout])
+    Approved -- No --> FailedLedger[Write rejected payment failure record]
+    FailedLedger --> BlockedReceipt[Create blocked receipt status]
+    BlockedReceipt --> DeclinedOutcome([Declined checkout])
+  end
+
+  subgraph Reconciliation[Independently invoked webhook reconciliation]
+    EventSupplied([Webhook event supplied]) --> Signature{Signature valid?}
+    Signature -- No --> Invalid[Reject invalid signature]
+    Signature -- Yes --> Reference{Gateway reference known?}
+    Reference -- No --> Unknown[Reject unknown reference]
+    Reference -- Yes --> Duplicate{Event already handled?}
+    Duplicate -- Yes --> AlreadyHandled([Return already-handled])
+    Duplicate -- No --> Record[Write one capture ledger record]
+    Record --> MarkHandled[Mark event handled]
+    MarkHandled --> Recorded([Return recorded])
+  end

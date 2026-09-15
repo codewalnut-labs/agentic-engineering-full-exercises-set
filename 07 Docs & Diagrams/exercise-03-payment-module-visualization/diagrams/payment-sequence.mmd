@@ -6,6 +6,7 @@ sequenceDiagram
   participant Ledger
   participant ReceiptNotifier
   participant WebhookHandler
+  actor ReconciliationCaller
 
   Shopper->>CheckoutUI: Confirm checkout
   %% EDGE: VIS-01
@@ -23,12 +24,15 @@ sequenceDiagram
     %% EDGE: VIS-05
     Orchestrator->>ReceiptNotifier: Create sent receipt status
     %% EDGE: VIS-06
-    GatewayAdapter->>WebhookHandler: Deliver captured webhook event
+    Orchestrator->>GatewayAdapter: Build gateway webhook event
+    GatewayAdapter-->>Orchestrator: Return generated webhook event
   else Authorization declined
     Orchestrator->>Ledger: Write rejected payment failure record
     Orchestrator->>ReceiptNotifier: Create blocked receipt status
   end
 
+  Note over WebhookHandler: Independently invoked webhook reconciliation
+  ReconciliationCaller->>WebhookHandler: Invoke reconciliation with supplied event
   WebhookHandler->>WebhookHandler: Verify signature before state access
   alt Invalid signature
     %% EDGE: VIS-08

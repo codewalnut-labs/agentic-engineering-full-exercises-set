@@ -1,10 +1,10 @@
 flowchart LR
   CheckoutUI["Checkout UI<br/>starts checkout"]
   Orchestrator["Payment Orchestrator<br/>coordinates authorization and capture"]
-  GatewayAdapter["Gateway Adapter<br/>authorizes, captures, and builds events"]
+  GatewayAdapter["Gateway Adapter<br/>authorizes, captures, and builds events<br/>(returns event data; does not deliver)"]
   LedgerRecord["Ledger Records<br/>authorization, capture, or failure"]
   ReceiptRecord["Receipt Status<br/>sent or blocked"]
-  WebhookHandler["Webhook Handler<br/>validates and reconciles capture events"]
+  WebhookHandler["Webhook Handler<br/>independent entry point for supplied events"]
 
   %% EDGE: VIS-01
   CheckoutUI --> Orchestrator
