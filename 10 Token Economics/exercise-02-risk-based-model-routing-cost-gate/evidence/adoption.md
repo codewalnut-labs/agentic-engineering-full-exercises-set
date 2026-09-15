@@ -11,3 +11,7 @@ The cost gate passes. Policy expected cost is USD 0.048863 versus USD 0.10019333
 The benchmark consists of 36 protected offline observations with response hashes, input/output tokens, latency, quality, safety, and grading rationale. It is a deterministic synthetic benchmark and explicitly not production-provider telemetry. All measurements reconcile to the fixed pricing table, all protected hashes match, all case routes match, and completeness passes without an API key.
 
 Adoption is limited to tasks that supply the three documented fields. Production monitoring should revisit the decision if real quality, safety, latency, retry frequency, provider pricing, or workload mix diverges materially from this held-out benchmark. Within the exercise evidence, every route, quality, safety, completeness, and savings gate passes, so adopt is the reproducible result.
+
+## Full verify:exercise output
+
+`npm run verify:exercise` was run in full at commit `09620e5ffbb4fcb86f914afe4a1c5e850cd9a5c0` and passed with exit code 0, including the outer clean-verification wrapper (no dirty-worktree or ENOBUFS failure occurred in this environment). The complete, unedited transcript is recorded at `evidence/commands/verify-exercise.txt`, with its SHA-256 and the verified commit recorded in `evidence/commands/verify-exercise.json`.
