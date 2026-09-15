@@ -20,3 +20,7 @@ Before and after used the same provider, Codex agent/version, model, low-reasoni
 ## Adoption
 
 Adopt the revised description. It preserves perfect recall, improves training accuracy by 25 points and held-out accuracy by 50 points, reaches perfect held-out specificity, and makes every repeated decision stable. The comparison is fair because all other environment and request inputs match exactly.
+
+## Chronology and interpretation
+
+The revised description was committed in `86cef5f` before the retained September 9 runs. Those runs are post-review validation of a frozen description, so the observed training failures support the existing catalog-boundary rationale but must not be presented as the historical cause of the edit. No after or held-out result was used for retuning, and the measured before/after scores remain a comparison of the two frozen descriptions under matched conditions.

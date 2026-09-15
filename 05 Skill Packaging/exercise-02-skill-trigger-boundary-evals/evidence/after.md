@@ -15,3 +15,5 @@
 The only routing input changed was the `change-review` description. Each request ran in its own read-only `codex exec --ephemeral` process between `2026-09-09T10:49:21.210Z` and `2026-09-09T10:51:21.361Z`. All 60 distinct threads are listed in `evidence/routing-run-log.json`; complete final JSON responses are retained under `evidence/routing-responses/after/` and bound to their selected-skill lists and SHA-256 values in the result file.
 
 Scoring: training 12/12; held-out 8/8; held-out precision, recall, and specificity 1.00; unanimous rate 1.00. No false positives or false negatives remained.
+
+Chronology note: this is a post-review validation of the description frozen in `86cef5f`, not a newly tuned treatment derived from these September 9 results. The after runs were executed after the description commit and no description changes were made in response to their outcomes.
