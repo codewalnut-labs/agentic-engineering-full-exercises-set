@@ -24,6 +24,7 @@
 | `npm run test:invitations` | Pass; exit code: 0 (16/16 tests) |
 | `npm run submission:verify` | Pass; exit code: 0 |
 | `npm run agent:check` | Pass; exit code: 0 |
+| `npm run verify:exercise` | Pass; exit code: 0 ("PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged") |
 | Invitation risks that failed | 0 automated test failures; 0 risks found on independent code review (the one real risk identified during the before run — the client-controlled clock — was closed by `src/services/clock.ts`'s monotonic clock) |
 | Files changed | 5 |
 | Lines added and removed | `+296 / -9` |
