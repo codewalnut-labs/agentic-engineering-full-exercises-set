@@ -1,0 +1,113 @@
+[
+  {
+    "eventId": "policy-217-replay-001",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:55:00.000Z",
+    "sequence": 1,
+    "type": "context",
+    "target": "docs/contract.md",
+    "bytes": 3200,
+    "workspaceRevision": 1,
+    "result": "ok"
+  },
+  {
+    "eventId": "policy-217-replay-002",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:55:08.000Z",
+    "sequence": 2,
+    "type": "read",
+    "target": "src/policy.ts",
+    "contentVersion": "v1",
+    "workspaceRevision": 1,
+    "result": "ok"
+  },
+  {
+    "eventId": "policy-217-replay-003",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:55:15.000Z",
+    "sequence": 3,
+    "type": "read",
+    "target": "tests/policy.test.ts",
+    "contentVersion": "t1",
+    "workspaceRevision": 1,
+    "result": "ok"
+  },
+  {
+    "eventId": "policy-217-replay-004",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:55:28.000Z",
+    "sequence": 4,
+    "type": "command",
+    "target": "npm test -- policy",
+    "workspaceRevision": 1,
+    "phase": "focused-test",
+    "result": "failed",
+    "exitCode": 1
+  },
+  {
+    "eventId": "policy-217-replay-005",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:55:36.000Z",
+    "sequence": 5,
+    "type": "diagnosis",
+    "target": "escalated fixture still expects the legacy rule",
+    "workspaceRevision": 1,
+    "result": "ok"
+  },
+  {
+    "eventId": "policy-217-replay-006",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:55:43.000Z",
+    "sequence": 6,
+    "type": "read",
+    "target": "docs/contract.md",
+    "contentVersion": "c1",
+    "workspaceRevision": 1,
+    "result": "ok"
+  },
+  {
+    "eventId": "policy-217-replay-007",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:56:02.000Z",
+    "sequence": 7,
+    "type": "write",
+    "target": "src/policy.ts",
+    "contentVersion": "v2",
+    "workspaceRevision": 2,
+    "result": "ok"
+  },
+  {
+    "eventId": "policy-217-replay-008",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:56:18.000Z",
+    "sequence": 8,
+    "type": "command",
+    "target": "npm test -- policy",
+    "workspaceRevision": 2,
+    "phase": "focused-test",
+    "result": "passed",
+    "exitCode": 0
+  },
+  {
+    "eventId": "policy-217-replay-009",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:56:34.000Z",
+    "sequence": 9,
+    "type": "command",
+    "target": "npm run verify:policy",
+    "workspaceRevision": 2,
+    "phase": "final-verification",
+    "result": "passed",
+    "exitCode": 0
+  },
+  {
+    "eventId": "policy-217-replay-010",
+    "sessionId": "replay-policy-217-20260911",
+    "capturedAt": "2026-09-11T09:56:39.000Z",
+    "sequence": 10,
+    "type": "claim",
+    "target": "task complete with final verification evidence",
+    "workspaceRevision": 2,
+    "result": "ok"
+  }
+]
