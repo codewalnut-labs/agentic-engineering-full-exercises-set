@@ -26,12 +26,37 @@ Object.defineProperty(globalThis, "window", {
 beforeEach(() => storage.clear());
 
 describe("cache review regressions", () => {
-  it("[CACHE-VALIDATION] falls back safely for malformed and non-array cached values", async () => {
-    for (const invalid of ["{broken", JSON.stringify({ id: "not-an-array" })]) {
+  it("[CACHE-VALIDATION] falls back safely for malformed and invalid cached records", async () => {
+    const complete = { ...workItems[0], tags: [...workItems[0].tags] };
+    const invalidRecords = [
+      null,
+      { ...complete, note: undefined },
+      { ...complete, score: "91" },
+      { ...complete, dueInDays: Number.POSITIVE_INFINITY },
+      { ...complete, tags: "fresh-review" },
+      { ...complete, tags: ["fresh-review", 7] },
+      { ...complete, priority: "Urgent" },
+      { ...complete, status: "Done" },
+    ];
+
+    for (const invalid of ["{broken", JSON.stringify({ id: "not-an-array" }), ...invalidRecords.map((record) => JSON.stringify([record]))]) {
       storage.setItem("workflow-items", invalid);
       await expect(fetchWorkItems()).resolves.toHaveLength(workItems.length);
       expect(storage.getItem("workflow-items")).toBeNull();
     }
+  });
+
+  it("[CACHE-VALIDATION] preserves every field in a valid edited cached record", async () => {
+    const edited = {
+      ...workItems[0],
+      owner: "Edited owner",
+      status: "Ready" as const,
+      note: "Edited note",
+      tags: [...workItems[0].tags, "edited"],
+    };
+    storage.setItem("workflow-items", JSON.stringify([edited]));
+
+    await expect(fetchWorkItems()).resolves.toEqual([edited]);
   });
 
   it("[CACHE-MUTATION] orders a copy without changing the imported fixture", async () => {

@@ -4,12 +4,34 @@ import { workItems } from "../data/workItems";
 const wait = (ms: number) => new Promise((resolve) => window.setTimeout(resolve, ms));
 const cacheKey = "workflow-items";
 
+const workItemKeys = ["id", "name", "priority", "status", "score", "summary", "note", "owner", "dueInDays", "tags"];
+const priorities = ["Low", "Medium", "High"];
+const statuses = ["Queued", "Ready", "In Review", "Blocked", "Escalated"];
+
+function isValidWorkItem(value: unknown): value is WorkItem {
+  if (value === null || typeof value !== "object" || Array.isArray(value)) return false;
+  const item = value as Record<string, unknown>;
+  const keys = Object.keys(item);
+  if (keys.length !== workItemKeys.length || workItemKeys.some((key) => !keys.includes(key))) return false;
+
+  return typeof item.id === "string" &&
+    typeof item.name === "string" &&
+    priorities.includes(item.priority as string) &&
+    statuses.includes(item.status as string) &&
+    typeof item.score === "number" && Number.isFinite(item.score) &&
+    typeof item.summary === "string" &&
+    typeof item.note === "string" &&
+    typeof item.owner === "string" &&
+    typeof item.dueInDays === "number" && Number.isFinite(item.dueInDays) &&
+    Array.isArray(item.tags) && item.tags.every((tag) => typeof tag === "string");
+}
+
 function loadCachedItems(): WorkItem[] | null {
   const cached = window.localStorage.getItem(cacheKey);
   if (!cached) return null;
   try {
     const parsed: unknown = JSON.parse(cached);
-    if (Array.isArray(parsed)) return parsed as WorkItem[];
+    if (Array.isArray(parsed) && parsed.every(isValidWorkItem)) return parsed;
   } catch {
     // Invalid browser state falls back to the source data below.
   }
