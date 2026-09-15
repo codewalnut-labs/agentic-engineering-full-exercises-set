@@ -1,0 +1,98 @@
+Command: npm run verify:exercise
+Working directory: rules-refactor-app
+Exit code: 0
+
+> rules-refactor-app@0.1.0 verify:exercise
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+
+> rules-refactor-app@0.1.0 agent:check
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+
+> rules-refactor-app@0.1.0 test:integrity
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+
+Verified 11 protected challenge inputs.
+
+> rules-refactor-app@0.1.0 lint
+> node ./scripts/lint-check.mjs
+
+lint-check passed
+
+> rules-refactor-app@0.1.0 test
+> node ./scripts/test-refactor-verifier.mjs && node ./scripts/agent-check.mjs
+
+characterization refactor verifier self-test passed
+agent-check passed for Characterization-First Rules Refactor
+
+> rules-refactor-app@0.1.0 format
+> node ./scripts/format-check.mjs
+
+format-check passed
+
+> rules-refactor-app@0.1.0 typecheck
+> tsc -b --pretty false
+
+> rules-refactor-app@0.1.0 build
+> tsc -b && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.42 kB │ gzip:  0.29 kB
+dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+dist/assets/index-DpcQ64oC.js   196.28 kB │ gzip: 61.71 kB
+✓ built in 482ms
+
+> rules-refactor-app@0.1.0 verify:implementation
+> npm run test:oracle
+
+> rules-refactor-app@0.1.0 test:oracle
+> node ./scripts/run-characterization-oracle.mjs && node ./src/rules/legacyEligibility.characterization.test.mjs
+
+PASS enterprise boundary with one late payment
+PASS enterprise boundary with two late payments
+PASS enterprise below tenure boundary
+PASS enterprise accepts negative late payments
+PASS pro exact tenure clean account
+PASS pro below tenure boundary
+PASS mature pro with one late payment
+PASS support override wins on new starter
+PASS support override wins on enterprise arrears
+PASS ordinary starter remains unsupported
+PASS 10 protected public-behavior observations
+PASS 10 public renewal eligibility characterizations
+
+> rules-refactor-app@0.1.0 verify:submission
+> npm run test:submission
+
+> rules-refactor-app@0.1.0 test:submission
+> npm run test:oracle && npm run refactor:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+
+> rules-refactor-app@0.1.0 test:oracle
+> node ./scripts/run-characterization-oracle.mjs && node ./src/rules/legacyEligibility.characterization.test.mjs
+
+PASS enterprise boundary with one late payment
+PASS enterprise boundary with two late payments
+PASS enterprise below tenure boundary
+PASS enterprise accepts negative late payments
+PASS pro exact tenure clean account
+PASS pro below tenure boundary
+PASS mature pro with one late payment
+PASS support override wins on new starter
+PASS support override wins on enterprise arrears
+PASS ordinary starter remains unsupported
+PASS 10 protected public-behavior observations
+PASS 10 public renewal eligibility characterizations
+
+> rules-refactor-app@0.1.0 refactor:verify
+> node ./scripts/verify-refactor-submission.mjs
+
+Characterization SHA: d2b2dcec249d9661bde003746cab68414d53dc4a
+Refactor SHA: d0eb445de725270d29bafe7759d6330420f4e8bc
+PASS characterization test and before output preceded production edits
+PASS all ten before and after public outputs are identical
+PASS refactor commit changes only the legacy rule module
+PASS suspected bugs documented and later history limited to evidence
+Verified Characterization-First Rules Refactor: 7 files and 0 directories.
