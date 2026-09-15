@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "base_sha": "e83928ed3c4d34fd51039c65b3d86373687cb259",
+  "lane": {
+    "card_id": "ESC-120",
+    "agent": "exercise_06_03_esc_120_lane / session-1",
+    "branch": "lane/esc-120-inherited-severity",
+    "base_sha": "e83928ed3c4d34fd51039c65b3d86373687cb259",
+    "commit_sha": "93d105ec8aad54d52bec97f1d825cca6f9c76f72",
+    "owned_paths": [
+      "src/utils/scoring.ts",
+      "src/components/SeverityBadge.tsx",
+      "tests/esc-120/"
+    ],
+    "changed_paths": [
+      "src/components/SeverityBadge.tsx",
+      "src/utils/scoring.ts",
+      "tests/esc-120/inherited.test.tsx"
+    ],
+    "verification": {
+      "command": "npm run feature:verify",
+      "exit_code": 0,
+      "output_path": "evidence/commands/esc-120.txt",
+      "output_sha256": "fddc7e7dcb7cab1fe0b09d3a25544a77ce5e4060ac291b9e3ff29d04ac0f75fb"
+    },
+    "reviewer": "risk-owner",
+    "review_decision": "accept",
+    "review_path": "evidence/completed-lane.md",
+    "review_sha256": "f15b6d0b4c55ff2c5cccb66271cc198dbb34a66fe92173b01978c41daf04fdca",
+    "rollback": "git revert 072944ae351720e9a8636ce6af493b3e71f736c7"
+  },
+  "integration": {
+    "branch": "integration/kanban-control",
+    "merge_commit_sha": "072944ae351720e9a8636ce6af493b3e71f736c7",
+    "control_commit_sha": "69b6dbb9b25b5198a4e21d9e01fac12539bd2b14",
+    "board_verification": {
+      "command": "npm run board:verify",
+      "exit_code": 0,
+      "output_path": "evidence/commands/board.txt",
+      "output_sha256": "9ddee8f4c3f528b6744b2618121cb053e7017a51ae8b92af889ecab4d0716359"
+    },
+    "decision": "accept"
+  },
+  "evidence_hardening": {
+    "before_patch_sha256": "76ab66b707d0e39f9be77024fc68e7160312c0154ab44f233419cf7e42359807",
+    "after_patch_sha256": "bc624308738b29426d0a14d13dad1fb28f87f87e778c0bddc24fd52751b50955",
+    "pre_hardening_sha": "86f7291569f1a2ec280a17fe20e2a05044211a93",
+    "pre_hardening_verification": {
+      "command": "npm run verify:exercise",
+      "exit_code": 0,
+      "output_path": "evidence/commands/verify-exercise.txt",
+      "output_sha256": "45f1b38ab6f817286dba2f86854008b443bb92a735f1d66e8bf241d9e55faece"
+    }
+  }
+}
