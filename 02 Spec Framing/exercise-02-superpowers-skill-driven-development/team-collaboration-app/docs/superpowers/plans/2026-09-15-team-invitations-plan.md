@@ -343,7 +343,7 @@ export default function TeamInvitations({ state, onStateChange }: TeamInvitation
       <form onSubmit={handleCreate} className="invite-form">
         <input
           type="email"
-          placeholder="person@example.test"
+          aria-label="Invite email address"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           required

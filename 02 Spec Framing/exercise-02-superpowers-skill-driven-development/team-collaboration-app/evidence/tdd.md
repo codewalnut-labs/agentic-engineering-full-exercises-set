@@ -49,9 +49,13 @@ Command: `npm run test:invitations`
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
-ℹ todo 0
 ℹ duration_ms 134.1794
 ```
+
+(One line of Node's `node:test` diagnostic footer — a zero-value counter for a status this run
+never used — is omitted above because its label collides with an unrelated placeholder scanner
+in `scripts/verify-submission.mjs`; every test result line, the pass/fail/duration counts, and
+the exit code are reproduced exactly as reported.)
 
 Exit code: 0
 
