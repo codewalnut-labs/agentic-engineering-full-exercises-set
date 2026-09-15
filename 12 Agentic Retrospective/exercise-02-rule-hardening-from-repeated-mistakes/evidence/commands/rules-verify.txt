@@ -1,0 +1,28 @@
+Command: npm run evidence:verify
+Repository commit: 907a19dd2c8662223bff8fe0fbb208419195409f
+Started at: 2026-09-15T09:51:50.520Z
+Finished at: 2026-09-15T09:51:50.979Z
+Duration ms: 459
+
+
+> rule-hardening-app@0.1.0 evidence:verify
+> npm run test:persistence && npm run rules:verify
+
+
+> rule-hardening-app@0.1.0 test:persistence
+> node ./scripts/run-persistence-tests.mjs && node ./src/services/filterPersistence.test.mjs
+
+PASS stable identity, canonical values, injected time, exact shape, and immutability
+PASS participant test: relabeled owner resolves to the same stable id across saves, using an independent injected clock each time
+
+> rule-hardening-app@0.1.0 rules:verify
+> node ./scripts/verify-rule-hardening-submission.mjs
+
+fatal: path '12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/.agent/persistence.md' exists on disk, but not in 'fb48d936ec2e6e205478614a4af4d2550662f650'
+fatal: path '12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/AGENTS.md' exists on disk, but not in 'fb48d936ec2e6e205478614a4af4d2550662f650'
+Rules SHA: f0bce01229007119d963cb99b6116d8bd27c4e5a
+Agent implementation SHA: f80f1895077bd04f1a6f1ce3eeb9f1b52ac8c93c
+Implementation SHA: 907a19dd2c8662223bff8fe0fbb208419195409f
+PASS defect-improvement: baseline defects 6 -> after defects 0
+PASS patch hashes f5df39c47a7d26123e56d670dffd65e46f5f02ffeafa1084cba039e8480b0f0f and 19d14739ef6dcbc7038e85c333368776d744156debb07fb833b3efc4446d6610
+exit code: 0
