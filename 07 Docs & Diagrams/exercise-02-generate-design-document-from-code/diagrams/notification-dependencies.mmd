@@ -3,9 +3,9 @@ flowchart LR
   ProviderStatus["Provider Status<br/>pushAvailable, smsAvailable, emailAvailable"]
   ConsentPolicy["Consent Policy<br/>hasSmsConsent"]
   ImmediateRoute["Immediate Route<br/>immediateRoute"]
-  DurableQueue["Durable Queue<br/>durableQueueRoute"]
+  DurableQueue["Durable Queue Route<br/>durableQueueRoute"]
 
   ChannelRouter -->|checks availability| ProviderStatus
   ChannelRouter -->|checks SMS consent| ConsentPolicy
   ChannelRouter -->|selects one channel| ImmediateRoute
-  ChannelRouter -->|enqueues fallback| DurableQueue
+  ChannelRouter -->|selects durable-queue route| DurableQueue
