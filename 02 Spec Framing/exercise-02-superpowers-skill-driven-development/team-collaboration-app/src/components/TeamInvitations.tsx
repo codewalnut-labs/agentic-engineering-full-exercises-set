@@ -12,7 +12,10 @@ let invitationSequence = 0;
 let memberSequence = 0;
 
 export default function TeamInvitations({ state, onStateChange }: TeamInvitationsProps) {
-  const [actorId, setActorId] = useState(state.members[0]?.id ?? "");
+  const eligibleActors = state.members.filter(
+    (member) => member.status === "active" && state.policy.inviteRoles.includes(member.role)
+  );
+  const [actorId, setActorId] = useState(eligibleActors[0]?.id ?? state.members[0]?.id ?? "");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState<InvitationRole>("member");
   const [message, setMessage] = useState<string | null>(null);
@@ -43,14 +46,22 @@ export default function TeamInvitations({ state, onStateChange }: TeamInvitation
       memberId: `USR-NEW-${memberSequence}`,
       now: now()
     });
-    onStateChange(result.state);
-    setMessage(result.ok ? `Accepted ${invitationId}.` : `Could not accept: ${result.code}`);
+    if (result.ok) {
+      onStateChange(result.state);
+      setMessage(`Accepted ${invitationId}.`);
+    } else {
+      setMessage(`Could not accept: ${result.code}`);
+    }
   }
 
   function handleRevoke(invitationId: string) {
     const result = revokeInvitation(state, { invitationId, actorId, now: now() });
-    onStateChange(result.state);
-    setMessage(result.ok ? `Revoked ${invitationId}.` : `Could not revoke: ${result.code}`);
+    if (result.ok) {
+      onStateChange(result.state);
+      setMessage(`Revoked ${invitationId}.`);
+    } else {
+      setMessage(`Could not revoke: ${result.code}`);
+    }
   }
 
   return (
