@@ -1,0 +1,9 @@
+{
+  "command": "npm run verify:exercise",
+  "working_directory": "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app",
+  "verified_commit": "713e2a32b9d9b4dbcc14672283853fb06b7f759a",
+  "captured_at": "2026-09-15T08:41:03.000Z",
+  "exit_code": 0,
+  "transcript": "evidence/commands/verify-exercise.txt",
+  "transcript_sha256": "08a82e8072f13ac9f518211dc5b17e781db94ee60238800eee9700f310f2e7fb"
+}
