@@ -5,7 +5,7 @@ export function selectContext(catalog, task = {}, maximumBytes) {
   const taskTags = [...new Set(task.tags ?? [])].sort();
   const questionTags = [...new Set(task.questions ?? [])].sort();
   const requestedTags = [...new Set([...taskTags, ...questionTags])].sort();
-  const ordered = [...catalog].sort((left, right) => Number(right.mandatory) - Number(left.mandatory) || right.priority - left.priority || left.id.localeCompare(right.id));
+  const ordered = [...catalog].sort((left, right) => Number(right.mandatory === true) - Number(left.mandatory === true) || right.priority - left.priority || left.id.localeCompare(right.id));
   const selected = [];
   const skipped = [];
   let totalBytes = 0;

@@ -24,6 +24,12 @@ assert.deepEqual(ids(tight.selected), ["repository-rules"], "mandatory rules are
 assert.equal(tight.skipped.find((entry) => entry.id === "current-adapter-contract")?.reason, "budget");
 assert.deepEqual(tight.unresolvedTags, ["adapter", "session"], "budget omissions expose unresolved task tags");
 
+const omittedMandatory = selectContext([
+  { id: "optional-high-priority", authority: "current", priority: 99, bytes: 10, tags: ["task"] },
+  { id: "mandatory-source", authority: "current", mandatory: true, priority: 1, bytes: 10, tags: ["task"] },
+], { tags: ["task"] }, 10);
+assert.deepEqual(ids(omittedMandatory.selected), ["mandatory-source"], "omitted optional mandatory flags cannot displace true mandatory context");
+
 assert.throws(() => selectContext(catalog, task, 488), /mandatory context/i);
 assert.throws(() => selectContext([...catalog, catalog[0]], task, 2000), /duplicate context id/i);
 assert.throws(() => selectContext(catalog, task, -1), /positive integer/i);
