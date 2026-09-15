@@ -1,7 +1,16 @@
+import { useState } from "react";
 import { members, workspacePolicy } from "./data/team";
 import { canManageInvitations, summarizeMemberAccess } from "./services/teamPolicy";
+import TeamInvitations from "./components/TeamInvitations";
+import type { InvitationState } from "./types";
 
 export default function App() {
+  const [invitationState, setInvitationState] = useState<InvitationState>({
+    members,
+    invitations: [],
+    policy: workspacePolicy
+  });
+
   return (
     <main className="shell">
       <section className="hero">
@@ -11,7 +20,7 @@ export default function App() {
       </section>
 
       <section className="member-grid">
-        {members.map((member) => (
+        {invitationState.members.map((member) => (
           <article className="member-card" key={member.id}>
             <div>
               <p className="eyebrow">{member.id}</p>
@@ -25,7 +34,7 @@ export default function App() {
               </div>
               <div>
                 <dt>Can manage invites</dt>
-                <dd>{canManageInvitations(member, workspacePolicy) ? "yes" : "no"}</dd>
+                <dd>{canManageInvitations(member, invitationState.policy) ? "yes" : "no"}</dd>
               </div>
               <div>
                 <dt>Status</dt>
@@ -35,6 +44,8 @@ export default function App() {
           </article>
         ))}
       </section>
+
+      <TeamInvitations state={invitationState} onStateChange={setInvitationState} />
     </main>
   );
 }

@@ -1,0 +1,374 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index 40c9371..59168f1 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,7 +1,16 @@
++import { useState } from "react";
+ import { members, workspacePolicy } from "./data/team";
+ import { canManageInvitations, summarizeMemberAccess } from "./services/teamPolicy";
++import TeamInvitations from "./components/TeamInvitations";
++import type { InvitationState } from "./types";
+ 
+ export default function App() {
++  const [invitationState, setInvitationState] = useState<InvitationState>({
++    members,
++    invitations: [],
++    policy: workspacePolicy
++  });
++
+   return (
+     <main className="shell">
+       <section className="hero">
+@@ -11,7 +20,7 @@ export default function App() {
+       </section>
+ 
+       <section className="member-grid">
+-        {members.map((member) => (
++        {invitationState.members.map((member) => (
+           <article className="member-card" key={member.id}>
+             <div>
+               <p className="eyebrow">{member.id}</p>
+@@ -25,7 +34,7 @@ export default function App() {
+               </div>
+               <div>
+                 <dt>Can manage invites</dt>
+-                <dd>{canManageInvitations(member, workspacePolicy) ? "yes" : "no"}</dd>
++                <dd>{canManageInvitations(member, invitationState.policy) ? "yes" : "no"}</dd>
+               </div>
+               <div>
+                 <dt>Status</dt>
+@@ -35,6 +44,8 @@ export default function App() {
+           </article>
+         ))}
+       </section>
++
++      <TeamInvitations state={invitationState} onStateChange={setInvitationState} />
+     </main>
+   );
+ }
+diff --git a/src/components/TeamInvitations.tsx b/src/components/TeamInvitations.tsx
+new file mode 100644
+index 0000000..ddbea0f
+--- /dev/null
++++ b/src/components/TeamInvitations.tsx
+@@ -0,0 +1,124 @@
++import { useState } from "react";
++import { acceptInvitation, createInvitation, revokeInvitation } from "../services/invitationService";
++import { now } from "../services/clock";
++import type { InvitationRole, InvitationState } from "../types";
++
++interface TeamInvitationsProps {
++  state: InvitationState;
++  onStateChange: (state: InvitationState) => void;
++}
++
++let invitationSequence = 0;
++let memberSequence = 0;
++
++export default function TeamInvitations({ state, onStateChange }: TeamInvitationsProps) {
++  const eligibleActors = state.members.filter(
++    (member) => member.status === "active" && state.policy.inviteRoles.includes(member.role)
++  );
++  const [actorId, setActorId] = useState(eligibleActors[0]?.id ?? state.members[0]?.id ?? "");
++  const [email, setEmail] = useState("");
++  const [role, setRole] = useState<InvitationRole>("member");
++  const [message, setMessage] = useState<string | null>(null);
++
++  function handleCreate(event: React.FormEvent) {
++    event.preventDefault();
++    invitationSequence += 1;
++    const result = createInvitation(state, {
++      invitationId: `INV-${Date.now()}-${invitationSequence}`,
++      actorId,
++      email,
++      role,
++      now: now()
++    });
++    if (result.ok) {
++      onStateChange(result.state);
++      setEmail("");
++      setMessage(`Invited ${result.invitation?.email}.`);
++    } else {
++      setMessage(`Could not invite: ${result.code}`);
++    }
++  }
++
++  function handleAccept(invitationId: string) {
++    memberSequence += 1;
++    const result = acceptInvitation(state, {
++      invitationId,
++      memberId: `USR-NEW-${memberSequence}`,
++      now: now()
++    });
++    if (result.ok) {
++      onStateChange(result.state);
++      setMessage(`Accepted ${invitationId}.`);
++    } else {
++      setMessage(`Could not accept: ${result.code}`);
++    }
++  }
++
++  function handleRevoke(invitationId: string) {
++    const result = revokeInvitation(state, { invitationId, actorId, now: now() });
++    if (result.ok) {
++      onStateChange(result.state);
++      setMessage(`Revoked ${invitationId}.`);
++    } else {
++      setMessage(`Could not revoke: ${result.code}`);
++    }
++  }
++
++  return (
++    <section className="invitations">
++      <h2>Team Invitations</h2>
++
++      <label>
++        Acting as
++        <select value={actorId} onChange={(event) => setActorId(event.target.value)}>
++          {state.members.map((member) => (
++            <option key={member.id} value={member.id}>
++              {member.name} ({member.role}
++              {member.status === "suspended" ? ", suspended" : ""})
++            </option>
++          ))}
++        </select>
++      </label>
++
++      <form onSubmit={handleCreate} className="invite-form">
++        <input
++          type="email"
++          placeholder="person@example.test"
++          value={email}
++          onChange={(event) => setEmail(event.target.value)}
++          required
++        />
++        <select value={role} onChange={(event) => setRole(event.target.value as InvitationRole)}>
++          <option value="member">Member</option>
++          <option value="guest" disabled={!state.policy.allowGuestInvites}>
++            Guest{state.policy.allowGuestInvites ? "" : " (disabled by policy)"}
++          </option>
++        </select>
++        <button type="submit">Invite</button>
++      </form>
++
++      {message && <p className="invite-message">{message}</p>}
++
++      <ul className="invitation-list">
++        {state.invitations.map((invitation) => (
++          <li key={invitation.id}>
++            <span>{invitation.email}</span>
++            <span>{invitation.role}</span>
++            <span>{invitation.status}</span>
++            <span>expires {invitation.expiresAt}</span>
++            {invitation.status === "pending" && (
++              <>
++                <button type="button" onClick={() => handleAccept(invitation.id)}>
++                  Accept
++                </button>
++                <button type="button" onClick={() => handleRevoke(invitation.id)}>
++                  Revoke
++                </button>
++              </>
++            )}
++          </li>
++        ))}
++      </ul>
++    </section>
++  );
++}
+diff --git a/src/services/clock.ts b/src/services/clock.ts
+new file mode 100644
+index 0000000..e6b73bb
+--- /dev/null
++++ b/src/services/clock.ts
+@@ -0,0 +1,7 @@
++const bootEpochMs = Date.now();
++const bootPerformanceMs = performance.now();
++
++export function now(): string {
++  const elapsedMs = performance.now() - bootPerformanceMs;
++  return new Date(bootEpochMs + elapsedMs).toISOString();
++}
+diff --git a/src/services/invitationService.ts b/src/services/invitationService.ts
+index d861faf..4c933af 100644
+--- a/src/services/invitationService.ts
++++ b/src/services/invitationService.ts
+@@ -2,18 +2,123 @@ import type {
+   AcceptInvitationInput,
+   CreateInvitationInput,
+   InvitationActionResult,
++  InvitationErrorCode,
++  InvitationRole,
+   InvitationState,
+-  RevokeInvitationInput
++  RevokeInvitationInput,
++  TeamInvitation,
++  TeamMember
+ } from "../types";
+ 
+-export function createInvitation(_state: InvitationState, _input: CreateInvitationInput): InvitationActionResult {
+-  throw new Error("Invitation lifecycle is not implemented");
++const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
++const INVITATION_ROLES: InvitationRole[] = ["member", "guest"];
++
++function normalizeEmail(email: string): string {
++  return email.trim().toLowerCase();
++}
++
++function isValidEmail(email: string): boolean {
++  return EMAIL_PATTERN.test(email);
++}
++
++function isAuthorizedActor(state: InvitationState, actorId: string): boolean {
++  const actor = state.members.find((member) => member.id === actorId);
++  return actor !== undefined && actor.status === "active" && state.policy.inviteRoles.includes(actor.role);
++}
++
++function reject(state: InvitationState, code: InvitationErrorCode): InvitationActionResult {
++  return { ok: false, state, code };
++}
++
++function addDays(iso: string, days: number): string {
++  const date = new Date(iso);
++  date.setUTCDate(date.getUTCDate() + days);
++  return date.toISOString();
++}
++
++export function createInvitation(state: InvitationState, input: CreateInvitationInput): InvitationActionResult {
++  if (!isAuthorizedActor(state, input.actorId)) return reject(state, "UNAUTHORIZED");
++  if (!INVITATION_ROLES.includes(input.role)) return reject(state, "INVALID_ROLE");
++  if (input.role === "guest" && !state.policy.allowGuestInvites) return reject(state, "GUEST_DISABLED");
++
++  const email = normalizeEmail(input.email);
++  if (!isValidEmail(email)) return reject(state, "INVALID_EMAIL");
++  if (state.members.some((member) => normalizeEmail(member.email) === email)) {
++    return reject(state, "MEMBER_EXISTS");
++  }
++
++  const hasUnexpiredPending = state.invitations.some(
++    (invitation) =>
++      normalizeEmail(invitation.email) === email &&
++      invitation.status === "pending" &&
++      invitation.expiresAt > input.now
++  );
++  if (hasUnexpiredPending) return reject(state, "INVITATION_PENDING");
++
++  if (state.invitations.some((invitation) => invitation.id === input.invitationId)) {
++    return reject(state, "DUPLICATE_INVITATION_ID");
++  }
++
++  const invitation: TeamInvitation = {
++    id: input.invitationId,
++    email,
++    role: input.role,
++    invitedBy: input.actorId,
++    createdAt: input.now,
++    expiresAt: addDays(input.now, state.policy.defaultInviteExpiryDays),
++    status: "pending"
++  };
++
++  return {
++    ok: true,
++    state: { ...state, invitations: [...state.invitations, invitation] },
++    invitation
++  };
+ }
+ 
+-export function acceptInvitation(_state: InvitationState, _input: AcceptInvitationInput): InvitationActionResult {
+-  throw new Error("Invitation lifecycle is not implemented");
++export function acceptInvitation(state: InvitationState, input: AcceptInvitationInput): InvitationActionResult {
++  const invitation = state.invitations.find((item) => item.id === input.invitationId);
++  if (!invitation) return reject(state, "INVITATION_NOT_FOUND");
++  if (invitation.status !== "pending") return reject(state, "INVITATION_FINAL");
++  if (invitation.expiresAt <= input.now) return reject(state, "INVITATION_EXPIRED");
++  if (state.members.some((member) => member.id === input.memberId)) return reject(state, "DUPLICATE_MEMBER_ID");
++
++  const acceptedInvitation: TeamInvitation = { ...invitation, status: "accepted" };
++  const newMember: TeamMember = {
++    id: input.memberId,
++    name: invitation.email,
++    email: invitation.email,
++    role: invitation.role,
++    status: "active",
++    lastActiveDays: 0
++  };
++
++  return {
++    ok: true,
++    state: {
++      ...state,
++      members: [...state.members, newMember],
++      invitations: state.invitations.map((item) => (item.id === invitation.id ? acceptedInvitation : item))
++    },
++    invitation: acceptedInvitation
++  };
+ }
+ 
+-export function revokeInvitation(_state: InvitationState, _input: RevokeInvitationInput): InvitationActionResult {
+-  throw new Error("Invitation lifecycle is not implemented");
++export function revokeInvitation(state: InvitationState, input: RevokeInvitationInput): InvitationActionResult {
++  if (!isAuthorizedActor(state, input.actorId)) return reject(state, "UNAUTHORIZED");
++
++  const invitation = state.invitations.find((item) => item.id === input.invitationId);
++  if (!invitation) return reject(state, "INVITATION_NOT_FOUND");
++  if (invitation.status !== "pending") return reject(state, "INVITATION_FINAL");
++  if (invitation.expiresAt <= input.now) return reject(state, "INVITATION_EXPIRED");
++
++  const revokedInvitation: TeamInvitation = { ...invitation, status: "revoked" };
++  return {
++    ok: true,
++    state: {
++      ...state,
++      invitations: state.invitations.map((item) => (item.id === invitation.id ? revokedInvitation : item))
++    },
++    invitation: revokedInvitation
++  };
+ }
+diff --git a/src/styles.css b/src/styles.css
+index 8f57ec1..0db3eb0 100644
+--- a/src/styles.css
++++ b/src/styles.css
+@@ -83,3 +83,43 @@ body {
+   margin: 0;
+   font-weight: 800;
+ }
++
++.invitations {
++  margin-top: 20px;
++  padding: 20px;
++  border: 1px solid #d8dee9;
++  border-radius: 8px;
++  background: #ffffff;
++}
++
++.invitations h2 {
++  margin: 0 0 12px;
++  font-size: 20px;
++}
++
++.invite-form {
++  display: flex;
++  gap: 8px;
++  margin: 12px 0;
++}
++
++.invite-message {
++  margin: 0 0 12px;
++  color: #526178;
++}
++
++.invitation-list {
++  list-style: none;
++  padding: 0;
++  margin: 0;
++  display: grid;
++  gap: 8px;
++}
++
++.invitation-list li {
++  display: flex;
++  gap: 12px;
++  align-items: center;
++  padding: 8px 0;
++  border-top: 1px solid #eef1f6;
++}
