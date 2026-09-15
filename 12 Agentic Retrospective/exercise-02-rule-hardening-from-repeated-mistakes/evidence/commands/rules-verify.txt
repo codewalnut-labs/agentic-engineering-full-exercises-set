@@ -1,0 +1,32 @@
+Command: npm run evidence:verify
+Repository commit: 8a47f01ea6698db285fd908c4ad12cff40f4645e
+Started at: 2026-09-17T11:14:48.127Z
+Finished at: 2026-09-17T11:14:48.595Z
+Duration ms: 468
+
+STDOUT
+
+> rule-hardening-app@0.1.0 evidence:verify
+> npm run test:persistence && npm run rules:verify
+
+
+> rule-hardening-app@0.1.0 test:persistence
+> node ./scripts/run-persistence-tests.mjs && node ./src/services/filterPersistence.test.mjs
+
+PASS stable identity, canonical values, injected time, exact shape, and immutability
+PASS participant test: relabeled owner resolves to the same stable id across saves, using an independent injected clock each time
+
+> rule-hardening-app@0.1.0 rules:verify
+> node ./scripts/verify-rule-hardening-submission.mjs
+
+Rules SHA: c9c11ddd489f7fe520d1cc92fe898ace603e18d2
+Agent implementation SHA: 9e0bbbf2af1b545b1f5d6f543121ad13bbb7dc38
+Implementation SHA: 40ba5652afb57505d3e6c1db648185123f63e22a
+PASS defect-improvement: baseline defects 6 -> after defects 0
+PASS patch hashes f5df39c47a7d26123e56d670dffd65e46f5f02ffeafa1084cba039e8480b0f0f and 0f731d6685895022fa7006de18fe04c0f97c87c031033f6ffb94d564ba7e76f8
+
+STDERR
+fatal: path '12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/.agent/persistence.md' exists on disk, but not in 'fb48d936ec2e6e205478614a4af4d2550662f650'
+fatal: path '12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/AGENTS.md' exists on disk, but not in 'fb48d936ec2e6e205478614a4af4d2550662f650'
+
+exit code: 0
