@@ -1,0 +1,76 @@
+Command: npm run evidence:verify
+Repository commit: e44b0a18c3169824a95123862ca9b9e8170341b7
+Started at: 2026-09-16T08:52:45.681Z
+Finished at: 2026-09-16T08:52:54.111Z
+Duration ms: 8430
+
+STDOUT
+
+> billing-graph-app@0.1.0 evidence:verify
+> npm run agent:check && npm run verify:implementation && node ./scripts/verify-graph-submission.mjs content
+
+
+> billing-graph-app@0.1.0 agent:check
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+
+
+> billing-graph-app@0.1.0 test:integrity
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+
+Verified 47 protected challenge inputs.
+
+> billing-graph-app@0.1.0 lint
+> node ./scripts/lint-check.mjs
+
+lint-check passed
+
+> billing-graph-app@0.1.0 test
+> node ./scripts/agent-check.mjs
+
+agent-check passed for Create Queryable Repo Context for Agents
+
+> billing-graph-app@0.1.0 format
+> node ./scripts/format-check.mjs
+
+format-check passed
+
+> billing-graph-app@0.1.0 typecheck
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+
+
+> billing-graph-app@0.1.0 build
+> node ../../../scripts/run-vite-build.mjs
+
+[36mvite v7.3.6 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 39 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mC:/Users/arung/AppData/Local/Temp/exercise-vite-build-SKMqMY/dist/[22m[32mindex.html                 [39m[1m[2m  0.43 kB[22m[1m[22m[2m │ gzip:  0.29 kB[22m
+[2mC:/Users/arung/AppData/Local/Temp/exercise-vite-build-SKMqMY/dist/[22m[35massets/index-B8S07xzC.css  [39m[1m[2m  2.83 kB[22m[1m[22m[2m │ gzip:  1.11 kB[22m
+[2mC:/Users/arung/AppData/Local/Temp/exercise-vite-build-SKMqMY/dist/[22m[36massets/index-CvaKyUcI.js   [39m[1m[2m200.66 kB[22m[1m[22m[2m │ gzip: 63.08 kB[22m
+[32m✓ built in 714ms[39m
+
+> billing-graph-app@0.1.0 verify:implementation
+> npm run test:billing
+
+
+> billing-graph-app@0.1.0 test:billing
+> node ./scripts/run-billing-tests.mjs
+
+PASS subtracts credits from charge revenue
+PASS subtracts refund gross without applying credits twice
+PASS groups multiple tenants under one billing account
+PASS rejects an event without an account mapping
+PASS does not mutate events or account links
+PASS keeps the dashboard on the shared corrected summary
+PASS keeps the scheduled snapshot on the shared corrected summary
+PASS preserves the existing gross-volume metric
+
+8 billing checks passed.
+PASS submitted artifacts, source citations, evidence snapshot, and required checks. Semantic accuracy also requires reviewer assessment.
+
+STDERR
+
+
+exit code: 0
