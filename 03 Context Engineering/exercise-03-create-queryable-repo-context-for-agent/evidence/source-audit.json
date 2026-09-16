@@ -1,0 +1,198 @@
+{
+  "claims": [
+    {
+      "id": "arch-1",
+      "topic": "architecture",
+      "status": "supported",
+      "reason": "Both loadRevenueDashboard() and publishRevenueSnapshot() import and call buildRevenueSummary(), which is the single function that produces a RevenueSummary in this codebase.",
+      "artifact": { "path": "evidence/answers.md", "line": 11, "excerpt": "Two entry points produce a `RevenueSummary`, both by calling the single shared" },
+      "sources": [
+        { "path": "billing-graph-app/src/billing/revenueSummary.ts", "line": 5, "excerpt": "export function buildRevenueSummary(events: BillingEvent[], links: TenantAccountLink[]): RevenueSummary {" },
+        { "path": "billing-graph-app/src/dashboard/loadRevenueDashboard.ts", "line": 2, "excerpt": "import { buildRevenueSummary } from \"../billing/revenueSummary\";" },
+        { "path": "billing-graph-app/src/jobs/publishRevenueSnapshot.ts", "line": 2, "excerpt": "import { buildRevenueSummary } from \"../billing/revenueSummary\";" }
+      ]
+    },
+    {
+      "id": "arch-2",
+      "topic": "architecture",
+      "status": "supported",
+      "reason": "App() imports and calls loadRevenueDashboard() directly to render the dashboard section, making it a third consumer beyond the two library entry points; this was surfaced by graphify affected \"buildRevenueSummary()\" --depth 2, not obvious from reading revenueSummary.ts alone.",
+      "artifact": { "path": "evidence/answers.md", "line": 17, "excerpt": "UI-level consumer that a single-file read can miss: `App()` in" },
+      "sources": [
+        { "path": "billing-graph-app/src/App.tsx", "line": 5, "excerpt": "import { loadRevenueDashboard } from \"./dashboard/loadRevenueDashboard\";" },
+        { "path": "billing-graph-app/src/App.tsx", "line": 13, "excerpt": "  const dashboard = loadRevenueDashboard([" }
+      ]
+    },
+    {
+      "id": "arch-3",
+      "topic": "architecture",
+      "status": "unresolved",
+      "reason": "\"Scheduled\" appears only as a question topic and as a plain entity-list string, never attached to a cron config, queue consumer, or invocation site anywhere in the indexed corpus (src, scripts, docs, config). Absence cannot be fully proven by a finite set of citations, so this is recorded unresolved rather than supported or contradicted.",
+      "artifact": { "path": "evidence/answers.md", "line": 21, "excerpt": "Unresolved even with the graph: nothing in the indexed corpus (source, tests," },
+      "sources": [
+        { "path": "docs/graph-questions.md", "line": 7, "excerpt": "3. Data flow: trace an event from tenant to billing-account dashboard total and scheduled snapshot." },
+        { "path": "billing-graph-app/src/labContract.ts", "line": 17, "excerpt": "    \"scheduled snapshot\"," }
+      ]
+    },
+    {
+      "id": "dep-1",
+      "topic": "dependencies",
+      "status": "supported",
+      "reason": "Both recognizedRevenue.ts and grossVolume.ts import resolveBillingAccountId from the same tenantAccountDirectory.ts module, confirmed both by graphify explain \"resolveBillingAccountId()\" (exactly two callers) and by reading each import line directly.",
+      "artifact": { "path": "evidence/answers.md", "line": 34, "excerpt": "`resolveBillingAccountId()` in" },
+      "sources": [
+        { "path": "billing-graph-app/src/billing/recognizedRevenue.ts", "line": 2, "excerpt": "import { resolveBillingAccountId } from \"./tenantAccountDirectory\";" },
+        { "path": "billing-graph-app/src/billing/grossVolume.ts", "line": 2, "excerpt": "import { resolveBillingAccountId } from \"./tenantAccountDirectory\";" }
+      ]
+    },
+    {
+      "id": "dep-2",
+      "topic": "dependencies",
+      "status": "supported",
+      "reason": "The contract's directory-resolution and no-fallback-on-missing-mapping rules are implemented literally by resolveBillingAccountId's throw on a missing link.",
+      "artifact": { "path": "evidence/answers.md", "line": 43, "excerpt": "\"Every event must resolve through the tenant-to-account directory,\" and \"A" },
+      "sources": [
+        { "path": "docs/current-metric-contract.md", "line": 12, "excerpt": "- Every event must resolve through the tenant-to-account directory." },
+        { "path": "docs/current-metric-contract.md", "line": 13, "excerpt": "- A missing tenant mapping is an error and must not create a fallback grouping key." },
+        { "path": "billing-graph-app/src/billing/tenantAccountDirectory.ts", "line": 5, "excerpt": "  if (!link) throw new Error(`Missing billing-account mapping for tenant ${tenantId}`);" }
+      ]
+    },
+    {
+      "id": "flow-1",
+      "topic": "data-flow",
+      "status": "supported",
+      "reason": "Both metric functions key their running totals by the resolved billingAccountId (not tenantId), which is why multiple tenants under one billing account are summed together rather than reported separately - matching the contract's explicit grouping rule.",
+      "artifact": { "path": "evidence/answers.md", "line": 52, "excerpt": "running totals (so multiple tenants under one billing account are summed" },
+      "sources": [
+        { "path": "billing-graph-app/src/billing/recognizedRevenue.ts", "line": 7, "excerpt": "    const account = resolveBillingAccountId(event.tenantId, links);" },
+        { "path": "billing-graph-app/src/billing/grossVolume.ts", "line": 7, "excerpt": "    const accountId = resolveBillingAccountId(event.tenantId, links);" },
+        { "path": "docs/current-metric-contract.md", "line": 11, "excerpt": "- Totals are grouped by billing account, never by tenant." }
+      ]
+    },
+    {
+      "id": "flow-2",
+      "topic": "data-flow",
+      "status": "supported",
+      "reason": "Both loadRevenueDashboard() and publishRevenueSnapshot() call the same buildRevenueSummary(), so they consume identical underlying numbers by construction, matching the contract's requirement that both use the same shared revenue summary.",
+      "artifact": { "path": "evidence/answers.md", "line": 59, "excerpt": "`docs/current-metric-contract.md` states this as policy: \"The dashboard and" },
+      "sources": [
+        { "path": "docs/current-metric-contract.md", "line": 15, "excerpt": "- The dashboard and scheduled snapshot must use the same shared revenue summary." },
+        { "path": "billing-graph-app/src/billing/revenueSummary.ts", "line": 5, "excerpt": "export function buildRevenueSummary(events: BillingEvent[], links: TenantAccountLink[]): RevenueSummary {" }
+      ]
+    },
+    {
+      "id": "biz-1",
+      "topic": "business-rules",
+      "status": "supported",
+      "reason": "recognizedRevenue.ts line 8 implements charge = grossAmount - credits and refund = -grossAmount exactly as docs/current-metric-contract.md specifies.",
+      "artifact": { "path": "evidence/answers.md", "line": 69, "excerpt": "`recognizedRevenue.ts` line 8: a `\"charge\"` event contributes `grossAmount -" },
+      "sources": [
+        { "path": "billing-graph-app/src/billing/recognizedRevenue.ts", "line": 8, "excerpt": "    const recognized = event.kind === \"refund\" ? -event.grossAmount : event.grossAmount - event.credits;" },
+        { "path": "docs/current-metric-contract.md", "line": 9, "excerpt": "- A charge contributes `grossAmount - credits`." },
+        { "path": "docs/current-metric-contract.md", "line": 10, "excerpt": "- A refund contributes `-grossAmount`. Credits do not reduce a refund again." }
+      ]
+    },
+    {
+      "id": "biz-2",
+      "topic": "business-rules",
+      "status": "supported",
+      "reason": "grossVolume.ts sums grossAmount unconditionally, never subtracting credits or flipping sign for refunds, matching the contract's statement that gross volume is unaffected by the recognized-revenue rule.",
+      "artifact": { "path": "evidence/answers.md", "line": 71, "excerpt": "applied a second time to a refund). `grossVolume.ts` line 8 sums" },
+      "sources": [
+        { "path": "billing-graph-app/src/billing/grossVolume.ts", "line": 8, "excerpt": "    totals[accountId] = (totals[accountId] ?? 0) + event.grossAmount;" },
+        { "path": "docs/current-metric-contract.md", "line": 14, "excerpt": "- Gross volume remains the sum of gross amounts and is not changed by the recognized-revenue rule." }
+      ]
+    },
+    {
+      "id": "biz-3",
+      "topic": "business-rules",
+      "status": "contradicted",
+      "reason": "REV-482 is still marked Status: Open and reports that credits are still counted as recognized revenue, but recognizedRevenue.ts's current formula already subtracts credits from a charge, and the corresponding assertion in run-billing-tests.mjs passes - the open incident's reported symptom is contradicted by current source and its own test suite.",
+      "artifact": { "path": "evidence/answers.md", "line": 87, "excerpt": "bug is still live. **Verified conclusion: the current code and tests" },
+      "sources": [
+        { "path": "billing-graph-app/incidents/REV-482.md", "line": 3, "excerpt": "Status: Open" },
+        { "path": "billing-graph-app/incidents/REV-482.md", "line": 13, "excerpt": "- Credits are still counted as recognized revenue." },
+        { "path": "billing-graph-app/src/billing/recognizedRevenue.ts", "line": 8, "excerpt": "    const recognized = event.kind === \"refund\" ? -event.grossAmount : event.grossAmount - event.credits;" },
+        { "path": "billing-graph-app/scripts/run-billing-tests.mjs", "line": 37, "excerpt": "  await test(\"subtracts credits from charge revenue\", () => {" }
+      ]
+    },
+    {
+      "id": "own-1",
+      "topic": "ownership",
+      "status": "supported",
+      "reason": "docs/service-ownership.md, marked Status: Current, is a direct table of area-to-owner assignments for the recognized-revenue formula and its two consumers, corroborated by current-metric-contract.md's own Owner field.",
+      "artifact": { "path": "evidence/answers.md", "line": 99, "excerpt": "| Recognized-revenue formula | Billing Platform |" },
+      "sources": [
+        { "path": "docs/service-ownership.md", "line": 7, "excerpt": "| Recognized-revenue formula | Billing Platform | Defines and changes calculation rules |" },
+        { "path": "docs/current-metric-contract.md", "line": 5, "excerpt": "Owner: Billing Platform" }
+      ]
+    },
+    {
+      "id": "own-2",
+      "topic": "ownership",
+      "status": "supported",
+      "reason": "The superseded legacy-finance-metrics.md document's claim that dashboard metric changes are assigned to Support Analytics still matches current docs/service-ownership.md - not every statement in a superseded document is itself outdated.",
+      "artifact": { "path": "evidence/answers.md", "line": 106, "excerpt": "- `docs/legacy-finance-metrics.md` (\"Status: Superseded draft\") claims dashboard metric changes were assigned to Support Analytics - this still **agrees** with current ownership; only the same document's tenant-grouping rule (superseded by billing-account grouping) is actually outdated. Not every older claim in this doc is wrong." },
+      "sources": [
+        { "path": "docs/legacy-finance-metrics.md", "line": 8, "excerpt": "The document also assigned dashboard metric changes to Support Analytics." },
+        { "path": "docs/service-ownership.md", "line": 9, "excerpt": "| Revenue dashboard | Support Analytics | Consumes the shared summary |" }
+      ]
+    },
+    {
+      "id": "own-3",
+      "topic": "ownership",
+      "status": "contradicted",
+      "reason": "docs/previous-agent-progress.md claims the scheduled snapshot was a separate calculation owned by Support Analytics; current docs/service-ownership.md assigns the scheduled finance snapshot to Finance Operations instead - a direct disagreement between an older, explicitly-unverified note and the current authority.",
+      "artifact": { "path": "evidence/answers.md", "line": 107, "excerpt": "- `docs/previous-agent-progress.md` (an unverified historical note, explicitly \"a claim to investigate, not ... a source of current policy\") claims the snapshot was \"a separate calculation owned by Support Analytics\" - this **disagrees** with the current table, which assigns the scheduled finance snapshot to Finance Operations." },
+      "sources": [
+        { "path": "docs/previous-agent-progress.md", "line": 11, "excerpt": "- Treated the snapshot as a separate calculation owned by Support Analytics." },
+        { "path": "docs/service-ownership.md", "line": 10, "excerpt": "| Scheduled finance snapshot | Finance Operations | Consumes the shared summary |" }
+      ]
+    },
+    {
+      "id": "own-4",
+      "topic": "ownership",
+      "status": "contradicted",
+      "reason": "The stale graph-extract.md claims Support Analytics owns calculation changes, but current docs/service-ownership.md assigns the recognized-revenue formula itself to Billing Platform, not Support Analytics.",
+      "artifact": { "path": "evidence/answers.md", "line": 108, "excerpt": "- `docs/graph-extract.md` (\"Status: Stale and incomplete\") claims \"Support Analytics owns calculation changes\" - this **disagrees** with the current table, which assigns the recognized-revenue formula itself to Billing Platform, not Support Analytics. The document says so about itself: it \"predates credits, billing-account consolidation, and the shared revenue summary.\"" },
+      "sources": [
+        { "path": "docs/graph-extract.md", "line": 11, "excerpt": "| Support Analytics | owns calculation changes | inferred |" },
+        { "path": "docs/service-ownership.md", "line": 7, "excerpt": "| Recognized-revenue formula | Billing Platform | Defines and changes calculation rules |" }
+      ]
+    },
+    {
+      "id": "impact-1",
+      "topic": "change-impact",
+      "status": "supported",
+      "reason": "revenueSummary.ts calls recognizedRevenueByAccount() and is itself called by both loadRevenueDashboard() and publishRevenueSnapshot(), so a rule change there propagates to both consumer entry points.",
+      "artifact": { "path": "evidence/answers.md", "line": 117, "excerpt": "Direct consumers of `recognizedRevenueByAccount()`, per `graphify affected" },
+      "sources": [
+        { "path": "billing-graph-app/src/billing/revenueSummary.ts", "line": 7, "excerpt": "    recognizedRevenueByAccount: recognizedRevenueByAccount(events, links)," },
+        { "path": "billing-graph-app/src/dashboard/loadRevenueDashboard.ts", "line": 4, "excerpt": "export function loadRevenueDashboard(events: BillingEvent[], links: TenantAccountLink[]) {" },
+        { "path": "billing-graph-app/src/jobs/publishRevenueSnapshot.ts", "line": 4, "excerpt": "export function publishRevenueSnapshot(events: BillingEvent[], links: TenantAccountLink[]) {" }
+      ]
+    },
+    {
+      "id": "impact-2",
+      "topic": "change-impact",
+      "status": "supported",
+      "reason": "grossVolume.ts imports the same resolveBillingAccountId used by recognizedRevenue.ts, so a change to account resolution risks gross volume too, which is exactly the compatibility constraint REV-482's scope section calls out.",
+      "artifact": { "path": "evidence/answers.md", "line": 121, "excerpt": "`resolveBillingAccountId()` is a second shared dependency also used by" },
+      "sources": [
+        { "path": "billing-graph-app/src/billing/grossVolume.ts", "line": 2, "excerpt": "import { resolveBillingAccountId } from \"./tenantAccountDirectory\";" },
+        { "path": "billing-graph-app/incidents/REV-482.md", "line": 20, "excerpt": "The incident is limited to the shared recognized-revenue calculation. Gross volume, public consumer result shapes, and the tenant-to-account directory must remain compatible." }
+      ]
+    },
+    {
+      "id": "impact-3",
+      "topic": "change-impact",
+      "status": "supported",
+      "reason": "run-billing-tests.mjs loads billing modules via a runtime string argument to vite.ssrLoadModule, which static AST extraction cannot record as an edge - graphify affected/explain shows no connection from the test file to any billing/* module even though the test file directly asserts against recognizedRevenueByAccount. The claim being audited is the test-coverage fact itself (confirmed true by source), not the graph's edge (confirmed absent).",
+      "artifact": { "path": "evidence/answers.md", "line": 131, "excerpt": "graph limitation, found and verified this pass:** `graphify affected" },
+      "sources": [
+        { "path": "billing-graph-app/scripts/run-billing-tests.mjs", "line": 32, "excerpt": "  const revenue = await vite.ssrLoadModule(\"/src/billing/recognizedRevenue.ts\");" },
+        { "path": "billing-graph-app/scripts/run-billing-tests.mjs", "line": 37, "excerpt": "  await test(\"subtracts credits from charge revenue\", () => {" }
+      ]
+    }
+  ]
+}

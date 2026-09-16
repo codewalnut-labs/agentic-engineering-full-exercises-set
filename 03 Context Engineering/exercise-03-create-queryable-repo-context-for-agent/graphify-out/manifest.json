@@ -1,0 +1,197 @@
+{
+  "billing-graph-app/challenge-integrity.json": {
+    "mtime": 1789129580.9058125,
+    "ast_hash": "abbd6a4771c37f2fe13dd0e976934473",
+    "semantic_hash": "abbd6a4771c37f2fe13dd0e976934473"
+  },
+  "billing-graph-app/evidence-contract.json": {
+    "mtime": 1789129580.9058125,
+    "ast_hash": "7788240684d2207f8f6f5875803a1371",
+    "semantic_hash": "7788240684d2207f8f6f5875803a1371"
+  },
+  "billing-graph-app/lab-contract.json": {
+    "mtime": 1789129580.9058125,
+    "ast_hash": "17331b2a50d841874d1f645de67febac",
+    "semantic_hash": "17331b2a50d841874d1f645de67febac"
+  },
+  "billing-graph-app/package.json": {
+    "mtime": 1789129580.9075606,
+    "ast_hash": "3b751457ad9bd52d83f2d982a0d7b3f4",
+    "semantic_hash": "3b751457ad9bd52d83f2d982a0d7b3f4"
+  },
+  "billing-graph-app/scripts/agent-check.mjs": {
+    "mtime": 1789129580.9085288,
+    "ast_hash": "44d2b50c8c19670f5419a60525ee96b1",
+    "semantic_hash": "44d2b50c8c19670f5419a60525ee96b1"
+  },
+  "billing-graph-app/scripts/challenge-validation.mjs": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "a2a5dea33d6f4294c894e6b91a1d72b3",
+    "semantic_hash": "a2a5dea33d6f4294c894e6b91a1d72b3"
+  },
+  "billing-graph-app/scripts/format-check.mjs": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "0bf4536ddf0811b25ee64801d1ad2c8c",
+    "semantic_hash": "0bf4536ddf0811b25ee64801d1ad2c8c"
+  },
+  "billing-graph-app/scripts/lint-check.mjs": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "b552f14074c3830e599f6f292816ab43",
+    "semantic_hash": "b552f14074c3830e599f6f292816ab43"
+  },
+  "billing-graph-app/scripts/run-billing-tests.mjs": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "2c46080f1bfce0b54851933071c4d473",
+    "semantic_hash": "2c46080f1bfce0b54851933071c4d473"
+  },
+  "billing-graph-app/scripts/verify-graph-submission.mjs": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "ab74da66d4e7ceb61d276da6e1064af2",
+    "semantic_hash": "ab74da66d4e7ceb61d276da6e1064af2"
+  },
+  "billing-graph-app/src/App.tsx": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "ad1cd8d3f170111d2702416ca3e42e94",
+    "semantic_hash": "ad1cd8d3f170111d2702416ca3e42e94"
+  },
+  "billing-graph-app/src/billing/billingTypes.ts": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "66014b361f7d1325b4c2eb4a29172564",
+    "semantic_hash": "66014b361f7d1325b4c2eb4a29172564"
+  },
+  "billing-graph-app/src/billing/grossVolume.ts": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "1a395f3f828e4ee36eb93bcbdf6e54f6",
+    "semantic_hash": "1a395f3f828e4ee36eb93bcbdf6e54f6"
+  },
+  "billing-graph-app/src/billing/recognizedRevenue.ts": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "7550d0355dd6232e6f955234811569c5",
+    "semantic_hash": "7550d0355dd6232e6f955234811569c5"
+  },
+  "billing-graph-app/src/billing/revenueSummary.ts": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "ffa323940637f313198587045b656bda",
+    "semantic_hash": "ffa323940637f313198587045b656bda"
+  },
+  "billing-graph-app/src/billing/tenantAccountDirectory.ts": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "9feaf34621fa0a805a52cce8b5a8bb57",
+    "semantic_hash": "9feaf34621fa0a805a52cce8b5a8bb57"
+  },
+  "billing-graph-app/src/components/DecisionLog.tsx": {
+    "mtime": 1789129580.9089234,
+    "ast_hash": "396a33895aa0046f39d02460bf10b13e",
+    "semantic_hash": "396a33895aa0046f39d02460bf10b13e"
+  },
+  "billing-graph-app/src/components/EvidenceLedger.tsx": {
+    "mtime": 1789129580.9129443,
+    "ast_hash": "a539d26a06e9d5d0130489570f6edae7",
+    "semantic_hash": "a539d26a06e9d5d0130489570f6edae7"
+  },
+  "billing-graph-app/src/components/SkillPatternBoard.tsx": {
+    "mtime": 1789129580.9129443,
+    "ast_hash": "d77eeea2b98179588d05307192d9d68e",
+    "semantic_hash": "d77eeea2b98179588d05307192d9d68e"
+  },
+  "billing-graph-app/src/dashboard/loadRevenueDashboard.ts": {
+    "mtime": 1789129580.9129443,
+    "ast_hash": "6efeb2dac38416349f5d1aad40f8e3f7",
+    "semantic_hash": "6efeb2dac38416349f5d1aad40f8e3f7"
+  },
+  "billing-graph-app/src/jobs/publishRevenueSnapshot.ts": {
+    "mtime": 1789129580.9129443,
+    "ast_hash": "61ddd3499279cd4ac41801364f8bb238",
+    "semantic_hash": "61ddd3499279cd4ac41801364f8bb238"
+  },
+  "billing-graph-app/src/labContract.ts": {
+    "mtime": 1789129580.9129443,
+    "ast_hash": "a8b460ac8a47459d0a14f8c187639435",
+    "semantic_hash": "a8b460ac8a47459d0a14f8c187639435"
+  },
+  "billing-graph-app/src/main.tsx": {
+    "mtime": 1789129580.9129443,
+    "ast_hash": "db4fe2c095ec00827c2ffd63116a1783",
+    "semantic_hash": "db4fe2c095ec00827c2ffd63116a1783"
+  },
+  "billing-graph-app/src/skillWorkflow.ts": {
+    "mtime": 1789129580.9129443,
+    "ast_hash": "94e321f38dedd30c600086c478794554",
+    "semantic_hash": "94e321f38dedd30c600086c478794554"
+  },
+  "billing-graph-app/src/types.ts": {
+    "mtime": 1789129580.9129443,
+    "ast_hash": "cbdc78716e1d4266ad39f132242c9154",
+    "semantic_hash": "cbdc78716e1d4266ad39f132242c9154"
+  },
+  "billing-graph-app/submission-contract.json": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "d1060a3a66b22f3d8d907b51b200b0e7",
+    "semantic_hash": "d1060a3a66b22f3d8d907b51b200b0e7"
+  },
+  "billing-graph-app/tsconfig.json": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "9c3917c4c3135d357d9489d569ae31f1",
+    "semantic_hash": "9c3917c4c3135d357d9489d569ae31f1"
+  },
+  "billing-graph-app/vite.config.ts": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "3a94472e790d743fd028927548dfa8ed",
+    "semantic_hash": "3a94472e790d743fd028927548dfa8ed"
+  },
+  "README.md": {
+    "mtime": 1789129580.9058125,
+    "ast_hash": "3cb9863e8789db2b15bbe244a3281ed5",
+    "semantic_hash": "3cb9863e8789db2b15bbe244a3281ed5"
+  },
+  "billing-graph-app/incidents/REV-482.md": {
+    "mtime": 1789129580.9058125,
+    "ast_hash": "9e4220f43f5da18dfb2b53389a6e159b",
+    "semantic_hash": "9e4220f43f5da18dfb2b53389a6e159b"
+  },
+  "billing-graph-app/index.html": {
+    "mtime": 1789129580.9058125,
+    "ast_hash": "56d221e84cf02e13db910bb4adfe8394",
+    "semantic_hash": "56d221e84cf02e13db910bb4adfe8394"
+  },
+  "docs/current-metric-contract.md": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "93fccb23785aa6e30c6d394c3a7ac777",
+    "semantic_hash": "93fccb23785aa6e30c6d394c3a7ac777"
+  },
+  "docs/evidence-template.md": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "d6aa8c795bba925e8a69f422e49fed3c",
+    "semantic_hash": "d6aa8c795bba925e8a69f422e49fed3c"
+  },
+  "docs/graph-extract.md": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "03911fb44c8d3da9f8019fa4acc09e21",
+    "semantic_hash": "03911fb44c8d3da9f8019fa4acc09e21"
+  },
+  "docs/graph-questions.md": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "86620971ec1ac2ead38cf83a9083fb3b",
+    "semantic_hash": "86620971ec1ac2ead38cf83a9083fb3b"
+  },
+  "docs/legacy-finance-metrics.md": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "df0403e1790a3654a033fa756d761469",
+    "semantic_hash": "df0403e1790a3654a033fa756d761469"
+  },
+  "docs/previous-agent-progress.md": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "e9df29cacb210976941945205b405dbe",
+    "semantic_hash": "e9df29cacb210976941945205b405dbe"
+  },
+  "docs/service-ownership.md": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "7d5ac503a4c9752b875ed480eafcccac",
+    "semantic_hash": "7d5ac503a4c9752b875ed480eafcccac"
+  },
+  "docs/setup.md": {
+    "mtime": 1789129580.9159145,
+    "ast_hash": "ff413be1b61f4d3427358d9a813e09b4",
+    "semantic_hash": "ff413be1b61f4d3427358d9a813e09b4"
+  }
+}
