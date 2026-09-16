@@ -1,0 +1,542 @@
+Graphify indexing run
+=====================
+
+Tool: Graphify-Labs/graphify, distributed as PyPI package `graphifyy`.
+Version: graphify 0.9.4 (installed via `uv tool install graphifyy==0.9.4`)
+Skill: installed for Claude Code via `graphify install --platform claude` (writes
+  C:\Users\<user>\.claude\skills\graphify\SKILL.md + a CLAUDE.md section/hook).
+Invoked: through the installed skill's documented pipeline (Steps 1-9 of SKILL.md),
+  run by the coding agent (Claude Code, model claude-sonnet-5) since the `/graphify`
+  slash command form was not present in this session's pre-loaded skill list.
+Run from (exercise root, cwd for every command below):
+  D:\Projects\agentic-engineering-full-exercises-set\03 Context Engineering\exercise-03-create-queryable-repo-context-for-agent
+Indexing invocation (conceptually equivalent to): /graphify .
+Date: 2026-09-16
+
+Included paths (corpus root = exercise root, so source_file stays relative to it):
+  - billing-graph-app/src/**            (app source - required)
+  - billing-graph-app/scripts/run-*.mjs (tests - required; only run-billing-tests.mjs matches)
+  - docs/**                             (supplied docs - required)
+  - billing-graph-app/*.json, *.ts, index.html, incidents/REV-482.md (configuration + supporting docs)
+  - README.md
+
+Excluded paths:
+  - node_modules/   (Graphify's built-in _SKIP_DIRS - always skipped, no config needed)
+  - .git/            (Graphify's built-in _SKIP_DIRS - always skipped, no config needed)
+  - graphify-out/    (Graphify's built-in _SKIP_DIRS - own output, never treated as input)
+  - evidence/        (explicitly excluded via a project-root .graphifyignore, since Graphify
+                       has no built-in rule for this project-specific evidence directory)
+  - billing-graph-app/scripts/agent-check.mjs, challenge-validation.mjs, format-check.mjs,
+    lint-check.mjs, verify-graph-submission.mjs (excluded implicitly - task scope named only
+    "scripts/run-*"; these were detected as part of the wider "configuration" corpus per
+    docs/setup.md's Graphify section, not force-excluded, and did end up indexed as ordinary
+    code files since no --exclude flag exists in this CLI - see note below)
+
+.graphifyignore (created at exercise root):
+  node_modules/
+  .git/
+  evidence/
+  graphify-out/
+
+$ graphify --version
+graphify 0.9.4
+
+--- Step 2: file detection ---
+$ python -c "from graphify.detect import detect; print(detect(Path('.')))"
+total_files: 39
+total_words: 4712
+skipped_sensitive: []
+code: 28 files
+document: 11 files
+paper: 0, image: 0, video: 0
+(No corpus-size warning shown; 39 files / 4712 words is far under the
+2,000,000-word / 500-file threshold that triggers subfolder narrowing.)
+
+--- Step 3 Part A: AST structural extraction (code files, no LLM) ---
+$ python -c "from graphify.extract import extract; ..."
+AST: 113 nodes, 186 edges
+
+--- Step 3 Part B: semantic extraction (11 document files) ---
+No GEMINI_API_KEY / GOOGLE_API_KEY set in the environment, so semantic extraction
+fell back to the host agent itself per SKILL.md: a single general-purpose subagent
+(1 chunk, 11 files, all uncached) was dispatched with the extraction-spec prompt
+from references/extraction-spec.md and wrote its result to
+graphify-out/.graphify_chunk_01.json.
+Subagent result: 54 nodes, 83 edges, 3 hyperedges (all node IDs unique, all edges
+reference valid node IDs, file_type values all within the allowed set).
+Token usage recorded from the Agent tool result's usage field: 105,438 tokens
+(reported as a single subagent_tokens total, not split into input/output by the
+harness - recorded here as output_tokens=105438, input_tokens=0).
+
+--- Step 3 Part C: merge AST + semantic ---
+Merged: 167 nodes, 269 edges (113 AST + 54 semantic)
+
+--- Step 4: build graph, cluster, analyze, export ---
+Graph: 167 nodes, 240 edges, 13 communities
+(269 raw edges -> 240 valid candidate edges after dropping duplicates/self-loops;
+ see health check below for the 29 edges that reference an out-of-corpus endpoint.)
+
+--- Step 4.5: graph health check (read-only, never aborts) ---
+GRAPH HEALTH WARNING: 29 dangling-endpoint edges - graph may be incomplete/corrupt.
+
+Investigated manually (not a Graphify built-in explanation) - all 29 are one of:
+  - npm package deps referenced from package.json (react, react-dom, vite, typescript,
+    @vitejs/plugin-react, @types/react, @types/react-dom) - real external packages,
+    correctly out of corpus since node_modules/ is excluded.
+  - Node.js built-ins imported by scripts (node:fs, node:path) - not files in this repo.
+  - tsconfig.json "lib"/"include" references (dom, dom.iterable, es2020, src) - not
+    real file nodes, just compiler option string values the AST extractor treated
+    as edge targets.
+  - billing-graph-app/scripts/verify-graph-submission.mjs importing
+    ../../../scripts/context-document-evidence.mjs - a real file, but outside the
+    exercise root, so correctly out of corpus.
+  - billing-graph-app/src/App.tsx -> labContract.ts and -> styles.css: the AST
+    extractor generated a differently-formatted target ID for these two edges than
+    the ID it assigned to the labContract.ts / styles.css nodes themselves. This
+    looks like an AST id-normalization inconsistency in graphify 0.9.4 for this
+    edge shape, not a missing source file. Flagged here rather than silently fixed.
+None of the 29 point at a missing file inside the indexed corpus; the warning is
+expected given the deliberate node_modules/parent-repo exclusions above and is
+carried into docs/query-guide.md's "checking for stale or inferred edges" section.
+
+--- Step 5: label communities ---
+Report updated with community labels (13 communities named, e.g. "Recognized-Revenue
+Business Rules & Ownership", "Billing Calculation Core", "Package Scripts & Dependencies").
+
+--- Step 6: export HTML ---
+$ graphify export html
+graph.html written - open in any browser, no server needed
+
+--- Step 9: manifest + cost tracking ---
+This run: 0 input tokens, 105,438 output tokens
+All time: 0 input, 105,438 output (1 run)
+
+Outputs written:
+  graphify-out/graph.json
+  graphify-out/GRAPH_REPORT.md
+  graphify-out/graph.html
+  graphify-out/manifest.json
+  graphify-out/cost.json
+  graphify-out/cache/ (semantic extraction cache, keyed by file hash)
+
+GRAPH_REPORT.md summary (verbatim from the generated report):
+- 167 nodes, 240 edges, 13 communities (10 shown, 3 thin communities <3 nodes omitted)
+- Extraction mix: 89% EXTRACTED, 11% INFERRED, 0% AMBIGUOUS (26 INFERRED edges, avg
+  confidence 0.88)
+- Top God Nodes: `scripts` (20 edges), `compilerOptions` (16 edges),
+  `REV-482: Recognized revenue mismatch` (9 edges), `Repository questions` (9 edges),
+  `TenantAccountLink` (7 edges), `buildRevenueSummary()` (7 edges)
+- Knowledge Gaps: 69 isolated nodes (mostly individual package.json/tsconfig.json
+  leaf values with <=1 connection), 3 thin communities omitted from the report body.
+
+======================================================================
+CLI query session - answering docs/graph-questions.md (2026-09-16)
+Run from exercise root. All output below is unedited graphify CLI stdout,
+captured with `>> file 2>&1` directly from each command - nothing retyped
+by hand. Node names are the graph's own extracted labels/IDs; where the
+literal example strings from docs/setup.md were ambiguous against this
+graph, that is called out inline and the exact node ID is used instead.
+======================================================================
+
+--- baseline examples from docs/setup.md, run as literally given ---
+
+$ graphify query "recognized revenue" --graph graphify-out/graph.json
+Traversal: BFS depth=2 | Start: ['Recognized Revenue Contract', 'Recognized-Revenue Formula Ownership (Billing Platform)', 'Recognized Revenue Formula (charge = grossAmount - credits; refund = -grossAmount)'] | 31 nodes found
+
+NODE Repository questions [src=docs/graph-questions.md loc=None community=4]
+NODE REV-482: Recognized revenue mismatch [src=billing-graph-app/incidents/REV-482.md loc=None community=0]
+NODE Recognized Revenue Formula (charge = grossAmount - credits; refund = -grossAmount) [src=docs/current-metric-contract.md loc=None community=0]
+NODE Recognized Revenue Contract [src=docs/current-metric-contract.md loc=None community=0]
+NODE Revenue Dashboard Ownership (Support Analytics) [src=docs/service-ownership.md loc=None community=0]
+NODE Billing Account Grouping Rule [src=docs/current-metric-contract.md loc=None community=0]
+NODE Billing Service Ownership [src=docs/service-ownership.md loc=None community=0]
+NODE Shared Revenue Summary Requirement [src=docs/current-metric-contract.md loc=None community=0]
+NODE Tenant IDs Kept as Grouping Keys [src=docs/previous-agent-progress.md loc=None community=0]
+NODE Historical investigation note [src=docs/previous-agent-progress.md loc=None community=0]
+NODE Tenant-to-Account Directory Requirement [src=docs/current-metric-contract.md loc=None community=0]
+NODE loadRevenueDashboard [src=docs/setup.md loc=None community=4]
+NODE Scheduled Finance Snapshot Ownership (Finance Operations) [src=docs/service-ownership.md loc=None community=0]
+NODE Dashboard Updated to Display Gross Billing Events as Revenue [src=docs/previous-agent-progress.md loc=None community=0]
+NODE recognizedRevenueByAccount [src=docs/setup.md loc=None community=4]
+NODE billing-graph-app Project [src=README.md loc=None community=4]
+NODE Ownership Question: metric decision and consumer owners [src=docs/graph-questions.md loc=None community=0]
+NODE Two tenants in one billing account appear as separate totals (bug) [src=billing-graph-app/incidents/REV-482.md loc=None community=0]
+NODE Graphify Query Examples [src=docs/setup.md loc=None community=4]
+NODE Credits still counted as recognized revenue (bug) [src=billing-graph-app/incidents/REV-482.md loc=None community=0]
+NODE Recognized-Revenue Formula Ownership (Billing Platform) [src=docs/service-ownership.md loc=None community=0]
+NODE Revenue Grouped by Tenant (superseded) [src=docs/legacy-finance-metrics.md loc=None community=0]
+NODE Business Rules Question: refunds/credits vs gross volume [src=docs/graph-questions.md loc=None community=0]
+NODE Refunds increase rather than reduce total (bug) [src=billing-graph-app/incidents/REV-482.md loc=None community=0]
+NODE RevenueDashboard (claimed: reads gross revenue grouped by tenant) [src=docs/graph-extract.md loc=None community=0]
+NODE Data Flow Question: tenant to dashboard/snapshot [src=docs/graph-questions.md loc=None community=0]
+NODE Tenant-to-Account Directory Ownership (Billing Platform) [src=docs/service-ownership.md loc=None community=0]
+NODE Dashboard and scheduled snapshot disagree after separate fixes (bug) [src=billing-graph-app/incidents/REV-482.md loc=None community=0]
+NODE Gross Volume Metric [src=docs/current-metric-contract.md loc=None community=0]
+NODE REV-482 Scope Constraints Rationale [src=billing-graph-app/incidents/REV-482.md loc=None community=0]
+NODE No Separate Revenue Formulas Rationale [src=docs/service-ownership.md loc=None community=0]
+EDGE Recognized Revenue Contract --references [EXTRACTED]--> REV-482: Recognized revenue mismatch
+EDGE Recognized Revenue Contract --references [EXTRACTED]--> Billing Account Grouping Rule
+EDGE Recognized Revenue Contract --references [EXTRACTED]--> Gross Volume Metric
+EDGE Recognized Revenue Contract --references [EXTRACTED]--> Shared Revenue Summary Requirement
+EDGE Recognized Revenue Contract --references [EXTRACTED]--> Tenant-to-Account Directory Requirement
+EDGE Recognized-Revenue Formula Ownership (Billing Platform) --references [EXTRACTED]--> Billing Service Ownership
+EDGE Recognized-Revenue Formula Ownership (Billing Platform) --rationale_for [EXTRACTED]--> No Separate Revenue Formulas Rationale
+EDGE Recognized Revenue Formula (charge = grossAmount - credits; refund = -grossAmount) --conceptually_related_to [INFERRED]--> Credits still counted as recognized revenue (bug)
+EDGE Recognized Revenue Formula (charge = grossAmount - credits; refund = -grossAmount) --conceptually_related_to [INFERRED]--> Refunds increase rather than reduce total (bug)
+EDGE Recognized Revenue Formula (charge = grossAmount - credits; refund = -grossAmount) --conceptually_related_to [INFERRED]--> Business Rules Question: refunds/credits vs gross volume
+EDGE Recognized Revenue Formula (charge = grossAmount - credits; refund = -grossAmount) --conceptually_related_to [INFERRED]--> Dashboard Updated to Display Gross Billing Events as Revenue
+EDGE Recognized Revenue Formula (charge = grossAmount - credits; refund = -grossAmount) --semantically_similar_to [INFERRED]--> recognizedRevenueByAccount
+EDGE Billing Account Grouping Rule --conceptually_related_to [INFERRED]--> Two tenants in one billing account appear as separate totals (bug)
+EDGE Billing Account Grouping Rule --conceptually_related_to [INFERRED]--> RevenueDashboard (claimed: reads gross revenue grouped by tenant)
+EDGE Billing Account Grouping Rule --conceptually_related_to [INFERRED]--> Revenue Grouped by Tenant (superseded)
+EDGE Billing Account Grouping Rule --conceptually_related_to [INFERRED]--> Tenant IDs Kept as Grouping Keys
+EDGE Billing Service Ownership --references [INFERRED]--> Ownership Question: metric decision and consumer owners
+EDGE Billing Service Ownership --references [EXTRACTED]--> Revenue Dashboard Ownership (Support Analytics)
+EDGE Billing Service Ownership --references [EXTRACTED]--> Scheduled Finance Snapshot Ownership (Finance Operations)
+EDGE Billing Service Ownership --references [EXTRACTED]--> Tenant-to-Account Directory Ownership (Billing Platform)
+EDGE Shared Revenue Summary Requirement --conceptually_related_to [INFERRED]--> Dashboard and scheduled snapshot disagree after separate fixes (bug)
+... (truncated - 0 more nodes cut by ~2000-token budget. Narrow with context_filter=['call'] or use get_node for a specific symbol)
+
+$ graphify explain "recognizedRevenueByAccount" --graph graphify-out/graph.json
+Node: recognizedRevenueByAccount()
+  ID:        billing_graph_app_src_billing_recognizedrevenue_recognizedrevenuebyaccount
+  Source:    billing-graph-app/src/billing/recognizedRevenue.ts L5
+  Type:      code
+  Community: 5
+  Degree:    3
+
+Connections (3):
+  <-- revenueSummary.ts [imports] [EXTRACTED]
+  <-- recognizedRevenue.ts [contains] [EXTRACTED]
+  <-- buildRevenueSummary() [calls] [EXTRACTED]
+
+$ graphify path "loadRevenueDashboard" "recognizedRevenueByAccount" --graph graphify-out/graph.json
+warning: source match was ambiguous (top score 41310.9, runner-up 41309.1)
+warning: target match was ambiguous (top score 44409, runner-up 44409)
+No path found between 'loadRevenueDashboard' and 'recognizedRevenueByAccount'.
+NOTE: the bare-name query above returns "No path found" because both names
+fuzzy-match ambiguously between the real code node (e.g. loadRevenueDashboard(),
+community 5) and a docs/setup.md concept node with almost the same label
+(community 4, from the Graphify Query Examples section of setup.md itself).
+Re-run with exact node IDs to disambiguate:
+
+$ graphify path "billing_graph_app_src_dashboard_loadrevenuedashboard_loadrevenuedashboard" "billing_graph_app_src_billing_recognizedrevenue_recognizedrevenuebyaccount" --graph graphify-out/graph.json
+Shortest path (2 hops):
+  loadRevenueDashboard() --calls [EXTRACTED]--> buildRevenueSummary() --calls [EXTRACTED]--> recognizedRevenueByAccount()
+
+--- Q1 ARCHITECTURE: which entry points produce recognized-revenue summaries? ---
+
+$ graphify explain "buildRevenueSummary()" --graph graphify-out/graph.json
+Node: buildRevenueSummary()
+  ID:        billing_graph_app_src_billing_revenuesummary_buildrevenuesummary
+  Source:    billing-graph-app/src/billing/revenueSummary.ts L5
+  Type:      code
+  Community: 5
+  Degree:    7
+
+Connections (7):
+  <-- revenueSummary.ts [contains] [EXTRACTED]
+  <-- loadRevenueDashboard.ts [imports] [EXTRACTED]
+  <-- publishRevenueSnapshot.ts [imports] [EXTRACTED]
+  <-- loadRevenueDashboard() [calls] [EXTRACTED]
+  --> grossVolumeByAccount() [calls] [EXTRACTED]
+  --> recognizedRevenueByAccount() [calls] [EXTRACTED]
+  <-- publishRevenueSnapshot() [calls] [EXTRACTED]
+
+$ graphify affected "buildRevenueSummary()" --depth 2 --graph graphify-out/graph.json
+Affected nodes for buildRevenueSummary()
+Relations: calls, indirect_call, references, imports, imports_from, re_exports, inherits, extends, implements, uses, mixes_in, embeds
+Depth: 2
+- loadRevenueDashboard.ts [imports] billing-graph-app/src/dashboard/loadRevenueDashboard.ts:L1
+- loadRevenueDashboard() [calls] billing-graph-app/src/dashboard/loadRevenueDashboard.ts:L4
+- publishRevenueSnapshot.ts [imports] billing-graph-app/src/jobs/publishRevenueSnapshot.ts:L1
+- publishRevenueSnapshot() [calls] billing-graph-app/src/jobs/publishRevenueSnapshot.ts:L4
+- App.tsx [imports_from] billing-graph-app/src/App.tsx:L1
+- App() [calls] billing-graph-app/src/App.tsx:L9
+
+--- Q2 DEPENDENCIES: which shared calculation and account mapping do those entry points depend on? ---
+
+$ graphify explain "resolveBillingAccountId()" --graph graphify-out/graph.json
+Node: resolveBillingAccountId()
+  ID:        billing_graph_app_src_billing_tenantaccountdirectory_resolvebillingaccountid
+  Source:    billing-graph-app/src/billing/tenantAccountDirectory.ts L3
+  Type:      code
+  Community: 5
+  Degree:    3
+
+Connections (3):
+  <-- grossVolume.ts [imports] [EXTRACTED]
+  <-- recognizedRevenue.ts [imports] [EXTRACTED]
+  <-- tenantAccountDirectory.ts [contains] [EXTRACTED]
+
+$ graphify query "shared calculation and account mapping dependencies" --graph graphify-out/graph.json --budget 1200
+Traversal: BFS depth=2 | Start: ['dependencies'] | 10 nodes found
+
+NODE scripts [src=billing-graph-app/package.json loc=L6 community=1]
+NODE package.json [src=billing-graph-app/package.json loc=L1 community=1]
+NODE devDependencies [src=billing-graph-app/package.json loc=L31 community=6]
+NODE dependencies [src=billing-graph-app/package.json loc=L27 community=1]
+NODE react-dom [src=billing-graph-app/package.json loc=L29 community=1]
+NODE type [src=billing-graph-app/package.json loc=L5 community=1]
+NODE private [src=billing-graph-app/package.json loc=L4 community=1]
+NODE react [src=billing-graph-app/package.json loc=L28 community=1]
+NODE version [src=billing-graph-app/package.json loc=L3 community=1]
+NODE name [src=billing-graph-app/package.json loc=L2 community=1]
+EDGE dependencies --contains [EXTRACTED]--> package.json
+EDGE dependencies --contains [EXTRACTED]--> react
+EDGE dependencies --contains [EXTRACTED]--> react-dom
+EDGE package.json --contains [EXTRACTED]--> devDependencies
+EDGE package.json --contains [EXTRACTED]--> name
+EDGE package.json --contains [EXTRACTED]--> private
+EDGE package.json --contains [EXTRACTED]--> scripts
+EDGE package.json --contains [EXTRACTED]--> type
+EDGE package.json --contains [EXTRACTED]--> version
+NOTE: this phrasing collapsed the BFS start to the single word "dependencies"
+and matched package.json's npm dependencies object instead of the intended
+billing concept - a vocabulary-mismatch gotcha, not a graph defect (this is
+exactly what SKILL.md's "expand the question against the graph's own
+vocabulary" step is for). Re-run with domain wording closer to how the
+corpus actually names things:
+
+$ graphify query "tenant to billing account mapping" --graph graphify-out/graph.json --budget 1200
+Traversal: BFS depth=2 | Start: ['tenantAccountDirectory.ts', 'Tenant-to-Account Directory Ownership (Billing Platform)', 'TenantAccountLink'] | 27 nodes found
+
+NODE App.tsx [src=billing-graph-app/src/App.tsx loc=L1 community=2]
+NODE revenueSummary.ts [src=billing-graph-app/src/billing/revenueSummary.ts loc=L1 community=5]
+NODE REV-482: Recognized revenue mismatch [src=billing-graph-app/incidents/REV-482.md loc=None community=0]
+NODE billingTypes.ts [src=billing-graph-app/src/billing/billingTypes.ts loc=L1 community=5]
+NODE recognizedRevenue.ts [src=billing-graph-app/src/billing/recognizedRevenue.ts loc=L1 community=5]
+NODE buildRevenueSummary() [src=billing-graph-app/src/billing/revenueSummary.ts loc=L5 community=5]
+NODE grossVolume.ts [src=billing-graph-app/src/billing/grossVolume.ts loc=L1 community=5]
+NODE loadRevenueDashboard.ts [src=billing-graph-app/src/dashboard/loadRevenueDashboard.ts loc=L1 community=5]
+NODE TenantAccountLink [src=billing-graph-app/src/billing/billingTypes.ts loc=L8 community=5]
+NODE publishRevenueSnapshot.ts [src=billing-graph-app/src/jobs/publishRevenueSnapshot.ts loc=L1 community=5]
+NODE BillingEvent [src=billing-graph-app/src/billing/billingTypes.ts loc=L1 community=5]
+NODE Recognized Revenue Contract [src=docs/current-metric-contract.md loc=None community=0]
+NODE tenantAccountDirectory.ts [src=billing-graph-app/src/billing/tenantAccountDirectory.ts loc=L1 community=5]
+NODE Billing Service Ownership [src=docs/service-ownership.md loc=None community=0]
+NODE Revenue Dashboard Ownership (Support Analytics) [src=docs/service-ownership.md loc=None community=0]
+NODE Scheduled Finance Snapshot Ownership (Finance Operations) [src=docs/service-ownership.md loc=None community=0]
+NODE loadRevenueDashboard() [src=billing-graph-app/src/dashboard/loadRevenueDashboard.ts loc=L4 community=2]
+NODE Tenant-to-Account Directory Requirement [src=docs/current-metric-contract.md loc=None community=0]
+NODE recognizedRevenueByAccount() [src=billing-graph-app/src/billing/recognizedRevenue.ts loc=L5 community=5]
+NODE Recognized-Revenue Formula Ownership (Billing Platform) [src=docs/service-ownership.md loc=None community=0]
+NODE Ownership Question: metric decision and consumer owners [src=docs/graph-questions.md loc=None community=0]
+NODE resolveBillingAccountId() [src=billing-graph-app/src/billing/tenantAccountDirectory.ts loc=L3 community=5]
+NODE grossVolumeByAccount() [src=billing-graph-app/src/billing/grossVolume.ts loc=L5 community=5]
+NODE RevenueSummary [src=billing-graph-app/src/billing/billingTypes.ts loc=L13 community=5]
+NODE publishRevenueSnapshot() [src=billing-graph-app/src/jobs/publishRevenueSnapshot.ts loc=L4 community=5]
+NODE Data Flow Question: tenant to dashboard/snapshot [src=docs/graph-questions.md loc=None community=0]
+NODE Tenant-to-Account Directory Ownership (Billing Platform) [src=docs/service-ownership.md loc=None community=0]
+EDGE TenantAccountLink --contains [EXTRACTED]--> billingTypes.ts
+EDGE TenantAccountLink --imports [EXTRACTED context=import]--> grossVolume.ts
+EDGE TenantAccountLink --imports [EXTRACTED context=import]--> recognizedRevenue.ts
+EDGE TenantAccountLink --imports [EXTRACTED context=import]--> revenueSummary.ts
+EDGE TenantAccountLink --imports [EXTRACTED context=import]--> loadRevenueDashboard.ts
+EDGE TenantAccountLink --imports [EXTRACTED context=import]--> publishRevenueSnapshot.ts
+EDGE tenantAccountDirectory.ts --imports_from [EXTRACTED context=import]--> billingTypes.ts
+EDGE tenantAccountDirectory.ts --imports_from [EXTRACTED context=import]--> grossVolume.ts
+EDGE tenantAccountDirectory.ts --imports_from [EXTRACTED context=import]--> recognizedRevenue.ts
+EDGE tenantAccountDirectory.ts --contains [EXTRACTED]--> resolveBillingAccountId()
+... (truncated - 0 more nodes cut by ~1200-token budget. Narrow with context_filter=['call'] or use get_node for a specific symbol)
+
+--- Q3 DATA FLOW: trace an event from tenant to billing-account dashboard total and scheduled snapshot ---
+
+$ graphify path "BillingEvent" "loadRevenueDashboard()" --graph graphify-out/graph.json
+Shortest path (2 hops):
+  BillingEvent <--imports [EXTRACTED]-- loadRevenueDashboard.ts --contains [EXTRACTED]--> loadRevenueDashboard()
+
+$ graphify path "BillingEvent" "publishRevenueSnapshot()" --graph graphify-out/graph.json
+Shortest path (2 hops):
+  BillingEvent <--imports [EXTRACTED]-- publishRevenueSnapshot.ts --contains [EXTRACTED]--> publishRevenueSnapshot()
+NOTE: graphify's graph is undirected for `path`, so these are structural
+type-usage paths (BillingEvent is imported as a parameter type), not the
+causal call chain. The causal chain (tenantId -> resolveBillingAccountId ->
+totals keyed by billingAccountId -> loadRevenueDashboard/publishRevenueSnapshot)
+is what the Q1/Q2 explain/affected output above shows via calls edges.
+
+$ graphify explain "BillingEvent" --graph graphify-out/graph.json
+Node: BillingEvent
+  ID:        billing_graph_app_src_billing_billingtypes_billingevent
+  Source:    billing-graph-app/src/billing/billingTypes.ts L1
+  Type:      code
+  Community: 5
+  Degree:    6
+
+Connections (6):
+  <-- revenueSummary.ts [imports] [EXTRACTED]
+  <-- billingTypes.ts [contains] [EXTRACTED]
+  <-- grossVolume.ts [imports] [EXTRACTED]
+  <-- recognizedRevenue.ts [imports] [EXTRACTED]
+  <-- loadRevenueDashboard.ts [imports] [EXTRACTED]
+  <-- publishRevenueSnapshot.ts [imports] [EXTRACTED]
+
+$ graphify explain "TenantAccountLink" --graph graphify-out/graph.json
+Node: TenantAccountLink
+  ID:        billing_graph_app_src_billing_billingtypes_tenantaccountlink
+  Source:    billing-graph-app/src/billing/billingTypes.ts L8
+  Type:      code
+  Community: 5
+  Degree:    7
+
+Connections (7):
+  <-- revenueSummary.ts [imports] [EXTRACTED]
+  <-- billingTypes.ts [contains] [EXTRACTED]
+  <-- grossVolume.ts [imports] [EXTRACTED]
+  <-- recognizedRevenue.ts [imports] [EXTRACTED]
+  <-- loadRevenueDashboard.ts [imports] [EXTRACTED]
+  <-- publishRevenueSnapshot.ts [imports] [EXTRACTED]
+  <-- tenantAccountDirectory.ts [imports] [EXTRACTED]
+
+--- Q4 BUSINESS RULES: how do refunds and credits affect recognized revenue, and how does gross volume differ? ---
+
+$ graphify explain "Recognized Revenue Formula (...)" --graph graphify-out/graph.json
+Node: Recognized Revenue Formula (charge = grossAmount - credits; refund = -grossAmount)
+  ID:        docs_current_metric_contract_recognized_revenue_formula
+  Source:    docs/current-metric-contract.md None
+  Type:      concept
+  Community: 0
+  Degree:    7
+
+Connections (7):
+  <-- Recognized Revenue Contract [references] [EXTRACTED]
+  <-- Credits still counted as recognized revenue (bug) [conceptually_related_to] [INFERRED]
+  <-- Dashboard Updated to Display Gross Billing Events as Revenue [conceptually_related_to] [INFERRED]
+  <-- Recognized-Revenue Formula Ownership (Billing Platform) [shares_data_with] [EXTRACTED]
+  <-- recognizedRevenueByAccount [semantically_similar_to] [INFERRED]
+  <-- Refunds increase rather than reduce total (bug) [conceptually_related_to] [INFERRED]
+  <-- Business Rules Question: refunds/credits vs gross volume [conceptually_related_to] [INFERRED]
+
+$ graphify explain "Gross Volume Metric" --graph graphify-out/graph.json
+Node: Gross Volume Metric
+  ID:        docs_current_metric_contract_gross_volume
+  Source:    docs/current-metric-contract.md None
+  Type:      concept
+  Community: 0
+  Degree:    2
+
+Connections (2):
+  <-- REV-482: Recognized revenue mismatch [references] [EXTRACTED]
+  <-- Recognized Revenue Contract [references] [EXTRACTED]
+
+$ graphify path "Recognized Revenue Formula" "Refunds increase rather than reduce total (bug)" --graph graphify-out/graph.json
+Shortest path (1 hops):
+  Recognized Revenue Formula (charge = grossAmount - credits; refund = -grossAmount) <--conceptually_related_to [INFERRED]-- Refunds increase rather than reduce total (bug)
+NOTE: this is an INFERRED conceptually_related_to edge (topical relatedness,
+written by the semantic-extraction subagent from reading REV-482.md next to
+current-metric-contract.md), not a claim that the bug is still live. `npm run
+test:billing` (captured in evidence/before.md) shows the current code passes
+all 8 assertions and does NOT reproduce REV-482's reported symptoms, even
+though incidents/REV-482.md is still marked "Status: Open". The graph
+surfaces the topical link between the incident and the formula; it does not
+by itself resolve whether the incident doc is stale - source verification
+(reading recognizedRevenue.ts and running the tests) does.
+
+--- Q5 OWNERSHIP: who owns the current metric decision and who owns its consumers? How do older notes differ? ---
+
+$ graphify explain "Billing Service Ownership" --graph graphify-out/graph.json
+Node: Billing Service Ownership
+  ID:        docs_service_ownership_document
+  Source:    docs/service-ownership.md None
+  Type:      document
+  Community: 0
+  Degree:    5
+
+Connections (5):
+  --> Revenue Dashboard Ownership (Support Analytics) [references] [EXTRACTED]
+  --> Scheduled Finance Snapshot Ownership (Finance Operations) [references] [EXTRACTED]
+  --> Recognized-Revenue Formula Ownership (Billing Platform) [references] [EXTRACTED]
+  <-- Ownership Question: metric decision and consumer owners [references] [INFERRED]
+  --> Tenant-to-Account Directory Ownership (Billing Platform) [references] [EXTRACTED]
+
+$ graphify explain "Scheduled Finance Snapshot Ownership (Finance Operations)" --graph graphify-out/graph.json
+Node: Scheduled Finance Snapshot Ownership (Finance Operations)
+  ID:        docs_service_ownership_scheduled_finance_snapshot_ownership
+  Source:    docs/service-ownership.md None
+  Type:      concept
+  Community: 0
+  Degree:    4
+
+Connections (4):
+  <-- Billing Service Ownership [references] [EXTRACTED]
+  --> Shared Revenue Summary Requirement [references] [EXTRACTED]
+  <-- publishRevenueSnapshot (claimed: owns the revenue formula) [conceptually_related_to] [INFERRED]
+  <-- Snapshot Treated as Separate Calculation Owned by Support Analytics [conceptually_related_to] [INFERRED]
+
+$ graphify path "Snapshot Treated as Separate Calculation Owned by Support Analytics" "Scheduled Finance Snapshot Ownership (Finance Operations)" --graph graphify-out/graph.json
+Shortest path (1 hops):
+  Snapshot Treated as Separate Calculation Owned by Support Analytics --conceptually_related_to [INFERRED]--> Scheduled Finance Snapshot Ownership (Finance Operations)
+NOTE: this is the graph directly surfacing a contradiction - the older
+docs/previous-agent-progress.md note claims the snapshot calculation was
+"owned by Support Analytics", while the current docs/service-ownership.md
+assigns the scheduled finance snapshot to Finance Operations. This is exactly
+the "how do older notes differ" half of the ownership question, sourced from
+two different docs, not inferred from code.
+
+$ graphify path "Dashboard Metric Changes Assigned to Support Analytics (superseded)" "Recognized-Revenue Formula Ownership (Billing Platform)" --graph graphify-out/graph.json
+Shortest path (3 hops):
+  Dashboard Metric Changes Assigned to Support Analytics (superseded) --conceptually_related_to [INFERRED]--> Revenue Dashboard Ownership (Support Analytics) <--references [EXTRACTED]-- Billing Service Ownership --references [EXTRACTED]--> Recognized-Revenue Formula Ownership (Billing Platform)
+NOTE: unlike the snapshot case above, this older claim (docs/legacy-finance-metrics.md:
+"dashboard metric changes assigned to Support Analytics") actually agrees
+with current docs/service-ownership.md ("Revenue Dashboard Ownership (Support
+Analytics)") - so not every older note is stale; this one is still correct
+for the dashboard, even though the same legacy doc's tenant-grouping claim
+(see Q2/Q3 above) is superseded. The graph does not collapse "older" into
+uniformly "wrong" - each claim has to be checked against the current doc
+individually.
+
+--- Q6 CHANGE IMPACT: which consumers and tests need checking if the recognized-revenue rule changes? ---
+
+$ graphify affected "recognizedRevenueByAccount()" --depth 3 --graph graphify-out/graph.json
+Affected nodes for recognizedRevenueByAccount()
+Relations: calls, indirect_call, references, imports, imports_from, re_exports, inherits, extends, implements, uses, mixes_in, embeds
+Depth: 3
+- revenueSummary.ts [imports] billing-graph-app/src/billing/revenueSummary.ts:L1
+- buildRevenueSummary() [calls] billing-graph-app/src/billing/revenueSummary.ts:L5
+- loadRevenueDashboard.ts [imports_from] billing-graph-app/src/dashboard/loadRevenueDashboard.ts:L1
+- publishRevenueSnapshot.ts [imports_from] billing-graph-app/src/jobs/publishRevenueSnapshot.ts:L1
+- loadRevenueDashboard() [calls] billing-graph-app/src/dashboard/loadRevenueDashboard.ts:L4
+- publishRevenueSnapshot() [calls] billing-graph-app/src/jobs/publishRevenueSnapshot.ts:L4
+- App.tsx [imports_from] billing-graph-app/src/App.tsx:L1
+- App() [calls] billing-graph-app/src/App.tsx:L9
+
+$ graphify affected "resolveBillingAccountId()" --depth 3 --graph graphify-out/graph.json
+Affected nodes for resolveBillingAccountId()
+Relations: calls, indirect_call, references, imports, imports_from, re_exports, inherits, extends, implements, uses, mixes_in, embeds
+Depth: 3
+- grossVolume.ts [imports] billing-graph-app/src/billing/grossVolume.ts:L1
+- recognizedRevenue.ts [imports] billing-graph-app/src/billing/recognizedRevenue.ts:L1
+- revenueSummary.ts [imports_from] billing-graph-app/src/billing/revenueSummary.ts:L1
+- loadRevenueDashboard.ts [imports_from] billing-graph-app/src/dashboard/loadRevenueDashboard.ts:L1
+- publishRevenueSnapshot.ts [imports_from] billing-graph-app/src/jobs/publishRevenueSnapshot.ts:L1
+NOTE: resolveBillingAccountId() is shared by both recognizedRevenue.ts and
+grossVolume.ts - confirms incidents/REV-482.md's scope constraint ("gross
+volume ... must remain compatible") is a real code-level risk, not just a
+process note: touching the account-mapping lookup affects gross volume too,
+even though the incident is scoped to recognized revenue only.
+
+$ graphify explain "run-billing-tests.mjs" --graph graphify-out/graph.json
+Node: run-billing-tests.mjs
+  ID:        billing_graph_app_scripts_run_billing_tests
+  Source:    billing-graph-app/scripts/run-billing-tests.mjs L1
+  Type:      code
+  Community: 9
+  Degree:    3
+
+Connections (3):
+  --> failures [contains] [EXTRACTED]
+  --> links [contains] [EXTRACTED]
+  --> test() [contains] [EXTRACTED]
+NOTE (real graph gap, verified against source): neither `affected
+recognizedRevenueByAccount()` above nor this explain shows any edge between
+run-billing-tests.mjs and the billing/* modules it actually tests. This is a
+genuine blind spot, not a missing test: scripts/run-billing-tests.mjs loads
+billing code via `vite.ssrLoadModule("/src/billing/recognizedRevenue.ts")` -
+a runtime string path built inside a JS template literal - which is invisible
+to AST-based static import/call extraction. Confirmed by reading
+scripts/run-billing-tests.mjs directly (see evidence/before.md): it does
+cover recognizedRevenueByAccount, grossVolumeByAccount, loadRevenueDashboard
+and publishRevenueSnapshot (8 assertions, all passing). Anyone using
+`graphify affected` alone to answer "what tests do I need to check" would
+miss the one test file that actually exists - the graph must be cross-checked
+against source for this question, exactly as docs/setup.md requires.
