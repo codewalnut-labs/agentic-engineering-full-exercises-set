@@ -1,5 +1,5 @@
 Command: npm run verify:exercise
-Repository commit: 38a49357550273e1f53817a3952ea5a7e7a4732a
+Repository commit: a785330a59abab86c1da12b5a523f84aea747879
 
 
 > session-waste-app@0.1.0 verify:exercise
@@ -47,10 +47,10 @@ transforming...
 ✓ 31 modules transformed.
 rendering chunks...
 computing gzip size...
-../../../../exercise-vite-build-mICHCk/dist/index.html                   0.42 kB │ gzip:  0.29 kB
-../../../../exercise-vite-build-mICHCk/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
-../../../../exercise-vite-build-mICHCk/dist/assets/index-CxNIPl47.js   196.22 kB │ gzip: 61.67 kB
-✓ built in 978ms
+../../../../exercise-vite-build-9HxMX0/dist/index.html                   0.42 kB │ gzip:  0.29 kB
+../../../../exercise-vite-build-9HxMX0/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+../../../../exercise-vite-build-9HxMX0/dist/assets/index-CxNIPl47.js   196.22 kB │ gzip: 61.67 kB
+✓ built in 824ms
 
 > session-waste-app@0.1.0 verify:implementation
 > npm run test:analysis
