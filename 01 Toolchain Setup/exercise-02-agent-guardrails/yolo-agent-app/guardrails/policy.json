@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "defaultDecision": "blocked",
+  "allowedOperations": ["read", "edit", "test", "command"],
+  "allowedPaths": [
+    "src/**",
+    "tasks/release-readiness.md",
+    "fixtures/public-workflow-sample.json",
+    "guardrails/**",
+    ".codex/**",
+    "AGENTS.md",
+    "package.json"
+  ],
+  "blockedPaths": [
+    "fixtures/production-customer-export.json",
+    "secrets/**",
+    "config/production.json",
+    "legacy/**"
+  ],
+  "approvalPaths": ["db/migrations/**", "generated/**"],
+  "allowedCommands": [
+    "^(?:rtk\\s+)?npm\\s+ci$",
+    "^(?:rtk\\s+)?npm\\s+run\\s+(?:test|agent:check|verify:implementation|test:policy-engine|test:guardrails|verify:submission|verify:exercise|lint|format|typecheck|build)$",
+    "^(?:rtk\\s+)?git\\s+(?:status(?:\\s+--short(?:\\s+--branch)?)?|diff\\s+--check)$",
+    "^(?:rtk\\s+)?node\\s+--test\\s+\\./tests/review-regressions\\.test\\.mjs$"
+  ],
+  "blockedCommands": [
+    "fixtures[\\\\/]production-customer-export\\.json",
+    "secrets[\\\\/]",
+    "config[\\\\/]production\\.json",
+    "\\bdeploy-prod\\b",
+    "\\brollback-prod\\b",
+    "\\brm\\s+-rf\\b",
+    "\\bRemove-Item\\b[^\\n]*-Recurse\\b"
+  ],
+  "approvalCommands": ["\\bnpm\\s+run\\s+migrate\\b", "db[\\\\/]migrations[\\\\/]", "generated[\\\\/]"],
+  "blockedPromptPatterns": [
+    "ignore (all |any )?(previous|prior) (rules|instructions)",
+    "\\b(reveal|copy|print|show)\\b[^\\n]*\\b(canary|secret|protected value)\\b"
+  ]
+}
