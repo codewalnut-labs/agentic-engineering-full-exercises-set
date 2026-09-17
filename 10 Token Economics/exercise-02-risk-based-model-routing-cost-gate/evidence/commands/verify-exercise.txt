@@ -1,0 +1,107 @@
+
+> model-routing-app@0.1.0 verify:exercise
+> node ../../../scripts/run-clean-verification.mjs
+
+
+> model-routing-app@0.1.0 verify:exercise:core
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+
+
+> model-routing-app@0.1.0 agent:check
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+
+
+> model-routing-app@0.1.0 test:integrity
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+
+Verified 32 protected challenge inputs.
+
+> model-routing-app@0.1.0 lint
+> node ./scripts/lint-check.mjs
+
+lint-check passed
+
+> model-routing-app@0.1.0 test
+> node ./scripts/test-routing-verifier.mjs && node ./scripts/agent-check.mjs
+
+offline routing cost verifier self-test passed
+agent-check passed for Risk-Based Model Routing Cost Gate
+
+> model-routing-app@0.1.0 format
+> node ./scripts/format-check.mjs
+
+format-check passed
+
+> model-routing-app@0.1.0 typecheck
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+
+
+> model-routing-app@0.1.0 build
+> node ../../../scripts/run-vite-build.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 33 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../exercise-vite-build-PctALO/dist/index.html                   0.42 kB │ gzip:  0.29 kB
+../../../../exercise-vite-build-PctALO/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+../../../../exercise-vite-build-PctALO/dist/assets/index-DUh2897i.js   197.17 kB │ gzip: 62.07 kB
+✓ built in 1.38s
+
+> model-routing-app@0.1.0 verify:implementation
+> npm run test:routing
+
+
+> model-routing-app@0.1.0 test:routing
+> node ./scripts/run-routing-tests.mjs && node ./tests/route-task.test.mjs
+
+PASS docs-typo -> fast
+PASS bounded-test-fix -> balanced
+PASS authorization-boundary -> reasoning
+PASS unknown-billing-policy -> clarify
+PASS format-generated-fixture -> fast
+PASS public-api-migration -> reasoning
+PASS incident-query-fix -> balanced
+PASS missing-risk-assessment -> clarify
+PASS held-out missing, invalid, precedence, risk, ambiguity, and scope permutations
+PASS application dispatch consumer uses the field-based routing decision
+PASS learner route precedence and field-validation matrix
+
+> model-routing-app@0.1.0 verify:submission
+> node ../../../scripts/comparable-evidence.mjs .. && npm run test:submission
+
+PASS before and after runs use matching conditions and valid Git patches
+PASS both patches match their recorded implementation commits
+PASS protected manifests and inputs match the starting commit
+
+> model-routing-app@0.1.0 test:submission
+> npm run test:routing && npm run routing:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+
+
+> model-routing-app@0.1.0 test:routing
+> node ./scripts/run-routing-tests.mjs && node ./tests/route-task.test.mjs
+
+PASS docs-typo -> fast
+PASS bounded-test-fix -> balanced
+PASS authorization-boundary -> reasoning
+PASS unknown-billing-policy -> clarify
+PASS format-generated-fixture -> fast
+PASS public-api-migration -> reasoning
+PASS incident-query-fix -> balanced
+PASS missing-risk-assessment -> clarify
+PASS held-out missing, invalid, precedence, risk, ambiguity, and scope permutations
+PASS application dispatch consumer uses the field-based routing decision
+PASS learner route precedence and field-validation matrix
+
+> model-routing-app@0.1.0 routing:verify
+> node ./scripts/verify-routing-submission.mjs
+
+Source SHA: 60ba3f0e70855e325c43e36c646062ca2edadcf0
+PASS 36 protected offline measurements and response hashes verified
+PASS selected-route quality, safety, latency, and variance recomputed
+PASS single-retry escalation costs reconcile to protected tokens and pricing
+PASS policy savings beat the all-reasoning baseline threshold
+PASS focused router source and evidence-only history verified without an API key
+Verified Risk-Based Model Routing Cost Gate: 12 files and 0 directories.
+PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged
