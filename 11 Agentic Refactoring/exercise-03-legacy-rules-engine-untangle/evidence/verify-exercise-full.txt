@@ -1,0 +1,249 @@
+Full exercise verification transcript
+Command executed: npm run verify:exercise
+Commit tested: 3b7a1d3e7216e1bbb4ce242cc3ea52e40cff0e06
+Run began: 2026-09-17T09:57:02.976Z
+Run ended: 2026-09-17T09:57:27.279Z
+Elapsed ms: 24303
+
+OUTPUT
+
+> legacy-rules-app@0.1.0 verify:exercise
+> node ../../../scripts/run-clean-verification.mjs
+
+
+> legacy-rules-app@0.1.0 verify:exercise:core
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+
+
+> legacy-rules-app@0.1.0 agent:check
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+
+
+> legacy-rules-app@0.1.0 test:integrity
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+
+Verified 22 protected challenge inputs.
+
+> legacy-rules-app@0.1.0 lint
+> node ./scripts/lint-check.mjs
+
+lint-check passed
+
+> legacy-rules-app@0.1.0 test
+> node ./scripts/test-rules-verifier.mjs && node ./scripts/agent-check.mjs
+
+rules extraction verifier self-test passed
+agent-check passed for Contract-Safe Full-Stack Rules Extraction
+
+> legacy-rules-app@0.1.0 format
+> node ./scripts/format-check.mjs
+
+format-check passed
+
+> legacy-rules-app@0.1.0 typecheck
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+
+
+> legacy-rules-app@0.1.0 build
+> node ../../../scripts/run-vite-build.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../exercise-vite-build-PXAZdT/dist/index.html                   0.43 kB │ gzip:  0.29 kB
+../../../../exercise-vite-build-PXAZdT/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+../../../../exercise-vite-build-PXAZdT/dist/assets/index-kh4vWptl.js   196.28 kB │ gzip: 61.74 kB
+✓ built in 1.04s
+
+> legacy-rules-app@0.1.0 verify:implementation
+> npm run test:rules
+
+
+> legacy-rules-app@0.1.0 test:rules
+> node ./scripts/run-rules-contract.mjs
+
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/papereyes/.m2/wrapper/dists/apache-maven-3.9.16-bin/4200fbc6/apache-maven-3.9.16/lib/jansi-2.4.3.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------< dev.agentic.exercise:legacy-rules-engine-untangle >----------
+[INFO] Building legacy-rules-engine-untangle 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ legacy-rules-engine-untangle ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ legacy-rules-engine-untangle ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ legacy-rules-engine-untangle ---
+[INFO] skip non existing resourceDirectory /tmp/legacy-rules-verification-z2TNO1/legacy-rules-api/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ legacy-rules-engine-untangle ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ legacy-rules-engine-untangle ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.agentic.exercise.workflow.WorkflowServiceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.104 s -- in dev.agentic.exercise.workflow.WorkflowServiceTest
+[INFO] Running dev.agentic.exercise.workflow.WorkflowPolicyCharacterizationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in dev.agentic.exercise.workflow.WorkflowPolicyCharacterizationTest
+[INFO] Running dev.agentic.exercise.workflow.WorkflowContractCharacterizationTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/home/papereyes/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.7/byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.063 s -- in dev.agentic.exercise.workflow.WorkflowContractCharacterizationTest
+[INFO] Running dev.agentic.exercise.workflow.WorkflowApiContractTest
+15:27:15.714 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.agentic.exercise.workflow.WorkflowApiContractTest]: WorkflowApiContractTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:27:15.891 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.agentic.exercise.AgenticExerciseApplication for test class dev.agentic.exercise.workflow.WorkflowApiContractTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-09-17T15:27:16.421+05:30  INFO 189312 --- [           main] d.a.e.workflow.WorkflowApiContractTest   : Starting WorkflowApiContractTest using Java 26.0.1 with PID 189312 (started by papereyes in /tmp/legacy-rules-verification-z2TNO1/legacy-rules-api)
+2026-09-17T15:27:16.423+05:30  INFO 189312 --- [           main] d.a.e.workflow.WorkflowApiContractTest   : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T15:27:17.654+05:30  INFO 189312 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-09-17T15:27:17.655+05:30  INFO 189312 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-09-17T15:27:17.657+05:30  INFO 189312 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-09-17T15:27:17.690+05:30  INFO 189312 --- [           main] d.a.e.workflow.WorkflowApiContractTest   : Started WorkflowApiContractTest in 1.619 seconds (process running for 4.014)
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.415 s -- in dev.agentic.exercise.workflow.WorkflowApiContractTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.425 s
+[INFO] Finished at: 2026-09-17T15:27:17+05:30
+[INFO] ------------------------------------------------------------------------
+PASS strict React-client success and error response contract
+PASS backend architecture, behavior, HTTP JSON, and client contract
+
+> legacy-rules-app@0.1.0 verify:submission
+> node ../../../scripts/comparable-evidence.mjs .. --allow-identical-patches --after-run-base-file=legacy-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowPolicyCharacterizationTest.java --after-run-base-file=evidence/contract-before.json && npm run test:submission
+
+PASS before and after runs use matching conditions and valid Git patches
+PASS both patches match their recorded implementation commits
+PASS protected manifests and inputs match the starting commit
+PASS identical first-attempt patches are allowed by this exercise contract
+
+> legacy-rules-app@0.1.0 test:submission
+> npm run test:rules && npm run refactor:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+
+
+> legacy-rules-app@0.1.0 test:rules
+> node ./scripts/run-rules-contract.mjs
+
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/papereyes/.m2/wrapper/dists/apache-maven-3.9.16-bin/4200fbc6/apache-maven-3.9.16/lib/jansi-2.4.3.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------< dev.agentic.exercise:legacy-rules-engine-untangle >----------
+[INFO] Building legacy-rules-engine-untangle 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ legacy-rules-engine-untangle ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ legacy-rules-engine-untangle ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ legacy-rules-engine-untangle ---
+[INFO] skip non existing resourceDirectory /tmp/legacy-rules-verification-1RLSAa/legacy-rules-api/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ legacy-rules-engine-untangle ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ legacy-rules-engine-untangle ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running dev.agentic.exercise.workflow.WorkflowServiceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.113 s -- in dev.agentic.exercise.workflow.WorkflowServiceTest
+[INFO] Running dev.agentic.exercise.workflow.WorkflowPolicyCharacterizationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in dev.agentic.exercise.workflow.WorkflowPolicyCharacterizationTest
+[INFO] Running dev.agentic.exercise.workflow.WorkflowContractCharacterizationTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/home/papereyes/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.7/byte-buddy-agent-1.17.7.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.901 s -- in dev.agentic.exercise.workflow.WorkflowContractCharacterizationTest
+[INFO] Running dev.agentic.exercise.workflow.WorkflowApiContractTest
+15:27:24.776 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [dev.agentic.exercise.workflow.WorkflowApiContractTest]: WorkflowApiContractTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:27:24.927 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration dev.agentic.exercise.AgenticExerciseApplication for test class dev.agentic.exercise.workflow.WorkflowApiContractTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.6)
+
+2026-09-17T15:27:25.397+05:30  INFO 189706 --- [           main] d.a.e.workflow.WorkflowApiContractTest   : Starting WorkflowApiContractTest using Java 26.0.1 with PID 189706 (started by papereyes in /tmp/legacy-rules-verification-1RLSAa/legacy-rules-api)
+2026-09-17T15:27:25.399+05:30  INFO 189706 --- [           main] d.a.e.workflow.WorkflowApiContractTest   : No active profile set, falling back to 1 default profile: "default"
+2026-09-17T15:27:26.497+05:30  INFO 189706 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-09-17T15:27:26.498+05:30  INFO 189706 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-09-17T15:27:26.499+05:30  INFO 189706 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-09-17T15:27:26.531+05:30  INFO 189706 --- [           main] d.a.e.workflow.WorkflowApiContractTest   : Started WorkflowApiContractTest in 1.448 seconds (process running for 3.519)
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.142 s -- in dev.agentic.exercise.workflow.WorkflowApiContractTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.588 s
+[INFO] Finished at: 2026-09-17T15:27:26+05:30
+[INFO] ------------------------------------------------------------------------
+PASS strict React-client success and error response contract
+PASS backend architecture, behavior, HTTP JSON, and client contract
+
+> legacy-rules-app@0.1.0 refactor:verify
+> node ./scripts/verify-rules-submission.mjs
+
+Characterization SHA: dade0e6904ed84d81d0abecaf7f93cc43f9000a6
+Refactor SHA: 730d1e4196def7b53b399fcd53f100d0cc147268
+PASS identical contract snapshots and test-first focused history
+Verified Contract-Safe Full-Stack Rules Extraction: 13 files and 0 directories.
+PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged
+
+Exit code: 0
