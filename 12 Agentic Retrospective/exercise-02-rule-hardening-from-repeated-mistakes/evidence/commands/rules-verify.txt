@@ -1,8 +1,8 @@
 Command: npm run evidence:verify
-Repository commit: 8a47f01ea6698db285fd908c4ad12cff40f4645e
-Started at: 2026-09-17T11:14:48.127Z
-Finished at: 2026-09-17T11:14:48.595Z
-Duration ms: 468
+Repository commit: e3ca352931a7ac96560c3099d485f99fd5258ae2
+Started at: 2026-09-17T11:15:15.464Z
+Finished at: 2026-09-17T11:15:15.937Z
+Duration ms: 473
 
 STDOUT
 
