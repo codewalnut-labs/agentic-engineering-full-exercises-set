@@ -1,0 +1,200 @@
+diff --git a/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.mjs b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.mjs
+index ebc4f10d46cb295b9ba8c65217858ff70dbb0f19..79cd31165e2b97bb4e260764108fdb60b41df07f 100644
+--- a/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.mjs	
++++ b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.mjs	
+@@ -1,14 +1,81 @@
+-/** Seeded analyzer: it counts every read and failed command as waste. */
++const KNOWN_EVENT_TYPES = new Set(["read", "context", "command", "diagnosis", "write", "claim"]);
++
++function validateEvents(events) {
++  if (!Array.isArray(events)) throw new TypeError("events must be an array");
++
++  let previousSequence = -Infinity;
++  events.forEach((event, index) => {
++    if (!event || typeof event !== "object" || Array.isArray(event)) {
++      throw new TypeError(`event ${index + 1} must be an object`);
++    }
++    if (!Number.isInteger(event.sequence) || event.sequence <= previousSequence) {
++      throw new TypeError(`event ${index + 1} sequence must be an increasing integer`);
++    }
++    previousSequence = event.sequence;
++
++    if (typeof event.type !== "string" || !KNOWN_EVENT_TYPES.has(event.type)) {
++      throw new TypeError(`event ${event.sequence} has an invalid type`);
++    }
++    if (typeof event.target !== "string" || event.target.length === 0) {
++      throw new TypeError(`event ${event.sequence} needs a target`);
++    }
++    if (!Number.isInteger(event.workspaceRevision) || event.workspaceRevision < 0) {
++      throw new TypeError(`event ${event.sequence} needs a valid workspaceRevision`);
++    }
++    if (typeof event.result !== "string" || event.result.length === 0) {
++      throw new TypeError(`event ${event.sequence} needs a result`);
++    }
++    if (event.type === "read" && (typeof event.contentVersion !== "string" || event.contentVersion.length === 0)) {
++      throw new TypeError(`read event ${event.sequence} needs a contentVersion`);
++    }
++    if (event.type === "context" && (!Number.isFinite(event.bytes) || event.bytes < 0)) {
++      throw new TypeError(`context event ${event.sequence} needs non-negative bytes`);
++    }
++  });
++}
++
+ export function analyzeSession(events) {
+-  const duplicateReads = events.filter((event) => event.type === "read").length;
+-  const unchangedFailureRetries = events.filter((event) => event.type === "command" && event.result === "failed").length;
++  validateEvents(events);
++
++  const seenReads = new Set();
++  const commandResults = new Map();
++  const finalWriteIndex = events.findLastIndex((event) => event.type === "write");
++  let currentRevision;
++  let duplicateReads = 0;
++  let unchangedFailureRetries = 0;
++  let oversizedContextLoads = 0;
++  let finalVerificationRuns = 0;
++
++  events.forEach((event, index) => {
++    if (currentRevision !== undefined && event.workspaceRevision !== currentRevision) commandResults.clear();
++    currentRevision = event.workspaceRevision;
++
++    if (event.type === "read") {
++      const readKey = JSON.stringify([event.target, event.contentVersion]);
++      if (seenReads.has(readKey)) duplicateReads += 1;
++      else seenReads.add(readKey);
++    }
++
++    if (event.type === "context" && event.bytes > 8_000) oversizedContextLoads += 1;
++
++    if (event.type === "diagnosis") commandResults.clear();
++    if (event.type === "command") {
++      if (commandResults.get(event.target) === "failed") unchangedFailureRetries += 1;
++      commandResults.set(event.target, event.result);
++
++      if (index > finalWriteIndex && event.phase === "final-verification" && event.result === "passed") {
++        finalVerificationRuns += 1;
++      }
++    }
++  });
++
+   return {
+     totalEvents: events.length,
+     duplicateReads,
+     unchangedFailureRetries,
+-    oversizedContextLoads: 0,
+-    preventableCalls: duplicateReads + unchangedFailureRetries,
+-    finalVerificationRuns: 0,
+-    correctnessPassed: false,
++    oversizedContextLoads,
++    preventableCalls: duplicateReads + unchangedFailureRetries + oversizedContextLoads,
++    finalVerificationRuns,
++    correctnessPassed: finalVerificationRuns > 0,
+   };
+ }
+diff --git a/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.test.mjs b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.test.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..cf9a040fce3e149d13363598f6621a6160fa3b0c
+--- /dev/null
++++ b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.test.mjs	
+@@ -0,0 +1,63 @@
++import assert from "node:assert/strict";
++import { analyzeSession } from "./analyzeSession.mjs";
++import { evaluateCommandAttempt } from "./preflightPolicy.mjs";
++
++const event = (sequence, type, target, overrides = {}) => ({
++  sequence,
++  type,
++  target,
++  workspaceRevision: 1,
++  result: "ok",
++  ...overrides,
++});
++
++const usefulWork = [
++  event(1, "read", "policy.ts", { contentVersion: "v1" }),
++  event(2, "write", "policy.ts", { contentVersion: "v2", workspaceRevision: 2 }),
++  event(3, "read", "policy.ts", { contentVersion: "v2", workspaceRevision: 2 }),
++  event(4, "command", "npm test", { workspaceRevision: 2, result: "failed", phase: "focused-test" }),
++  event(5, "diagnosis", "incorrect fixture", { workspaceRevision: 2 }),
++  event(6, "command", "npm test", { workspaceRevision: 2, result: "passed", phase: "focused-test" }),
++  event(7, "command", "npm verify", { workspaceRevision: 2, result: "passed", phase: "final-verification" }),
++];
++
++assert.deepEqual(analyzeSession(usefulWork), {
++  totalEvents: 7,
++  duplicateReads: 0,
++  unchangedFailureRetries: 0,
++  oversizedContextLoads: 0,
++  preventableCalls: 0,
++  finalVerificationRuns: 1,
++  correctnessPassed: true,
++});
++
++const waste = [
++  event(1, "read", "policy.ts", { contentVersion: "v1" }),
++  event(2, "read", "policy.ts", { contentVersion: "v1" }),
++  event(3, "context", "architecture.md", { bytes: 8_001 }),
++  event(4, "command", "npm test", { result: "failed" }),
++  event(5, "command", "npm test", { result: "passed" }),
++];
++const wasteMetrics = analyzeSession(waste);
++assert.equal(wasteMetrics.duplicateReads, 1);
++assert.equal(wasteMetrics.unchangedFailureRetries, 1);
++assert.equal(wasteMetrics.oversizedContextLoads, 1);
++assert.equal(wasteMetrics.preventableCalls, 3);
++
++const failed = [event(1, "command", "npm test", { result: "failed" })];
++assert.deepEqual(evaluateCommandAttempt({ command: "npm test", workspaceRevision: 1, events: failed }), {
++  allowed: false,
++  reason: "DIAGNOSIS_OR_CHANGE_REQUIRED",
++});
++assert.equal(evaluateCommandAttempt({ command: "npm lint", workspaceRevision: 1, events: failed }).allowed, true);
++assert.equal(evaluateCommandAttempt({ command: "npm test", workspaceRevision: 2, events: failed }).allowed, true);
++assert.equal(evaluateCommandAttempt({
++  command: "npm test",
++  workspaceRevision: 1,
++  events: [...failed, event(2, "diagnosis", "test setup is stale")],
++}).allowed, true);
++
++assert.throws(() => analyzeSession([event(1, "read", "policy.ts", { contentVersion: "v1" }), event(1, "claim", "done")]), /sequence/i);
++assert.throws(() => analyzeSession([event(1, "context", "architecture.md")]), /bytes/i);
++
++console.log("PASS participant analyzer and retry-preflight tests");
+diff --git a/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/preflightPolicy.mjs b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/preflightPolicy.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..8cf8f173b89d10c0dd9d181318707aeb6c182a66
+--- /dev/null
++++ b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/preflightPolicy.mjs	
+@@ -0,0 +1,32 @@
++const BLOCKED = Object.freeze({ allowed: false, reason: "DIAGNOSIS_OR_CHANGE_REQUIRED" });
++const ALLOWED = Object.freeze({ allowed: true, reason: "FIRST_OR_INFORMED_ATTEMPT" });
++
++/**
++ * Decide whether a command may run without mutating the recorded session.
++ *
++ * Only the current workspace-revision epoch is relevant. Within that epoch, a
++ * diagnosis makes the next attempt informed, while the latest identical
++ * command blocks a retry exactly when it failed.
++ */
++export function evaluateCommandAttempt({ command, workspaceRevision, events }) {
++  if (typeof command !== "string" || command.length === 0) {
++    throw new TypeError("command must be a non-empty string");
++  }
++  if (!Number.isInteger(workspaceRevision) || workspaceRevision < 0) {
++    throw new TypeError("workspaceRevision must be a non-negative integer");
++  }
++  if (!Array.isArray(events)) throw new TypeError("events must be an array");
++
++  for (let index = events.length - 1; index >= 0; index -= 1) {
++    const event = events[index];
++    if (!event || typeof event !== "object") throw new TypeError(`event ${index + 1} must be an object`);
++
++    if (event.workspaceRevision !== workspaceRevision) return { ...ALLOWED };
++    if (event.type === "diagnosis") return { ...ALLOWED };
++    if (event.type === "command" && event.target === command) {
++      return event.result === "failed" ? { ...BLOCKED } : { ...ALLOWED };
++    }
++  }
++
++  return { ...ALLOWED };
++}
