@@ -1,0 +1,50 @@
+{
+  "title": "Turn an Unclear Feature Request into a Clear Specification",
+  "competency": "02. Spec Framing - Clarifying requirements and defining observable acceptance criteria",
+  "mission": "Use GitHub Spec Kit to turn an unclear feature request into a clear specification, keeping unresolved decisions visible before implementation.",
+  "domain": "Subscription management with account roles, billing timing, prorated changes, pending requests, asynchronous provider results, and recovery states.",
+  "outcome": "A source-backed specification and independent review show what is ready to build, what is conditional, and what still needs a product decision.",
+  "entities": [
+    "Subscription account",
+    "Account role",
+    "Plan-change request",
+    "Billing preview",
+    "Asynchronous provider result"
+  ],
+  "seededDefects": [
+    "The product request does not define what subscription management means.",
+    "Stakeholder notes conflict on permissions and when changes take effect.",
+    "Pending changes, asynchronous failures, retries, and recovery behavior are unresolved.",
+    "A coding agent can silently convert guesses into confident-looking requirements."
+  ],
+  "verificationGates": [
+    "Actual specify, clarify, and checklist invocations have ordered captures and retained command dependencies.",
+    "Clarifications cover authorization, billing, pending requests, recovery, and scope without invented approval.",
+    "Requirements trace to decisions; ready and conditional work has observable acceptance criteria.",
+    "A fresh agent reviews preserved, committed draft inputs against the repository.",
+    "Every finding has a reasoned disposition, and remaining blockers have owners and next steps.",
+    "Application source and supplied evidence remain unchanged.",
+    "Final verification checks document structure, source citations, draft provenance, and sealed review evidence."
+  ],
+  "agentWorkflow": [
+    "Initialize the pinned Spec Kit integration and process constitution.",
+    "Invoke specify and capture its native specification.",
+    "Invoke clarify and trace real decisions, assumptions, and open questions to FR requirements.",
+    "Invoke checklist to generate unchecked requirements-quality items.",
+    "Commit and freeze the spec, decision ledger, and checklists; obtain a fresh-agent evaluation.",
+    "Revise findings, preserve original assessments, and seal the actual workflow and review evidence."
+  ],
+  "workingDeliverables": [
+    "specs/subscription-management/spec.md",
+    "specs/subscription-management/clarifications.md",
+    "specs/subscription-management/checklists/requirements.md",
+    "specs/subscription-management/checklists/spec-review.md",
+    "specs/subscription-management/reviewed-checklist.md",
+    "specs/subscription-management/checklist-results.json",
+    "specs/subscription-management/revisions.md",
+    "specs/subscription-management/review.md",
+    "Captured stage outputs and workflow.json",
+    "Preserved review inputs and actual author/reviewer sessions",
+    "evidence/before.md, evidence/after.md, and evidence/comparison.md"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Prepare a Project for Agentic Development",
+  "competency": "01. Toolchain Setup - Repository instructions and engineering skill setup",
+  "mission": "Prepare a reproducible AGENTS.md and engineering skill collection before starting project development.",
+  "domain": "Support case routing with ambiguous upcoming requests, ownership rules, existing behavioural tests, and a supplied queue-summary review change.",
+  "outcome": "A fresh agent discovers the project setup and demonstrates requirements questioning, source-backed research, TDD readiness, and requirements-aware code review.",
+  "entities": [
+    "Support case queue",
+    "Routing and ownership policy",
+    "Repository instructions",
+    "Engineering skills and their dependencies",
+    "Fresh-session readiness evidence"
+  ],
+  "seededDefects": [
+    "No project agent instructions or engineering skills are configured.",
+    "The upcoming request leaves product decisions unresolved.",
+    "The sample review change contains a summary inconsistency and a caller-data mutation.",
+    "Personal agent configuration alone cannot be reproduced by another developer."
+  ],
+  "verificationGates": [
+    "Application baseline and protected inputs remain intact.",
+    "Installed skills cover the four required capabilities and declared dependencies resolve.",
+    "Installed resources and project configuration are complete and hash-verified.",
+    "The fresh-session setup matches its recorded commit.",
+    "Source citations and actual transcript ranges support readiness reports.",
+    "Command captures and sealed artifacts match committed evidence.",
+    "Human review assesses semantic correctness and actual skill use."
+  ],
+  "agentWorkflow": [
+    "Assess the project before writing instructions.",
+    "Choose and configure repository instructions and engineering skills.",
+    "Commit the setup and start a fresh readiness session.",
+    "Demonstrate all four readiness scenarios without implementing a feature.",
+    "Record limitations and submit reproducible evidence."
+  ],
+  "workingDeliverables": [
+    "AGENTS.md and docs/agent-setup.md",
+    "Installed project skills and evidence/skills.json",
+    "Four readiness reports and evidence/readiness.json",
+    "Actual session transcript and baseline command capture",
+    "Before/after observations, source audit, and sealed verification evidence"
+  ]
+}

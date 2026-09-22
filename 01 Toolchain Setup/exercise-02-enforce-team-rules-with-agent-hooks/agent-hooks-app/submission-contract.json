@@ -1,0 +1,51 @@
+{
+  "name": "Enforce Team Engineering Rules with Agent Hooks",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "agent-hooks-app/docs/hook-setup.md"
+    },
+    {
+      "path": "agent-hooks-app/src/App.tsx"
+    },
+    {
+      "path": "evidence/before.md"
+    },
+    {
+      "path": "evidence/after.md"
+    },
+    {
+      "path": "evidence/comparison.md"
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/hooks.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/events.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/session.txt"
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ]
+}

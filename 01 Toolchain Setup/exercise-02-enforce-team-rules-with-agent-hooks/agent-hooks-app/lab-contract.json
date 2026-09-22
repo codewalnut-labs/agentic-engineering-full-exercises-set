@@ -1,0 +1,42 @@
+{
+  "title": "Enforce Team Engineering Rules with Agent Hooks",
+  "competency": "01. Toolchain Setup - Project rules, hooks, guardrails, and CLI or MCP wiring",
+  "mission": "Configure shared agent hooks that apply supplied team engineering rules during development.",
+  "domain": "Release-workflow dashboard with existing classification behavior and a synthetic team-managed configuration fixture.",
+  "outcome": "A fresh agent session blocks supplied protected edits, checks changes automatically, surfaces failures, and verifies its final source state.",
+  "entities": [
+    "Release workflow dashboard",
+    "Protected configuration fixture",
+    "Native agent hooks",
+    "Automatic change checks",
+    "Runtime event evidence"
+  ],
+  "seededDefects": [
+    "No project-local hook setup is supplied.",
+    "Source edits do not automatically run checks.",
+    "No completion hook detects missing, failing, or outdated results."
+  ],
+  "verificationGates": [
+    "Supplied editing and shell probes are denied before execution.",
+    "Allowed edits trigger native post-tool checks.",
+    "Failed changes and tools produce actionable feedback.",
+    "Completion rejects stale verification and avoids endless retries.",
+    "A fresh final session completes the summary with unchanged classifications.",
+    "Final verification validates protected inputs, application behavior, evidence consistency, and sealed artifacts."
+  ],
+  "agentWorkflow": [
+    "Assess this standalone repository and its team rules.",
+    "Implement and activate project-local native hooks for one supported agent.",
+    "Exercise the supplied harmless scenarios and retain original logs.",
+    "Commit the setup, then complete the development task in a fresh session.",
+    "Record, seal, and verify the implementation and runtime evidence."
+  ],
+  "workingDeliverables": [
+    "Project-local native hook configuration and handlers",
+    "docs/hook-setup.md",
+    "evidence/hooks.json and evidence/events.json",
+    "Raw runtime logs and fresh-session transcript",
+    "evidence/before.md, evidence/after.md, and evidence/comparison.md",
+    "Release Readiness Summary feature"
+  ]
+}

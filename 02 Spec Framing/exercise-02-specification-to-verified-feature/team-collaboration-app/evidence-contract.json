@@ -1,0 +1,56 @@
+{
+  "name": "Turn a Specification into a Verified Feature",
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/after.md",
+      "headings": [
+        "Conditions",
+        "Findings",
+        "Proof"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "headings": [
+        "Changes",
+        "Verified",
+        "Remaining questions"
+      ]
+    },
+    {
+      "path": "evidence/ui.md",
+      "headings": [
+        "Create and accept",
+        "Revoke",
+        "Reject without mutation"
+      ]
+    },
+    {
+      "path": "evidence/review.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/workflow.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "requirements",
+    "testing",
+    "review"
+  ],
+  "sourceRoots": [
+    "docs/invitation-contract.md",
+    "team-collaboration-app/docs/",
+    "team-collaboration-app/tests/invitationService.test.ts",
+    "evidence/author-session.txt",
+    "evidence/review-session.txt",
+    "evidence/sessions/",
+    "evidence/runs/"
+  ],
+  "extraEvidence": [
+    "evidence/author-session.txt",
+    "evidence/review-session.txt"
+  ]
+}
