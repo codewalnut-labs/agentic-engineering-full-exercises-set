@@ -1,0 +1,13 @@
+{
+  "agent": "Claude Code Agent tool subagent (general-purpose, fresh session, no prior context)",
+  "model": "claude-sonnet-5",
+  "promptHash": "sha256:3beb136414c1ead0e70ec15fd169fbb57170f7508841223fdb28f7b45dbb2eda",
+  "timeLimitMinutes": 20,
+  "sessionId": "aedd0705807d5ac43",
+  "repositorySha": "c9c11ddd489f7fe520d1cc92fe898ace603e18d2",
+  "firstAttempt": true,
+  "edited": false,
+  "patchSha256": "0f731d6685895022fa7006de18fe04c0f97c87c031033f6ffb94d564ba7e76f8",
+  "tokens": 52653,
+  "durationMs": 173364
+}
