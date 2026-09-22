@@ -1,0 +1,89 @@
+
+> regression-review-app@0.2.0 verify:exercise
+> node ../../../scripts/run-clean-verification.mjs
+
+
+> regression-review-app@0.2.0 verify:exercise:core
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+
+
+> regression-review-app@0.2.0 agent:check
+> npm run test:integrity && npm run eval:catalog && npm run test && npm run lint && npm run format && npm run typecheck && npm run build
+
+
+> regression-review-app@0.2.0 test:integrity
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+
+Verified 50 protected challenge inputs.
+
+> regression-review-app@0.2.0 eval:catalog
+> node ./eval/verify-catalog.mjs
+
+PASS catalog contains two defect cases and one clean control
+PASS starter skill has valid frontmatter and contains no protected case answers
+
+> regression-review-app@0.2.0 test
+> node ./scripts/test-review-eval-verifier.mjs && node ./scripts/agent-check.mjs
+
+code review skill scorer self-test passed
+agent-check passed for Code Review Skill Hardening
+
+> regression-review-app@0.2.0 lint
+> node ./scripts/lint-check.mjs
+
+lint-check passed
+
+> regression-review-app@0.2.0 format
+> node ./scripts/format-check.mjs
+
+format-check passed
+
+> regression-review-app@0.2.0 typecheck
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+
+
+> regression-review-app@0.2.0 build
+> node ../../../scripts/run-vite-build.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../exercise-vite-build-HgpU7n/dist/index.html                   0.41 kB │ gzip:  0.28 kB
+../../../../exercise-vite-build-HgpU7n/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+../../../../exercise-vite-build-HgpU7n/dist/assets/index-CZcc2nM0.js   196.00 kB │ gzip: 61.58 kB
+✓ built in 865ms
+
+> regression-review-app@0.2.0 verify:implementation
+> npm run eval:verify
+
+
+> regression-review-app@0.2.0 eval:verify
+> node ./scripts/verify-review-eval-submission.mjs
+
+PASS six runner-captured review sessions use matching conditions and unique nonces
+PASS every run is bound to its prompt, protected diff, source commit, and transcript
+PASS skill contains no case answers and requires no API key
+Decision: adopt
+
+> regression-review-app@0.2.0 verify:submission
+> node ../../../scripts/comparable-evidence.mjs .. && npm run test:submission
+
+PASS before and after runs use matching conditions and valid Git patches
+PASS both patches match their recorded implementation commits
+PASS protected manifests and inputs match the starting commit
+
+> regression-review-app@0.2.0 test:submission
+> npm run eval:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+
+
+> regression-review-app@0.2.0 eval:verify
+> node ./scripts/verify-review-eval-submission.mjs
+
+PASS six runner-captured review sessions use matching conditions and unique nonces
+PASS every run is bound to its prompt, protected diff, source commit, and transcript
+PASS skill contains no case answers and requires no API key
+Decision: adopt
+Verified Code Review Skill Hardening: 15 files and 7 directories.
+PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged
