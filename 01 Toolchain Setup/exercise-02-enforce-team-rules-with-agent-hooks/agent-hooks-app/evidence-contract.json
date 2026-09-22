@@ -1,0 +1,26 @@
+{
+  "name": "Enforce Team Engineering Rules with Agent Hooks",
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "agent-hooks-app/docs/hook-setup.md"
+    },
+    {
+      "path": "agent-hooks-app/src/App.tsx"
+    }
+  ],
+  "topics": [
+    "boundaries",
+    "verification",
+    "completion"
+  ],
+  "sourceRoots": [
+    "docs/guardrail-contract.md",
+    "evidence/raw/"
+  ],
+  "extraEvidence": [
+    "evidence/hooks.json",
+    "evidence/events.json",
+    "evidence/raw/session.txt"
+  ]
+}

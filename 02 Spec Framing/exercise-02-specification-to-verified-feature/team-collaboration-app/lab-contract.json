@@ -1,0 +1,45 @@
+{
+  "title": "Turn a Specification into a Verified Feature",
+  "competency": "02. Spec Framing - Skill-driven design, planning, test-first implementation, review, and verification",
+  "mission": "Use Superpowers to deliver verified working code from the supplied approved specification.",
+  "domain": "Team invitations with actor permissions, target-role policy, normalized identity, expiry, single-use state transitions, and immutable rejection behavior.",
+  "outcome": "The learner produces a working invitation feature and evidence that connects the Superpowers workflow to design, tests, implementation, review, and verification.",
+  "entities": [
+    "Workspace policy",
+    "Team member",
+    "Invitation actor",
+    "Team invitation",
+    "Invitation lifecycle state"
+  ],
+  "seededDefects": [
+    "The application has no invitation lifecycle or user interface.",
+    "An unsafe legacy helper mutates membership without authorization or validation.",
+    "Case-insensitive duplicates, expiry, guest policy, and repeated transitions can corrupt state.",
+    "The starter service throws until a test-driven implementation replaces it."
+  ],
+  "verificationGates": [
+    "All fixed invitation acceptance tests pass unchanged.",
+    "Learner-written regressions demonstrate a committed red/green cycle.",
+    "The interface uses the shared service and is demonstrated in a real browser.",
+    "Superpowers invocation evidence, approved design, and plan precede implementation.",
+    "Independent review findings have verified dispositions.",
+    "Final source and test hashes match the captured and sealed verification."
+  ],
+  "agentWorkflow": [
+    "Read the approved specification and record the unfinished baseline.",
+    "Use brainstorming to agree on technical design before writing-plans.",
+    "Execute the plan with a genuine learner-written failing test before production changes.",
+    "Implement and verify the feature, retaining the test-first regression.",
+    "Request independent code review and resolve its findings.",
+    "Demonstrate the UI and verify the final committed source before sealing evidence."
+  ],
+  "workingDeliverables": [
+    "Working invitation service and Team Invitations interface",
+    "Learner regression tests",
+    "Approved design and native Superpowers plan",
+    "Actual author and independent-review transcripts",
+    "Workflow, requirement coverage, and UI evidence",
+    "Captured baseline, red, green, and final checks",
+    "evidence/before.md, evidence/after.md, and evidence/comparison.md"
+  ]
+}

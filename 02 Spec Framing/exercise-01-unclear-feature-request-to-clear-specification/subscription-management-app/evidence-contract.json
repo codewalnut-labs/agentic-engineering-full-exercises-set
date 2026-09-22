@@ -1,0 +1,68 @@
+{
+  "name": "Turn an Unclear Feature Request into a Clear Specification",
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "specs/subscription-management/spec.md",
+      "headings": [
+        "Scope",
+        "User Scenarios & Testing",
+        "Requirements",
+        "Success Criteria",
+        "Readiness"
+      ]
+    },
+    {
+      "path": "specs/subscription-management/clarifications.md"
+    },
+    {
+      "path": "specs/subscription-management/checklists/requirements.md"
+    },
+    {
+      "path": "specs/subscription-management/checklists/spec-review.md"
+    },
+    {
+      "path": "specs/subscription-management/reviewed-checklist.md"
+    },
+    {
+      "path": "specs/subscription-management/checklist-results.json"
+    },
+    {
+      "path": "specs/subscription-management/revisions.md"
+    },
+    {
+      "path": "specs/subscription-management/review.md",
+      "headings": [
+        "Coverage",
+        "Findings"
+      ]
+    }
+  ],
+  "topics": [
+    "clarification",
+    "acceptance",
+    "review"
+  ],
+  "sourceRoots": [
+    "subscription-management-app/docs/",
+    "subscription-management-app/src/",
+    "evidence/author-session.txt",
+    "evidence/review-session.txt",
+    "evidence/reviewed/"
+  ],
+  "extraEvidence": [
+    "evidence/author-session.txt",
+    "evidence/review-session.txt",
+    "evidence/review-session.json",
+    "evidence/review-inputs.json",
+    "evidence/reviewed/clarifications.md",
+    "evidence/reviewed/spec.md",
+    "evidence/reviewed/requirements.md",
+    "evidence/reviewed/spec-review.md",
+    "evidence/workflow.json",
+    "evidence/stage-captures.json",
+    "evidence/workflow/specified.md",
+    "evidence/workflow/clarified.md",
+    "evidence/workflow/generated-checklist.md"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "name": "Turn an Unclear Feature Request into a Clear Specification",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "specs/subscription-management/spec.md"
+    },
+    {
+      "path": "specs/subscription-management/clarifications.md"
+    },
+    {
+      "path": "specs/subscription-management/checklists/requirements.md"
+    },
+    {
+      "path": "specs/subscription-management/checklists/spec-review.md"
+    },
+    {
+      "path": "specs/subscription-management/reviewed-checklist.md"
+    },
+    {
+      "path": "specs/subscription-management/checklist-results.json",
+      "validJson": true
+    },
+    {
+      "path": "specs/subscription-management/revisions.md"
+    },
+    {
+      "path": "specs/subscription-management/review.md"
+    },
+    {
+      "path": "evidence/author-session.txt"
+    },
+    {
+      "path": "evidence/review-session.txt"
+    },
+    {
+      "path": "evidence/review-session.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/review-inputs.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/reviewed/clarifications.md"
+    },
+    {
+      "path": "evidence/reviewed/spec.md"
+    },
+    {
+      "path": "evidence/reviewed/requirements.md"
+    },
+    {
+      "path": "evidence/reviewed/spec-review.md"
+    },
+    {
+      "path": "evidence/workflow.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/stage-captures.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/workflow/specified.md"
+    },
+    {
+      "path": "evidence/workflow/clarified.md"
+    },
+    {
+      "path": "evidence/workflow/generated-checklist.md"
+    },
+    {
+      "path": "evidence/before.md"
+    },
+    {
+      "path": "evidence/after.md"
+    },
+    {
+      "path": "evidence/comparison.md"
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ]
+}

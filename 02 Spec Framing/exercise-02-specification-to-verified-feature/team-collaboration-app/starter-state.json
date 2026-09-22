@@ -1,0 +1,12 @@
+{
+  "files": {
+    "team-collaboration-app/src/App.tsx": "ddc98ad31263c4185a461373df63f675d6f46fe177ba5d9d39fce393600fb0a5",
+    "team-collaboration-app/src/data/team.ts": "0dc4775a9bd2d9a616364b9fa055cb16b91aaddc386d5bcdecf892b3f55f85a6",
+    "team-collaboration-app/src/legacy/quickInvite.ts": "9890a45e4238f42bee4f53095d9a1674cc1cd7a695b63d2593f6cab48407b691",
+    "team-collaboration-app/src/main.tsx": "a3c01e26da2169530930ba2e7124859d5d7083d1a0215f171b9eb7c74236997b",
+    "team-collaboration-app/src/services/invitationService.ts": "5f4fc0d5403442d8a0f68dd4caa8f179a03b72ae8db19c8d54cc04163c732b0a",
+    "team-collaboration-app/src/services/teamPolicy.ts": "d6625c28944bd05c8a817adcc57e22379f34580da593be04e2478f641047c7a3",
+    "team-collaboration-app/src/styles.css": "b097352aeb613e4a795e53ce456fb6c061e8f594477683c045250bbdf3ff0c82",
+    "team-collaboration-app/src/types.ts": "2fcd1f698f017607ba8e1e2a333efb4ae6f77f05f6b78b7bef6453e33d7d0423"
+  }
+}
