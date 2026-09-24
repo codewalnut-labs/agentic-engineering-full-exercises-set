@@ -1,0 +1,44 @@
+{
+  "name": "Build a Release Check That Catches Hidden Failures",
+  "mode": "observation",
+  "kind": "release",
+  "toolSource": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion",
+  "toolSignal": "verification-before-completion",
+  "skill": true,
+  "stages": {
+    "baseline": [
+      "test:shortcut",
+      "test:release",
+      "test:gate",
+      "test:provider"
+    ],
+    "final": [
+      "release:verify"
+    ]
+  },
+  "documents": {
+    "evidence/before.md": [
+      "Starting point",
+      "Observed result",
+      "Gaps"
+    ],
+    "evidence/after.md": [
+      "Changes",
+      "Verified result",
+      "Limitations"
+    ],
+    "evidence/comparison.md": [
+      "Coverage",
+      "Reliability",
+      "Remaining risks"
+    ],
+    "evidence/claim-audit.md": [
+      "Previous claim",
+      "Missing proof"
+    ],
+    "evidence/verification-plan.md": [
+      "Requirements",
+      "Failure handling"
+    ]
+  }
+}

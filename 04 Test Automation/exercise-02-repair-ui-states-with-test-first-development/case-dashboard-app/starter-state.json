@@ -1,0 +1,8 @@
+{
+  "case-dashboard-app/src/App.tsx": "209e586876d5bc8b5f8a3961486aefccf7db9e105b7d50835f697a11fbb91542",
+  "case-dashboard-app/src/App.weak.test.tsx": "deac94056d0d065b731cd43901c5f903ae028bb1620f1e8e089b120fa16c4ec2",
+  "case-dashboard-app/src/App.acceptance.test.tsx": "23c3580cf5ed5dbf43b52d21194ab1a98a21d05b555539824affe2e1fe404314",
+  "case-dashboard-app/src/test/setup.ts": "678e99a8803029abe191ee23e083b931b331374f601c8f3ba244dd34421e1a8d",
+  "case-dashboard-app/src/test/server.ts": "b19e1dafab0c9c2656ef45ee9f905ffcd14d22c4ac18b824319325f63c174ebf",
+  "case-dashboard-app/src/test/handlers.ts": "99364ad5b5a7df780237793b0958f0f804738b4dfc6208d7a765a312c88e412d"
+}
