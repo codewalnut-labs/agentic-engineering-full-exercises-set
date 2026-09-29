@@ -1,0 +1,7 @@
+{
+  "checkout-e2e-app/src/App.tsx": "7daa825a1afb7710fa567d12ccc2d5bceeebd5278805e30ff25a779e773485da",
+  "checkout-e2e-app/tests/e2e/flaky-checkout.spec.ts": "56a1f69d5f9ed99ade11a06fcbab5ebcd37c10e44b1f4a0becd83a7348f6e349",
+  "checkout-e2e-app/tests/e2e/starter-smoke.spec.ts": "68b5bf1558aff0f31bc88e501419d3ca09c7ffc56ad68bcd1fe115a30e180c10",
+  "checkout-e2e-app/vite.config.ts": "56799db427630f9db67749ae2b99d501b872a8503b5b5d054dafa0a3736f7b3e",
+  "checkout-e2e-app/playwright.config.ts": "7d3d0612e3fda46d5cb9e29b49bff0b342acbfde03df2a434f82231b91c019a1"
+}

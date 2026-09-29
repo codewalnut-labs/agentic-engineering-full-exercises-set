@@ -1,0 +1,32 @@
+{
+  "algorithm": "sha256-normalized-lf",
+  "protectedFiles": {
+    "../../../scripts/run-clean-verification.mjs": "9b17cbb8865a642a7789113c145be88c6bb965bc2d8c024b82202e8ae85bf368",
+    "../../../scripts/run-vite-build.mjs": "b7901ed4f770e6537e80f864392c8c1de841b5c97fa8993246c5df7a86d5d415",
+    "../../../scripts/verify-protected-inputs.mjs": "d99346d9a84651bcb654d07d1b5d131d39d5f3b703ee9614db4eafc86cb4d96c",
+    "../../../scripts/verify-submission-contract.mjs": "5c34aab86313eeb825b19c6ceabc8afbaf65cce3d1cde325bdea7a9739e23ca4",
+    "../../scripts/capture-evidence.mjs": "e7ba778066c6f525ebb2ddd68a4a3a6ac45e20bee51ba1691d9b93930b1426a7",
+    "../../scripts/test-evidence.mjs": "04407a836093103307fb5d85901c1abe97273b44edbc553f9878eaee2c10d79d",
+    "../../scripts/test-evidence.test.mjs": "da1c31c3450792c65961324269be2390e3e610d7d4c6d334c65a3a39e416ea8e",
+    "../README.md": "1344127aa838eed7c69561e110092bc6264fec5b2b356bf10dfbef5a8a58e12c",
+    "../docs/evidence-template.md": "1f8c3042e33eed4c29b8605a70276f60ca9440b0ac5273f33e3f17da5202c190",
+    "../docs/release-claim.md": "13b1d33732d0a11980053d057624b2d8b87d99069781f58e289790d8089f2199",
+    "../docs/release-requirements.md": "b5f7469e206019e2254d66b21011f0cb00501ae07656f5800ff25018f027dcd8",
+    "../docs/setup.md": "417b7defb0c4e8a7aff0117bd588769c961c6437a114238ec97a3a47e392f44c",
+    "../scripts/previous-release-check.mjs": "c91204101e4ad8afbcb352b925879f979c8c3552cb719fff7ba7fbd7c0189bde",
+    "../workflow-rules-api/pom.xml": "961dc7db3415df30db40db516fb78b1c962c91b28bf468b19429f62aff62e1c5",
+    "../workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowReleaseGateTest.java": "d9f9544b163e3554c736add5cf37a8b2c584a670f343e5cf5260b7e038ad21db",
+    "../workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowServiceTest.java": "e7c2fdba4f39048926fa82060c42c03e405faa1b6c06751c2640bd64e3c660d9",
+    "evidence-contract.json": "8475491a15ff0abb870f0bb6850b49c124593a97ec3ca1101d674618a45201a8",
+    "lab-contract.json": "68f0419804f1d445a23f3c1486e534ca3277c1f9e5e924409c9d038350d12e8a",
+    "package.json": "1d08649fb943ae56d9b563a4ea74887d157dc57ed5f16684a3b73da8615f7567",
+    "scripts/agent-check.mjs": "9e24824c7ef20743505fb1787d83608278c7a8e4e81c568f56f57bbf24dbe125",
+    "scripts/format-check.mjs": "2b404502159a61cc97468297e9d7b18e7fca5101fae7126ed4ac271395aada30",
+    "scripts/lint-check.mjs": "f8046db589aee4e610d87c6725cb64e8f7f62235267ddc6a39166754f6af1784",
+    "scripts/run-release.mjs": "08a6bc640287de04a022183aa4011b17d9011d9abb3af415e5774abd024dd4e7",
+    "scripts/verify-gate-contract.mjs": "55d789800a77bd38e32587aff173973c2b74a7c305f24ddc86bf0177bfae1251",
+    "scripts/verify-release-submission.mjs": "cb78e8c379b9bafa7d7bbf549e4d0e7bd76ed04715e7b74de5b54c27799c20b8",
+    "starter-state.json": "4246d481f858e4ed173b59790a84482eea8165746e819cd290f8561f2f84f63f",
+    "tests/release/workflow.release.test.ts": "2a527df547c51f4612bb9edfde20a5976518c1170ed0ea6d3ab295899c56cd56"
+  }
+}

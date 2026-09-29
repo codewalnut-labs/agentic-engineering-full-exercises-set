@@ -1,0 +1,45 @@
+{
+  "name": "Stabilize Flaky Browser Tests",
+  "mode": "observation",
+  "kind": "browser",
+  "toolSource": "https://github.com/microsoft/playwright-mcp",
+  "toolSignal": "browser_",
+  "skill": false,
+  "stages": {
+    "baseline": [
+      "test:smoke",
+      "test:e2e:reproduce"
+    ],
+    "final": [
+      "test:repeat",
+      "agent:check"
+    ]
+  },
+  "documents": {
+    "evidence/before.md": [
+      "Starting point",
+      "Observed result",
+      "Gaps"
+    ],
+    "evidence/after.md": [
+      "Changes",
+      "Verified result",
+      "Limitations"
+    ],
+    "evidence/comparison.md": [
+      "Coverage",
+      "Reliability",
+      "Remaining risks"
+    ],
+    "evidence/mcp-investigation.md": [
+      "Readiness",
+      "Network",
+      "Recovery",
+      "Test decisions"
+    ],
+    "evidence/test-matrix.md": [
+      "Coverage",
+      "Trace review"
+    ]
+  }
+}

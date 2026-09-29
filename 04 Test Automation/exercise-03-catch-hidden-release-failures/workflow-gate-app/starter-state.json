@@ -1,0 +1,5 @@
+{
+  "workflow-gate-app/src/services/workflowContractClient.ts": "a9f9836c4a2b5dd0d41886ee6deda6f665bbff0b89f12d512eac29579f1f182f",
+  "workflow-rules-api/src/main/java/dev/agentic/exercise/workflow/WorkflowService.java": "9ffee9176c6bad8a58ae627ca8415ebb7c421d596f9cc60451e6a6733aecf6d8",
+  "scripts/verification-gate.mjs": "580fbb85c14226b31e82538b5e3f968b3202e64939c8ec7dd131803d8a7cf10b"
+}
