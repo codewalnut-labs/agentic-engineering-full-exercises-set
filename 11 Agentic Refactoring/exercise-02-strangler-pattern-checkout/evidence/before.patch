@@ -1,0 +1,189 @@
+diff --git a/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/cardCheckout.mjs b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/cardCheckout.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..f4ac9713f3c42d54aeae3a23fee775ca086dffee
+--- /dev/null
++++ b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/cardCheckout.mjs	
+@@ -0,0 +1,42 @@
++function calculateTotalCents(request) {
++  const taxCents = Math.round(request.subtotalCents * request.taxRateBps / 10000);
++  return request.subtotalCents + taxCents;
++}
++
++function paidResult(request, totalCents) {
++  return {
++    orderId: request.orderId,
++    status: "paid",
++    totalCents,
++    errorCode: null,
++  };
++}
++
++function declinedResult(request, totalCents) {
++  return {
++    orderId: request.orderId,
++    status: "failed",
++    totalCents,
++    errorCode: "PAYMENT_DECLINED",
++  };
++}
++
++/**
++ * Creates the card-only checkout slice. Authorization failures intentionally
++ * remain unhandled here so the router can decide whether retrying through the
++ * legacy implementation is safe.
++ */
++export function createCardCheckout({ authorize }) {
++  return async function cardCheckout(request) {
++    const totalCents = calculateTotalCents(request);
++    const authorization = await authorize({
++      orderId: request.orderId,
++      amountCents: totalCents,
++      paymentToken: request.paymentToken,
++    });
++
++    return authorization.approved
++      ? paidResult(request, totalCents)
++      : declinedResult(request, totalCents);
++  };
++}
+diff --git a/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.mjs b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.mjs
+index 010f28c5293510316f9704cf6c7e3c866a0fa1fb..a1daa227735f44069e8d560fd006394972d29310 100644
+--- a/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.mjs	
++++ b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.mjs	
+@@ -1,4 +1,51 @@
+-/** Seeded router: all payment types still flow through the legacy implementation. */
++function calculateTotalCents(request) {
++  return request.subtotalCents + Math.round(request.subtotalCents * request.taxRateBps / 10000);
++}
++
++function paymentStateUnknown(request) {
++  return {
++    orderId: request.orderId,
++    status: "failed",
++    totalCents: calculateTotalCents(request),
++    errorCode: "PAYMENT_STATE_UNKNOWN",
++  };
++}
++
++function isPublicResult(result, request) {
++  if (result === null || typeof result !== "object" || Array.isArray(result)) return false;
++
++  const fields = Object.keys(result).sort();
++  const expectedFields = ["errorCode", "orderId", "status", "totalCents"];
++  return fields.length === expectedFields.length
++    && fields.every((field, index) => field === expectedFields[index])
++    && result.orderId === request.orderId
++    && (result.status === "paid" || result.status === "failed")
++    && result.totalCents === calculateTotalCents(request)
++    && (result.errorCode === null || typeof result.errorCode === "string");
++}
++
++function isExplicitlyBeforeAuthorization(error) {
++  return error !== null
++    && typeof error === "object"
++    && !Array.isArray(error)
++    && Object.prototype.hasOwnProperty.call(error, "authorizationCreated")
++    && error.authorizationCreated === false;
++}
++
+ export async function routeCheckout(request, implementations) {
+-  return implementations.legacy(request);
++  if (request.paymentType !== "card" || !implementations.cardSliceEnabled) {
++    return implementations.legacy(request);
++  }
++
++  try {
++    return await implementations.card(request);
++  } catch (error) {
++    if (isExplicitlyBeforeAuthorization(error)) {
++      return implementations.legacy(request);
++    }
++
++    return isPublicResult(error?.result, request)
++      ? error.result
++      : paymentStateUnknown(request);
++  }
+ }
+diff --git a/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.test.mjs b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.test.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..ce1843cbb6c53e9ed3e809b4f4a0344139aaac2a
+--- /dev/null
++++ b/11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/checkoutRouter.test.mjs	
+@@ -0,0 +1,77 @@
++import assert from "node:assert/strict";
++import { routeCheckout } from "./checkoutRouter.mjs";
++
++const cardRequest = {
++  orderId: "ord-router",
++  paymentType: "card",
++  subtotalCents: 1001,
++  taxRateBps: 825,
++  paymentToken: "tok-router",
++};
++
++function paidResult(request) {
++  return {
++    orderId: request.orderId,
++    status: "paid",
++    totalCents: request.subtotalCents + Math.round(request.subtotalCents * request.taxRateBps / 10000),
++    errorCode: null,
++  };
++}
++
++function checkoutFakes(card = async (request) => paidResult(request)) {
++  const calls = { legacy: [], card: [] };
++  return {
++    calls,
++    implementations: {
++      legacy: async (request) => {
++        calls.legacy.push(structuredClone(request));
++        return paidResult(request);
++      },
++      card: async (request) => {
++        calls.card.push(structuredClone(request));
++        return card(request);
++      },
++      cardSliceEnabled: true,
++    },
++  };
++}
++
++const enabled = checkoutFakes();
++assert.deepEqual(await routeCheckout(structuredClone(cardRequest), enabled.implementations), paidResult(cardRequest));
++assert.deepEqual(enabled.calls, { legacy: [], card: [cardRequest] }, "enabled card checkout must use only the new slice");
++
++for (const paymentType of ["gift-card", "invoice", "unknown"]) {
++  const scenario = checkoutFakes();
++  const request = { ...cardRequest, paymentType };
++  await routeCheckout(structuredClone(request), scenario.implementations);
++  assert.deepEqual(scenario.calls, { legacy: [request], card: [] }, `${paymentType} must stay on legacy checkout`);
++}
++
++const disabled = checkoutFakes();
++disabled.implementations.cardSliceEnabled = false;
++await routeCheckout(structuredClone(cardRequest), disabled.implementations);
++assert.deepEqual(disabled.calls, { legacy: [cardRequest], card: [] }, "flag off must provide immediate legacy rollback");
++
++const beforeAuthorization = checkoutFakes(async () => {
++  throw { authorizationCreated: false };
++});
++assert.deepEqual(
++  await routeCheckout(structuredClone(cardRequest), beforeAuthorization.implementations),
++  paidResult(cardRequest),
++);
++assert.deepEqual(beforeAuthorization.calls, { legacy: [cardRequest], card: [cardRequest] });
++
++const unknownResult = { ...paidResult(cardRequest), status: "failed", errorCode: "PAYMENT_STATE_UNKNOWN" };
++for (const failure of [
++  { authorizationCreated: true, result: unknownResult },
++  { result: unknownResult },
++  new Error("authorization outcome unknown"),
++]) {
++  const ambiguous = checkoutFakes(async () => {
++    throw failure;
++  });
++  assert.deepEqual(await routeCheckout(structuredClone(cardRequest), ambiguous.implementations), unknownResult);
++  assert.deepEqual(ambiguous.calls, { legacy: [], card: [cardRequest] }, "ambiguous authorization must not duplicate payment");
++}
++
++console.log("PASS public checkout router characterization");

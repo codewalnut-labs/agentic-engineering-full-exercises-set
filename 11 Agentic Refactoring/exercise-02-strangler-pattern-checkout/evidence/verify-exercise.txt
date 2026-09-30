@@ -1,0 +1,47 @@
+Command: npm run verify:exercise
+Repository commit: 87d70fb1e6eba2e85d0a3af86307fe5af25f6da0
+
+> node ../../../scripts/run-clean-verification.mjs
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+Verified 19 protected challenge inputs.
+> node ./scripts/lint-check.mjs
+lint-check passed
+> node ./scripts/test-strangler-verifier.mjs && node ./scripts/agent-check.mjs
+strangler submission verifier self-test passed
+agent-check passed for Strangler Checkout Route
+> node ./scripts/format-check.mjs
+format-check passed
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+> node ../../../scripts/run-vite-build.mjs
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../exercise-vite-build-CppUJm/dist/index.html                   0.41 kB │ gzip:  0.28 kB
+../../../../exercise-vite-build-CppUJm/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+../../../../exercise-vite-build-CppUJm/dist/assets/index-DYKNJ_cv.js   196.45 kB │ gzip: 61.81 kB
+✓ built in 1.02s
+> npm run test:checkout
+> node ./scripts/run-checkout-tests.mjs && node ./src/checkout/checkoutRouter.test.mjs
+PASS 2 legacy comparisons and 11 protected strangler route checks
+PASS participant card routing, strict fallback proof, and public result checks
+> node ../../../scripts/comparable-evidence.mjs .. --allow-identical-patches --after-run-base-file=checkout-strangler-app/src/checkout/checkoutRouter.test.mjs && npm run test:submission
+PASS before and after runs use matching conditions and valid Git patches
+PASS both patches match their recorded implementation commits
+PASS protected manifests and inputs match the starting commit
+PASS identical first-attempt patches are allowed by this exercise contract
+> npm run test:checkout && npm run strangler:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+> node ./scripts/run-checkout-tests.mjs && node ./src/checkout/checkoutRouter.test.mjs
+PASS 2 legacy comparisons and 11 protected strangler route checks
+PASS participant card routing, strict fallback proof, and public result checks
+> node ./scripts/verify-strangler-submission.mjs
+Characterization SHA: 5ae9b2d374431e6fdf5539e9dd11bc40eb38e70e
+Source SHA: 87d70fb1e6eba2e85d0a3af86307fe5af25f6da0
+PASS route, comparison, rollback, and focused-history evidence
+Verified Strangler Checkout Route: 12 files and 0 directories.
+PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged
+
+Result: exit code 0

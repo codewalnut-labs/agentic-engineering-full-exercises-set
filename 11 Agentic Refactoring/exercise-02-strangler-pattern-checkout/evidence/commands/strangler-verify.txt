@@ -1,0 +1,29 @@
+Command: npm run evidence:verify
+Repository commit: 87d70fb1e6eba2e85d0a3af86307fe5af25f6da0
+Started at: 2026-09-11T06:55:40.089Z
+Finished at: 2026-09-11T06:55:40.643Z
+Duration ms: 554
+
+STDOUT
+
+> checkout-strangler-app@0.1.0 evidence:verify
+> npm run test:checkout && npm run strangler:verify
+
+
+> checkout-strangler-app@0.1.0 test:checkout
+> node ./scripts/run-checkout-tests.mjs && node ./src/checkout/checkoutRouter.test.mjs
+
+PASS 2 legacy comparisons and 11 protected strangler route checks
+PASS participant card routing, strict fallback proof, and public result checks
+
+> checkout-strangler-app@0.1.0 strangler:verify
+> node ./scripts/verify-strangler-submission.mjs
+
+Characterization SHA: 5ae9b2d374431e6fdf5539e9dd11bc40eb38e70e
+Source SHA: 87d70fb1e6eba2e85d0a3af86307fe5af25f6da0
+PASS route, comparison, rollback, and focused-history evidence
+
+STDERR
+
+
+exit code: 0
