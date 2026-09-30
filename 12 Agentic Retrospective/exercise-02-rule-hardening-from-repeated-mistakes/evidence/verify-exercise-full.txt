@@ -1,0 +1,98 @@
+Full exercise verification transcript
+Command executed: npm run verify:exercise
+Commit tested: e3ca352931a7ac96560c3099d485f99fd5258ae2
+
+OUTPUT
+
+> rule-hardening-app@0.1.0 verify:exercise
+> node ../../../scripts/run-clean-verification.mjs
+
+
+> rule-hardening-app@0.1.0 verify:exercise:core
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+
+
+> rule-hardening-app@0.1.0 agent:check
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+
+
+> rule-hardening-app@0.1.0 test:integrity
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+
+Verified 19 protected challenge inputs.
+
+> rule-hardening-app@0.1.0 lint
+> node ./scripts/lint-check.mjs
+
+lint-check passed
+
+> rule-hardening-app@0.1.0 test
+> node ./scripts/test-rule-hardening-verifier.mjs && node ./scripts/agent-check.mjs
+
+rule hardening verifier self-test passed
+agent-check passed for Repeated Mistake to Repository Rule
+
+> rule-hardening-app@0.1.0 format
+> node ./scripts/format-check.mjs
+
+format-check passed
+
+> rule-hardening-app@0.1.0 typecheck
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+
+
+> rule-hardening-app@0.1.0 build
+> node ../../../scripts/run-vite-build.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../exercise-vite-build-MWJDnq/dist/index.html                   0.42 kB │ gzip:  0.28 kB
+../../../../exercise-vite-build-MWJDnq/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+../../../../exercise-vite-build-MWJDnq/dist/assets/index-BOWDqkF4.js   196.24 kB │ gzip: 61.71 kB
+✓ built in 813ms
+
+> rule-hardening-app@0.1.0 verify:implementation
+> npm run test:persistence
+
+
+> rule-hardening-app@0.1.0 test:persistence
+> node ./scripts/run-persistence-tests.mjs && node ./src/services/filterPersistence.test.mjs
+
+PASS stable identity, canonical values, injected time, exact shape, and immutability
+PASS participant test: relabeled owner resolves to the same stable id across saves, using an independent injected clock each time
+
+> rule-hardening-app@0.1.0 verify:submission
+> node ../../../scripts/comparable-evidence.mjs .. --allow-identical-patches --after-run-base-file=AGENTS.md --after-run-base-file=.agent/persistence.md && npm run test:submission
+
+PASS before and after runs use matching conditions and valid Git patches
+PASS both patches match their recorded implementation commits
+PASS protected manifests and inputs match the starting commit
+PASS identical first-attempt patches are allowed by this exercise contract
+
+> rule-hardening-app@0.1.0 test:submission
+> npm run test:persistence && npm run rules:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+
+
+> rule-hardening-app@0.1.0 test:persistence
+> node ./scripts/run-persistence-tests.mjs && node ./src/services/filterPersistence.test.mjs
+
+PASS stable identity, canonical values, injected time, exact shape, and immutability
+PASS participant test: relabeled owner resolves to the same stable id across saves, using an independent injected clock each time
+
+> rule-hardening-app@0.1.0 rules:verify
+> node ./scripts/verify-rule-hardening-submission.mjs
+
+fatal: path '12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/.agent/persistence.md' exists on disk, but not in 'fb48d936ec2e6e205478614a4af4d2550662f650'
+fatal: path '12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/AGENTS.md' exists on disk, but not in 'fb48d936ec2e6e205478614a4af4d2550662f650'
+Rules SHA: c9c11ddd489f7fe520d1cc92fe898ace603e18d2
+Agent implementation SHA: 9e0bbbf2af1b545b1f5d6f543121ad13bbb7dc38
+Implementation SHA: 40ba5652afb57505d3e6c1db648185123f63e22a
+PASS defect-improvement: baseline defects 6 -> after defects 0
+PASS patch hashes f5df39c47a7d26123e56d670dffd65e46f5f02ffeafa1084cba039e8480b0f0f and 0f731d6685895022fa7006de18fe04c0f97c87c031033f6ffb94d564ba7e76f8
+Verified Repeated Mistake to Repository Rule: 13 files and 2 directories.
+PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged
+
+Exit code: 0

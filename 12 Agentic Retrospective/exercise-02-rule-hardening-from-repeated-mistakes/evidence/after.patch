@@ -1,0 +1,21 @@
+diff --git a/12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/src/services/filterPersistence.mjs b/12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/src/services/filterPersistence.mjs
+index 9558b26c20a0bd4631531e0fc40f2fc17cd0ce91..64c0d01315e455e0c39184efbcbaf4df18fe83e0 100644
+--- a/12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/src/services/filterPersistence.mjs	
++++ b/12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/src/services/filterPersistence.mjs	
+@@ -1,4 +1,13 @@
+-/** Seeded repeated mistake: display values and an ambient clock are persisted. */
+-export function buildSavedFilter(filter, _clock) {
+-  return { owner: filter.owner.label, status: filter.statusLabel, updatedAt: new Date().toISOString() };
++/**
++ * Build a durable saved-filter record.
++ * Persists the stable owner id (never the display label) and the canonical,
++ * trimmed lowercase status (never the display `*Label` field), and stamps
++ * `updatedAt` using the caller-provided clock rather than an ambient clock.
++ */
++export function buildSavedFilter(filter, clock) {
++  return {
++    ownerId: filter.owner.id,
++    status: filter.statusLabel.trim().toLowerCase(),
++    updatedAt: new Date(clock()).toISOString(),
++  };
+ }
