@@ -1,0 +1,234 @@
+diff --git a/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.mjs b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.mjs
+index ebc4f10d46cb295b9ba8c65217858ff70dbb0f19..3e15ca3d71eebe403ec087df413e37aecd4a3e7c 100644
+--- a/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.mjs	
++++ b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.mjs	
+@@ -1,14 +1,95 @@
+-/** Seeded analyzer: it counts every read and failed command as waste. */
++const EVENT_TYPES = new Set(["claim", "command", "context", "diagnosis", "read", "write"]);
++
++function requireNonEmptyString(value, field, sequence) {
++  if (typeof value !== "string" || value.trim() === "") {
++    throw new TypeError(`event ${sequence} requires a non-empty ${field}`);
++  }
++}
++
++function validateEvent(event, index, previousSequence) {
++  if (!event || typeof event !== "object" || Array.isArray(event)) {
++    throw new TypeError(`event ${index + 1} must be an object`);
++  }
++  if (!Number.isInteger(event.sequence) || event.sequence < 1 || event.sequence <= previousSequence) {
++    throw new TypeError("event sequence numbers must be positive, strictly increasing integers");
++  }
++  if (!EVENT_TYPES.has(event.type)) {
++    throw new TypeError(`event ${event.sequence} has an invalid type`);
++  }
++  requireNonEmptyString(event.target, "target", event.sequence);
++  if (!Number.isInteger(event.workspaceRevision) || event.workspaceRevision < 0) {
++    throw new TypeError(`event ${event.sequence} requires a non-negative integer workspaceRevision`);
++  }
++  requireNonEmptyString(event.result, "result", event.sequence);
++
++  if (event.type === "read" || event.type === "write") {
++    requireNonEmptyString(event.contentVersion, "contentVersion", event.sequence);
++  }
++  if (event.type === "context" && (!Number.isInteger(event.bytes) || event.bytes < 0)) {
++    throw new TypeError(`context event ${event.sequence} requires non-negative integer bytes`);
++  }
++  if (event.type === "command") {
++    requireNonEmptyString(event.phase, "phase", event.sequence);
++  }
++  if (event.type === "command" && event.result !== "failed" && event.result !== "passed") {
++    throw new TypeError(`command event ${event.sequence} result must be failed or passed`);
++  }
++  if (event.type !== "command" && event.result !== "ok") {
++    throw new TypeError(`non-command event ${event.sequence} result must be ok`);
++  }
++}
++
+ export function analyzeSession(events) {
+-  const duplicateReads = events.filter((event) => event.type === "read").length;
+-  const unchangedFailureRetries = events.filter((event) => event.type === "command" && event.result === "failed").length;
++  if (!Array.isArray(events)) throw new TypeError("events must be an array");
++
++  const reads = new Set();
++  const retryBlockedCommands = new Set();
++  let previousSequence = -Infinity;
++  let activeRevision;
++  let duplicateReads = 0;
++  let unchangedFailureRetries = 0;
++  let oversizedContextLoads = 0;
++  let lastWriteIndex = -1;
++
++  events.forEach((event, index) => {
++    validateEvent(event, index, previousSequence);
++    previousSequence = event.sequence;
++
++    if (activeRevision !== event.workspaceRevision) {
++      retryBlockedCommands.clear();
++      activeRevision = event.workspaceRevision;
++    }
++
++    if (event.type === "diagnosis") retryBlockedCommands.clear();
++
++    if (event.type === "read") {
++      const identity = JSON.stringify([event.target, event.contentVersion]);
++      if (reads.has(identity)) duplicateReads += 1;
++      else reads.add(identity);
++    }
++
++    if (event.type === "context" && event.bytes > 8_000) oversizedContextLoads += 1;
++
++    if (event.type === "command") {
++      if (retryBlockedCommands.has(event.target)) unchangedFailureRetries += 1;
++      if (event.result === "failed") retryBlockedCommands.add(event.target);
++    }
++
++    if (event.type === "write") lastWriteIndex = index;
++  });
++
++  const finalVerificationRuns = lastWriteIndex < 0
++    ? 0
++    : events.slice(lastWriteIndex + 1).filter((event) =>
++      event.type === "command" && event.phase === "final-verification" && event.result === "passed").length;
++
+   return {
+     totalEvents: events.length,
+     duplicateReads,
+     unchangedFailureRetries,
+-    oversizedContextLoads: 0,
+-    preventableCalls: duplicateReads + unchangedFailureRetries,
+-    finalVerificationRuns: 0,
+-    correctnessPassed: false,
++    oversizedContextLoads,
++    preventableCalls: duplicateReads + unchangedFailureRetries + oversizedContextLoads,
++    finalVerificationRuns,
++    correctnessPassed: finalVerificationRuns > 0,
+   };
+ }
+diff --git a/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.test.mjs b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.test.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..ccdd522a01914cdd3568b5e2aa588958dd749ab4
+--- /dev/null
++++ b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/analyzeSession.test.mjs	
+@@ -0,0 +1,90 @@
++import assert from "node:assert/strict";
++import { analyzeSession } from "./analyzeSession.mjs";
++import { evaluateCommandAttempt } from "./preflightPolicy.mjs";
++
++const event = (sequence, type, target, overrides = {}) => ({
++  sequence,
++  type,
++  target,
++  workspaceRevision: 1,
++  result: "ok",
++  ...overrides,
++});
++
++const session = [
++  event(1, "read", "policy.ts", { contentVersion: "v1" }),
++  event(2, "read", "policy.ts", { contentVersion: "v1" }),
++  event(3, "write", "policy.ts", { contentVersion: "v2", workspaceRevision: 2 }),
++  event(4, "read", "policy.ts", { contentVersion: "v2", workspaceRevision: 2 }),
++  event(5, "context", "architecture.md", { bytes: 8_001, workspaceRevision: 2 }),
++  event(6, "command", "npm test", { phase: "focused-test", result: "failed", workspaceRevision: 2 }),
++  event(7, "command", "npm test", { phase: "focused-test", result: "passed", workspaceRevision: 2 }),
++  event(8, "command", "npm test", { phase: "focused-test", result: "passed", workspaceRevision: 2 }),
++  event(9, "diagnosis", "fixture mismatch", { workspaceRevision: 2 }),
++  event(10, "command", "npm test", { phase: "focused-test", result: "passed", workspaceRevision: 2 }),
++  event(11, "command", "npm verify", { phase: "final-verification", result: "passed", workspaceRevision: 2 }),
++];
++
++assert.deepEqual(analyzeSession(session), {
++  totalEvents: 11,
++  duplicateReads: 1,
++  unchangedFailureRetries: 2,
++  oversizedContextLoads: 1,
++  preventableCalls: 4,
++  finalVerificationRuns: 1,
++  correctnessPassed: true,
++});
++
++const revisionReset = [
++  event(1, "command", "npm test", { phase: "focused-test", result: "failed" }),
++  event(2, "command", "npm test", { phase: "focused-test", result: "passed", workspaceRevision: 2 }),
++];
++assert.equal(analyzeSession(revisionReset).unchangedFailureRetries, 0);
++
++const noWrite = [event(1, "command", "npm verify", { phase: "final-verification", result: "passed" })];
++assert.equal(analyzeSession(noWrite).finalVerificationRuns, 0);
++assert.equal(analyzeSession(noWrite).correctnessPassed, false);
++
++const failed = [event(1, "command", "npm test", { phase: "focused-test", result: "failed" })];
++assert.deepEqual(evaluateCommandAttempt({ command: "npm test", workspaceRevision: 1, events: failed }), {
++  allowed: false,
++  reason: "DIAGNOSIS_OR_CHANGE_REQUIRED",
++});
++assert.equal(evaluateCommandAttempt({ command: "npm lint", workspaceRevision: 1, events: failed }).allowed, true);
++assert.equal(evaluateCommandAttempt({ command: "npm test", workspaceRevision: 2, events: failed }).allowed, true);
++assert.equal(evaluateCommandAttempt({
++  command: "npm test",
++  workspaceRevision: 1,
++  events: [...failed, event(2, "diagnosis", "root cause")],
++}).allowed, true);
++assert.equal(evaluateCommandAttempt({
++  command: "npm test",
++  workspaceRevision: 1,
++  events: [event(1, "diagnosis", "old diagnosis"), event(2, "command", "npm test", { phase: "focused-test", result: "failed" })],
++}).allowed, false);
++
++// A later passing retry of the same command at the same revision must not clear a prior
++// failure's block -- only a diagnosis event or a workspace revision change may. Uses the
++// `session` fixture's failure (event 6) followed by two passing retries (events 7-8).
++assert.deepEqual(evaluateCommandAttempt({
++  command: "npm test",
++  workspaceRevision: 2,
++  events: session.slice(0, 8),
++}), { allowed: false, reason: "DIAGNOSIS_OR_CHANGE_REQUIRED" });
++assert.equal(evaluateCommandAttempt({
++  command: "npm test",
++  workspaceRevision: 2,
++  events: session.slice(0, 9),
++}).allowed, true);
++
++const exactThreshold = [event(1, "context", "architecture.md", { bytes: 8_000 })];
++assert.equal(analyzeSession(exactThreshold).oversizedContextLoads, 0);
++
++assert.throws(() => analyzeSession([event(1, "read", "policy.ts", { contentVersion: "v1" }), event(1, "claim", "done")]), /sequence/i);
++assert.throws(() => analyzeSession([event(1, "context", "architecture.md")]), /bytes/i);
++assert.throws(() => analyzeSession([event(1, "write", "policy.ts")]), /contentVersion/i);
++assert.throws(() => analyzeSession([event(1, "command", "npm test", { result: "failed" })]), /phase/i);
++assert.throws(() => analyzeSession([event(0, "claim", "done")]), /sequence/i);
++assert.throws(() => evaluateCommandAttempt({ command: "", workspaceRevision: 1, events: [] }), /command/i);
++
++console.log("PASS participant analyzer boundary and retry-preflight tests");
+diff --git a/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/preflightPolicy.mjs b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/preflightPolicy.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..a034cc0b8b5b6ec5ca796d4b8999861adaac0eb0
+--- /dev/null
++++ b/12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/src/retro/preflightPolicy.mjs	
+@@ -0,0 +1,25 @@
++const ALLOWED = Object.freeze({ allowed: true, reason: "FIRST_OR_INFORMED_ATTEMPT" });
++const BLOCKED = Object.freeze({ allowed: false, reason: "DIAGNOSIS_OR_CHANGE_REQUIRED" });
++
++export function evaluateCommandAttempt({ command, workspaceRevision, events }) {
++  if (typeof command !== "string" || command.trim() === "") {
++    throw new TypeError("command must be a non-empty string");
++  }
++  if (!Number.isInteger(workspaceRevision) || workspaceRevision < 0) {
++    throw new TypeError("workspaceRevision must be a non-negative integer");
++  }
++  if (!Array.isArray(events)) throw new TypeError("events must be an array");
++
++  for (let index = events.length - 1; index >= 0; index -= 1) {
++    const event = events[index];
++
++    if (!event || typeof event !== "object") continue;
++    if (event.type === "diagnosis") return ALLOWED;
++    if (event.workspaceRevision !== workspaceRevision) return ALLOWED;
++    if (event.type === "command" && event.target === command && event.result === "failed") {
++      return BLOCKED;
++    }
++  }
++
++  return ALLOWED;
++}

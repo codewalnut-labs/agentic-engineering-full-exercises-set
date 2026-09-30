@@ -1,0 +1,11 @@
+{
+  "taskId": "POLICY-217",
+  "sessionId": "replay-policy-217-20260911",
+  "agent": "simulated-coding-agent",
+  "model": "simulated-standard-reasoning",
+  "captureMode": "constructed-replay",
+  "promptPath": "tasks/policy-217-replay.md",
+  "promptHash": "sha256:ae74873cffbeeebefb41aa7e157f4d258d67dd1148f6907a9066c0396b7559a8",
+  "timeLimitMinutes": 20,
+  "sourceRevision": "starter-v1"
+}

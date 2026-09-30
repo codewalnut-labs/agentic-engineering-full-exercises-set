@@ -1,0 +1,92 @@
+Command: npm run verify:exercise
+Repository commit: a785330a59abab86c1da12b5a523f84aea747879
+
+
+> session-waste-app@0.1.0 verify:exercise
+> node ../../../scripts/run-clean-verification.mjs
+
+
+> session-waste-app@0.1.0 verify:exercise:core
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+
+
+> session-waste-app@0.1.0 agent:check
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+
+
+> session-waste-app@0.1.0 test:integrity
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+
+Verified 22 protected challenge inputs.
+
+> session-waste-app@0.1.0 lint
+> node ./scripts/lint-check.mjs
+
+lint-check passed
+
+> session-waste-app@0.1.0 test
+> node ./scripts/test-retro-verifier.mjs && node ./scripts/agent-check.mjs
+
+session retrospective verifier self-test passed
+agent-check passed for Trace-Measured Session Waste Reduction
+
+> session-waste-app@0.1.0 format
+> node ./scripts/format-check.mjs
+
+format-check passed
+
+> session-waste-app@0.1.0 typecheck
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+
+
+> session-waste-app@0.1.0 build
+> node ../../../scripts/run-vite-build.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../exercise-vite-build-9HxMX0/dist/index.html                   0.42 kB │ gzip:  0.29 kB
+../../../../exercise-vite-build-9HxMX0/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+../../../../exercise-vite-build-9HxMX0/dist/assets/index-CxNIPl47.js   196.22 kB │ gzip: 61.67 kB
+✓ built in 824ms
+
+> session-waste-app@0.1.0 verify:implementation
+> npm run test:analysis
+
+
+> session-waste-app@0.1.0 test:analysis
+> node ./scripts/run-analysis-tests.mjs && node ./src/retro/analyzeSession.test.mjs
+
+PASS baseline metrics, classification traps, schema rejection, and executable retry preflight
+PASS participant analyzer boundary and retry-preflight tests
+
+> session-waste-app@0.1.0 verify:submission
+> node ../../../scripts/comparable-evidence.mjs .. --allow-identical-patches && npm run test:submission
+
+PASS before and after runs use matching conditions and valid Git patches
+PASS both patches match their recorded implementation commits
+PASS protected manifests and inputs match the starting commit
+PASS identical first-attempt patches are allowed by this exercise contract
+
+> session-waste-app@0.1.0 test:submission
+> npm run test:analysis && npm run retro:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+
+
+> session-waste-app@0.1.0 test:analysis
+> node ./scripts/run-analysis-tests.mjs && node ./src/retro/analyzeSession.test.mjs
+
+PASS baseline metrics, classification traps, schema rejection, and executable retry preflight
+PASS participant analyzer boundary and retry-preflight tests
+
+> session-waste-app@0.1.0 retro:verify
+> node ./scripts/verify-retro-submission.mjs
+
+Source SHA: 38a49357550273e1f53817a3952ea5a7e7a4732a
+PASS preventable calls 4 -> 0
+PASS unchanged retries eliminated and final correctness verified
+Verified Trace-Measured Session Waste Reduction: 15 files and 0 directories.
+PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged
+
+Result: exit code 0
