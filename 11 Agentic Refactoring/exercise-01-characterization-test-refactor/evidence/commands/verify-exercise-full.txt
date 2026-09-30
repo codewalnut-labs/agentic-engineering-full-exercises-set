@@ -1,0 +1,124 @@
+Full exercise verification transcript
+Command executed: npm run verify:exercise
+Commit tested: 74d8a36a8700d0235a05bbc11b606ed196270693
+Run began: 2026-09-17T09:54:03.518Z
+Run ended: 2026-09-17T09:54:11.207Z
+Elapsed ms: 7689
+
+OUTPUT
+
+> rules-refactor-app@0.1.0 verify:exercise
+> node ../../../scripts/run-clean-verification.mjs
+
+
+> rules-refactor-app@0.1.0 verify:exercise:core
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+
+
+> rules-refactor-app@0.1.0 agent:check
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+
+
+> rules-refactor-app@0.1.0 test:integrity
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+
+Verified 17 protected challenge inputs.
+
+> rules-refactor-app@0.1.0 lint
+> node ./scripts/lint-check.mjs
+
+lint-check passed
+
+> rules-refactor-app@0.1.0 test
+> node ./scripts/test-refactor-verifier.mjs && node ./scripts/agent-check.mjs
+
+characterization refactor verifier self-test passed
+agent-check passed for Characterization-First Rules Refactor
+
+> rules-refactor-app@0.1.0 format
+> node ./scripts/format-check.mjs
+
+format-check passed
+
+> rules-refactor-app@0.1.0 typecheck
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+
+
+> rules-refactor-app@0.1.0 build
+> node ../../../scripts/run-vite-build.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 31 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../exercise-vite-build-u3zd9j/dist/index.html                   0.42 kB │ gzip:  0.29 kB
+../../../../exercise-vite-build-u3zd9j/dist/assets/index-BAmIHqwj.css    3.99 kB │ gzip:  1.44 kB
+../../../../exercise-vite-build-u3zd9j/dist/assets/index-clcMZPI7.js   196.38 kB │ gzip: 61.76 kB
+✓ built in 1.03s
+
+> rules-refactor-app@0.1.0 verify:implementation
+> npm run test:oracle
+
+
+> rules-refactor-app@0.1.0 test:oracle
+> node ./scripts/run-characterization-oracle.mjs && node ./src/rules/legacyEligibility.characterization.test.mjs
+
+PASS enterprise boundary with one late payment
+PASS enterprise boundary with two late payments
+PASS enterprise above tenure boundary
+PASS enterprise below tenure boundary
+PASS enterprise accepts negative late payments
+PASS pro exact tenure clean account
+PASS pro above tenure clean account
+PASS pro below tenure boundary
+PASS mature pro with one late payment
+PASS support override wins on new starter
+PASS support override wins on enterprise arrears
+PASS ordinary starter remains unsupported
+PASS 12 protected public-behavior observations
+PASS 12 public renewal characterization cases
+
+> rules-refactor-app@0.1.0 verify:submission
+> node ../../../scripts/comparable-evidence.mjs .. --allow-identical-patches --after-run-base-file=rules-refactor-app/src/rules/legacyEligibility.characterization.test.mjs --after-run-base-file=evidence/before-output.json && npm run test:submission
+
+PASS before and after runs use matching conditions and valid Git patches
+PASS both patches match their recorded implementation commits
+PASS protected manifests and inputs match the starting commit
+PASS identical first-attempt patches are allowed by this exercise contract
+
+> rules-refactor-app@0.1.0 test:submission
+> npm run test:oracle && npm run refactor:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+
+
+> rules-refactor-app@0.1.0 test:oracle
+> node ./scripts/run-characterization-oracle.mjs && node ./src/rules/legacyEligibility.characterization.test.mjs
+
+PASS enterprise boundary with one late payment
+PASS enterprise boundary with two late payments
+PASS enterprise above tenure boundary
+PASS enterprise below tenure boundary
+PASS enterprise accepts negative late payments
+PASS pro exact tenure clean account
+PASS pro above tenure clean account
+PASS pro below tenure boundary
+PASS mature pro with one late payment
+PASS support override wins on new starter
+PASS support override wins on enterprise arrears
+PASS ordinary starter remains unsupported
+PASS 12 protected public-behavior observations
+PASS 12 public renewal characterization cases
+
+> rules-refactor-app@0.1.0 refactor:verify
+> node ./scripts/verify-refactor-submission.mjs
+
+Characterization SHA: 3598a35f896b521a64425318b4919edfb6831276
+Refactor SHA: 22d89ee89ea56c799c267beaed0b74d5919e0434
+PASS characterization test and before output preceded production edits
+PASS all twelve before and after public outputs are identical
+PASS refactor commit changes only the legacy rule module
+PASS suspected bugs documented and later history limited to evidence
+Verified Characterization-First Rules Refactor: 12 files and 0 directories.
+PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged
+
+Exit code: 0

@@ -1,25 +1,31 @@
-export function evaluateRenewalEligibility(account) {
-  let status = "ineligible";
-  let discountPercent = 0;
-  let reason = "plan-not-supported";
-  if (account.supportOverride === true) {
-    status = "eligible";
-    reason = "legacy-support-override";
-  } else if (account.tier === "enterprise") {
-    if (account.monthsActive >= 12) {
-      if (account.latePayments < 2) {
-        status = "eligible";
-        discountPercent = 15;
-        reason = "enterprise-tenure";
-      } else {
-        status = "manual-review";
-        reason = "payment-history";
-      }
-    }
-  } else if (account.tier === "pro" && account.monthsActive >= 6 && account.latePayments === 0) {
-    status = "eligible";
-    discountPercent = 10;
-    reason = "pro-tenure";
-  }
+function result(status, discountPercent, reason) {
   return { status, discountPercent, reason };
+}
+
+function evaluateEnterpriseEligibility(account) {
+  if (!(account.monthsActive >= 12)) {
+    return result("ineligible", 0, "plan-not-supported");
+  }
+
+  if (!(account.latePayments < 2)) {
+    return result("manual-review", 0, "payment-history");
+  }
+
+  return result("eligible", 15, "enterprise-tenure");
+}
+
+export function evaluateRenewalEligibility(account) {
+  if (account.supportOverride === true) {
+    return result("eligible", 0, "legacy-support-override");
+  }
+
+  if (account.tier === "enterprise") {
+    return evaluateEnterpriseEligibility(account);
+  }
+
+  if (account.tier === "pro" && account.monthsActive >= 6 && account.latePayments === 0) {
+    return result("eligible", 10, "pro-tenure");
+  }
+
+  return result("ineligible", 0, "plan-not-supported");
 }
