@@ -1,0 +1,232 @@
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/EvidencePanel.tsx b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/EvidencePanel.tsx
+index 20c1f6ffb3b8d95c58fe8a87fbfec1355667def9..591c03f3e31222bce7d458df8f1921ea61f245f8 100644
+--- a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/EvidencePanel.tsx	
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/EvidencePanel.tsx	
+@@ -1,4 +1,5 @@
+ import type { WorkItem } from "../types";
++import { createEvidenceBundle, serializeEvidenceBundle } from "../services/workflowApi";
+ 
+ interface EvidencePanelProps {
+   item: WorkItem;
+@@ -7,6 +8,15 @@ interface EvidencePanelProps {
+ }
+ 
+ export function EvidencePanel({ item, evidence, onCollect }: EvidencePanelProps) {
++  function exportEvidence() {
++    const json = serializeEvidenceBundle(createEvidenceBundle(item, evidence, new Date().toISOString()));
++    const download = document.createElement("a");
++    download.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
++    download.download = `${item.id}-evidence.json`;
++    download.click();
++    URL.revokeObjectURL(download.href);
++  }
++
+   return (
+     <section className="evidence-panel" aria-label="Evidence panel">
+       <div className="section-title">
+@@ -14,6 +24,11 @@ export function EvidencePanel({ item, evidence, onCollect }: EvidencePanelProps)
+         <button type="button" onClick={onCollect}>
+           Collect
+         </button>
++        {evidence.length > 0 ? (
++          <button type="button" onClick={exportEvidence}>
++            Export JSON
++          </button>
++        ) : null}
+       </div>
+       {evidence.length === 0 ? (
+         <p className="muted">No evidence collected for {item.name} yet.</p>
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/FilterBar.tsx b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/FilterBar.tsx
+index 7c162f468352ca13f9f84456ac00b7bcd5a648a0..4ea65512cdb9668b058ef8813efc2050cc3bf31f 100644
+--- a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/FilterBar.tsx	
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/FilterBar.tsx	
+@@ -1,4 +1,4 @@
+-import type { Filters } from "../utils/filters";
++import { applyFilterPreset, savedFilterPresets, type Filters } from "../utils/filters";
+ 
+ interface FilterBarProps {
+   filters: Filters;
+@@ -41,6 +41,11 @@ export function FilterBar({ filters, onChange }: FilterBarProps) {
+           ))}
+         </select>
+       </label>
++      {savedFilterPresets.map((preset) => (
++        <button key={preset.id} type="button" onClick={() => onChange(applyFilterPreset(filters, preset))}>
++          {preset.name}
++        </button>
++      ))}
+     </section>
+   );
+ }
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/MetricStrip.tsx b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/MetricStrip.tsx
+index 65d50da5cd14eced7df1fca89f5e354accd0f381..b6282bf72636135ca901f9131dda99cb8acc2ad2 100644
+--- a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/MetricStrip.tsx	
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/components/MetricStrip.tsx	
+@@ -2,6 +2,7 @@ interface PortfolioSummary {
+   critical: number;
+   blocked: number;
+   averageRisk: number;
++  dueToday?: number;
+   ready: number;
+ }
+ 
+@@ -13,6 +14,7 @@ export function MetricStrip({ summary }: MetricStripProps) {
+   const metrics = [
+     { label: "Critical", value: summary.critical, hint: "risk score 90 or above" },
+     { label: "Blocked", value: summary.blocked, hint: "blocked or escalated" },
++    { label: "Due today", value: summary.dueToday ?? 0, hint: "due today" },
+     { label: "Ready", value: summary.ready, hint: "ready for action" },
+     { label: "Average risk", value: summary.averageRisk, hint: "across the current queue" },
+   ];
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/services/workflowApi.ts b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/services/workflowApi.ts
+index 148a0838150de42af2e39f578cd35cbd68d9a3c6..df392fd016687c5b5315575940abd84a2b4a9cee 100644
+--- a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/services/workflowApi.ts	
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/services/workflowApi.ts	
+@@ -1,5 +1,6 @@
+-import type { ActionDraft, WorkItem } from "../types";
++import type { ActionDraft, EvidenceBundle, WorkItem } from "../types";
+ import { workItems } from "../data/workItems";
++import { calculateRisk } from "../utils/scoring";
+ 
+ const wait = (ms: number) => new Promise((resolve) => window.setTimeout(resolve, ms));
+ 
+@@ -31,3 +32,18 @@ export async function collectEvidence(item: WorkItem): Promise<string[]> {
+     `Tags: ${item.tags.join(", ")}`,
+   ];
+ }
++
++export function createEvidenceBundle(item: WorkItem, evidence: string[], generatedAt: string): EvidenceBundle {
++  return {
++    id: item.id,
++    owner: item.owner,
++    status: item.status,
++    risk: calculateRisk(item),
++    evidence,
++    generatedAt,
++  };
++}
++
++export function serializeEvidenceBundle(bundle: EvidenceBundle): string {
++  return JSON.stringify(bundle);
++}
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/types.ts b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/types.ts
+index 62702d19196bc8c944fc4c7e364610523aaae925..abc8a0a37a46ed1f405c77e1e88a20ad8b9fcadd 100644
+--- a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/types.ts	
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/types.ts	
+@@ -19,3 +19,19 @@ export interface ActionDraft {
+   note: string;
+   status: WorkflowStatus;
+ }
++
++export interface FilterPreset {
++  id: string;
++  name: string;
++  priority: Priority | "All";
++  status: WorkflowStatus | "All";
++}
++
++export interface EvidenceBundle {
++  id: string;
++  owner: string;
++  status: WorkflowStatus;
++  risk: number;
++  evidence: string[];
++  generatedAt: string;
++}
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/utils/filters.ts b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/utils/filters.ts
+index 8ed0c0233cedeb18c09011e7e6e85e63046edc10..d9920732a0e8dd479e01553a7e2bead2700f0f8b 100644
+--- a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/utils/filters.ts	
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/utils/filters.ts	
+@@ -1,4 +1,4 @@
+-import type { Priority, WorkItem, WorkflowStatus } from "../types";
++import type { FilterPreset, Priority, WorkItem, WorkflowStatus } from "../types";
+ 
+ export interface Filters {
+   query: string;
+@@ -12,6 +12,14 @@ export const defaultFilters: Filters = {
+   status: "All",
+ };
+ 
++export const savedFilterPresets: FilterPreset[] = [
++  { id: "high-priority-blocked", name: "High-priority Blocked", priority: "High", status: "Blocked" },
++];
++
++export function applyFilterPreset(filters: Filters, preset: FilterPreset): Filters {
++  return { ...filters, priority: preset.priority, status: preset.status };
++}
++
+ export function filterItems(items: WorkItem[], filters: Filters): WorkItem[] {
+   return items.filter((item) => {
+     const matchesQuery =
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/utils/scoring.ts b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/utils/scoring.ts
+index 0e43a6f213c9c6598b06167e9cf6a682a36bd1ff..21e0616f99014ec09e1aa0cba0c1d73c4efe7bc5 100644
+--- a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/utils/scoring.ts	
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/src/utils/scoring.ts	
+@@ -27,6 +27,7 @@ export function summarizePortfolio(items: WorkItem[]) {
+     critical,
+     blocked,
+     averageRisk,
++    dueToday: items.filter((item) => item.dueInDays === 0).length,
+     ready: items.filter((item) => item.status === "Ready").length,
+   };
+ }
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/tests/lane-a/saved-filters.test.ts b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/tests/lane-a/saved-filters.test.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..0e176217ac6970801ea952494eb2138e043f51ae
+--- /dev/null
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/tests/lane-a/saved-filters.test.ts	
+@@ -0,0 +1,14 @@
++import { describe, expect, it } from "vitest";
++import { applyFilterPreset, defaultFilters, savedFilterPresets } from "../../src/utils/filters";
++
++describe("saved filters", () => {
++  it("applies High-priority Blocked without replacing the search query", () => {
++    const preset = savedFilterPresets.find((candidate) => candidate.id === "high-priority-blocked");
++
++    expect(applyFilterPreset({ ...defaultFilters, query: "atlas" }, preset!)).toEqual({
++      query: "atlas",
++      priority: "High",
++      status: "Blocked",
++    });
++  });
++});
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/tests/lane-b/due-today.test.ts b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/tests/lane-b/due-today.test.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..d0407d72b9fd86feae99223e769ec0c08a8b3eeb
+--- /dev/null
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/tests/lane-b/due-today.test.ts	
+@@ -0,0 +1,15 @@
++import { describe, expect, it } from "vitest";
++import { workItems } from "../../src/data/workItems";
++import { summarizePortfolio } from "../../src/utils/scoring";
++
++describe("summarizePortfolio", () => {
++  it("counts every item due exactly today", () => {
++    expect(
++      summarizePortfolio([
++        ...workItems,
++        { ...workItems[1], id: "due-today-ready", dueInDays: 0 },
++        { ...workItems[2], id: "overdue", dueInDays: -1 },
++      ]).dueToday,
++    ).toBe(2);
++  });
++});
+diff --git a/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/tests/lane-c/evidence-bundle.test.ts b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/tests/lane-c/evidence-bundle.test.ts
+new file mode 100644
+index 0000000000000000000000000000000000000000..928dc799595646a2be0b67894f7c66090e0f156f
+--- /dev/null
++++ b/06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/tests/lane-c/evidence-bundle.test.ts	
+@@ -0,0 +1,13 @@
++import { describe, expect, it } from "vitest";
++import { workItems } from "../../src/data/workItems";
++import { createEvidenceBundle, serializeEvidenceBundle } from "../../src/services/workflowApi";
++
++describe("evidence bundles", () => {
++  it("serializes caller-timestamped evidence in a stable field order", () => {
++    const bundle = createEvidenceBundle(workItems[0], ["Policy approval attached"], "2026-08-13T09:00:00.000Z");
++
++    expect(serializeEvidenceBundle(bundle)).toBe(
++      '{"id":"parall-01","owner":"Asha","status":"Blocked","risk":100,"evidence":["Policy approval attached"],"generatedAt":"2026-08-13T09:00:00.000Z"}',
++    );
++  });
++});
