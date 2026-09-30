@@ -1,0 +1,9 @@
+{
+  "command": "npm run verify:exercise",
+  "working_directory": "09 Code Review/exercise-03-review-regression-lab/regression-review-app",
+  "verified_commit": "28bb61f12d99a053b518db57dcbfc126f2f399e0",
+  "captured_at": "2026-09-15T09:06:03.000Z",
+  "exit_code": 0,
+  "transcript": "evidence/commands/verify-exercise.txt",
+  "transcript_sha256": "e7923caa33b8ecf29832e4c525e52fa9f4b22825b62d7330ec9a9380f50d4e6c"
+}
