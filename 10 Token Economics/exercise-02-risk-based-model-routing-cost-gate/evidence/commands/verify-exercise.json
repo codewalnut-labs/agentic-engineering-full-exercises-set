@@ -1,0 +1,9 @@
+{
+  "command": "npm run verify:exercise",
+  "working_directory": "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app",
+  "verified_commit": "09620e5ffbb4fcb86f914afe4a1c5e850cd9a5c0",
+  "captured_at": "2026-09-15T08:51:00.000Z",
+  "exit_code": 0,
+  "transcript": "evidence/commands/verify-exercise.txt",
+  "transcript_sha256": "153ae8d64dff1ba375dc884b7275f92791d28de146bcaf6774532f41458457f2"
+}
