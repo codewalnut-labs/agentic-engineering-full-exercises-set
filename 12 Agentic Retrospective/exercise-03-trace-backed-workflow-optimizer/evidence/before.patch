@@ -1,0 +1,9 @@
+diff --git a/12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/workflow/instructions.md b/12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/workflow/instructions.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..44d89f9da435f1572fdf5b85cbcf683984f4cd5b
+--- /dev/null
++++ b/12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/workflow/instructions.md
+@@ -0,0 +1,3 @@
++# Engineering Workflow
++
++Inspect the repository, implement the requested change, run relevant tests, and summarize the result clearly.

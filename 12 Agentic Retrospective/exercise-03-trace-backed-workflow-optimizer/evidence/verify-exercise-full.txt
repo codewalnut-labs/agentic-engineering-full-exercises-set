@@ -1,0 +1,97 @@
+Full exercise verification transcript
+Command executed: npm run verify:exercise
+Commit tested: 87ec852308180fe2a3cd20ee3947cc6716c357a4
+
+OUTPUT
+
+> workflow-optimizer-app@0.1.0 verify:exercise
+> node ../../../scripts/run-clean-verification.mjs
+
+
+> workflow-optimizer-app@0.1.0 verify:exercise:core
+> npm run agent:check && npm run verify:implementation && npm run verify:submission
+
+
+> workflow-optimizer-app@0.1.0 agent:check
+> npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build
+
+
+> workflow-optimizer-app@0.1.0 test:integrity
+> node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json
+
+Verified 24 protected challenge inputs.
+
+> workflow-optimizer-app@0.1.0 lint
+> node ./scripts/lint-check.mjs
+
+lint-check passed
+
+> workflow-optimizer-app@0.1.0 test
+> node ./scripts/test-workflow-verifier.mjs && node ./scripts/agent-check.mjs
+
+workflow optimizer verifier self-test passed
+agent-check passed for Trace-Backed Workflow Optimizer
+
+> workflow-optimizer-app@0.1.0 format
+> node ./scripts/format-check.mjs
+
+format-check passed
+
+> workflow-optimizer-app@0.1.0 typecheck
+> node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false
+
+
+> workflow-optimizer-app@0.1.0 build
+> node ../../../scripts/run-vite-build.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 34 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../exercise-vite-build-Ewl4WU/dist/index.html                   0.42 kB │ gzip:  0.28 kB
+../../../../exercise-vite-build-Ewl4WU/dist/assets/index-B8S07xzC.css    2.83 kB │ gzip:  1.11 kB
+../../../../exercise-vite-build-Ewl4WU/dist/assets/index-B3HwvEtb.js   199.70 kB │ gzip: 62.69 kB
+✓ built in 936ms
+
+> workflow-optimizer-app@0.1.0 verify:implementation
+> npm run workflow:verify
+
+
+> workflow-optimizer-app@0.1.0 workflow:verify
+> node ./scripts/verify-workflow-results.mjs
+
+Baseline SHA: fb48d936ec2e6e205478614a4af4d2550662f650
+Candidate SHA: 6f31089f9ac49e1dcc34e6cc8f05a34543bb9c51
+PASS train 0.833 -> 0.900
+PASS held-out 1.000 -> 1.000
+PASS all critical, variance, token, duration, integrity, and history gates
+
+> workflow-optimizer-app@0.1.0 verify:submission
+> node ../../../scripts/comparable-evidence.mjs .. --skip-patch-history && npm run test:submission
+
+PASS before and after runs use matching conditions and hashed snapshot patches
+PASS exercise-specific history verifier owns patch-to-commit validation
+PASS protected manifests and inputs match the starting commit
+
+> workflow-optimizer-app@0.1.0 test:submission
+> npm run eval:fixtures && npm run workflow:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json
+
+
+> workflow-optimizer-app@0.1.0 eval:fixtures
+> node ./scripts/validate-replay-fixtures.mjs
+
+PASS 6 train, 2 held-out, unique requests, leakage phrases, and critical assertions
+
+> workflow-optimizer-app@0.1.0 workflow:verify
+> node ./scripts/verify-workflow-results.mjs
+
+Baseline SHA: fb48d936ec2e6e205478614a4af4d2550662f650
+Candidate SHA: 6f31089f9ac49e1dcc34e6cc8f05a34543bb9c51
+PASS train 0.833 -> 0.900
+PASS held-out 1.000 -> 1.000
+PASS all critical, variance, token, duration, integrity, and history gates
+Verified Trace-Backed Workflow Optimizer: 13 files and 0 directories.
+PASS verify:exercise left tracked files, the Git index, and untracked or ignored paths unchanged
+
+Exit code: 0

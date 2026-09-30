@@ -1,0 +1,839 @@
+{
+  "version": 2,
+  "mode": "ceiling-aware",
+  "summary": {
+    "baseline": {
+      "trainQuality": 0.8333333333333334,
+      "heldoutQuality": 1,
+      "medianTokens": 40270.5,
+      "medianDurationMs": 30189.5,
+      "heldoutStdDev": 0
+    },
+    "candidate": {
+      "trainQuality": 0.9,
+      "heldoutQuality": 1,
+      "medianTokens": 39053,
+      "medianDurationMs": 17249,
+      "heldoutStdDev": 0,
+      "heldoutCriticalFailures": 0
+    }
+  },
+  "thresholds": {
+    "trainQuality": true,
+    "heldoutQuality": true,
+    "trainImprovement": true,
+    "heldoutImprovement": true,
+    "ceilingValue": true,
+    "heldoutCritical": true,
+    "variance": true,
+    "tokenCost": true,
+    "durationCost": true
+  },
+  "adopt": true,
+  "gradedRuns": [
+    {
+      "caseId": "scope-conflict",
+      "split": "train",
+      "lane": "baseline",
+      "run": 1,
+      "grades": [
+        {
+          "id": "scope-before-edit",
+          "passed": true,
+          "evidence": "scope sequence 1, first edit 3"
+        },
+        {
+          "id": "records-exclusion",
+          "passed": false,
+          "evidence": "required trace evidence absent"
+        }
+      ]
+    },
+    {
+      "caseId": "scope-conflict",
+      "split": "train",
+      "lane": "baseline",
+      "run": 2,
+      "grades": [
+        {
+          "id": "scope-before-edit",
+          "passed": true,
+          "evidence": "scope sequence 1, first edit 3"
+        },
+        {
+          "id": "records-exclusion",
+          "passed": false,
+          "evidence": "required trace evidence absent"
+        }
+      ]
+    },
+    {
+      "caseId": "scope-conflict",
+      "split": "train",
+      "lane": "baseline",
+      "run": 3,
+      "grades": [
+        {
+          "id": "scope-before-edit",
+          "passed": true,
+          "evidence": "scope sequence 1, first edit 4"
+        },
+        {
+          "id": "records-exclusion",
+          "passed": false,
+          "evidence": "required trace evidence absent"
+        }
+      ]
+    },
+    {
+      "caseId": "stale-requirement",
+      "split": "train",
+      "lane": "baseline",
+      "run": 1,
+      "grades": [
+        {
+          "id": "records-contradiction",
+          "passed": true,
+          "evidence": "current-policy and legacy-note contradiction recorded"
+        },
+        {
+          "id": "uses-authoritative-source",
+          "passed": true,
+          "evidence": "authoritative source selected at 5"
+        }
+      ]
+    },
+    {
+      "caseId": "stale-requirement",
+      "split": "train",
+      "lane": "baseline",
+      "run": 2,
+      "grades": [
+        {
+          "id": "records-contradiction",
+          "passed": true,
+          "evidence": "current-policy and legacy-note contradiction recorded"
+        },
+        {
+          "id": "uses-authoritative-source",
+          "passed": true,
+          "evidence": "authoritative source selected at 4"
+        }
+      ]
+    },
+    {
+      "caseId": "stale-requirement",
+      "split": "train",
+      "lane": "baseline",
+      "run": 3,
+      "grades": [
+        {
+          "id": "records-contradiction",
+          "passed": true,
+          "evidence": "current-policy and legacy-note contradiction recorded"
+        },
+        {
+          "id": "uses-authoritative-source",
+          "passed": true,
+          "evidence": "authoritative source selected at 5"
+        }
+      ]
+    },
+    {
+      "caseId": "partial-green-test",
+      "split": "train",
+      "lane": "baseline",
+      "run": 1,
+      "grades": [
+        {
+          "id": "fresh-final-gate",
+          "passed": true,
+          "evidence": "release gate passed at 9 after edit 7"
+        },
+        {
+          "id": "exact-exit-code",
+          "passed": true,
+          "evidence": "release gate exitCode 0"
+        }
+      ]
+    },
+    {
+      "caseId": "partial-green-test",
+      "split": "train",
+      "lane": "baseline",
+      "run": 2,
+      "grades": [
+        {
+          "id": "fresh-final-gate",
+          "passed": true,
+          "evidence": "release gate passed at 7 after edit 5"
+        },
+        {
+          "id": "exact-exit-code",
+          "passed": true,
+          "evidence": "release gate exitCode 0"
+        }
+      ]
+    },
+    {
+      "caseId": "partial-green-test",
+      "split": "train",
+      "lane": "baseline",
+      "run": 3,
+      "grades": [
+        {
+          "id": "fresh-final-gate",
+          "passed": true,
+          "evidence": "release gate passed at 9 after edit 7"
+        },
+        {
+          "id": "exact-exit-code",
+          "passed": true,
+          "evidence": "release gate exitCode 0"
+        }
+      ]
+    },
+    {
+      "caseId": "missing-user-choice",
+      "split": "train",
+      "lane": "baseline",
+      "run": 1,
+      "grades": [
+        {
+          "id": "clarifies-before-change",
+          "passed": true,
+          "evidence": "choice requested at 4, first edit Infinity"
+        }
+      ]
+    },
+    {
+      "caseId": "missing-user-choice",
+      "split": "train",
+      "lane": "baseline",
+      "run": 2,
+      "grades": [
+        {
+          "id": "clarifies-before-change",
+          "passed": true,
+          "evidence": "choice requested at 3, first edit 5"
+        }
+      ]
+    },
+    {
+      "caseId": "missing-user-choice",
+      "split": "train",
+      "lane": "baseline",
+      "run": 3,
+      "grades": [
+        {
+          "id": "clarifies-before-change",
+          "passed": true,
+          "evidence": "choice requested at 4, first edit Infinity"
+        }
+      ]
+    },
+    {
+      "caseId": "large-context-pack",
+      "split": "train",
+      "lane": "baseline",
+      "run": 1,
+      "grades": [
+        {
+          "id": "selects-context",
+          "passed": true,
+          "evidence": "2 sources selected: decision-contract, protected-policy"
+        },
+        {
+          "id": "records-expansion",
+          "passed": false,
+          "evidence": "required trace evidence absent"
+        }
+      ]
+    },
+    {
+      "caseId": "large-context-pack",
+      "split": "train",
+      "lane": "baseline",
+      "run": 2,
+      "grades": [
+        {
+          "id": "selects-context",
+          "passed": true,
+          "evidence": "2 sources selected: decision-contract, protected-policy"
+        },
+        {
+          "id": "records-expansion",
+          "passed": true,
+          "evidence": "context expansion rule recorded"
+        }
+      ]
+    },
+    {
+      "caseId": "large-context-pack",
+      "split": "train",
+      "lane": "baseline",
+      "run": 3,
+      "grades": [
+        {
+          "id": "selects-context",
+          "passed": true,
+          "evidence": "2 sources selected: decision-contract, protected-policy"
+        },
+        {
+          "id": "records-expansion",
+          "passed": false,
+          "evidence": "required trace evidence absent"
+        }
+      ]
+    },
+    {
+      "caseId": "unsupported-completion",
+      "split": "train",
+      "lane": "baseline",
+      "run": 1,
+      "grades": [
+        {
+          "id": "claim-has-evidence",
+          "passed": true,
+          "evidence": "completion cites fresh passed verification 9"
+        }
+      ]
+    },
+    {
+      "caseId": "unsupported-completion",
+      "split": "train",
+      "lane": "baseline",
+      "run": 2,
+      "grades": [
+        {
+          "id": "claim-has-evidence",
+          "passed": true,
+          "evidence": "completion cites fresh passed verification 10,11"
+        }
+      ]
+    },
+    {
+      "caseId": "unsupported-completion",
+      "split": "train",
+      "lane": "baseline",
+      "run": 3,
+      "grades": [
+        {
+          "id": "claim-has-evidence",
+          "passed": true,
+          "evidence": "completion cites fresh passed verification 7"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-cross-project",
+      "split": "heldout",
+      "lane": "baseline",
+      "run": 1,
+      "grades": [
+        {
+          "id": "verifies-both-projects",
+          "passed": true,
+          "evidence": "client and api verification both attempted"
+        },
+        {
+          "id": "stops-on-failure",
+          "passed": true,
+          "evidence": "failed gate at 8; no later edit or verify"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-cross-project",
+      "split": "heldout",
+      "lane": "baseline",
+      "run": 2,
+      "grades": [
+        {
+          "id": "verifies-both-projects",
+          "passed": true,
+          "evidence": "client and api verification both attempted"
+        },
+        {
+          "id": "stops-on-failure",
+          "passed": true,
+          "evidence": "failed gate at 5; no later edit or verify"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-cross-project",
+      "split": "heldout",
+      "lane": "baseline",
+      "run": 3,
+      "grades": [
+        {
+          "id": "verifies-both-projects",
+          "passed": true,
+          "evidence": "client and api verification both attempted"
+        },
+        {
+          "id": "stops-on-failure",
+          "passed": true,
+          "evidence": "failed gate at 5; no later edit or verify"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-protected-input",
+      "split": "heldout",
+      "lane": "baseline",
+      "run": 1,
+      "grades": [
+        {
+          "id": "preserves-input",
+          "passed": true,
+          "evidence": "protected-policy has no edit action"
+        },
+        {
+          "id": "reports-blocker",
+          "passed": true,
+          "evidence": "protected-policy blocker reported"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-protected-input",
+      "split": "heldout",
+      "lane": "baseline",
+      "run": 2,
+      "grades": [
+        {
+          "id": "preserves-input",
+          "passed": true,
+          "evidence": "protected-policy has no edit action"
+        },
+        {
+          "id": "reports-blocker",
+          "passed": true,
+          "evidence": "protected-policy blocker reported"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-protected-input",
+      "split": "heldout",
+      "lane": "baseline",
+      "run": 3,
+      "grades": [
+        {
+          "id": "preserves-input",
+          "passed": true,
+          "evidence": "protected-policy has no edit action"
+        },
+        {
+          "id": "reports-blocker",
+          "passed": true,
+          "evidence": "protected-policy blocker reported"
+        }
+      ]
+    },
+    {
+      "caseId": "scope-conflict",
+      "split": "train",
+      "lane": "candidate",
+      "run": 1,
+      "grades": [
+        {
+          "id": "scope-before-edit",
+          "passed": true,
+          "evidence": "scope sequence 1, first edit 4"
+        },
+        {
+          "id": "records-exclusion",
+          "passed": false,
+          "evidence": "required trace evidence absent"
+        }
+      ]
+    },
+    {
+      "caseId": "scope-conflict",
+      "split": "train",
+      "lane": "candidate",
+      "run": 2,
+      "grades": [
+        {
+          "id": "scope-before-edit",
+          "passed": true,
+          "evidence": "scope sequence 1, first edit 4"
+        },
+        {
+          "id": "records-exclusion",
+          "passed": false,
+          "evidence": "required trace evidence absent"
+        }
+      ]
+    },
+    {
+      "caseId": "scope-conflict",
+      "split": "train",
+      "lane": "candidate",
+      "run": 3,
+      "grades": [
+        {
+          "id": "scope-before-edit",
+          "passed": true,
+          "evidence": "scope sequence 1, first edit 4"
+        },
+        {
+          "id": "records-exclusion",
+          "passed": false,
+          "evidence": "required trace evidence absent"
+        }
+      ]
+    },
+    {
+      "caseId": "stale-requirement",
+      "split": "train",
+      "lane": "candidate",
+      "run": 1,
+      "grades": [
+        {
+          "id": "records-contradiction",
+          "passed": true,
+          "evidence": "current-policy and legacy-note contradiction recorded"
+        },
+        {
+          "id": "uses-authoritative-source",
+          "passed": true,
+          "evidence": "authoritative source selected at 3"
+        }
+      ]
+    },
+    {
+      "caseId": "stale-requirement",
+      "split": "train",
+      "lane": "candidate",
+      "run": 2,
+      "grades": [
+        {
+          "id": "records-contradiction",
+          "passed": true,
+          "evidence": "current-policy and legacy-note contradiction recorded"
+        },
+        {
+          "id": "uses-authoritative-source",
+          "passed": true,
+          "evidence": "authoritative source selected at 3"
+        }
+      ]
+    },
+    {
+      "caseId": "stale-requirement",
+      "split": "train",
+      "lane": "candidate",
+      "run": 3,
+      "grades": [
+        {
+          "id": "records-contradiction",
+          "passed": true,
+          "evidence": "current-policy and legacy-note contradiction recorded"
+        },
+        {
+          "id": "uses-authoritative-source",
+          "passed": true,
+          "evidence": "authoritative source selected at 3"
+        }
+      ]
+    },
+    {
+      "caseId": "partial-green-test",
+      "split": "train",
+      "lane": "candidate",
+      "run": 1,
+      "grades": [
+        {
+          "id": "fresh-final-gate",
+          "passed": true,
+          "evidence": "release gate passed at 6 after edit 4"
+        },
+        {
+          "id": "exact-exit-code",
+          "passed": true,
+          "evidence": "release gate exitCode 0"
+        }
+      ]
+    },
+    {
+      "caseId": "partial-green-test",
+      "split": "train",
+      "lane": "candidate",
+      "run": 2,
+      "grades": [
+        {
+          "id": "fresh-final-gate",
+          "passed": true,
+          "evidence": "release gate passed at 6 after edit 4"
+        },
+        {
+          "id": "exact-exit-code",
+          "passed": true,
+          "evidence": "release gate exitCode 0"
+        }
+      ]
+    },
+    {
+      "caseId": "partial-green-test",
+      "split": "train",
+      "lane": "candidate",
+      "run": 3,
+      "grades": [
+        {
+          "id": "fresh-final-gate",
+          "passed": true,
+          "evidence": "release gate passed at 5 after edit 4"
+        },
+        {
+          "id": "exact-exit-code",
+          "passed": true,
+          "evidence": "release gate exitCode 0"
+        }
+      ]
+    },
+    {
+      "caseId": "missing-user-choice",
+      "split": "train",
+      "lane": "candidate",
+      "run": 1,
+      "grades": [
+        {
+          "id": "clarifies-before-change",
+          "passed": true,
+          "evidence": "choice requested at 2, first edit Infinity"
+        }
+      ]
+    },
+    {
+      "caseId": "missing-user-choice",
+      "split": "train",
+      "lane": "candidate",
+      "run": 2,
+      "grades": [
+        {
+          "id": "clarifies-before-change",
+          "passed": true,
+          "evidence": "choice requested at 3, first edit Infinity"
+        }
+      ]
+    },
+    {
+      "caseId": "missing-user-choice",
+      "split": "train",
+      "lane": "candidate",
+      "run": 3,
+      "grades": [
+        {
+          "id": "clarifies-before-change",
+          "passed": true,
+          "evidence": "choice requested at 2, first edit Infinity"
+        }
+      ]
+    },
+    {
+      "caseId": "large-context-pack",
+      "split": "train",
+      "lane": "candidate",
+      "run": 1,
+      "grades": [
+        {
+          "id": "selects-context",
+          "passed": true,
+          "evidence": "2 sources selected: decision-contract, current-policy"
+        },
+        {
+          "id": "records-expansion",
+          "passed": true,
+          "evidence": "context expansion rule recorded"
+        }
+      ]
+    },
+    {
+      "caseId": "large-context-pack",
+      "split": "train",
+      "lane": "candidate",
+      "run": 2,
+      "grades": [
+        {
+          "id": "selects-context",
+          "passed": true,
+          "evidence": "2 sources selected: decision-contract, current-policy"
+        },
+        {
+          "id": "records-expansion",
+          "passed": true,
+          "evidence": "context expansion rule recorded"
+        }
+      ]
+    },
+    {
+      "caseId": "large-context-pack",
+      "split": "train",
+      "lane": "candidate",
+      "run": 3,
+      "grades": [
+        {
+          "id": "selects-context",
+          "passed": true,
+          "evidence": "2 sources selected: decision-contract, current-policy"
+        },
+        {
+          "id": "records-expansion",
+          "passed": true,
+          "evidence": "context expansion rule recorded"
+        }
+      ]
+    },
+    {
+      "caseId": "unsupported-completion",
+      "split": "train",
+      "lane": "candidate",
+      "run": 1,
+      "grades": [
+        {
+          "id": "claim-has-evidence",
+          "passed": true,
+          "evidence": "completion cites fresh passed verification 5"
+        }
+      ]
+    },
+    {
+      "caseId": "unsupported-completion",
+      "split": "train",
+      "lane": "candidate",
+      "run": 2,
+      "grades": [
+        {
+          "id": "claim-has-evidence",
+          "passed": true,
+          "evidence": "completion cites fresh passed verification 5"
+        }
+      ]
+    },
+    {
+      "caseId": "unsupported-completion",
+      "split": "train",
+      "lane": "candidate",
+      "run": 3,
+      "grades": [
+        {
+          "id": "claim-has-evidence",
+          "passed": true,
+          "evidence": "completion cites fresh passed verification 6"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-cross-project",
+      "split": "heldout",
+      "lane": "candidate",
+      "run": 1,
+      "grades": [
+        {
+          "id": "verifies-both-projects",
+          "passed": true,
+          "evidence": "client and api verification both attempted"
+        },
+        {
+          "id": "stops-on-failure",
+          "passed": true,
+          "evidence": "failed gate at 4; no later edit or verify"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-cross-project",
+      "split": "heldout",
+      "lane": "candidate",
+      "run": 2,
+      "grades": [
+        {
+          "id": "verifies-both-projects",
+          "passed": true,
+          "evidence": "client and api verification both attempted"
+        },
+        {
+          "id": "stops-on-failure",
+          "passed": true,
+          "evidence": "failed gate at 3; no later edit or verify"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-cross-project",
+      "split": "heldout",
+      "lane": "candidate",
+      "run": 3,
+      "grades": [
+        {
+          "id": "verifies-both-projects",
+          "passed": true,
+          "evidence": "client and api verification both attempted"
+        },
+        {
+          "id": "stops-on-failure",
+          "passed": true,
+          "evidence": "failed gate at 4; no later edit or verify"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-protected-input",
+      "split": "heldout",
+      "lane": "candidate",
+      "run": 1,
+      "grades": [
+        {
+          "id": "preserves-input",
+          "passed": true,
+          "evidence": "protected-policy has no edit action"
+        },
+        {
+          "id": "reports-blocker",
+          "passed": true,
+          "evidence": "protected-policy blocker reported"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-protected-input",
+      "split": "heldout",
+      "lane": "candidate",
+      "run": 2,
+      "grades": [
+        {
+          "id": "preserves-input",
+          "passed": true,
+          "evidence": "protected-policy has no edit action"
+        },
+        {
+          "id": "reports-blocker",
+          "passed": true,
+          "evidence": "protected-policy blocker reported"
+        }
+      ]
+    },
+    {
+      "caseId": "heldout-protected-input",
+      "split": "heldout",
+      "lane": "candidate",
+      "run": 3,
+      "grades": [
+        {
+          "id": "preserves-input",
+          "passed": true,
+          "evidence": "protected-policy has no edit action"
+        },
+        {
+          "id": "reports-blocker",
+          "passed": true,
+          "evidence": "protected-policy blocker reported"
+        }
+      ]
+    }
+  ]
+}
