@@ -1,0 +1,44 @@
+{
+  "name": "api-refactor-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "node ../../../scripts/run-vite-build.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false",
+    "test": "node ./scripts/test-rules-verifier.mjs && node ./scripts/agent-check.mjs && npm run test:phase-evidence",
+    "test:rules": "node ./scripts/run-rules-contract.mjs",
+    "refactor:verify": "node ./scripts/verify-rules-submission.mjs",
+    "evidence:verify": "npm run agent:check && npm run verify:implementation && npm run refactor:verify && node scripts/verify-refactoring-evidence.mjs content",
+    "test:submission": "npm run test:rules && npm run refactor:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json",
+    "evidence:capture": "node ../../../scripts/capture-verification.mjs",
+    "test:integrity": "node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json",
+    "lint": "node ./scripts/lint-check.mjs",
+    "format": "node ./scripts/format-check.mjs",
+    "agent:check": "npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build",
+    "verify:implementation": "npm run test:rules",
+    "verify:submission": "npm run refactor:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json && node scripts/verify-refactoring-evidence.mjs",
+    "verify:exercise:core": "npm run agent:check && npm run verify:implementation && npm run verify:submission",
+    "verify:exercise": "node ../../../scripts/run-clean-verification.mjs",
+    "baseline:observe": "node scripts/run-rules-contract.mjs --starter",
+    "test:characterization": "node scripts/run-rules-contract.mjs --characterization",
+    "snapshot:before": "node scripts/run-rules-contract.mjs --characterization --snapshot-before",
+    "snapshot:after": "node scripts/run-rules-contract.mjs --snapshot-after",
+    "proof:capture": "node ../../../scripts/capture-challenge-check.mjs",
+    "test:phase-evidence": "node --test ../../../scripts/test-challenge-phase-evidence.mjs",
+    "evidence:seal": "node scripts/verify-refactoring-evidence.mjs seal"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.0.4",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  }
+}

@@ -293,23 +293,23 @@ const requiredArtifacts = [
   "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/scripts/scope-verification.mjs",
   "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/scripts/test-scope-verifier.mjs",
   "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/src/migration/actionButtons.mjs",
-  "11 Agentic Refactoring/exercise-01-characterization-test-refactor/docs/renewal-golden-cases.json",
-  "11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/scripts/refactor-verification.mjs",
-  "11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/scripts/test-refactor-verifier.mjs",
-  "11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/scripts/verify-refactor-submission.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/docs/checkout-cases.json",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/legacyCheckout.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/scripts/strangler-verification.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/scripts/test-strangler-verifier.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/scripts/verify-strangler-submission.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/docs/contract-observations.json",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowApiContractTest.java",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/src/services/workflowDecisionContract.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/run-client-contract.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/run-rules-contract.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/rules-refactor-verification.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/test-rules-verifier.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/verify-rules-submission.mjs",
+  "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/docs/renewal-golden-cases.json",
+  "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/behavior-refactor-app/scripts/refactor-verification.mjs",
+  "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/behavior-refactor-app/scripts/test-refactor-verifier.mjs",
+  "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/behavior-refactor-app/scripts/verify-refactor-submission.mjs",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/docs/checkout-cases.json",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/src/checkout/legacyCheckout.mjs",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/strangler-verification.mjs",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/test-strangler-verifier.mjs",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/verify-strangler-submission.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/docs/contract-observations.json",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowApiContractTest.java",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/src/services/workflowDecisionContract.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/run-client-contract.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/run-rules-contract.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/rules-refactor-verification.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/test-rules-verifier.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/verify-rules-submission.mjs",
   "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/session-metadata.json",
   "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/metric-contract.md",
   "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/replay-contract.md",
@@ -332,8 +332,8 @@ const requiredArtifacts = [
   "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/score-workflow-results.mjs",
   "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/write-workflow-patches.mjs",
   "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/test-workflow-verifier.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/scripts/run-checkout-tests.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowContractCharacterizationTest.java",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/run-checkout-tests.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowContractCharacterizationTest.java",
   "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/session-events.json",
   "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/tasks/implementation-request.md",
   "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/tasks/policy-217-replay.md",
@@ -432,6 +432,19 @@ for (const relative of exercisePackages) {
       }
       assert.ok(!economics.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
       assert.ok(economics.starterSources && Object.keys(economics.starterSources).length, relative + " must bind baseline evidence to the actual starter");
+    }
+    if (project.startsWith("11 Agentic Refactoring")) {
+      assert.equal(submissionContract.evidenceMode, "observation", relative + " must use observed refactoring evidence");
+      const phases = JSON.parse(readFileSync(path.join(root, project, "evidence-contract.json"), "utf8"));
+      for (const helper of ["../../../scripts/challenge-phase-evidence.mjs", "../../../scripts/capture-challenge-check.mjs", "../../../scripts/test-challenge-phase-evidence.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
+      assert.ok(manifest.scripts["proof:capture"].includes("capture-challenge-check.mjs"), relative + " must capture actual phase checks");
+      for (const check of Object.values(phases.checkCaptures)) assert.ok(phases.extraEvidence.includes(check.path) && requiredPaths.has(check.path), relative + " must seal phase checks");
+      for (const file of [...phases.productionFiles, ...phases.preparedFiles]) {
+        const appPath = path.relative(path.join(root, project), path.resolve(root, project, "..", file)).split(path.sep).join("/");
+        assert.ok(!integrity.protectedFiles[appPath], relative + " must leave learner files editable: " + file);
+      }
+      assert.ok(!phases.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
+      assert.ok(Object.keys(phases.starterSources).length, relative + " must bind checks to the supplied starter");
     }
     if (["observation", "handover"].includes(submissionContract.evidenceMode)) {
       assert.ok(submissionScripts.includes("context-document-evidence.mjs"), `${relative} must verify its observation evidence`);

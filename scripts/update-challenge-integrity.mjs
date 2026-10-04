@@ -4,6 +4,12 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 
 const repositoryRoot = path.resolve(import.meta.dirname, "..");
+const refactoringHelpers = [
+  "../../.gitattributes", "../../../scripts/challenge-phase-evidence.mjs", "../../../scripts/capture-challenge-check.mjs",
+  "../../../scripts/test-challenge-phase-evidence.mjs", "../../../scripts/comparable-evidence.mjs",
+  "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs",
+  "../docs/setup.md", "../docs/evidence-template.md", "scripts/verify-refactoring-evidence.mjs",
+];
 const economicsHelpers = [
   "../../.gitattributes", "../../scripts/economics-evidence.mjs", "../../scripts/economics-evidence.test.mjs",
   "../../scripts/capture-economics-check.mjs", "../../scripts/run-baseline.mjs", "../../scripts/replay-scope-regression.mjs",
@@ -30,9 +36,9 @@ const additions = new Map([
   ["10 Token Economics/exercise-01-reduce-context-without-losing-rules", ["../docs/adapter-refactor-request.md", "scripts/run-adapter-acceptance.mjs", ...economicsHelpers]],
   ["10 Token Economics/exercise-02-evaluate-cheaper-model-routing", ["../docs/routing-policy-contract.md", "../evals/recorded-runs.json", "src/routing/dispatchTasks.mjs", "scripts/verify-benchmark-pack.mjs", ...economicsHelpers]],
   ["10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite", ["src/migration/actionButtons.mjs", ...economicsHelpers]],
-  ["11 Agentic Refactoring/exercise-01-characterization-test-refactor", ["../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
-  ["11 Agentic Refactoring/exercise-02-strangler-pattern-checkout", ["../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
-  ["11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle", ["../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
+  ["11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior", refactoringHelpers],
+  ["11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code", refactoringHelpers],
+  ["11 Agentic Refactoring/exercise-03-extract-business-rules", refactoringHelpers],
   ["12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs", ["../tasks/implementation-request.md", "../tasks/policy-217-replay.md", "../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
   ["12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes", ["../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
   ["12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer", ["../docs/action-schema.md", "scripts/write-workflow-patches.mjs", "../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
@@ -62,6 +68,7 @@ for (const manifestPath of findManifests(repositoryRoot)) {
   const isPrEvidenceExercise = relativeManifest.startsWith("08 Evidence-led PRs/");
   const isCodeReviewExercise = relativeManifest.startsWith("09 Code Review/");
   const isEconomicsExercise = relativeManifest.startsWith("10 Token Economics/");
+  const isRefactoringExercise = relativeManifest.startsWith("11 Agentic Refactoring/");
   const exercise = [...additions.keys()].find((prefix) => relativeManifest.startsWith(`${prefix}/`));
   let document = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
   if (!isApplicationManifest && Object.keys(document.protectedFiles ?? {}).length === 0) {
@@ -102,7 +109,7 @@ for (const manifestPath of findManifests(repositoryRoot)) {
     collect(path.join(root, "..", "business"));
     collect(path.join(root, "..", "docs"));
     // Documentation exercises inspect a fixed source. Implementation exercises keep their task surface editable.
-    if (!isPrEvidenceExercise && !isCodeReviewExercise && !isEconomicsExercise && !root.includes("bugfix-context-app") && !root.includes("brownfield-agent-app")) collect(path.join(root, "src"));
+    if (!isPrEvidenceExercise && !isCodeReviewExercise && !isEconomicsExercise && !isRefactoringExercise && !root.includes("bugfix-context-app") && !root.includes("brownfield-agent-app")) collect(path.join(root, "src"));
     for (const generated of ["../docs/design-document.md", "../docs/domain-model.md", "../docs/query-guide.md"]) paths.delete(generated);
   }
   const protectedFiles = {};

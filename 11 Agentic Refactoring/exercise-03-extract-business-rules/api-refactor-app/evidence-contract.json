@@ -1,0 +1,107 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/refactor-map.md",
+      "type": "markdown",
+      "headings": [
+        "Ownership",
+        "Preserved contract"
+      ]
+    },
+    {
+      "path": "evidence/rollback.md",
+      "type": "markdown",
+      "headings": [
+        "Revert",
+        "Recheck"
+      ]
+    },
+    {
+      "path": "evidence/refactor-plan.md",
+      "type": "markdown",
+      "headings": [
+        "Steps",
+        "Checks"
+      ]
+    },
+    {
+      "path": "evidence/contract-before.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/contract-after.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/history.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "policy-boundary",
+    "side-effect-order",
+    "http-client-parity"
+  ],
+  "sourceRoots": [
+    "api-refactor-app/src/",
+    "workflow-rules-api/src/",
+    "docs/",
+    "evidence/commands/",
+    "evidence/skill-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "writing-plans",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/writing-plans"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/characterization.txt",
+    "evidence/commands/implementation.txt"
+  ],
+  "sourceArtifact": "evidence/history.json",
+  "sourceField": "refactorSha",
+  "preparedField": "characterizationSha",
+  "preparedFiles": [
+    "evidence/contract-before.json",
+    "workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowPolicyCharacterizationTest.java"
+  ],
+  "productionFiles": [
+    "workflow-rules-api/src/main/java/dev/agentic/exercise/workflow/DecisionPolicy.java",
+    "workflow-rules-api/src/main/java/dev/agentic/exercise/workflow/WorkflowService.java"
+  ],
+  "starterSources": {
+    "workflow-rules-api/src/main/java/dev/agentic/exercise/workflow/WorkflowService.java": "1edfbd91799117b4e440fbf558b49d6a2e45da4b4ea08f508ca2e585067b4b61"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "path": "evidence/commands/baseline.txt",
+      "shaField": "starting",
+      "markers": [
+        "PASS existing backend behavior, HTTP JSON, and client contract before extraction"
+      ]
+    },
+    "characterization": {
+      "script": "test:characterization",
+      "path": "evidence/commands/characterization.txt",
+      "shaField": "characterizationSha",
+      "exitCode": 0,
+      "markers": [
+        "PASS existing backend behavior, HTTP JSON, and client contract before extraction"
+      ]
+    },
+    "implementation": {
+      "script": "verify:implementation",
+      "path": "evidence/commands/implementation.txt",
+      "shaField": "refactorSha",
+      "markers": [
+        "PASS backend architecture, behavior, HTTP JSON, and client contract"
+      ]
+    }
+  }
+}

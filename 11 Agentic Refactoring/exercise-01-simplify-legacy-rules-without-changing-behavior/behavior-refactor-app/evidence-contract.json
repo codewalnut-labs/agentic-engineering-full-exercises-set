@@ -1,0 +1,97 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/behavior-decisions.md",
+      "type": "markdown",
+      "headings": [
+        "Preserved behavior",
+        "Suspected bugs"
+      ]
+    },
+    {
+      "path": "evidence/refactor-steps.md",
+      "type": "markdown",
+      "headings": [
+        "Structure",
+        "Verification"
+      ]
+    },
+    {
+      "path": "evidence/before-output.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/after-output.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/history.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "behavior-parity",
+    "preserved-surprises",
+    "simpler-structure"
+  ],
+  "sourceRoots": [
+    "behavior-refactor-app/src/",
+    "docs/",
+    "evidence/commands/",
+    "evidence/skill-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "verification-before-completion",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/characterization.txt",
+    "evidence/commands/implementation.txt"
+  ],
+  "sourceArtifact": "evidence/history.json",
+  "sourceField": "refactorSha",
+  "preparedField": "characterizationSha",
+  "preparedFiles": [
+    "evidence/before-output.json",
+    "behavior-refactor-app/src/rules/legacyEligibility.characterization.test.mjs"
+  ],
+  "productionFiles": [
+    "behavior-refactor-app/src/rules/legacyEligibility.mjs"
+  ],
+  "starterSources": {
+    "behavior-refactor-app/src/rules/legacyEligibility.mjs": "ce55a780d48cda65f70f1c18b7692f8ec306df543bdac8b0d2ed3d8d17c65ce4"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "path": "evidence/commands/baseline.txt",
+      "shaField": "starting",
+      "markers": [
+        "PASS 12 protected public-behavior observations"
+      ]
+    },
+    "characterization": {
+      "script": "test:characterization",
+      "path": "evidence/commands/characterization.txt",
+      "shaField": "characterizationSha",
+      "exitCode": 0,
+      "markers": [
+        "PASS 12 protected public-behavior observations"
+      ]
+    },
+    "implementation": {
+      "script": "verify:implementation",
+      "path": "evidence/commands/implementation.txt",
+      "shaField": "refactorSha",
+      "markers": [
+        "PASS 12 protected public-behavior observations"
+      ]
+    }
+  }
+}
