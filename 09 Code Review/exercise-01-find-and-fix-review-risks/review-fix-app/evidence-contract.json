@@ -1,0 +1,84 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/review.md",
+      "type": "markdown",
+      "headings": [
+        "Scope",
+        "Confirmed",
+        "Dismissed",
+        "Regression proof",
+        "Decision"
+      ]
+    },
+    {
+      "path": "evidence/review.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/recheck.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "confirmed-risk",
+    "scanner-dismissal",
+    "regression-proof"
+  ],
+  "sourceRoots": [
+    "review-fix-app/src/",
+    "review-fix-app/tests/",
+    "review-fix-app/skills/",
+    "review-fix-app/eval/",
+    "pr/",
+    "docs/",
+    "evidence/commands/",
+    "evidence/runs/",
+    "evidence/focused-tests.txt",
+    "evidence/semgrep.json",
+    "evidence/review-session.txt",
+    "evidence/recheck-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "requesting-code-review",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/requesting-code-review"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/fixture-verification.txt",
+    "evidence/commands/regression-replay.txt",
+    "evidence/commands/review-verify.txt",
+    "evidence/commands/semgrep-replay.txt",
+    "evidence/review-session.txt",
+    "evidence/recheck-session.txt",
+    "evidence/semgrep.json"
+  ],
+  "sourceArtifact": "evidence/review.json",
+  "checkCaptures": {
+    "fixture": {
+      "script": "review:fixture",
+      "path": "evidence/fixture-verification.txt",
+      "phase": "starting"
+    },
+    "regressions": {
+      "script": "test:regression-proof",
+      "path": "evidence/commands/regression-replay.txt",
+      "phase": "implementation"
+    },
+    "review": {
+      "script": "review:verify",
+      "path": "evidence/commands/review-verify.txt",
+      "phase": "implementation"
+    },
+    "scanner": {
+      "script": "review:semgrep:check",
+      "path": "evidence/commands/semgrep-replay.txt",
+      "phase": "implementation"
+    }
+  },
+  "reviewSessionField": "reviewerSession"
+}

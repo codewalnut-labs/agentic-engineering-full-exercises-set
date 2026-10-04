@@ -1,0 +1,304 @@
+{
+  "name": "Improve a Review Skill Without Adding False Alarms",
+  "root": "..",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 250,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit:"
+      ]
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 280,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Implementation commit:"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 600,
+      "includeAll": [
+        "## Changes",
+        "## Verified",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "review-skill-app/skills/regression-review/SKILL.md",
+      "minCharacters": 500,
+      "includeAll": [
+        "name:",
+        "description:",
+        "reproduce",
+        "severity",
+        "code anchor",
+        "dismiss"
+      ]
+    },
+    {
+      "path": "evidence/runs/before/historical-regression.json",
+      "validJson": true,
+      "minCharacters": 850,
+      "includeAll": [
+        "schemaVersion",
+        "before",
+        "sessionId",
+        "runNonce",
+        "runnerSha256",
+        "adapterSha256",
+        "promptSha256",
+        "diffSha256",
+        "transcriptSha256",
+        "findings"
+      ]
+    },
+    {
+      "path": "evidence/runs/before/security-regression.json",
+      "validJson": true,
+      "minCharacters": 850,
+      "includeAll": [
+        "schemaVersion",
+        "before",
+        "sessionId",
+        "runNonce",
+        "runnerSha256",
+        "adapterSha256",
+        "promptSha256",
+        "diffSha256",
+        "transcriptSha256",
+        "findings"
+      ]
+    },
+    {
+      "path": "evidence/runs/before/clean-control.json",
+      "validJson": true,
+      "minCharacters": 650,
+      "includeAll": [
+        "schemaVersion",
+        "before",
+        "sessionId",
+        "runNonce",
+        "runnerSha256",
+        "adapterSha256",
+        "promptSha256",
+        "diffSha256",
+        "transcriptSha256",
+        "findings"
+      ]
+    },
+    {
+      "path": "evidence/runs/after/historical-regression.json",
+      "validJson": true,
+      "minCharacters": 850,
+      "includeAll": [
+        "schemaVersion",
+        "after",
+        "sessionId",
+        "runNonce",
+        "runnerSha256",
+        "adapterSha256",
+        "promptSha256",
+        "diffSha256",
+        "transcriptSha256",
+        "skillSha256",
+        "findings"
+      ]
+    },
+    {
+      "path": "evidence/runs/after/security-regression.json",
+      "validJson": true,
+      "minCharacters": 850,
+      "includeAll": [
+        "schemaVersion",
+        "after",
+        "sessionId",
+        "runNonce",
+        "runnerSha256",
+        "adapterSha256",
+        "promptSha256",
+        "diffSha256",
+        "transcriptSha256",
+        "skillSha256",
+        "findings"
+      ]
+    },
+    {
+      "path": "evidence/runs/after/clean-control.json",
+      "validJson": true,
+      "minCharacters": 650,
+      "includeAll": [
+        "schemaVersion",
+        "after",
+        "sessionId",
+        "runNonce",
+        "runnerSha256",
+        "adapterSha256",
+        "promptSha256",
+        "diffSha256",
+        "transcriptSha256",
+        "skillSha256",
+        "findings"
+      ]
+    },
+    {
+      "path": "evidence/scorecard.json",
+      "validJson": true,
+      "minCharacters": 1200,
+      "includeAll": [
+        "historicalCoverage",
+        "securityCoverage",
+        "precision",
+        "cleanControl",
+        "noRegression",
+        "adopt"
+      ]
+    },
+    {
+      "path": "evidence/review-eval.md",
+      "minCharacters": 900,
+      "includeAll": [
+        "Baseline",
+        "Skill-assisted",
+        "Coverage",
+        "Precision",
+        "Clean control",
+        "Decision",
+        "## Baseline",
+        "## Skill-assisted",
+        "## Coverage",
+        "## Precision",
+        "## Clean control",
+        "## Decision",
+        "## Limitations"
+      ]
+    },
+    {
+      "path": "evidence/commands/eval-verify.txt",
+      "minCharacters": 250,
+      "includeAll": [
+        "six runner-captured review sessions",
+        "prompt",
+        "transcript",
+        "Decision",
+        "Command: npm run eval:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "skill contains no case answers"
+      ]
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 150
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/prompts/before/historical-regression.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/transcripts/before-historical-regression.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/prompts/before/security-regression.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/transcripts/before-security-regression.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/prompts/before/clean-control.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/transcripts/before-clean-control.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/prompts/after/historical-regression.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/transcripts/after-historical-regression.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/prompts/after/security-regression.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/transcripts/after-security-regression.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/prompts/after/clean-control.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/transcripts/after-clean-control.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "validJson": true,
+      "minCharacters": 200,
+      "includeAll": [
+        "claims",
+        "topic",
+        "artifact",
+        "sources",
+        "excerpt"
+      ]
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true,
+      "minCharacters": 100,
+      "includeAll": [
+        "algorithm",
+        "sourceSha",
+        "files"
+      ]
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 200,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ],
+  "requiredDirectories": [
+    "evidence",
+    "evidence/prompts",
+    "evidence/runs",
+    "evidence/runs/before",
+    "evidence/runs/after",
+    "evidence/transcripts",
+    "evidence/commands"
+  ],
+  "evidenceMode": "observation"
+}

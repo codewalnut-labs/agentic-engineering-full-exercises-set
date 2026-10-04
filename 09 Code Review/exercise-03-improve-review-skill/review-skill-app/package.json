@@ -1,0 +1,47 @@
+{
+  "name": "review-skill-app",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "node ../../../scripts/run-vite-build.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false",
+    "test": "node ./scripts/test-review-eval-verifier.mjs && node ./scripts/agent-check.mjs && npm run test:challenge && npm run test:runner",
+    "eval:catalog": "node ./eval/verify-catalog.mjs",
+    "eval:score": "node ./scripts/score-review-eval.mjs",
+    "eval:run": "node ./scripts/run-review-session.mjs",
+    "eval:verify": "node ./scripts/verify-review-eval-submission.mjs",
+    "test:submission": "npm run eval:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json",
+    "lint": "node ./scripts/lint-check.mjs",
+    "format": "node ./scripts/format-check.mjs",
+    "agent:check": "npm run test:integrity && npm run eval:catalog && npm run test && npm run lint && npm run format && npm run typecheck && npm run build",
+    "test:integrity": "node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json",
+    "verify:implementation": "npm run eval:verify",
+    "verify:submission": "node ./scripts/verify-code-review-evidence.mjs && npm run test:submission",
+    "verify:exercise:core": "npm run agent:check && npm run verify:implementation && npm run verify:submission",
+    "verify:exercise": "node ../../../scripts/run-clean-verification.mjs",
+    "test:challenge": "node --test ../../scripts/code-review-evidence.test.mjs",
+    "test:runner": "node --test ./scripts/run-review-session.test.mjs",
+    "proof:capture": "node ../../scripts/capture-review-check.mjs",
+    "evidence:seal": "node ./scripts/verify-code-review-evidence.mjs seal",
+    "evidence:check": "node ./scripts/verify-code-review-evidence.mjs content",
+    "evidence:capture": "node ../../../scripts/capture-verification.mjs",
+    "evidence:verify": "npm run agent:check && npm run eval:verify && npm run evidence:check"
+  },
+  "engines": {
+    "node": ">=22.12.0 <25"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.0.4",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  }
+}

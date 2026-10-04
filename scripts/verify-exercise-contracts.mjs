@@ -50,6 +50,19 @@ for (const relative of challengeReadmes) {
   }
 }
 const requiredArtifacts = [
+  "09 Code Review/exercise-01-find-and-fix-review-risks/docs/setup.md",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/evidence-contract.json",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/scripts/verify-code-review-evidence.mjs",
+  "09 Code Review/exercise-02-verify-review-feedback/docs/setup.md",
+  "09 Code Review/exercise-02-verify-review-feedback/review-feedback-app/evidence-contract.json",
+  "09 Code Review/exercise-02-verify-review-feedback/review-feedback-app/scripts/verify-code-review-evidence.mjs",
+  "09 Code Review/exercise-03-improve-review-skill/docs/setup.md",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/evidence-contract.json",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/verify-code-review-evidence.mjs",
+  "09 Code Review/scripts/code-review-evidence.mjs",
+  "09 Code Review/scripts/capture-review-check.mjs",
+  "09 Code Review/scripts/code-review-evidence.test.mjs",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/run-review-session.test.mjs",
   "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/docs/pr-review-brief.md",
   "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/docs/pr-review-brief.md",
   "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/docs/pr-review-brief.md",
@@ -150,8 +163,8 @@ const requiredArtifacts = [
   "05 Skill Packaging/exercise-03-prove-a-skill-is-ready-to-share/skill-benchmark-app/scripts/verify-skill-package.py",
   "05 Skill Packaging/exercise-03-prove-a-skill-is-ready-to-share/skill-benchmark-app/skills/incident-summary/SKILL.md",
   "05 Skill Packaging/exercise-03-prove-a-skill-is-ready-to-share/skill-benchmark-app/challenge-integrity.json",
-  "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/fixtures/review-target.bundle",
-  "09 Code Review/exercise-02-diff-triage-with-fresh-agent/fixtures/review-target.bundle",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/fixtures/review-target.bundle",
+  "09 Code Review/exercise-02-verify-review-feedback/fixtures/review-target.bundle",
   "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/parallel-feature-app/submission-contract.json",
   "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/docs/evidence-template.md",
   "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/docs/integration-contract.md",
@@ -226,29 +239,29 @@ const requiredArtifacts = [
   "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/browser-quality-app/scripts/capture-browser-evidence.mjs",
   "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/browser-quality-app/scripts/quality-verification.mjs",
   "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/browser-quality-app/scripts/test-quality-verifier.mjs",
-  "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/review-gauntlet-app/submission-contract.json",
-  "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/docs/finding-contract.md",
-  "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/review-gauntlet-app/scripts/review-component-behavior.test.tsx",
-  "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/review-gauntlet-app/scripts/run-protected-semgrep.mjs",
-  "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/review-gauntlet-app/scripts/review-verification.mjs",
-  "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/review-gauntlet-app/scripts/test-review-verifier.mjs",
-  "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/review-gauntlet-app/scripts/replay-regression-tests.mjs",
-  "09 Code Review/exercise-02-diff-triage-with-fresh-agent/fresh-review-app/submission-contract.json",
-  "09 Code Review/exercise-02-diff-triage-with-fresh-agent/docs/review-brief.md",
-  "09 Code Review/exercise-02-diff-triage-with-fresh-agent/docs/finding-contract.md",
-  "09 Code Review/exercise-02-diff-triage-with-fresh-agent/fresh-review-app/src/services/workflowApi.acceptance.test.ts",
-  "09 Code Review/exercise-02-diff-triage-with-fresh-agent/fresh-review-app/scripts/triage-verification.mjs",
-  "09 Code Review/exercise-02-diff-triage-with-fresh-agent/fresh-review-app/scripts/test-triage-verifier.mjs",
-  "09 Code Review/exercise-02-diff-triage-with-fresh-agent/fresh-review-app/scripts/replay-regression-tests.mjs",
-  "09 Code Review/exercise-03-review-regression-lab/regression-review-app/submission-contract.json",
-  "09 Code Review/exercise-03-review-regression-lab/docs/skill-contract.md",
-  "09 Code Review/exercise-03-review-regression-lab/docs/evaluation-contract.md",
-  "09 Code Review/exercise-03-review-regression-lab/regression-review-app/skills/regression-review/SKILL.md",
-  "09 Code Review/exercise-03-review-regression-lab/regression-review-app/scripts/review-eval-verification.mjs",
-  "09 Code Review/exercise-03-review-regression-lab/regression-review-app/scripts/score-review-eval.mjs",
-  "09 Code Review/exercise-03-review-regression-lab/regression-review-app/scripts/test-review-eval-verifier.mjs",
-  "09 Code Review/exercise-03-review-regression-lab/regression-review-app/scripts/verify-review-eval-submission.mjs",
-  "09 Code Review/exercise-03-review-regression-lab/regression-review-app/scripts/run-review-session.mjs",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/submission-contract.json",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/docs/finding-contract.md",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/scripts/review-component-behavior.test.tsx",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/scripts/run-protected-semgrep.mjs",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/scripts/review-verification.mjs",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/scripts/test-review-verifier.mjs",
+  "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/scripts/replay-regression-tests.mjs",
+  "09 Code Review/exercise-02-verify-review-feedback/review-feedback-app/submission-contract.json",
+  "09 Code Review/exercise-02-verify-review-feedback/docs/review-brief.md",
+  "09 Code Review/exercise-02-verify-review-feedback/docs/finding-contract.md",
+  "09 Code Review/exercise-02-verify-review-feedback/review-feedback-app/src/services/workflowApi.acceptance.test.ts",
+  "09 Code Review/exercise-02-verify-review-feedback/review-feedback-app/scripts/triage-verification.mjs",
+  "09 Code Review/exercise-02-verify-review-feedback/review-feedback-app/scripts/test-triage-verifier.mjs",
+  "09 Code Review/exercise-02-verify-review-feedback/review-feedback-app/scripts/replay-regression-tests.mjs",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/submission-contract.json",
+  "09 Code Review/exercise-03-improve-review-skill/docs/skill-contract.md",
+  "09 Code Review/exercise-03-improve-review-skill/docs/evaluation-contract.md",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/skills/regression-review/SKILL.md",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/review-eval-verification.mjs",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/score-review-eval.mjs",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/test-review-eval-verifier.mjs",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/verify-review-eval-submission.mjs",
+  "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/run-review-session.mjs",
   "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/run-context-tests.mjs",
   "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/run-adapter-acceptance.mjs",
   "10 Token Economics/exercise-01-token-budget-refactor/docs/adapter-refactor-request.md",
@@ -388,6 +401,16 @@ for (const relative of exercisePackages) {
       for (const helper of ["../../scripts/pr-review-evidence.mjs", "../../scripts/capture-proof.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
       assert.ok(proofContract.extraEvidence.includes("evidence/commands/checks.txt"), relative + " must seal actual proof output");
       assert.ok(!proofContract.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
+    }
+    if (project.startsWith("09 Code Review")) {
+      assert.equal(submissionContract.evidenceMode, "observation", relative + " must use observed review evidence");
+      const reviewContract = JSON.parse(readFileSync(path.join(root, project, "evidence-contract.json"), "utf8"));
+      assert.ok(manifest.scripts["proof:capture"].includes("capture-review-check.mjs"), relative + " must capture actual review checks");
+      for (const helper of ["../../scripts/code-review-evidence.mjs", "../../scripts/capture-review-check.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
+      for (const check of Object.values(reviewContract.checkCaptures)) assert.ok(reviewContract.extraEvidence.includes(check.path) && requiredPaths.has(check.path), relative + " must seal its captured review checks");
+      assert.ok(!reviewContract.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
+      if (reviewContract.reviewSessionField) for (const artifact of ["evidence/review-session.txt", "evidence/recheck-session.txt", "evidence/recheck.json"]) assert.ok(requiredPaths.has(artifact), relative + " must retain independent review proof");
+      if (project.endsWith("review-skill-app")) assert.ok(!integrity.protectedFiles["skills/regression-review/SKILL.md"], relative + " must allow learners to improve the skill");
     }
     if (["observation", "handover"].includes(submissionContract.evidenceMode)) {
       assert.ok(submissionScripts.includes("context-document-evidence.mjs"), `${relative} must verify its observation evidence`);

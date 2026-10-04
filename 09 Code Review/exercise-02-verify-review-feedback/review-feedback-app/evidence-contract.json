@@ -1,0 +1,94 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/review.md",
+      "type": "markdown",
+      "headings": [
+        "Scope",
+        "Confirmed",
+        "Dismissed",
+        "Regression proof",
+        "Decision"
+      ]
+    },
+    {
+      "path": "evidence/review.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/recheck.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/feedback-response.md",
+      "type": "markdown",
+      "headings": [
+        "Accepted",
+        "Dismissed",
+        "Remaining questions"
+      ]
+    }
+  ],
+  "topics": [
+    "confirmed-feedback",
+    "dismissed-feedback",
+    "regression-proof"
+  ],
+  "sourceRoots": [
+    "review-feedback-app/src/",
+    "review-feedback-app/tests/",
+    "review-feedback-app/skills/",
+    "review-feedback-app/eval/",
+    "pr/",
+    "docs/",
+    "evidence/commands/",
+    "evidence/runs/",
+    "evidence/focused-tests.txt",
+    "evidence/semgrep.json",
+    "evidence/review-session.txt",
+    "evidence/recheck-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "receiving-code-review",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/receiving-code-review"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/fixture-verification.txt",
+    "evidence/commands/regression-replay.txt",
+    "evidence/commands/triage-verify.txt",
+    "evidence/focused-tests.txt",
+    "evidence/review-session.txt",
+    "evidence/recheck-session.txt",
+    "evidence/reviewer-session.json",
+    "evidence/fresh-review-prompt.md"
+  ],
+  "sourceArtifact": "evidence/review.json",
+  "checkCaptures": {
+    "fixture": {
+      "script": "review:fixture",
+      "path": "evidence/fixture-verification.txt",
+      "phase": "starting"
+    },
+    "regressions": {
+      "script": "test:regression-proof",
+      "path": "evidence/commands/regression-replay.txt",
+      "phase": "implementation"
+    },
+    "review": {
+      "script": "triage:verify",
+      "path": "evidence/commands/triage-verify.txt",
+      "phase": "implementation"
+    },
+    "focused": {
+      "script": "test:cache",
+      "path": "evidence/focused-tests.txt",
+      "phase": "implementation"
+    }
+  },
+  "reviewSessionField": "reviewerSessionId"
+}
