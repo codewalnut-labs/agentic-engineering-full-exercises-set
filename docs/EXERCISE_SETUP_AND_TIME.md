@@ -64,7 +64,7 @@ Provider queue and response time is not part of the active challenge target. Rec
 |---|---:|
 | 5.2 Skill Trigger Boundary Evals | 120 decisions: 20 requests x 3 runs x before and after |
 | 5.3 Skill Benchmark and Package Gate | 36 runs: 4 tasks x 3 lanes x 3 runs |
-| 12.3 Trace-Backed Workflow Optimizer | 48 runs: 8 cases x 3 runs x baseline and candidate |
+| 12.3 Prove Whether an Agent Workflow Change Helps | 48 runs: 8 cases x 3 runs x baseline and candidate |
 
 Estimate cost before starting from the provider's current input and output token rates. Use the largest allowed response and the full run count as the approval ceiling. The repository does not publish a fixed currency estimate because model prices and prompt sizes change.
 

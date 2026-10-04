@@ -1,0 +1,25 @@
+import assert from "node:assert/strict";
+import { evaluateDefectGate, sha256, validateGuidance, validateSessionRecords } from "./rule-hardening-verification.mjs";
+
+const corrections = [
+  ...[1, 2].map((id) => ({ id, rootCause: "identity-vs-presentation" })),
+  ...[3, 4].map((id) => ({ id, rootCause: "canonical-enum-storage" })),
+  ...[5, 6].map((id) => ({ id, rootCause: "ambient-time" })),
+];
+const agents = "For persistence work, read .agent/persistence.md. Run npm run test:persistence.";
+const deep = "Use a stable ID, not a display label. trim canonical values to lowercase. use a caller-provided clock, not new Date. An exception needs a product contract. UI, export, and log labels are allowed. run npm run test:persistence.";
+assert.deepEqual(validateGuidance(agents, deep, corrections), []);
+assert.ok(validateGuidance(`${agents} Store the display label.`, deep, corrections).length > 0);
+assert.deepEqual(evaluateDefectGate(["identity", "status"], []).failures, []);
+assert.equal(evaluateDefectGate(["identity"], []).mode, "defect-improvement");
+assert.deepEqual(evaluateDefectGate([], []).failures, []);
+assert.equal(evaluateDefectGate([], []).mode, "ceiling-no-regression");
+assert.ok(evaluateDefectGate([], ["regression"]).failures.length > 0);
+const records = { before: "synthetic-before-session\n" + "original prompt and response\n".repeat(5), after: "synthetic-after-session\n" + "original guided response\n".repeat(5) };
+const conditions = { agent: "fixture-agent", model: "fixture-model", settingsHash: "settings", toolsHash: "tools", permissionsHash: "permissions", timeLimitMinutes: 5 };
+const before = { ...conditions, sessionId: "synthetic-before-session", sessionSha256: sha256(records.before) };
+const after = { ...conditions, sessionId: "synthetic-after-session", sessionSha256: sha256(records.after) };
+assert.deepEqual(validateSessionRecords(before, after, records), []);
+assert.ok(validateSessionRecords(before, { ...after, model: "different-model" }, records).some((failure) => failure.includes("model")));
+assert.ok(validateSessionRecords(before, after, { ...records, after: records.after + "edited" }).some((failure) => failure.includes("hash mismatch")));
+console.log("rule hardening verifier self-test passed");

@@ -1,0 +1,103 @@
+{
+  "name": "Turn Repeated Mistakes into Useful Agent Guidance",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/rule-map.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 60
+    },
+    {
+      "path": "evidence/before-metadata.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/after-metadata.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/history.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/before.patch",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/after.patch",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/checks/implementation.txt",
+      "minCharacters": 60
+    },
+    {
+      "path": "evidence/before-session.txt",
+      "minCharacters": 60
+    },
+    {
+      "path": "evidence/after-session.txt",
+      "minCharacters": 60
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "validJson": true,
+      "minCharacters": 20
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true,
+      "minCharacters": 20
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 100,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    },
+    {
+      "path": "AGENTS.md",
+      "minCharacters": 10
+    },
+    {
+      "path": ".agent/persistence.md",
+      "minCharacters": 10
+    },
+    {
+      "path": "guidance-eval-app/src/services/filterPersistence.mjs",
+      "minCharacters": 10
+    },
+    {
+      "path": "guidance-eval-app/src/services/filterPersistence.test.mjs",
+      "minCharacters": 10
+    }
+  ]
+}

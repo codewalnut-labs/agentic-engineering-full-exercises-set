@@ -4,6 +4,12 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 
 const repositoryRoot = path.resolve(import.meta.dirname, "..");
+const retrospectiveHelpers = [
+  "../../.gitattributes", "../../scripts/retrospective-evidence.mjs",
+  "../../../scripts/challenge-phase-evidence.mjs", "../../../scripts/capture-challenge-check.mjs", "../../../scripts/test-challenge-phase-evidence.mjs",
+  "../../../scripts/comparable-evidence.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs",
+  "../docs/setup.md", "../docs/evidence-template.md", "scripts/verify-retrospective-evidence.mjs",
+];
 const refactoringHelpers = [
   "../../.gitattributes", "../../../scripts/challenge-phase-evidence.mjs", "../../../scripts/capture-challenge-check.mjs",
   "../../../scripts/test-challenge-phase-evidence.mjs", "../../../scripts/comparable-evidence.mjs",
@@ -39,9 +45,9 @@ const additions = new Map([
   ["11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior", refactoringHelpers],
   ["11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code", refactoringHelpers],
   ["11 Agentic Refactoring/exercise-03-extract-business-rules", refactoringHelpers],
-  ["12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs", ["../tasks/implementation-request.md", "../tasks/policy-217-replay.md", "../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
-  ["12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes", ["../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
-  ["12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer", ["../docs/action-schema.md", "scripts/write-workflow-patches.mjs", "../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
+  ["12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands", ["../tasks/implementation-request.md", "../tasks/policy-217-replay.md", ...retrospectiveHelpers]],
+  ["12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance", retrospectiveHelpers],
+  ["12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change", ["../docs/action-schema.md", "scripts/write-workflow-patches.mjs", ...retrospectiveHelpers]],
 ]);
 
 function findManifests(directory, results = []) {
@@ -69,6 +75,7 @@ for (const manifestPath of findManifests(repositoryRoot)) {
   const isCodeReviewExercise = relativeManifest.startsWith("09 Code Review/");
   const isEconomicsExercise = relativeManifest.startsWith("10 Token Economics/");
   const isRefactoringExercise = relativeManifest.startsWith("11 Agentic Refactoring/");
+  const isRetrospectiveExercise = relativeManifest.startsWith("12 Agentic Retrospective/");
   const exercise = [...additions.keys()].find((prefix) => relativeManifest.startsWith(`${prefix}/`));
   let document = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
   if (!isApplicationManifest && Object.keys(document.protectedFiles ?? {}).length === 0) {
@@ -109,7 +116,7 @@ for (const manifestPath of findManifests(repositoryRoot)) {
     collect(path.join(root, "..", "business"));
     collect(path.join(root, "..", "docs"));
     // Documentation exercises inspect a fixed source. Implementation exercises keep their task surface editable.
-    if (!isPrEvidenceExercise && !isCodeReviewExercise && !isEconomicsExercise && !isRefactoringExercise && !root.includes("bugfix-context-app") && !root.includes("brownfield-agent-app")) collect(path.join(root, "src"));
+    if (!isPrEvidenceExercise && !isCodeReviewExercise && !isEconomicsExercise && !isRefactoringExercise && !isRetrospectiveExercise && !root.includes("bugfix-context-app") && !root.includes("brownfield-agent-app")) collect(path.join(root, "src"));
     for (const generated of ["../docs/design-document.md", "../docs/domain-model.md", "../docs/query-guide.md"]) paths.delete(generated);
   }
   const protectedFiles = {};

@@ -1,0 +1,337 @@
+{
+  "name": "Prove Whether an Agent Workflow Change Helps",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/failure-clusters.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/adoption.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 60
+    },
+    {
+      "path": "evidence/baseline-runs.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/candidate-runs.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/benchmark.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/history.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/before.patch",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/after.patch",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/commands/implementation.txt",
+      "minCharacters": 60
+    },
+    {
+      "path": "evidence/runner.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-scope-conflict-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-scope-conflict-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-scope-conflict-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-stale-requirement-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-stale-requirement-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-stale-requirement-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-partial-green-test-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-partial-green-test-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-partial-green-test-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-missing-user-choice-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-missing-user-choice-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-missing-user-choice-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-large-context-pack-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-large-context-pack-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-large-context-pack-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-unsupported-completion-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-unsupported-completion-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-unsupported-completion-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-heldout-cross-project-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-heldout-cross-project-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-heldout-cross-project-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-heldout-protected-input-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-heldout-protected-input-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/baseline-heldout-protected-input-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-scope-conflict-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-scope-conflict-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-scope-conflict-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-stale-requirement-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-stale-requirement-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-stale-requirement-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-partial-green-test-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-partial-green-test-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-partial-green-test-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-missing-user-choice-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-missing-user-choice-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-missing-user-choice-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-large-context-pack-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-large-context-pack-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-large-context-pack-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-unsupported-completion-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-unsupported-completion-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-unsupported-completion-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-heldout-cross-project-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-heldout-cross-project-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-heldout-cross-project-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-heldout-protected-input-1.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-heldout-protected-input-2.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/raw/candidate-heldout-protected-input-3.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "validJson": true,
+      "minCharacters": 20
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true,
+      "minCharacters": 20
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 100,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    },
+    {
+      "path": "workflow-eval-app/workflow/instructions.md",
+      "minCharacters": 10
+    }
+  ]
+}

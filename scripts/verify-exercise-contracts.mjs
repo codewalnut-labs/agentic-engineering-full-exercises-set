@@ -310,36 +310,36 @@ const requiredArtifacts = [
   "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/rules-refactor-verification.mjs",
   "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/test-rules-verifier.mjs",
   "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/verify-rules-submission.mjs",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/session-metadata.json",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/metric-contract.md",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/replay-contract.md",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/preflight-contract.md",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/scripts/retro-verification.mjs",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/scripts/test-retro-verifier.mjs",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/scripts/verify-retro-submission.mjs",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/docs/correction-history.json",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/docs/guidance-contract.md",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/fixtures/filterPersistence.starter.mjs",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/scripts/rule-hardening-verification.mjs",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/scripts/test-rule-hardening-verifier.mjs",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/scripts/verify-rule-hardening-submission.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/docs/failure-traces.json",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/docs/benchmark-contract.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/docs/trace-analysis-contract.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/fixtures/workflow-baseline.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/workflow-grading.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/workflow-submission-verification.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/score-workflow-results.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/write-workflow-patches.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/test-workflow-verifier.mjs",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/session-metadata.json",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/metric-contract.md",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/replay-contract.md",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/preflight-contract.md",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/retry-policy-app/scripts/retro-verification.mjs",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/retry-policy-app/scripts/test-retro-verifier.mjs",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/retry-policy-app/scripts/verify-retro-submission.mjs",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/docs/correction-history.json",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/docs/guidance-contract.md",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/fixtures/filterPersistence.starter.mjs",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/guidance-eval-app/scripts/rule-hardening-verification.mjs",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/guidance-eval-app/scripts/test-rule-hardening-verifier.mjs",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/guidance-eval-app/scripts/verify-rule-hardening-submission.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/docs/failure-traces.json",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/docs/benchmark-contract.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/docs/trace-analysis-contract.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/fixtures/workflow-baseline.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/workflow-grading.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/workflow-submission-verification.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/score-workflow-results.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/write-workflow-patches.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/test-workflow-verifier.mjs",
   "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/run-checkout-tests.mjs",
   "11 Agentic Refactoring/exercise-03-extract-business-rules/workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowContractCharacterizationTest.java",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/session-events.json",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/tasks/implementation-request.md",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/tasks/policy-217-replay.md",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/tasks/proving-change.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/docs/action-schema.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/evals/replay-cases.json",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/session-events.json",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/tasks/implementation-request.md",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/tasks/policy-217-replay.md",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/tasks/proving-change.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/docs/action-schema.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/evals/replay-cases.json",
   "scripts/capture-verification.mjs",
 ];
 for (const relative of requiredArtifacts) assert.ok(existsSync(path.join(root, relative)), `Missing starter artifact: ${relative}`);
@@ -445,6 +445,25 @@ for (const relative of exercisePackages) {
       }
       assert.ok(!phases.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
       assert.ok(Object.keys(phases.starterSources).length, relative + " must bind checks to the supplied starter");
+    }
+    if (project.startsWith("12 Agentic Retrospective")) {
+      assert.equal(submissionContract.evidenceMode, "observation", relative + " must use sealed retrospective evidence");
+      const retrospective = JSON.parse(readFileSync(path.join(root, project, "evidence-contract.json"), "utf8"));
+      for (const helper of ["../../scripts/retrospective-evidence.mjs", "../../../scripts/challenge-phase-evidence.mjs", "../../../scripts/capture-challenge-check.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
+      for (const check of Object.values(retrospective.checkCaptures)) assert.ok(retrospective.extraEvidence.includes(check.path) && requiredPaths.has(check.path), relative + " must seal captured checks");
+      for (const file of retrospective.productionFiles) {
+        const appPath = path.relative(path.join(root, project), path.resolve(root, project, "..", file)).split(path.sep).join("/");
+        assert.ok(!integrity.protectedFiles[appPath], relative + " must leave learner files editable: " + file);
+      }
+      if (retrospective.study === "guidance") {
+        assert.ok(manifest.scripts["rules:compare"].includes("comparable-evidence.mjs"), relative + " must preserve matched guidance experiments");
+        for (const file of ["evidence/before-session.txt", "evidence/after-session.txt"]) assert.ok(retrospective.extraEvidence.includes(file), relative + " must seal original sessions");
+      }
+      if (retrospective.study === "workflow") {
+        assert.equal(retrospective.extraEvidence.filter((file) => file.startsWith("evidence/raw/")).length, 48, relative + " must seal all 48 raw captures");
+        assert.ok(manifest.scripts["workflow:run"].includes("run-workflow-batch.mjs"), relative + " must provide the complete batch recorder");
+      }
+      assert.ok(!retrospective.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
     }
     if (["observation", "handover"].includes(submissionContract.evidenceMode)) {
       assert.ok(submissionScripts.includes("context-document-evidence.mjs"), `${relative} must verify its observation evidence`);
