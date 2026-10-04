@@ -1,6 +1,6 @@
-# Protected NFR Risk Seeds
+# Problems to Investigate
 
-The access-review queue has five review targets:
+The app has five known problems. The IDs below connect each problem to its review, decision, fix, and recheck. These checks are protected exercise inputs.
 
 | ID | Specialist | Risk to investigate | Required proof |
 |---|---|---|---|
@@ -10,4 +10,4 @@ The access-review queue has five review targets:
 | `PERF-01` | Performance | Portfolio risk repeats expensive work on every render. | Compare the protected benchmark at both SHAs. |
 | `TEST-01` | Testability | Approval timing and failures are not deterministic outside a browser. | Test success and failure without real timers or `window`. |
 
-Required blockers may not be deferred or dismissed. Specialists may add other findings, but every added finding must satisfy the same evidence standard and be triaged.
+Fix all five required problems. Reviewers may report additional issues, but each needs code evidence and a recorded decision: fix it, postpone it, or dismiss it with a reason.

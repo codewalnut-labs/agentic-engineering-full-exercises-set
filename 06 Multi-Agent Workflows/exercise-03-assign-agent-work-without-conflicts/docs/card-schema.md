@@ -1,5 +1,14 @@
 # Agent-Ready Card Contract
 
+Each card is one task. A task is ready for an agent when its problem can be reproduced, its requirements are clear, its files are available, and it has a check that can confirm the result.
+
+The board uses these fields:
+
+- `requestedPaths`: files the task would like to change.
+- `reservedPaths`: files currently assigned exclusively to that task.
+- `blockedBy`: missing information or unfinished work that prevents it from starting.
+- `stateHistory`: the task's progress, including its final state.
+
 Every card requires:
 
 - `id`, `title`, `state`, and complete `stateHistory`.

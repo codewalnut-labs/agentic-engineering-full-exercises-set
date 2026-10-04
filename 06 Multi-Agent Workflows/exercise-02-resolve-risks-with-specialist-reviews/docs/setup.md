@@ -1,5 +1,11 @@
 # Specialist review workflow setup
 
+## What you are doing
+
+You coordinate two rounds of review: four agents inspect the starting code, you fix the confirmed problems, and four new agents check the fixes. Reviewers report findings; you own the code changes and final decision.
+
+The four roles are security (permissions and unsafe input), accessibility (keyboard use), performance (speed), and testability (reliable automated tests). A SHA is a Git commit ID: it identifies the exact code version a reviewer must inspect. "Baseline" means the starting version; "remediation" means the version containing your fixes.
+
 ## Runtime and skill setup
 
 Use an agent runtime that supports separate sessions, subagents, and Git worktrees. Set up Node 22.12 or a supported newer version below 25 and run `npm ci` in the application. Each linked implementation worktree needs its own dependencies.
@@ -16,7 +22,7 @@ Use [dispatching-parallel-agents](https://github.com/obra/superpowers/tree/main/
 
 Record a clean baseline SHA. Give security, accessibility, performance, and testability fresh contexts with the matching [role prompt](./specialist-prompts.md), SHA, command, and [report format](./specialist-report-template.md). Four roles may run in waves if your concurrency cap is below four; at least two reviews must overlap in each phase. Finish baseline review before starting remediation/rechecks.
 
-Every required seeded blocker gets a finding ID and disposition. The protected scope assigns SEC-01/SEC-02, A11Y-01, PERF-01, and TEST-01; additional supported findings are allowed. These IDs identify outcomes, not prewritten findings. Verify CLAIM-01 and explain the shared SEC-02/TEST-01 service boundary in the decision log.
+Every required problem gets a finding ID and a recorded decision: `fix`, `defer` (postpone), or `dismiss`. The required problems must all be fixed. The protected scope assigns SEC-01/SEC-02, A11Y-01, PERF-01, and TEST-01; additional supported findings are allowed. These IDs identify outcomes, not prewritten findings. Verify CLAIM-01 and explain the shared SEC-02/TEST-01 service boundary in the decision log.
 
 Implement the [remediation contract](./remediation-contract.md) in source and participant tests only. Use a source-only remediation commit directly after the baseline; evidence is committed later. If you iterate locally, retain attempts and commit the accepted source state once. Afterward, use four fresh review sessions at that exact remediation SHA, not a moving working tree.
 

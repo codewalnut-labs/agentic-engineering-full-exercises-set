@@ -1,5 +1,11 @@
 # Safe agent assignment workflow setup
 
+## What you are doing
+
+You are the coordinator. Check four tasks, assign only ESC-120 to an implementation agent, and ask a different agent to review its change. The goal is to prevent agents from starting unclear work or editing the same files.
+
+A card is one task. A reservation gives that task exclusive permission to edit listed files while it is active. A lane is the agent's implementation branch. The control commit is the later commit that updates the board and work records. A SHA is a Git commit ID identifying an exact code version.
+
 ## Runtime and skill setup
 
 Use an agent runtime that supports separate sessions, subagents, and Git worktrees. Set up Node 22.12 or a supported newer version below 25 and run `npm ci` in the application. Each linked implementation worktree needs its own dependencies.

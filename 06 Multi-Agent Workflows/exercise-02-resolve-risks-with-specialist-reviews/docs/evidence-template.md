@@ -1,5 +1,7 @@
 # Resolve Release Risks with Specialist Reviews Evidence
 
+Save four initial reviews and four rechecks, along with the actual agent sessions, command results, and your decisions. Each report must identify the code version it checked. The JSON records below connect those files to the correct review; the [setup instructions](./setup.md) explain the commands.
+
 Use 40-character Git SHAs, repository-relative source paths, exact commands, and captured outputs.
 
 ## review-cycle.json

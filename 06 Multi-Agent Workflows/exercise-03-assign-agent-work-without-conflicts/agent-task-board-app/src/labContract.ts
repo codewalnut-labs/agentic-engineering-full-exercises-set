@@ -5,8 +5,8 @@ export const labContract = {
   competency: "06. Multi-Agent Workflows - Agent-ready work and collision control",
   skillPattern: "subagent-driven-development",
   domain: "An escalation queue where unclear, colliding, and cancelled cards can cause unsafe agent assignments",
-  mission: "Repair an invalid agent board, execute only the inherited-severity card, and prove that the lane, review, integration, and final control state match Git.",
-  outcome: "Unsafe cards remain visible but unassigned, one ready lane is integrated without overlap, and all control-plane mirrors agree.",
+  mission: "Check the four tasks, assign only ESC-120 with exclusive file ownership, ask another agent to review the fix, and update the board after merging.",
+  outcome: "ESC-120 is fixed and reviewed, no active tasks compete for files, and the board consistently shows completed, waiting, and cancelled work.",
   entities: [
     "agent-ready card and state history",
     "requested path and active reservation",
@@ -29,11 +29,12 @@ export const labContract = {
     "exact control commit followed only by evidence changes",
   ],
   agentWorkflow: [
-    "Validate all incoming cards and release reservations held by unsafe states.",
-    "Create one isolated ESC-120 lane from the recorded clean base.",
-    "Review its exact commit, paths, regression test, and focused output.",
-    "Integrate with no-ff and synchronize every board and ownership artifact.",
-    "Capture evidence, verify it against Git, and retain unresolved and cancelled work.",
+    "Use subagent-driven-development with one implementation agent and a different reviewing agent.",
+    "Check each task and record why only ESC-120 can start.",
+    "Reserve ESC-120's files and give its agent the requirements and check command on a separate branch.",
+    "Review the exact implementation commit, its test, and its check result.",
+    "Merge the accepted change, update all board records, and release completed file reservations.",
+    "Record the before and after results, seal the committed evidence, and capture final verification.",
   ],
   workingDeliverables: [
     "A fixed inherited-severity implementation and lane-owned regression test.",

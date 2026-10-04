@@ -1,5 +1,7 @@
 # Assign Agent Work Without Ownership Conflicts Evidence
 
+Show why only ESC-120 was assigned, what its agent changed, what the separate reviewer checked, and how the board was updated after the merge. The JSON record below links the implementation branch, review, and check outputs. See [setup](./setup.md) for the exact commands.
+
 Use 40-character Git SHAs, paths relative to `agent-task-board-app`, exact commands, and captured outputs.
 
 ## control-plane.json

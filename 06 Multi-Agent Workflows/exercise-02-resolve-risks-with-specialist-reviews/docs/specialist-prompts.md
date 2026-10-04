@@ -1,21 +1,21 @@
 # Specialist Prompts
 
-Use one fresh agent session per role. Give every agent the same baseline SHA and forbid application edits.
+Start one separate agent session per role. Give all four the same starting Git commit ID and tell them to review without editing the app. Save their findings using the [report template](./specialist-report-template.md).
 
 ## Security
 
-Inspect untrusted note rendering and the approval service boundary. Run `npm run review:security`. Report exploitable paths, direct service reproductions, and the smallest safe boundary fix.
+Check how request notes are displayed and whether the approval function checks permission itself. Run `npm run review:security`. Show how unsafe input or an unauthorized approval can reach the app, including a direct call to the approval function. Recommend a fix supported by that evidence.
 
 ## Accessibility
 
-Inspect the queue selection workflow using keyboard-native semantics. Run `npm run review:accessibility`. Report the blocked interaction and keyboard evidence.
+Check whether a person can select a request using only the keyboard. Run `npm run review:accessibility`. Report the interaction that fails, how you checked it, and what needs to change.
 
 ## Performance
 
-Inspect portfolio-risk complexity and repeated render work. Run the baseline measurement and `npm run review:performance`. Report comparable inputs, timings, calculation correctness, and the required reduction.
+Check whether the risk calculation repeats unnecessary work when the screen updates. Run the starting performance measurement and `npm run review:performance`. Record the inputs, calculation result, and time taken so they can be compared with the repaired version.
 
 ## Testability
 
-Inspect whether approval success and failure can be tested deterministically without browser globals or real waits. Run `npm run review:testability`. Report the boundary that prevents reliable tests.
+Check whether tests can reliably cover successful and failed approvals without `window` or real delays. Run `npm run review:testability`. Explain what prevents repeatable tests and recommend the smallest change that would make them reliable.
 
-Every report uses the shared template. A specialist reports findings only; the integration owner owns decisions and code changes.
+You, as coordinator, check the reports, decide what to fix, and make the code changes. Afterward, start four new sessions with these same roles to review the repaired commit.

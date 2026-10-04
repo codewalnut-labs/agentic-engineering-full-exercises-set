@@ -2,32 +2,39 @@
 
 ## Your Mission
 
-An access-approval change is approaching release. Notes render unsafe content, keyboard users cannot select review rows, repeated calculations slow the queue, and approval relies on UI state. Several risks meet at the same service boundary, so collecting separate review comments is not enough.
+Your team is preparing to release an app where people review and approve access requests. The app runs, but it has problems that could make it unsafe, difficult to use, slow, or hard to test.
 
-Your mission is to use independent specialists to find the risks, resolve supported blockers, and prove the repaired change is ready for review. Use **[dispatching-parallel-agents](https://github.com/obra/superpowers/tree/main/skills/dispatching-parallel-agents)** for bounded, review-only investigations; one owner makes remediation decisions.
+Your challenge is to coordinate four reviewing agents, each with a different responsibility:
+
+- **Security:** can someone approve access without permission or submit unsafe content?
+- **Accessibility:** can someone use the review screen with a keyboard?
+- **Performance:** does the app repeat work that slows it down?
+- **Testability:** can automated tests check approval reliably without real delays?
+
+Use **[dispatching-parallel-agents](https://github.com/obra/superpowers/tree/main/skills/dispatching-parallel-agents)**. The reviewing agents report problems. You check their findings, fix confirmed issues, and arrange a second review.
 
 The duration for this challenge is 75 min or less after setup; repeated reviews may take longer.
 
 ## Project
 
-[specialist-review-app](./specialist-review-app) supplies an independent access-review workflow and protected checks. The [specialist prompts](./docs/specialist-prompts.md), [risk scope](./docs/nfr-risk-seeds.md), and [remediation contract](./docs/remediation-contract.md) define security, accessibility, performance, and testability outcomes.
+[specialist-review-app](./specialist-review-app) contains the app and checks for all four roles. Use the [review prompts](./docs/specialist-prompts.md), [problems to investigate](./docs/nfr-risk-seeds.md), and [required fixes](./docs/remediation-contract.md).
 
-A supplied specialist recommendation is an external claim. Verify whether its suggested fix protects the actual service boundary.
+One supplied review recommendation is incorrect. Check it against the code before acting on it.
 
 ## How To Go About It
 
-1. Record the baseline commit, risky behavior, and review conditions in `evidence/before.md`. Keep the application unchanged during the baseline reviews.
-2. Load the skill and dispatch four fresh specialists against that same commit. Give each its role, focused check, and report format. Run independent reviews concurrently within your runtime's capacity and preserve their actual sessions.
-3. Verify findings against source and reproductions. Combine overlapping concerns, triage every finding and the supplied recommendation, and explain how security and testability interact.
-4. As remediation owner, fix supported blockers in source and participant tests. Commit the repaired change, measure performance under the same inputs, and send four fresh specialists to recheck that exact commit.
-5. Make the release decision from passing checks and rechecks. Record the verified result in `evidence/after.md` and compare findings, decisions, performance, and remaining risks in `evidence/comparison.md`.
+1. Record the starting Git commit, initial problems, and review conditions in `evidence/before.md`.
+2. Start four separate agent sessions on that same code version, one per role. Give each its review prompt and check command. Run reviews in parallel where capacity allows and save the actual sessions.
+3. Check each finding against the code and test results. Record whether to fix, postpone, or dismiss it. Fix all required issues. Check the approval function from both the security and testability perspectives.
+4. Commit the fixes, measure performance using the same inputs, and start four new review sessions on the repaired commit. Each reviewer reruns its role's check.
+5. Record the final result in `evidence/after.md`. Use `evidence/comparison.md` to explain the fixes, review results, speed improvement, and remaining risks.
 
 ## Evidence
 
-Submit the remediation, eight specialist reports and sessions, baseline and final focused outputs, comparable performance measurements, decision log, and integration review. Every review must identify its source commit; every finding must have a recorded disposition.
+Submit the code changes, four initial reviews and four rechecks, their actual sessions and command outputs, performance measurements, and your decisions about each finding.
 
 Follow the [setup and workflow instructions](./docs/setup.md), [evidence instructions and template](./docs/evidence-template.md), and repository [submission standard](../../docs/SUBMISSION_STANDARD.md). Run `npm run verify:exercise` from `specialist-review-app/` before raising a focused PR.
 
 ## Completion Criteria
 
-The four specialties independently review the baseline and recheck the repaired commit. All supported blockers are resolved, the unsupported recommendation is dismissed with source evidence, and the shared boundary receives both relevant rechecks. Comparable performance improves by at least 75 percent while preserving results. Final verification passes and the release decision remains traceable to the actual reviews.
+All required problems are fixed and pass the four review checks. The incorrect recommendation is rejected with code evidence. The measured calculation takes at least 75 percent less time and returns the same result. Every review names the code version it checked, every finding has a decision, and final verification passes.
