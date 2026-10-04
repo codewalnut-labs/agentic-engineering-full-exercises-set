@@ -1,0 +1,56 @@
+{
+  "title": "Turn a Repeated Task into a Reusable Agent Skill",
+  "competency": "05. Skill Packaging",
+  "skillPattern": "Agent Skills progressive disclosure",
+  "domain": "Evidence-backed customer release notes from arbitrary Git ranges",
+  "mission": "Replace a broad monolithic prompt with a focused, portable release-notes skill that loads resources conditionally.",
+  "outcome": "The packaged skill improves release-note accuracy while measurably reducing the context loaded for each request.",
+  "entities": [
+    "SKILL.md metadata",
+    "conditional reference",
+    "Git extractor",
+    "quality eval",
+    "release trace"
+  ],
+  "seededDefects": [
+    "trigger includes unrelated engineering summaries",
+    "all rules and examples load for every task",
+    "Git range is selected manually",
+    "internal telemetry is published",
+    "missing artifacts are treated as passing"
+  ],
+  "verificationGates": [
+    "three-range fixture smoke",
+    "Agent Skills structure validation",
+    "fixture-independent extractor test",
+    "Git-derived release-note score",
+    "exact context-byte and resource evidence verifier",
+    "npm run verify:exercise checks protected inputs, implementation quality, and required submission evidence.",
+    "committed snapshot, skill-use transcript, and capture freshness"
+  ],
+  "agentWorkflow": [
+    "record the monolithic baseline in a fresh session",
+    "separate core workflow from conditional policy",
+    "replace copied Git output with one reusable script",
+    "define three output-quality evaluations",
+    "run a fresh skill attempt and selective scenarios",
+    "verify and compare"
+  ],
+  "workingDeliverables": [
+    "portable skill folder",
+    "three focused references",
+    "range-agnostic Git extractor",
+    "three quality evaluations",
+    "comparable release outputs",
+    "byte-measured resource-use and evaluation evidence",
+    "evidence/comparison.md",
+    "actual skill-creator session and source record",
+    "committed artifact manifest and captured final verification"
+  ],
+  "masterySignals": [
+    "valid cross-agent metadata",
+    "exact context bytes prove resources load only when relevant",
+    "extractor survives an unrelated repository",
+    "customer output is traced and evidence-safe"
+  ]
+}
