@@ -1,0 +1,88 @@
+{
+  "mode": "observation",
+  "kind": "routing",
+  "outputs": [
+    {
+      "path": "evidence/adoption.md",
+      "type": "markdown",
+      "headings": [
+        "Routing decisions",
+        "Quality and safety",
+        "Cost and latency",
+        "Decision and limits"
+      ]
+    },
+    {
+      "path": "evidence/routing-policy.md",
+      "type": "markdown",
+      "headings": [
+        "Rules",
+        "Fallbacks"
+      ]
+    },
+    {
+      "path": "evidence/routing-measurements.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/measurement-run.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/cost-model.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "routing-safety",
+    "retry-cost",
+    "adoption-limit"
+  ],
+  "sourceRoots": [
+    "model-routing-eval-app/src/",
+    "model-routing-eval-app/tests/",
+    "docs/",
+    "evals/",
+    "evidence/commands/",
+    "evidence/skill-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "evaluation",
+      "source": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/tree/main/skills/evaluation"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/implementation.txt"
+  ],
+  "sourceArtifact": "evidence/measurement-run.json",
+  "allowedSourceFiles": [
+    "model-routing-eval-app/src/routing/routeTask.mjs",
+    "model-routing-eval-app/tests/route-task.test.mjs"
+  ],
+  "starterSources": {
+    "model-routing-eval-app/src/routing/routeTask.mjs": "39d4f0cf268a1054f58fe0c2e249bcc3a713b5728c3dc12f1469c285d3170c6b"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "path": "evidence/commands/baseline.txt",
+      "phase": "starting",
+      "markers": [
+        "PASS baseline records all-reasoning routes including unclear requests"
+      ]
+    },
+    "implementation": {
+      "script": "economics:check",
+      "path": "evidence/commands/implementation.txt",
+      "phase": "implementation",
+      "markers": [
+        "PASS 36 protected offline measurements",
+        "PASS adoption decision follows every measured gate"
+      ]
+    }
+  }
+}

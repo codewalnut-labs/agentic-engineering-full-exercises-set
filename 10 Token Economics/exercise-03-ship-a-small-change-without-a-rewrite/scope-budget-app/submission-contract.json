@@ -1,0 +1,110 @@
+{
+  "name": "Ship a Small Change Without a Broad Rewrite",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 180,
+      "includeAll": [
+        "## Changes",
+        "## Verified",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "evidence/verification.md",
+      "minCharacters": 80,
+      "includeAll": [
+        "## Behavior",
+        "## Scope",
+        "## Cost and limits"
+      ]
+    },
+    {
+      "path": "evidence/scope-plan.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "evidence/scope-plan.md",
+      "minCharacters": 80,
+      "includeAll": []
+    },
+    {
+      "path": "evidence/scope-budget.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "evidence/avoided-work.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "scope-budget-app/tests/export-button.test.mjs",
+      "minCharacters": 80
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 80
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/baseline.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/implementation.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/regression.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/manifest.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 150,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "mode": "observation",
+  "kind": "scope",
+  "outputs": [
+    {
+      "path": "evidence/verification.md",
+      "type": "markdown",
+      "headings": [
+        "Behavior",
+        "Scope",
+        "Cost and limits"
+      ]
+    },
+    {
+      "path": "evidence/scope-plan.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/scope-plan.md",
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "path": "evidence/scope-budget.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/avoided-work.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "export-change",
+    "legacy-preservation",
+    "scope-budget"
+  ],
+  "sourceRoots": [
+    "scope-budget-app/src/",
+    "scope-budget-app/tests/",
+    "docs/",
+    "evals/",
+    "evidence/commands/",
+    "evidence/skill-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "test-driven-development",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/test-driven-development"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/implementation.txt",
+    "evidence/commands/regression.txt"
+  ],
+  "sourceArtifact": "evidence/scope-budget.json",
+  "allowedSourceFiles": [
+    "scope-budget-app/src/migration/exportButton.mjs",
+    "scope-budget-app/tests/export-button.test.mjs"
+  ],
+  "starterSources": {
+    "scope-budget-app/src/migration/exportButton.mjs": "0c47bb5384054caa9987b3039eba45bd8f92711b48a413c8ff3618bd23ba4a45"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "path": "evidence/commands/baseline.txt",
+      "phase": "starting",
+      "markers": [
+        "PASS baseline records the missing export change and legacy behavior"
+      ]
+    },
+    "implementation": {
+      "script": "economics:check",
+      "path": "evidence/commands/implementation.txt",
+      "phase": "implementation",
+      "markers": [
+        "PASS export migrated to ds-secondary",
+        "PASS actual Git numstat matches"
+      ]
+    },
+    "regression": {
+      "script": "test:regression-proof",
+      "path": "evidence/commands/regression.txt",
+      "phase": "implementation",
+      "markers": [
+        "PASS identical learner tests fail for the missing export behavior and pass after the change"
+      ]
+    }
+  }
+}

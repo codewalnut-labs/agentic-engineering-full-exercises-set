@@ -4,6 +4,12 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 
 const repositoryRoot = path.resolve(import.meta.dirname, "..");
+const economicsHelpers = [
+  "../../.gitattributes", "../../scripts/economics-evidence.mjs", "../../scripts/economics-evidence.test.mjs",
+  "../../scripts/capture-economics-check.mjs", "../../scripts/run-baseline.mjs", "../../scripts/replay-scope-regression.mjs",
+  "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs",
+  "../docs/setup.md", "../docs/evidence-template.md", "scripts/verify-economics-evidence.mjs",
+];
 const codeReviewHelpers = [
   "../../scripts/code-review-evidence.mjs", "../../scripts/capture-review-check.mjs", "../../scripts/code-review-evidence.test.mjs",
   "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs",
@@ -21,9 +27,9 @@ const additions = new Map([
   ["09 Code Review/exercise-01-find-and-fix-review-risks", ["scripts/replay-regression-tests.mjs", "scripts/review-component-behavior.test.tsx", "scripts/run-protected-semgrep.mjs", ...codeReviewHelpers]],
   ["09 Code Review/exercise-02-verify-review-feedback", ["scripts/replay-regression-tests.mjs", "scripts/app-cache-behavior.test.tsx", ...codeReviewHelpers]],
   ["09 Code Review/exercise-03-improve-review-skill", ["../docs/skill-contract.md", "../docs/evaluation-contract.md", "eval/verify-catalog.mjs", "scripts/run-review-session.mjs", "scripts/run-review-session.test.mjs", ...codeReviewHelpers]],
-  ["10 Token Economics/exercise-01-token-budget-refactor", ["../docs/adapter-refactor-request.md", "src/session/adaptSession.mjs", "scripts/run-adapter-acceptance.mjs", "scripts/replay-context-lanes.mjs", "../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
-  ["10 Token Economics/exercise-02-risk-based-model-routing-cost-gate", ["../docs/routing-policy-contract.md", "../evals/recorded-runs.json", "src/routing/dispatchTasks.mjs", "scripts/verify-benchmark-pack.mjs", "../../../scripts/comparable-evidence.mjs"]],
-  ["10 Token Economics/exercise-03-minimal-diff-scope-budget", ["src/migration/actionButtons.mjs", "scripts/replay-before-scope.mjs", "../../../scripts/comparable-evidence.mjs"]],
+  ["10 Token Economics/exercise-01-reduce-context-without-losing-rules", ["../docs/adapter-refactor-request.md", "scripts/run-adapter-acceptance.mjs", ...economicsHelpers]],
+  ["10 Token Economics/exercise-02-evaluate-cheaper-model-routing", ["../docs/routing-policy-contract.md", "../evals/recorded-runs.json", "src/routing/dispatchTasks.mjs", "scripts/verify-benchmark-pack.mjs", ...economicsHelpers]],
+  ["10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite", ["src/migration/actionButtons.mjs", ...economicsHelpers]],
   ["11 Agentic Refactoring/exercise-01-characterization-test-refactor", ["../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
   ["11 Agentic Refactoring/exercise-02-strangler-pattern-checkout", ["../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
   ["11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle", ["../../../scripts/comparable-evidence.mjs", "../../../scripts/capture-verification.mjs"]],
@@ -55,13 +61,18 @@ for (const manifestPath of findManifests(repositoryRoot)) {
   const relativeManifest = path.relative(repositoryRoot, manifestPath).split(path.sep).join("/");
   const isPrEvidenceExercise = relativeManifest.startsWith("08 Evidence-led PRs/");
   const isCodeReviewExercise = relativeManifest.startsWith("09 Code Review/");
+  const isEconomicsExercise = relativeManifest.startsWith("10 Token Economics/");
   const exercise = [...additions.keys()].find((prefix) => relativeManifest.startsWith(`${prefix}/`));
   let document = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
   if (!isApplicationManifest && Object.keys(document.protectedFiles ?? {}).length === 0) {
     document = JSON.parse(execFileSync("git", ["show", `HEAD:${relativeManifest}`], { cwd: repositoryRoot, encoding: "utf8" }));
   }
   const paths = new Set(Object.keys(document.protectedFiles ?? {}));
-  if (isPrEvidenceExercise || isCodeReviewExercise) paths.delete("../../../scripts/comparable-evidence.mjs");
+  if (isPrEvidenceExercise || isCodeReviewExercise || isEconomicsExercise) paths.delete("../../../scripts/comparable-evidence.mjs");
+  if (isEconomicsExercise) {
+    for (const editable of ["src/session/adaptSession.mjs", "src/budget/selectContext.mjs", "src/routing/routeTask.mjs", "src/migration/exportButton.mjs"]) paths.delete(editable);
+    for (const obsolete of ["scripts/replay-context-lanes.mjs", "scripts/replay-before-scope.mjs"]) paths.delete(obsolete);
+  }
   if (isCodeReviewExercise) paths.delete("skills/regression-review/SKILL.md");
   const sharedFiles = ["scripts/verify-protected-inputs.mjs", "scripts/verify-submission-contract.mjs", "scripts/run-clean-verification.mjs", "scripts/run-vite-build.mjs"];
   for (const shared of sharedFiles) paths.delete(path.relative(root, path.join(repositoryRoot, shared)).split(path.sep).join("/"));
@@ -91,7 +102,7 @@ for (const manifestPath of findManifests(repositoryRoot)) {
     collect(path.join(root, "..", "business"));
     collect(path.join(root, "..", "docs"));
     // Documentation exercises inspect a fixed source. Implementation exercises keep their task surface editable.
-    if (!isPrEvidenceExercise && !isCodeReviewExercise && !root.includes("bugfix-context-app") && !root.includes("brownfield-agent-app")) collect(path.join(root, "src"));
+    if (!isPrEvidenceExercise && !isCodeReviewExercise && !isEconomicsExercise && !root.includes("bugfix-context-app") && !root.includes("brownfield-agent-app")) collect(path.join(root, "src"));
     for (const generated of ["../docs/design-document.md", "../docs/domain-model.md", "../docs/query-guide.md"]) paths.delete(generated);
   }
   const protectedFiles = {};

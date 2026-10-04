@@ -5,7 +5,7 @@
     "../../../scripts/context-document-evidence.mjs": "50cc485c0ec0649c283e3cbb91f868a609c6af2bc0aed3cbb552d6b9f4ef3133",
     "../../../scripts/run-clean-verification.mjs": "9b17cbb8865a642a7789113c145be88c6bb965bc2d8c024b82202e8ae85bf368",
     "../../../scripts/run-vite-build.mjs": "b7901ed4f770e6537e80f864392c8c1de841b5c97fa8993246c5df7a86d5d415",
-    "../../../scripts/verify-exercise-contracts.mjs": "101877a76a89dc56cb205b0fe0c9abd69dedf2e13d801649bcc30bef2f6a7a47",
+    "../../../scripts/verify-exercise-contracts.mjs": "e37c0e8a90285504010030165107bb8c08a6d9746ed5f5216416dac6595a2229",
     "../../../scripts/verify-protected-inputs.mjs": "d99346d9a84651bcb654d07d1b5d131d39d5f3b703ee9614db4eafc86cb4d96c",
     "../../../scripts/verify-submission-contract.mjs": "5c34aab86313eeb825b19c6ceabc8afbaf65cce3d1cde325bdea7a9739e23ca4",
     "../../scripts/capture-proof.mjs": "cff0deffa6a217ea56baeaa230186538fa6d241ffa56f2366250ccfde6358257",

@@ -50,6 +50,14 @@ for (const relative of challengeReadmes) {
   }
 }
 const requiredArtifacts = [
+  "10 Token Economics/scripts/economics-evidence.mjs",
+  "10 Token Economics/scripts/economics-evidence.test.mjs",
+  "10 Token Economics/scripts/capture-economics-check.mjs",
+  "10 Token Economics/scripts/run-baseline.mjs",
+  "10 Token Economics/scripts/replay-scope-regression.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/setup.md",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/docs/setup.md",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/docs/setup.md",
   "09 Code Review/exercise-01-find-and-fix-review-risks/docs/setup.md",
   "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/evidence-contract.json",
   "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/scripts/verify-code-review-evidence.mjs",
@@ -262,30 +270,29 @@ const requiredArtifacts = [
   "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/test-review-eval-verifier.mjs",
   "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/verify-review-eval-submission.mjs",
   "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/run-review-session.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/run-context-tests.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/run-adapter-acceptance.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/docs/adapter-refactor-request.md",
-  "10 Token Economics/exercise-01-token-budget-refactor/docs/ledger-contract.md",
-  "10 Token Economics/exercise-01-token-budget-refactor/docs/context-sources/AGENTS.md",
-  "10 Token Economics/exercise-01-token-budget-refactor/docs/context-sources/current-adapter-contract.md",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/context-verification.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/test-context-verifier.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/verify-context-submission.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/src/session/adaptSession.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/evals/routing-cases.json",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/evals/recorded-runs.json",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/docs/routing-policy-contract.md",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/docs/measurement-contract.md",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/scripts/routing-verification.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/scripts/score-routing-eval.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/scripts/test-routing-verifier.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/scripts/verify-routing-submission.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/src/routing/dispatchTasks.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/scripts/run-migration-tests.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/scripts/scope-verification.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/scripts/test-scope-verifier.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/src/migration/actionButtons.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/scripts/replay-before-scope.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/run-context-tests.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/run-adapter-acceptance.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/adapter-refactor-request.md",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/ledger-contract.md",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/context-sources/AGENTS.md",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/context-sources/current-adapter-contract.md",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/context-verification.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/test-context-verifier.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/verify-context-submission.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/src/session/adaptSession.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/evals/routing-cases.json",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/evals/recorded-runs.json",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/docs/routing-policy-contract.md",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/docs/measurement-contract.md",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/scripts/routing-verification.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/scripts/score-routing-eval.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/scripts/test-routing-verifier.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/scripts/verify-routing-submission.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/src/routing/dispatchTasks.mjs",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/scripts/run-migration-tests.mjs",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/scripts/scope-verification.mjs",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/scripts/test-scope-verifier.mjs",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/src/migration/actionButtons.mjs",
   "11 Agentic Refactoring/exercise-01-characterization-test-refactor/docs/renewal-golden-cases.json",
   "11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/scripts/refactor-verification.mjs",
   "11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/scripts/test-refactor-verifier.mjs",
@@ -411,6 +418,20 @@ for (const relative of exercisePackages) {
       assert.ok(!reviewContract.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
       if (reviewContract.reviewSessionField) for (const artifact of ["evidence/review-session.txt", "evidence/recheck-session.txt", "evidence/recheck.json"]) assert.ok(requiredPaths.has(artifact), relative + " must retain independent review proof");
       if (project.endsWith("review-skill-app")) assert.ok(!integrity.protectedFiles["skills/regression-review/SKILL.md"], relative + " must allow learners to improve the skill");
+    }
+    if (project.startsWith("10 Token Economics")) {
+      assert.equal(submissionContract.evidenceMode, "observation", relative + " must use observed economics evidence");
+      const economics = JSON.parse(readFileSync(path.join(root, project, "evidence-contract.json"), "utf8"));
+      assert.ok(manifest.scripts["proof:capture"].includes("capture-economics-check.mjs"), relative + " must capture actual economics checks");
+      assert.ok(manifest.scripts["evidence:verify"].includes("economics:check"), relative + " must rerun the domain checks before final capture");
+      for (const helper of ["../../scripts/economics-evidence.mjs", "../../scripts/capture-economics-check.mjs", "../../scripts/run-baseline.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
+      for (const check of Object.values(economics.checkCaptures)) assert.ok(economics.extraEvidence.includes(check.path) && requiredPaths.has(check.path), relative + " must seal its captured checks");
+      for (const file of economics.allowedSourceFiles) {
+        const appPath = file.slice(path.basename(project).length + 1);
+        assert.ok(!integrity.protectedFiles[appPath], relative + " must leave the learner implementation editable: " + file);
+      }
+      assert.ok(!economics.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
+      assert.ok(economics.starterSources && Object.keys(economics.starterSources).length, relative + " must bind baseline evidence to the actual starter");
     }
     if (["observation", "handover"].includes(submissionContract.evidenceMode)) {
       assert.ok(submissionScripts.includes("context-document-evidence.mjs"), `${relative} must verify its observation evidence`);

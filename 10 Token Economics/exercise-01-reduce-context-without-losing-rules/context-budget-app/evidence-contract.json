@@ -1,0 +1,83 @@
+{
+  "mode": "observation",
+  "kind": "context",
+  "outputs": [
+    {
+      "path": "evidence/decision.md",
+      "type": "markdown",
+      "headings": [
+        "Context decisions",
+        "Correctness",
+        "Cost and limits"
+      ]
+    },
+    {
+      "path": "evidence/context-plan.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/context-plan.md",
+      "type": "markdown",
+      "headings": []
+    },
+    {
+      "path": "evidence/context-ledger.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "required-rules",
+    "context-reduction",
+    "adapter-correctness"
+  ],
+  "sourceRoots": [
+    "context-budget-app/src/",
+    "context-budget-app/tests/",
+    "docs/",
+    "evals/",
+    "evidence/commands/",
+    "evidence/skill-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "context-optimization",
+      "source": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/tree/main/skills/context-optimization"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/implementation.txt"
+  ],
+  "sourceArtifact": "evidence/context-ledger.json",
+  "allowedSourceFiles": [
+    "context-budget-app/src/budget/selectContext.mjs",
+    "context-budget-app/src/session/adaptSession.mjs",
+    "context-budget-app/tests/context-selector.test.mjs",
+    "context-budget-app/tests/session-adapter.test.mjs"
+  ],
+  "starterSources": {
+    "context-budget-app/src/budget/selectContext.mjs": "836b5d908377fe5382eb78c47db7643227d39f19dcddec7f4f2a313273bea207",
+    "context-budget-app/src/session/adaptSession.mjs": "97697c22bd1556859434f3d9d66b5719aff3c81757ea3fe3183b1af5b896fa9f"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "path": "evidence/commands/baseline.txt",
+      "phase": "starting",
+      "markers": [
+        "PASS baseline records full context and working adapter behavior"
+      ]
+    },
+    "implementation": {
+      "script": "economics:check",
+      "path": "evidence/commands/implementation.txt",
+      "phase": "implementation",
+      "markers": [
+        "PASS real UTF-8 source costs",
+        "PASS ledger exactly matches"
+      ]
+    }
+  }
+}

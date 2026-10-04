@@ -1,0 +1,105 @@
+{
+  "name": "Reduce Context Without Losing Required Rules",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 180,
+      "includeAll": [
+        "## Changes",
+        "## Verified",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "evidence/decision.md",
+      "minCharacters": 80,
+      "includeAll": [
+        "## Context decisions",
+        "## Correctness",
+        "## Cost and limits"
+      ]
+    },
+    {
+      "path": "evidence/context-plan.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "evidence/context-plan.md",
+      "minCharacters": 80,
+      "includeAll": []
+    },
+    {
+      "path": "evidence/context-ledger.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "context-budget-app/tests/context-selector.test.mjs",
+      "minCharacters": 80
+    },
+    {
+      "path": "context-budget-app/tests/session-adapter.test.mjs",
+      "minCharacters": 80
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 80
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/baseline.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/implementation.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/manifest.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 150,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ]
+}
