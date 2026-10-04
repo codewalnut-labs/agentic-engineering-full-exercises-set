@@ -1,0 +1,78 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/review-eval.md",
+      "type": "markdown",
+      "headings": [
+        "Baseline",
+        "Skill-assisted",
+        "Coverage",
+        "Precision",
+        "Clean control",
+        "Decision",
+        "Limitations"
+      ]
+    },
+    {
+      "path": "evidence/scorecard.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "defect-coverage",
+    "false-alarms",
+    "scope-limits"
+  ],
+  "sourceRoots": [
+    "review-skill-app/src/",
+    "review-skill-app/tests/",
+    "review-skill-app/skills/",
+    "review-skill-app/eval/",
+    "pr/",
+    "docs/",
+    "evidence/commands/",
+    "evidence/runs/",
+    "evidence/focused-tests.txt",
+    "evidence/semgrep.json",
+    "evidence/review-session.txt",
+    "evidence/recheck-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "writing-skills",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/writing-skills"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/eval-verify.txt",
+    "evidence/runs/before/historical-regression.json",
+    "evidence/prompts/before/historical-regression.md",
+    "evidence/transcripts/before-historical-regression.json",
+    "evidence/runs/before/security-regression.json",
+    "evidence/prompts/before/security-regression.md",
+    "evidence/transcripts/before-security-regression.json",
+    "evidence/runs/before/clean-control.json",
+    "evidence/prompts/before/clean-control.md",
+    "evidence/transcripts/before-clean-control.json",
+    "evidence/runs/after/historical-regression.json",
+    "evidence/prompts/after/historical-regression.md",
+    "evidence/transcripts/after-historical-regression.json",
+    "evidence/runs/after/security-regression.json",
+    "evidence/prompts/after/security-regression.md",
+    "evidence/transcripts/after-security-regression.json",
+    "evidence/runs/after/clean-control.json",
+    "evidence/prompts/after/clean-control.md",
+    "evidence/transcripts/after-clean-control.json"
+  ],
+  "sourceArtifact": "evidence/runs/after/historical-regression.json",
+  "checkCaptures": {
+    "evaluation": {
+      "script": "eval:verify",
+      "path": "evidence/commands/eval-verify.txt",
+      "phase": "implementation"
+    }
+  }
+}

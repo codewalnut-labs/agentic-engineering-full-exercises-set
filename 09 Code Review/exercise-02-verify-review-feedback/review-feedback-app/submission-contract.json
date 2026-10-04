@@ -1,0 +1,208 @@
+{
+  "name": "Verify Review Findings Before Changing Code",
+  "root": "..",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 250,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit:"
+      ]
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 280,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Implementation commit:"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 500,
+      "includeAll": [
+        "## Changes",
+        "## Verified",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "review-feedback-app/tests/cache-regressions.test.ts",
+      "minCharacters": 1000,
+      "includeAll": [
+        "describe",
+        "it",
+        "expect"
+      ]
+    },
+    {
+      "path": "evidence/reviewer-session.json",
+      "minCharacters": 350,
+      "validJson": true,
+      "includeAll": [
+        "fresh",
+        "providedFiles",
+        "excludedContext",
+        "promptSha256"
+      ]
+    },
+    {
+      "path": "evidence/fresh-review-prompt.md",
+      "minCharacters": 300,
+      "excludeAll": [
+        "instructor answer",
+        "CACHE-001",
+        "expected finding"
+      ]
+    },
+    {
+      "path": "evidence/review.json",
+      "minCharacters": 2400,
+      "validJson": true,
+      "includeAll": [
+        "request-changes",
+        "sourceSha",
+        "classification",
+        "confidence",
+        "anchor",
+        "scenario",
+        "impact",
+        "evidence",
+        "testPath",
+        "dismissalProof"
+      ]
+    },
+    {
+      "path": "evidence/review.md",
+      "minCharacters": 1800,
+      "includeAll": [
+        "Request changes",
+        "Confirmed",
+        "Dismissed",
+        "Regression",
+        "## Scope",
+        "## Confirmed",
+        "## Dismissed",
+        "## Regression proof",
+        "## Decision"
+      ]
+    },
+    {
+      "path": "evidence/fixture-verification.txt",
+      "minCharacters": 80,
+      "includeAll": [
+        "review-base..review-head",
+        "Command: npm run review:fixture",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:"
+      ]
+    },
+    {
+      "path": "evidence/focused-tests.txt",
+      "minCharacters": 250,
+      "includeAll": [
+        "npm run test:cache",
+        "cache-regressions.test.ts",
+        "Source SHA",
+        "Command: npm run test:cache",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:"
+      ]
+    },
+    {
+      "path": "evidence/commands/triage-verify.txt",
+      "minCharacters": 250,
+      "includeAll": [
+        "Source SHA",
+        "fresh reviewer context",
+        "supported blockers",
+        "evidence only",
+        "Command: npm run triage:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:"
+      ]
+    },
+    {
+      "path": "evidence/recheck.json",
+      "minCharacters": 200,
+      "validJson": true
+    },
+    {
+      "path": "evidence/feedback-response.md",
+      "minCharacters": 200,
+      "includeAll": [
+        "## Accepted",
+        "## Dismissed",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 150
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/regression-replay.txt",
+      "minCharacters": 100,
+      "includeAll": [
+        "Command: npm run test:regression-proof",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:"
+      ]
+    },
+    {
+      "path": "evidence/review-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/recheck-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "validJson": true,
+      "minCharacters": 200,
+      "includeAll": [
+        "claims",
+        "topic",
+        "artifact",
+        "sources",
+        "excerpt"
+      ]
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true,
+      "minCharacters": 100,
+      "includeAll": [
+        "algorithm",
+        "sourceSha",
+        "files"
+      ]
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 200,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ],
+  "evidenceMode": "observation"
+}

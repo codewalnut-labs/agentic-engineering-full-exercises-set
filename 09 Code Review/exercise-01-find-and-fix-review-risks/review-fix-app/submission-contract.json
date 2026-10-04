@@ -1,0 +1,200 @@
+{
+  "name": "Find and Fix Security and Accessibility Gaps",
+  "root": "..",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 250,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit:"
+      ]
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 280,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Implementation commit:"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 500,
+      "includeAll": [
+        "## Changes",
+        "## Verified",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "review-fix-app/tests/review-regressions.test.ts",
+      "minCharacters": 1000,
+      "includeAll": [
+        "describe",
+        "it",
+        "expect"
+      ]
+    },
+    {
+      "path": "evidence/review.json",
+      "validJson": true,
+      "minCharacters": 2600,
+      "includeAll": [
+        "schemaVersion",
+        "baseSha",
+        "headSha",
+        "sourceSha",
+        "reviewerSession",
+        "request-changes",
+        "anchor",
+        "scenario",
+        "impact",
+        "evidence",
+        "testPath",
+        "dismissalProof"
+      ]
+    },
+    {
+      "path": "evidence/review.md",
+      "minCharacters": 1800,
+      "includeAll": [
+        "Base SHA",
+        "Head SHA",
+        "Request changes",
+        "Confirmed",
+        "Dismissed",
+        "Regression",
+        "## Scope",
+        "## Confirmed",
+        "## Dismissed",
+        "## Regression proof",
+        "## Decision"
+      ]
+    },
+    {
+      "path": "evidence/semgrep.json",
+      "minCharacters": 250,
+      "validJson": true,
+      "includeAll": [
+        "results",
+        "react-dangerous-html-review",
+        "ActionComposer.tsx",
+        "SafeAnnouncement.tsx"
+      ]
+    },
+    {
+      "path": "evidence/fixture-verification.txt",
+      "minCharacters": 50,
+      "includeAll": [
+        "Review fixture verified: review-base..review-head",
+        "Command: npm run review:fixture",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:"
+      ]
+    },
+    {
+      "path": "evidence/commands/review-verify.txt",
+      "minCharacters": 300,
+      "includeAll": [
+        "Source SHA",
+        "PASS exact protected",
+        "PASS every reported finding",
+        "PASS every Semgrep",
+        "PASS Git source binding",
+        "Command: npm run review:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:"
+      ]
+    },
+    {
+      "path": "evidence/commands/regression-replay.txt",
+      "minCharacters": 160,
+      "includeAll": [
+        "confirmed findings each fail",
+        "named regressions pass",
+        "Command: npm run test:regression-proof",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:"
+      ]
+    },
+    {
+      "path": "evidence/commands/semgrep-replay.txt",
+      "minCharacters": 100,
+      "includeAll": [
+        "Semgrep",
+        "protected head",
+        "Command: npm run review:semgrep:check",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:"
+      ]
+    },
+    {
+      "path": "evidence/recheck.json",
+      "minCharacters": 200,
+      "validJson": true
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 150
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/review-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/recheck-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "validJson": true,
+      "minCharacters": 200,
+      "includeAll": [
+        "claims",
+        "topic",
+        "artifact",
+        "sources",
+        "excerpt"
+      ]
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true,
+      "minCharacters": 100,
+      "includeAll": [
+        "algorithm",
+        "sourceSha",
+        "files"
+      ]
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 200,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ],
+  "requiredDirectories": [
+    "evidence",
+    "evidence/commands"
+  ],
+  "evidenceMode": "observation"
+}
