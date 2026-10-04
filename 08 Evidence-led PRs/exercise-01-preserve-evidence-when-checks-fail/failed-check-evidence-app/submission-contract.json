@@ -1,0 +1,207 @@
+{
+  "name": "Give Reviewers Complete Evidence When Checks Fail",
+  "root": "..",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 220,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit:"
+      ]
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 250,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Implementation commit:"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 250,
+      "includeAll": [
+        "## Changes",
+        "## Verified",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "evidence/pr-summary.md",
+      "minCharacters": 600,
+      "includeAll": [
+        "## Change",
+        "## Checks",
+        "## Decision",
+        "## Risk and rollback",
+        "Source SHA:",
+        "Decision: BLOCKED",
+        "Reproduce",
+        "checkout-smoke",
+        "failed",
+        "Exit code",
+        "Reviewer action",
+        "evidence/generated/summary.md",
+        "evidence/generated/artifacts/checkout-smoke.txt"
+      ]
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "validJson": true,
+      "minCharacters": 200,
+      "includeAll": [
+        "claims",
+        "topic",
+        "artifact",
+        "sources",
+        "excerpt"
+      ]
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## verification-before-completion",
+        "Source:",
+        "Invocation:",
+        "Proof:"
+      ]
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true,
+      "minCharacters": 100,
+      "includeAll": [
+        "algorithm",
+        "sourceSha",
+        "files"
+      ]
+    },
+    {
+      "path": "evidence/commands/checks.txt",
+      "minCharacters": 200,
+      "includeAll": [
+        "Command: npm run pack:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:"
+      ]
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 200,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    },
+    {
+      "path": "../../.github/workflows/evidence-led-pr-01.yml",
+      "minCharacters": 900,
+      "includeAll": [
+        "pull_request:",
+        "permissions:",
+        "contents: read",
+        "ubuntu-24.04",
+        "persist-credentials: false",
+        "npm ci",
+        "github.sha",
+        "always()",
+        "actions/upload-artifact@",
+        "if-no-files-found: error",
+        "retention-days:",
+        "npm run pack:verify"
+      ]
+    },
+    {
+      "path": "failed-check-evidence-app/scripts/generate-pr-evidence.mjs",
+      "minCharacters": 1200,
+      "includeAll": [
+        "--fixture",
+        "--sha",
+        "--output",
+        "sha256",
+        "process.exitCode"
+      ]
+    },
+    {
+      "path": "evidence/generated/pr-evidence.json",
+      "validJson": true,
+      "minCharacters": 1500,
+      "includeAll": [
+        "schemaVersion",
+        "sourceSha",
+        "fixtureSha256",
+        "overallResult",
+        "overallExitCode",
+        "checkout-smoke",
+        "artifact",
+        "sha256",
+        "reviewerAction",
+        "rollback"
+      ]
+    },
+    {
+      "path": "evidence/generated/summary.md",
+      "minCharacters": 1000,
+      "includeAll": [
+        "Source SHA",
+        "Overall result",
+        "Overall exit code",
+        "unit-tests",
+        "checkout-smoke",
+        "ui-screenshot",
+        "Artifact",
+        "SHA-256",
+        "Risk",
+        "Reviewer action",
+        "Rollback"
+      ]
+    },
+    {
+      "path": "evidence/generated/artifacts/unit-tests.txt",
+      "minCharacters": 50,
+      "includeAll": [
+        "PASS",
+        "8 passed"
+      ]
+    },
+    {
+      "path": "evidence/generated/artifacts/checkout-smoke.txt",
+      "minCharacters": 80,
+      "includeAll": [
+        "FAIL",
+        "Payment authorization",
+        "Exit code: 1"
+      ]
+    },
+    {
+      "path": "evidence/generated/artifacts/checkout.svg",
+      "minCharacters": 500,
+      "includeAll": [
+        "<svg",
+        "Checkout",
+        "Payment authorization could not be completed"
+      ]
+    }
+  ],
+  "requiredDirectories": [
+    "evidence",
+    "evidence/generated",
+    "evidence/generated/artifacts",
+    "evidence/commands"
+  ],
+  "evidenceMode": "observation"
+}

@@ -1,0 +1,67 @@
+export interface LabContract {
+  title: string;
+  competency: string;
+  domain: string;
+  mission: string;
+  outcome: string;
+  entities: string[];
+  seededDefects: string[];
+  verificationGates: string[];
+  agentWorkflow: string[];
+  workingDeliverables: string[];
+  masterySignals: string[];
+}
+
+export const labContract: LabContract = {
+  "title": "Block a Release That Fails Browser Quality Checks",
+  "competency": "08. Evidence-led PRs",
+  "domain": "Production-build Lighthouse and axe evidence used for an enforceable pull-request release decision.",
+  "mission": "Fix the dashboard defects and build a release check that rejects one failing browser run or an axe violation.",
+  "outcome": "A reviewer can reproduce the decision from raw browser reports and see what manual accessibility checks remain.",
+  "entities": [
+    "source commit",
+    "production build",
+    "Lighthouse run",
+    "axe scan",
+    "quality threshold",
+    "release decision"
+  ],
+  "seededDefects": [
+    "The first render is delayed beyond the LCP budget.",
+    "An icon-only action has no accessible name.",
+    "No executable gate aggregates the worst of three Lighthouse runs.",
+    "Existing evidence can be hand-written and does not prove a failing exit code."
+  ],
+  "verificationGates": [
+    "Exactly three comparable raw Lighthouse reports meet protected thresholds.",
+    "A real Chrome axe scan reports zero violations.",
+    "A generated summary matches raw artifact SHA-256 digests and metrics.",
+    "Performance and accessibility negative controls both return non-zero.",
+    "Git history binds implementation and evidence to one source SHA.",
+    "npm run verify:exercise checks protected inputs, implementation quality, and required submission evidence."
+  ],
+  "agentWorkflow": [
+    "Inspect the starting state and record observed gaps in evidence/before.md.",
+    "Inspect the UI, thresholds, gate CLI contract, and baseline reports.",
+    "Fix the measured render and accessible-name defects.",
+    "Implement Lighthouse configuration and the quality-gate CLI.",
+    "Commit the implementation, capture browser evidence, and verify the submission.",
+    "Use verification-before-completion to check each PR claim against fresh command output.",
+    "Write the reviewer decision, source citations, and evidence/after.md and evidence/comparison.md."
+  ],
+  "workingDeliverables": [
+    "Corrected dashboard startup and accessible action.",
+    "Pessimistic Lighthouse CI configuration.",
+    "Quality-gate CLI that writes a decision before exiting.",
+    "Raw reports, generated summary, comparison, and verification output.",
+    "evidence/comparison.md",
+    "evidence/before.md and evidence/after.md",
+    "Reviewer summary, skill-use record, source audit, sealed manifest, and actual command captures."
+  ],
+  "masterySignals": [
+    "One failing run cannot be hidden by better runs.",
+    "Any axe violation blocks release.",
+    "Every reported metric and claim traces to a raw artifact digest.",
+    "A reviewer can reproduce the exact decision from the source commit."
+  ]
+};

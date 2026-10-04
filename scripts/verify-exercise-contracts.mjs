@@ -50,6 +50,18 @@ for (const relative of challengeReadmes) {
   }
 }
 const requiredArtifacts = [
+  "08 Evidence-led PRs/scripts/pr-review-evidence.mjs",
+  "08 Evidence-led PRs/scripts/pr-review-evidence.test.mjs",
+  "08 Evidence-led PRs/scripts/capture-proof.mjs",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/docs/setup.md",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/failed-check-evidence-app/evidence-contract.json",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/failed-check-evidence-app/scripts/verify-review-evidence.mjs",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/docs/setup.md",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/evidence-contract.json",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/scripts/verify-review-evidence.mjs",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/docs/setup.md",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/browser-quality-app/evidence-contract.json",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/browser-quality-app/scripts/verify-review-evidence.mjs",
   "06 Multi-Agent Workflows/scripts/multi-agent-evidence.mjs",
   "06 Multi-Agent Workflows/scripts/multi-agent-evidence.test.mjs",
   "06 Multi-Agent Workflows/scripts/capture-command.mjs",
@@ -184,33 +196,33 @@ const requiredArtifacts = [
   "07 Docs & Diagrams/exercise-03-payment-module-visualization/payment-workflow-app/scripts/run-payment-tests.ts",
   "07 Docs & Diagrams/exercise-03-payment-module-visualization/payment-workflow-app/scripts/visualization-verification.mjs",
   "07 Docs & Diagrams/exercise-03-payment-module-visualization/payment-workflow-app/scripts/test-visualization-verifier.mjs",
-  "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/fixtures/check-results.json",
-  "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/fixtures/check-results-pass.json",
-  "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/fixtures/check-results-multiple-failures.json",
-  "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/fixtures/artifacts/checkout-smoke.txt",
-  "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/fixtures/artifacts/checkout.svg",
-  "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/docs/evidence-contract.md",
-  "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/docs/action-pins.json",
-  "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/pr-evidence-app/scripts/evidence-verification.mjs",
-  "08 Evidence-led PRs/exercise-01-pr-evidence-pack-automation/pr-evidence-app/scripts/test-evidence-verifier.mjs",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/feature-flag-app/scripts/run-rollout-tests.mjs",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/docs/rollback-contract.md",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/docs/evidence-contract.md",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/feature-flag-app/config/invoice-preview.json",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/feature-flag-app/fixtures/rollout-scenarios.json",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/feature-flag-app/scripts/rollout-harness.mjs",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/feature-flag-app/scripts/capture-rollout-evidence.mjs",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/feature-flag-app/scripts/run-rollback-drill.mjs",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/feature-flag-app/scripts/rollout-verification.mjs",
-  "08 Evidence-led PRs/exercise-02-feature-flag-rollback-proof/feature-flag-app/scripts/test-rollout-verifier.mjs",
-  "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/fixtures/lighthouse-before.json",
-  "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/fixtures/a11y-before.json",
-  "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/fixtures/quality-thresholds.json",
-  "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/docs/gate-cli-contract.md",
-  "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/docs/evidence-contract.md",
-  "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/quality-gate-app/scripts/capture-browser-evidence.mjs",
-  "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/quality-gate-app/scripts/quality-verification.mjs",
-  "08 Evidence-led PRs/exercise-03-performance-and-a11y-evidence-gate/quality-gate-app/scripts/test-quality-verifier.mjs",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/fixtures/check-results.json",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/fixtures/check-results-pass.json",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/fixtures/check-results-multiple-failures.json",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/fixtures/artifacts/checkout-smoke.txt",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/fixtures/artifacts/checkout.svg",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/docs/evidence-contract.md",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/docs/action-pins.json",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/failed-check-evidence-app/scripts/evidence-verification.mjs",
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/failed-check-evidence-app/scripts/test-evidence-verifier.mjs",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/scripts/run-rollout-tests.mjs",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/docs/rollback-contract.md",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/docs/evidence-contract.md",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/config/invoice-preview.json",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/fixtures/rollout-scenarios.json",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/scripts/rollout-harness.mjs",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/scripts/capture-rollout-evidence.mjs",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/scripts/run-rollback-drill.mjs",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/scripts/rollout-verification.mjs",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/feature-rollback-app/scripts/test-rollout-verifier.mjs",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/fixtures/lighthouse-before.json",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/fixtures/a11y-before.json",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/fixtures/quality-thresholds.json",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/docs/gate-cli-contract.md",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/docs/evidence-contract.md",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/browser-quality-app/scripts/capture-browser-evidence.mjs",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/browser-quality-app/scripts/quality-verification.mjs",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/browser-quality-app/scripts/test-quality-verifier.mjs",
   "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/review-gauntlet-app/submission-contract.json",
   "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/docs/finding-contract.md",
   "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/review-gauntlet-app/scripts/review-component-behavior.test.tsx",
@@ -357,6 +369,16 @@ for (const relative of exercisePackages) {
       for (const skill of evidenceContract.requiredSkills) assert.ok(readme.includes(skill.name) && setup.includes(skill.name), relative + " must name its workflow skills");
       for (const artifact of ["evidence/skill-use.md", "evidence/skill-session.txt", "evidence/agent-sessions.json"]) assert.ok(evidence.includes(artifact), relative + " must explain " + artifact);
       for (const helper of ["../../scripts/multi-agent-evidence.mjs", "../../scripts/capture-command.mjs", "../../../scripts/capture-verification.mjs", "../../../scripts/context-document-evidence.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
+    }
+    if (project.startsWith("08 Evidence-led PRs")) {
+      assert.equal(submissionContract.evidenceMode, "observation", relative + " must use observed before and after evidence");
+      const proofContract = JSON.parse(readFileSync(path.join(root, project, "evidence-contract.json"), "utf8"));
+      assert.ok(manifest.scripts["proof:capture"].includes("capture-proof.mjs"), relative + " must capture actual domain proof");
+      assert.ok(requiredPaths.has("evidence/commands/checks.txt"), relative + " must retain focused proof output");
+      assert.ok(requiredPaths.has("evidence/commands/verify.txt"), relative + " must retain final verification output");
+      for (const helper of ["../../scripts/pr-review-evidence.mjs", "../../scripts/capture-proof.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
+      assert.ok(proofContract.extraEvidence.includes("evidence/commands/checks.txt"), relative + " must seal actual proof output");
+      assert.ok(!proofContract.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
     }
     if (["observation", "handover"].includes(submissionContract.evidenceMode)) {
       assert.ok(submissionScripts.includes("context-document-evidence.mjs"), `${relative} must verify its observation evidence`);

@@ -1,0 +1,49 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/pr-summary.md",
+      "type": "markdown",
+      "headings": [
+        "Change",
+        "Checks",
+        "Decision",
+        "Risk and rollback"
+      ]
+    }
+  ],
+  "topics": [
+    "failed-checks",
+    "artifact-integrity",
+    "failure-preserving-workflow"
+  ],
+  "sourceRoots": [
+    "failed-check-evidence-app/scripts/",
+    "docs/",
+    "fixtures/",
+    "evidence/generated/",
+    "evidence/commands/checks.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "verification-before-completion",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/checks.txt",
+    "evidence/generated/pr-evidence.json",
+    "evidence/generated/summary.md",
+    "evidence/generated/artifacts/unit-tests.txt",
+    "evidence/generated/artifacts/checkout-smoke.txt",
+    "evidence/generated/artifacts/checkout.svg"
+  ],
+  "sourceArtifact": "evidence/generated/pr-evidence.json",
+  "sourceArtifacts": [
+    "evidence/generated/pr-evidence.json"
+  ],
+  "proofScript": "pack:verify",
+  "reviewDecision": "BLOCKED"
+}
