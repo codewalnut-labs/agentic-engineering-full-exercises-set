@@ -1,0 +1,64 @@
+{
+  "name": "Integrate Features Built by Parallel Agents",
+  "mode": "observation",
+  "kind": "parallel",
+  "requiredSkills": [
+    {
+      "name": "dispatching-parallel-agents",
+      "source": "https://github.com/obra/superpowers"
+    },
+    {
+      "name": "using-git-worktrees",
+      "source": "https://github.com/obra/superpowers"
+    }
+  ],
+  "artifacts": [
+    "evidence/lane-handoffs.json",
+    "evidence/integration.json",
+    "evidence/integration.md",
+    "evidence/worktree-list-before.txt",
+    "evidence/worktree-list-after.txt",
+    "evidence/commands/lane-a.txt",
+    "evidence/commands/lane-b.txt",
+    "evidence/commands/lane-c.txt",
+    "evidence/commands/integrated.txt",
+    "evidence/before.md",
+    "evidence/after.md",
+    "evidence/comparison.md",
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/agent-sessions.json"
+  ],
+  "artifactDirectories": [
+    "evidence/sessions",
+    "evidence/prompts"
+  ],
+  "commandArtifacts": [
+    {
+      "path": "evidence/commands/lane-a.txt",
+      "command": "npm run test:lane-a",
+      "exit_code": 0
+    },
+    {
+      "path": "evidence/commands/lane-b.txt",
+      "command": "npm run test:lane-b",
+      "exit_code": 0
+    },
+    {
+      "path": "evidence/commands/lane-c.txt",
+      "command": "npm run test:lane-c",
+      "exit_code": 0
+    },
+    {
+      "path": "evidence/commands/integrated.txt",
+      "command": "npm run test:integrated",
+      "exit_code": 0
+    }
+  ],
+  "captureCommands": [
+    "test:lane-a",
+    "test:lane-b",
+    "test:lane-c",
+    "test:integrated"
+  ]
+}

@@ -1,0 +1,71 @@
+import type { LabContract } from "./types";
+
+export const labContract = {
+  title: "Assign Agent Work Without Ownership Conflicts",
+  competency: "06. Multi-Agent Workflows - Agent-ready work and collision control",
+  skillPattern: "subagent-driven-development",
+  domain: "An escalation queue where unclear, colliding, and cancelled cards can cause unsafe agent assignments",
+  mission: "Check the four tasks, assign only ESC-120 with exclusive file ownership, ask another agent to review the fix, and update the board after merging.",
+  outcome: "ESC-120 is fixed and reviewed, no active tasks compete for files, and the board consistently shows completed, waiting, and cancelled work.",
+  entities: [
+    "agent-ready card and state history",
+    "requested path and active reservation",
+    "blocker and cancellation reason",
+    "isolated lane commit and focused check",
+    "review decision, merge commit, and control commit",
+  ],
+  seededDefects: [
+    "a needs-info card owns workflowApi.ts without a reproduction",
+    "ESC-120 and blocked ESC-122 both reserve scoring.ts",
+    "a cancelled export card still owns exportApi.ts",
+    "inherited Critical severity is reduced to the child's declared Low value",
+    "the original verifier trusts board declarations without checking Git or product behavior",
+  ],
+  verificationGates: [
+    "protected inherited-severity source and rendering acceptance tests",
+    "exact card states, histories, blockers, released reservations, and board mirrors",
+    "one-parent lane history, fixed path ownership, commit trailers, and hashed output",
+    "reviewed lane content preserved in a no-ff integration merge",
+    "exact control commit followed only by evidence changes",
+  ],
+  agentWorkflow: [
+    "Use subagent-driven-development with one implementation agent and a different reviewing agent.",
+    "Check each task and record why only ESC-120 can start.",
+    "Reserve ESC-120's files and give its agent the requirements and check command on a separate branch.",
+    "Review the exact implementation commit, its test, and its check result.",
+    "Merge the accepted change, update all board records, and release completed file reservations.",
+    "Record the before and after results, seal the committed evidence, and capture final verification.",
+  ],
+  workingDeliverables: [
+    "A fixed inherited-severity implementation and lane-owned regression test.",
+    "Synchronized structured and rendered Kanban board data.",
+    "Updated ownership map and integration log.",
+    "Machine-readable control-plane evidence and hashed command output.",
+    "An inspectable lane, merge, control, and evidence history.",
+  ],
+  masterySignals: [
+    "Readiness is proven before assignment instead of inferred from a label.",
+    "Blocked, unclear, and cancelled work cannot hold active reservations.",
+    "One agent owns the feature lane while one human remains accountable for review and integration.",
+    "Terminal and unresolved cards remain visible with complete histories.",
+    "Automated verification detects board drift, illegal scope, fabricated evidence, and hidden integration edits.",
+  ],
+  backlog: [
+    { id: "ESC-118", title: "Needs reproduction and must release its path", owner: "unassigned", skill: "triage", risk: "high", done: false },
+    { id: "ESC-120", title: "Preserve inherited Critical severity", owner: "severity-agent", skill: "isolated execution", risk: "critical", done: false },
+    { id: "ESC-122", title: "Blocked by collision and missing product rule", owner: "unassigned", skill: "collision control", risk: "high", done: false },
+    { id: "ESC-121", title: "Cancelled because its fixture is unsafe", owner: "unassigned", skill: "safety triage", risk: "critical", done: false },
+  ],
+  evidence: [
+    { gate: "Feature behavior", status: "missing", proof: "ESC-120 protected suite must pass" },
+    { gate: "Final board", status: "missing", proof: "all board and ownership mirrors must agree" },
+    { gate: "Git history", status: "missing", proof: "lane, merge, and control commits must be inspectable" },
+    { gate: "Submission evidence", status: "missing", proof: "hashes and SHAs must match actual artifacts" },
+  ],
+  decisions: [
+    { question: "Can ESC-118 start?", decision: "No, reproduction is missing.", status: "decided" },
+    { question: "Can ESC-122 start?", decision: "No, the severity rule is unanswered.", status: "decided" },
+    { question: "Can ESC-121 reopen?", decision: "No, a new safe card is required.", status: "decided" },
+    { question: "Can ESC-120 merge?", decision: "Only after exact-commit review and focused verification.", status: "open" },
+  ],
+} satisfies LabContract;

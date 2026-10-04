@@ -1,0 +1,54 @@
+{
+  "title": "Assign Agent Work Without Ownership Conflicts",
+  "competency": "06. Multi-Agent Workflows - Agent-ready work and collision control",
+  "skillPattern": "evidence-first triage, exclusive reservations, isolated execution, and accountable integration",
+  "domain": "An escalation queue where unclear, colliding, and cancelled cards can cause unsafe agent assignments",
+  "mission": "Check the four tasks, assign only ESC-120 with exclusive file ownership, ask another agent to review the fix, and update the board after merging.",
+  "outcome": "ESC-120 is fixed and reviewed, no active tasks compete for files, and the board consistently shows completed, waiting, and cancelled work.",
+  "entities": [
+    "agent-ready card and state history",
+    "requested path and active reservation",
+    "blocker and cancellation reason",
+    "isolated lane commit and focused check",
+    "review decision, merge commit, and control commit"
+  ],
+  "seededDefects": [
+    "a needs-info card owns workflowApi.ts without a reproduction",
+    "ESC-120 and blocked ESC-122 both reserve scoring.ts",
+    "a cancelled export card still owns exportApi.ts",
+    "inherited Critical severity is reduced to the child's declared Low value",
+    "the original verifier trusts board declarations without checking Git or product behavior"
+  ],
+  "verificationGates": [
+    "protected inherited-severity source and rendering acceptance tests",
+    "exact card states, histories, blockers, released reservations, and board mirrors",
+    "one-parent lane history, fixed path ownership, commit trailers, and hashed output",
+    "reviewed lane content preserved in a no-ff integration merge",
+    "exact control commit followed only by evidence changes",
+    "npm run verify:exercise checks protected inputs, implementation quality, and required submission evidence."
+  ],
+  "agentWorkflow": [
+    "Use subagent-driven-development with one implementation agent and a different reviewing agent.",
+    "Check each task and record why only ESC-120 can start.",
+    "Reserve ESC-120's files and give its agent the requirements and check command on a separate branch.",
+    "Review the exact implementation commit, its test, and its check result.",
+    "Merge the accepted change, update all board records, and release completed file reservations.",
+    "Record the before and after results, seal the committed evidence, and capture final verification."
+  ],
+  "workingDeliverables": [
+    "A fixed inherited-severity implementation and lane-owned regression test.",
+    "Synchronized structured and rendered Kanban board data.",
+    "Updated ownership map and integration log.",
+    "Machine-readable control-plane evidence and hashed command output.",
+    "An inspectable lane, merge, control, and evidence history.",
+    "evidence/comparison.md",
+    "Actual prompts, agent sessions, skill provenance, and sealed command evidence."
+  ],
+  "masterySignals": [
+    "Readiness is proven before assignment instead of inferred from a label.",
+    "Blocked, unclear, and cancelled work cannot hold active reservations.",
+    "One agent owns the feature lane while one human remains accountable for review and integration.",
+    "Terminal and unresolved cards remain visible with complete histories.",
+    "Automated verification detects board drift, illegal scope, fabricated evidence, and hidden integration edits."
+  ]
+}

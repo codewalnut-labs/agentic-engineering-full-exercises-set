@@ -1,0 +1,92 @@
+{
+  "name": "Resolve Release Risks with Specialist Reviews",
+  "mode": "observation",
+  "kind": "specialist",
+  "requiredSkills": [
+    {
+      "name": "dispatching-parallel-agents",
+      "source": "https://github.com/obra/superpowers"
+    }
+  ],
+  "artifacts": [
+    "evidence/review-cycle.json",
+    "evidence/decision-log.json",
+    "evidence/specialists/security-before.md",
+    "evidence/specialists/security-after.md",
+    "evidence/specialists/accessibility-before.md",
+    "evidence/specialists/accessibility-after.md",
+    "evidence/specialists/performance-before.md",
+    "evidence/specialists/performance-after.md",
+    "evidence/specialists/testability-before.md",
+    "evidence/specialists/testability-after.md",
+    "evidence/commands/security-before.txt",
+    "evidence/commands/security-after.txt",
+    "evidence/commands/accessibility-before.txt",
+    "evidence/commands/accessibility-after.txt",
+    "evidence/commands/performance-before.txt",
+    "evidence/commands/performance-after.txt",
+    "evidence/commands/testability-before.txt",
+    "evidence/commands/testability-after.txt",
+    "evidence/performance-before.json",
+    "evidence/performance-after.json",
+    "evidence/integration.md",
+    "evidence/before.md",
+    "evidence/after.md",
+    "evidence/comparison.md",
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/agent-sessions.json"
+  ],
+  "artifactDirectories": [
+    "evidence/sessions",
+    "evidence/prompts"
+  ],
+  "commandArtifacts": [
+    {
+      "path": "evidence/commands/security-before.txt",
+      "command": "npm run review:security",
+      "exit_code": 1
+    },
+    {
+      "path": "evidence/commands/security-after.txt",
+      "command": "npm run review:security",
+      "exit_code": 0
+    },
+    {
+      "path": "evidence/commands/accessibility-before.txt",
+      "command": "npm run review:accessibility",
+      "exit_code": 1
+    },
+    {
+      "path": "evidence/commands/accessibility-after.txt",
+      "command": "npm run review:accessibility",
+      "exit_code": 0
+    },
+    {
+      "path": "evidence/commands/performance-before.txt",
+      "command": "npm run review:performance",
+      "exit_code": 1
+    },
+    {
+      "path": "evidence/commands/performance-after.txt",
+      "command": "npm run review:performance",
+      "exit_code": 0
+    },
+    {
+      "path": "evidence/commands/testability-before.txt",
+      "command": "npm run review:testability",
+      "exit_code": 1
+    },
+    {
+      "path": "evidence/commands/testability-after.txt",
+      "command": "npm run review:testability",
+      "exit_code": 0
+    }
+  ],
+  "captureCommands": [
+    "review:security",
+    "review:accessibility",
+    "review:performance",
+    "review:testability"
+  ]
+}
