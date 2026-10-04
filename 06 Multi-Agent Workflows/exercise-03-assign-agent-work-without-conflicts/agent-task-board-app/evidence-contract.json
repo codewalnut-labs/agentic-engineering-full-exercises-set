@@ -1,0 +1,48 @@
+{
+  "name": "Assign Agent Work Without Ownership Conflicts",
+  "mode": "observation",
+  "kind": "assignment",
+  "requiredSkills": [
+    {
+      "name": "subagent-driven-development",
+      "source": "https://github.com/obra/superpowers"
+    }
+  ],
+  "artifacts": [
+    "docs/agent-board.json",
+    "docs/agent-board.md",
+    "docs/ownership-map.md",
+    "docs/integration-log.md",
+    "evidence/control-plane.json",
+    "evidence/completed-lane.md",
+    "evidence/commands/esc-120.txt",
+    "evidence/commands/board.txt",
+    "evidence/before.md",
+    "evidence/after.md",
+    "evidence/comparison.md",
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/agent-sessions.json",
+    "evidence/assignment.json"
+  ],
+  "artifactDirectories": [
+    "evidence/sessions",
+    "evidence/prompts"
+  ],
+  "commandArtifacts": [
+    {
+      "path": "evidence/commands/esc-120.txt",
+      "command": "npm run feature:verify",
+      "exit_code": 0
+    },
+    {
+      "path": "evidence/commands/board.txt",
+      "command": "npm run board:verify",
+      "exit_code": 0
+    }
+  ],
+  "captureCommands": [
+    "feature:verify",
+    "board:verify"
+  ]
+}

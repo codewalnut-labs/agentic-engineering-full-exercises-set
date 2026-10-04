@@ -50,6 +50,15 @@ for (const relative of challengeReadmes) {
   }
 }
 const requiredArtifacts = [
+  "06 Multi-Agent Workflows/scripts/multi-agent-evidence.mjs",
+  "06 Multi-Agent Workflows/scripts/multi-agent-evidence.test.mjs",
+  "06 Multi-Agent Workflows/scripts/capture-command.mjs",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/docs/setup.md",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/parallel-feature-app/evidence-contract.json",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/docs/setup.md",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/specialist-review-app/evidence-contract.json",
+  "06 Multi-Agent Workflows/exercise-03-assign-agent-work-without-conflicts/docs/setup.md",
+  "06 Multi-Agent Workflows/exercise-03-assign-agent-work-without-conflicts/agent-task-board-app/evidence-contract.json",
   "05 Skill Packaging/scripts/packaging-evidence.mjs",
   "05 Skill Packaging/scripts/packaging-evidence.test.mjs",
   "05 Skill Packaging/exercise-01-build-a-reusable-agent-skill/release-notes-app/evidence-contract.json",
@@ -128,31 +137,31 @@ const requiredArtifacts = [
   "05 Skill Packaging/exercise-03-prove-a-skill-is-ready-to-share/skill-benchmark-app/challenge-integrity.json",
   "09 Code Review/exercise-01-security-and-a11y-review-gauntlet/fixtures/review-target.bundle",
   "09 Code Review/exercise-02-diff-triage-with-fresh-agent/fixtures/review-target.bundle",
-  "06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/submission-contract.json",
-  "06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/docs/evidence-template.md",
-  "06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/docs/integration-contract.md",
-  "06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/acceptance/lane-a.saved-filters.test.tsx",
-  "06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/acceptance/lane-b.sla-risk.test.tsx",
-  "06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/acceptance/lane-c.evidence-export.test.tsx",
-  "06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/scripts/worktree-verification.mjs",
-  "06 Multi-Agent Workflows/exercise-01-parallel-worktree-feature-split/worktree-feature-app/scripts/test-worktree-verifier.mjs",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/nfr-swarm-app/submission-contract.json",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/docs/evidence-template.md",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/docs/remediation-contract.md",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/nfr-swarm-app/acceptance/security.review.test.tsx",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/nfr-swarm-app/acceptance/accessibility.review.test.tsx",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/nfr-swarm-app/acceptance/performance.review.test.ts",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/nfr-swarm-app/acceptance/testability.review.test.ts",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/nfr-swarm-app/scripts/measure-performance.mjs",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/nfr-swarm-app/scripts/specialist-review-verification.mjs",
-  "06 Multi-Agent Workflows/exercise-02-specialist-subagent-nfr-review/nfr-swarm-app/scripts/test-specialist-review-verifier.mjs",
-  "06 Multi-Agent Workflows/exercise-03-agent-ready-kanban-control-plane/kanban-control-app/submission-contract.json",
-  "06 Multi-Agent Workflows/exercise-03-agent-ready-kanban-control-plane/docs/evidence-template.md",
-  "06 Multi-Agent Workflows/exercise-03-agent-ready-kanban-control-plane/kanban-control-app/acceptance/esc-120.inherited-severity.test.tsx",
-  "06 Multi-Agent Workflows/exercise-03-agent-ready-kanban-control-plane/kanban-control-app/scripts/board-verification.mjs",
-  "06 Multi-Agent Workflows/exercise-03-agent-ready-kanban-control-plane/kanban-control-app/scripts/control-plane-verification.mjs",
-  "06 Multi-Agent Workflows/exercise-03-agent-ready-kanban-control-plane/kanban-control-app/scripts/run-feature-check.mjs",
-  "06 Multi-Agent Workflows/exercise-03-agent-ready-kanban-control-plane/kanban-control-app/scripts/test-control-plane-verifier.mjs",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/parallel-feature-app/submission-contract.json",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/docs/evidence-template.md",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/docs/integration-contract.md",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/parallel-feature-app/acceptance/lane-a.saved-filters.test.tsx",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/parallel-feature-app/acceptance/lane-b.sla-risk.test.tsx",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/parallel-feature-app/acceptance/lane-c.evidence-export.test.tsx",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/parallel-feature-app/scripts/worktree-verification.mjs",
+  "06 Multi-Agent Workflows/exercise-01-integrate-parallel-agent-features/parallel-feature-app/scripts/test-worktree-verifier.mjs",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/specialist-review-app/submission-contract.json",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/docs/evidence-template.md",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/docs/remediation-contract.md",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/specialist-review-app/acceptance/security.review.test.tsx",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/specialist-review-app/acceptance/accessibility.review.test.tsx",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/specialist-review-app/acceptance/performance.review.test.ts",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/specialist-review-app/acceptance/testability.review.test.ts",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/specialist-review-app/scripts/measure-performance.mjs",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/specialist-review-app/scripts/specialist-review-verification.mjs",
+  "06 Multi-Agent Workflows/exercise-02-resolve-risks-with-specialist-reviews/specialist-review-app/scripts/test-specialist-review-verifier.mjs",
+  "06 Multi-Agent Workflows/exercise-03-assign-agent-work-without-conflicts/agent-task-board-app/submission-contract.json",
+  "06 Multi-Agent Workflows/exercise-03-assign-agent-work-without-conflicts/docs/evidence-template.md",
+  "06 Multi-Agent Workflows/exercise-03-assign-agent-work-without-conflicts/agent-task-board-app/acceptance/esc-120.inherited-severity.test.tsx",
+  "06 Multi-Agent Workflows/exercise-03-assign-agent-work-without-conflicts/agent-task-board-app/scripts/board-verification.mjs",
+  "06 Multi-Agent Workflows/exercise-03-assign-agent-work-without-conflicts/agent-task-board-app/scripts/control-plane-verification.mjs",
+  "06 Multi-Agent Workflows/exercise-03-assign-agent-work-without-conflicts/agent-task-board-app/scripts/run-feature-check.mjs",
+  "06 Multi-Agent Workflows/exercise-03-assign-agent-work-without-conflicts/agent-task-board-app/scripts/test-control-plane-verifier.mjs",
   "07 Docs & Diagrams/exercise-01-reverse-engineer-sequence-diagram/docs/legacy-workflow-description.md",
   "07 Docs & Diagrams/exercise-01-reverse-engineer-sequence-diagram/docs/diagram-contract.md",
   "07 Docs & Diagrams/exercise-01-reverse-engineer-sequence-diagram/docs/evidence-template.md",
@@ -331,9 +340,23 @@ for (const relative of exercisePackages) {
     const submissionContract = JSON.parse(readFileSync(submissionContractPath, "utf8"));
     const requiredPaths = new Set((submissionContract.requiredFiles ?? []).map((item) => item.path));
     const submissionScripts = manifest.scripts["verify:submission"] + "\n" + files.filter((file) => file.startsWith(path.join(project, "scripts") + path.sep) && file.endsWith(".mjs")).map((file) => readFileSync(path.join(root, file), "utf8")).join("\n");
-    const requiresComparableEvidence = !["observation", "handover"].includes(submissionContract.evidenceMode) && ["evidence/before.md", "evidence/after.md", "evidence/comparison.md"].every((required) => requiredPaths.has(required));
+    const requiresComparableEvidence = !["observation", "handover", "workflow"].includes(submissionContract.evidenceMode) && ["evidence/before.md", "evidence/after.md", "evidence/comparison.md"].every((required) => requiredPaths.has(required));
     if (requiresComparableEvidence) {
       assert.ok(submissionScripts.includes("comparable-evidence.mjs"), `${relative} requires matched before and after evidence but does not call the shared verifier`);
+    }
+    if (submissionContract.evidenceMode === "workflow") {
+      assert.ok(manifest.scripts["verify:submission"].includes("multi-agent-evidence.mjs"), relative + " must verify workflow evidence");
+      const evidenceContract = JSON.parse(readFileSync(path.join(root, project, "evidence-contract.json"), "utf8"));
+      assert.equal(evidenceContract.mode, "observation");
+      assert.ok(manifest.scripts["evidence:verify"].includes("workflow:verify") && !manifest.scripts["evidence:verify"].includes("test:submission"), relative + " must capture workflow checks before requiring the final capture");
+      const exerciseRoot = path.dirname(path.join(root, project));
+      const readme = readFileSync(path.join(exerciseRoot, "README.md"), "utf8");
+      const setup = readFileSync(path.join(exerciseRoot, "docs/setup.md"), "utf8");
+      const evidence = readFileSync(path.join(exerciseRoot, "docs/evidence-template.md"), "utf8");
+      for (const artifact of [...evidenceContract.artifacts, "evidence/manifest.json", "evidence/commands/verify.txt"]) assert.ok(requiredPaths.has(artifact), relative + " does not require " + artifact);
+      for (const skill of evidenceContract.requiredSkills) assert.ok(readme.includes(skill.name) && setup.includes(skill.name), relative + " must name its workflow skills");
+      for (const artifact of ["evidence/skill-use.md", "evidence/skill-session.txt", "evidence/agent-sessions.json"]) assert.ok(evidence.includes(artifact), relative + " must explain " + artifact);
+      for (const helper of ["../../scripts/multi-agent-evidence.mjs", "../../scripts/capture-command.mjs", "../../../scripts/capture-verification.mjs", "../../../scripts/context-document-evidence.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
     }
     if (["observation", "handover"].includes(submissionContract.evidenceMode)) {
       assert.ok(submissionScripts.includes("context-document-evidence.mjs"), `${relative} must verify its observation evidence`);

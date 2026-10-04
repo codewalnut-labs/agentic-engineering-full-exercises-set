@@ -1,0 +1,134 @@
+{
+  "name": "Integrate Features Built by Parallel Agents",
+  "root": "..",
+  "requiredFiles": [
+    {
+      "path": "evidence/lane-handoffs.json",
+      "validJson": true,
+      "includeAll": [
+        "schema_version",
+        "base_sha",
+        "commit_sha",
+        "shared_requests",
+        "output_sha256"
+      ]
+    },
+    {
+      "path": "evidence/integration.json",
+      "validJson": true,
+      "includeAll": [
+        "untrusted_handoff_review",
+        "UNTRUSTED-01",
+        "detected_issues",
+        "merge_order",
+        "merge_commits",
+        "shared_commit_sha",
+        "product_head"
+      ]
+    },
+    {
+      "path": "evidence/integration.md",
+      "minCharacters": 300,
+      "includeAll": [
+        "untrusted handoff",
+        "lane review",
+        "shared request",
+        "merge order",
+        "shared-type",
+        "final check",
+        "cleanup",
+        "rollback"
+      ]
+    },
+    {
+      "path": "evidence/worktree-list-before.txt",
+      "minCharacters": 300,
+      "includeAll": [
+        "lane/saved-filters",
+        "lane/sla-risk",
+        "lane/evidence-export"
+      ]
+    },
+    {
+      "path": "evidence/worktree-list-after.txt",
+      "minCharacters": 80,
+      "excludeAll": [
+        "lane/saved-filters",
+        "lane/sla-risk",
+        "lane/evidence-export"
+      ]
+    },
+    {
+      "path": "evidence/commands/lane-a.txt",
+      "minCharacters": 80,
+      "includeAll": [
+        "pass"
+      ]
+    },
+    {
+      "path": "evidence/commands/lane-b.txt",
+      "minCharacters": 80,
+      "includeAll": [
+        "pass"
+      ]
+    },
+    {
+      "path": "evidence/commands/lane-c.txt",
+      "minCharacters": 80,
+      "includeAll": [
+        "pass"
+      ]
+    },
+    {
+      "path": "evidence/commands/integrated.txt",
+      "minCharacters": 80,
+      "includeAll": [
+        "pass"
+      ]
+    },
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/agent-sessions.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ],
+  "requiredDirectories": [
+    "evidence/commands",
+    "evidence/sessions",
+    "evidence/prompts"
+  ],
+  "evidenceMode": "workflow"
+}

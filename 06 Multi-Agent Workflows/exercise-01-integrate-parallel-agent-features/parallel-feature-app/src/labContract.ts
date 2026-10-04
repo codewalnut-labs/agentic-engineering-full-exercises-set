@@ -1,0 +1,67 @@
+export interface LabContract {
+  title: string;
+  competency: string;
+  domain: string;
+  mission: string;
+  outcome: string;
+  entities: string[];
+  seededDefects: string[];
+  verificationGates: string[];
+  agentWorkflow: string[];
+  workingDeliverables: string[];
+  masterySignals: string[];
+}
+
+export const labContract: LabContract = {
+  "title": "Integrate Features Built by Parallel Agents",
+  "competency": "06. Multi-Agent Workflows - Parallel agents on isolated tasks",
+  "domain": "A work queue application with three product changes that need isolated implementation and one shared-type integration point",
+  "mission": "Deliver saved filters, due-today risk, and evidence export through three real Git worktrees while preserving independent verification and inspectable integration history.",
+  "outcome": "Three lane commits remain independently reviewable, their shared contracts are promoted once by the integration owner, and the final product passes protected acceptance tests.",
+  "entities": [
+    "common base SHA",
+    "linked worktree and lane branch",
+    "owned path and shared-type request",
+    "lane handoff and verification output",
+    "ordered merge commit and product head"
+  ],
+  "seededDefects": [
+    "saved-filter and evidence-export work both need new shared types but do not own src/types.ts",
+    "due-today risk, saved filters, and evidence export are absent from the starter application",
+    "a supplied ready-to-merge handoff makes claims that do not match its resolved commit or evidence",
+    "declared lane evidence can drift from the actual Git parents, paths, branches, and output files"
+  ],
+  "verificationGates": [
+    "protected focused acceptance test for each lane",
+    "mandatory rejection of the supplied invalid handoff with Git-backed proof",
+    "Git history, branch, ownership, trailer, handoff, output-hash, and worktree audit",
+    "ordered B, A, C no-ff merge audit with lane blob preservation",
+    "single shared-type commit and complete integrated acceptance suite",
+    "linked-worktree cleanup and repository checks",
+    "npm run verify:exercise checks protected inputs, implementation quality, and required submission evidence."
+  ],
+  "agentWorkflow": [
+    "Use dispatching-parallel-agents and using-git-worktrees with fresh bounded agent sessions and retained raw transcripts.",
+    "Record one clean base SHA and create the three required lane branches in linked worktrees.",
+    "Give each lane agent only its task, owned paths, shared request, and focused verification command.",
+    "Reject the supplied invalid handoff, then review one independently tested commit and evidence-backed handoff from every lane.",
+    "Merge B, A, and C with no-ff, then promote both shared contracts in one integration commit.",
+    "Run integrated checks, verify the submission against Git, and remove the linked worktrees.",
+    "Record baseline and verified outcomes, seal committed evidence, and capture final verification."
+  ],
+  "workingDeliverables": [
+    "Three lane branches, linked worktrees, one-parent commits, and lane-owned tests.",
+    "Saved filters, due-today risk, and JSON evidence export in the integrated application.",
+    "Machine-readable lane handoffs, integration record, command outputs, and worktree captures.",
+    "Integration review covering conflicts, risk, cleanup, and rollback.",
+    "evidence/comparison.md",
+    "Actual prompts, agent sessions, skill provenance, and sealed command evidence."
+  ],
+  "masterySignals": [
+    "All lane commits share one parent and change only their fixed ownership paths.",
+    "Each lane stays independently testable and requests shared contracts without editing src/types.ts.",
+    "No-ff merges preserve lane commits and content in the required B, A, C order.",
+    "One shared-type commit resolves both requests without hiding unrelated work.",
+    "Captured evidence matches Git history and passing command output byte for byte."
+  ]
+};
