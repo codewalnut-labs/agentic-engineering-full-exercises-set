@@ -1,0 +1,32 @@
+{
+  "algorithm": "sha256-normalized-lf",
+  "protectedFiles": {
+    "../../../scripts/run-clean-verification.mjs": "9b17cbb8865a642a7789113c145be88c6bb965bc2d8c024b82202e8ae85bf368",
+    "../../../scripts/run-vite-build.mjs": "b7901ed4f770e6537e80f864392c8c1de841b5c97fa8993246c5df7a86d5d415",
+    "../../../scripts/verify-protected-inputs.mjs": "d99346d9a84651bcb654d07d1b5d131d39d5f3b703ee9614db4eafc86cb4d96c",
+    "../../../scripts/verify-submission-contract.mjs": "5c34aab86313eeb825b19c6ceabc8afbaf65cce3d1cde325bdea7a9739e23ca4",
+    "../README.md": "057edf17184d9bd036627f3f68d49b47ce65f5ddb44c2789d4aaf2be9d767ae2",
+    "../docs/catalog-boundaries.md": "bf1b1db8effeadd2119d3786f37e58455a40d776646951a34177bfc31016a5e9",
+    "../docs/evidence-template.md": "a9c760cee3c7431618b0f77f5091d932a3d350b20ed573d63ac700a11fd2ca67",
+    "evals/trigger-evals.json": "3402a39f267ac68a2471471958cb50480e2bf8e1e04f343449eec3402a9f195c",
+    "fixtures/change-review-baseline/SKILL.md": "09cfd1c9a98db7e0e13b7d465449812b57b067a2453a3f7db4b199e311fb9c6a",
+    "lab-contract.json": "39a36c1bfbd4c662bc3047d6d6ce4b4ac6dffa1264c5526b320193a6669cbbb3",
+    "package.json": "1765bf1556331d02fe0d9a3da9a6a0823c7ad77012d39ca876cc74da1df51aaf",
+    "scripts/score-trigger-results.mjs": "adddc2689cb18b0eda714cd9384e94205242d831eafe33d28022c7436749e911",
+    "scripts/test-trigger-evaluation.mjs": "dd598a1104d07ac1122d23610f0692efee251e22e4387ebf96c5772b1a3829d5",
+    "scripts/trigger-evaluation.mjs": "e184322a5b651da1aaba4d7b1cccadc9dca2865d7ef011ef5252128a166f56d0",
+    "scripts/validate-change-review-skill.mjs": "5a202ad939e445df3a97fc174410074b284c58be556a7b828cff00e8d9d0f557",
+    "scripts/validate-trigger-fixtures.mjs": "87aa16fb242e09c1857975c1ec4ac244ab57fc3273bdd30a664a4c3aa803238e",
+    "scripts/verify-trigger-submission.mjs": "ae85a2a1f023f532bdb76331acb2d7422bf95d6dd34e1241719f7eb7152b2f8d",
+    "skills/incident-summary/SKILL.md": "ff2b1e900f33c52c799c176aef9525dbfd049d71000bb3cbf2de9d9fe6eb1b7c",
+    "skills/release-notes/SKILL.md": "18b970797bf177bacf96f98857ce7fe309df75d5716c6362bf993d3ba71e2fd3",
+    "../docs/setup.md": "1e832ac1dc0f8e5ce44ab3c6c3cce9961a36f2c57d4b44c7188a50b370484cde",
+    "evidence-contract.json": "ca49a6e024bf3774440c0fe3c7d24a115da6325cdc9f6b6f32ff1e8a38c11930",
+    "../../.gitattributes": "2ac215a61df4e2c725e7e76b63a05b6a0116a924eef9a1cc0b1f6bb3d8cab00b",
+    "../../scripts/packaging-evidence.mjs": "90c08664deb843e24a2550278dc9768dcc9efac9a2cdac9d099418d95f295078",
+    "../../scripts/packaging-evidence.test.mjs": "2e499e4ea6cc78c9fb961c986bf5318211cee2bd4cc1b2f47c4b6fff24107ccc",
+    "../../../scripts/context-document-evidence.mjs": "50cc485c0ec0649c283e3cbb91f868a609c6af2bc0aed3cbb552d6b9f4ef3133",
+    "../../../scripts/capture-verification.mjs": "857bf77e3359e1e1fe077512e4278045ad90c8b2b4ac1065df23bf1afdfc60e4",
+    "scripts/adoption-gate.mjs": "59c672fe3302e27d0ade055849f934a9998d6247e74a922c17eda448bddc70e8"
+  }
+}

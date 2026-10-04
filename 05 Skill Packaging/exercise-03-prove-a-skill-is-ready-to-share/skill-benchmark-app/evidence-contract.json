@@ -1,0 +1,29 @@
+{
+  "name": "Prove an Agent Skill Is Ready to Share",
+  "mode": "observation",
+  "requiredSkills": [
+    {
+      "name": "skill-creator",
+      "source": "https://github.com/anthropics/skills"
+    }
+  ],
+  "artifacts": [
+    "evidence/before.md",
+    "evidence/after.md",
+    "evidence/comparison.md",
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/benchmark.json",
+    "evidence/benchmark.md",
+    "evidence/analysis.md",
+    "evidence/decision.json"
+  ],
+  "artifactDirectories": [
+    "benchmark-workspace"
+  ],
+  "optionalArtifacts": [
+    "evidence/package-manifest.json",
+    "dist/incident-summary.skill"
+  ],
+  "kind": "benchmark"
+}

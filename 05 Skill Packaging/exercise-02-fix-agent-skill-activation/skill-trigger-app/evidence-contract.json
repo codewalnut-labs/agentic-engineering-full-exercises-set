@@ -1,0 +1,26 @@
+{
+  "name": "Make an Agent Skill Activate for the Right Requests",
+  "mode": "observation",
+  "requiredSkills": [
+    {
+      "name": "skill-creator",
+      "source": "https://github.com/anthropics/skills"
+    }
+  ],
+  "artifacts": [
+    "evidence/before.md",
+    "evidence/after.md",
+    "evidence/comparison.md",
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/before-results.json",
+    "evidence/after-results.json",
+    "evidence/trigger-analysis.md",
+    "evidence/decision.json"
+  ],
+  "artifactDirectories": [
+    "evidence/routing"
+  ],
+  "optionalArtifacts": [],
+  "kind": "activation"
+}

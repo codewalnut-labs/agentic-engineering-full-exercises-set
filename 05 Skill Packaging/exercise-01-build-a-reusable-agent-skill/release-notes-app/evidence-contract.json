@@ -1,0 +1,29 @@
+{
+  "name": "Turn a Repeated Task into a Reusable Agent Skill",
+  "mode": "observation",
+  "requiredSkills": [
+    {
+      "name": "skill-creator",
+      "source": "https://github.com/anthropics/skills"
+    }
+  ],
+  "artifacts": [
+    "evidence/before.md",
+    "evidence/after.md",
+    "evidence/comparison.md",
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/before-output.md",
+    "evidence/after-output.md",
+    "evidence/hotfix-output.md",
+    "evidence/internal-output.md",
+    "evidence/resource-usage.json",
+    "evidence/eval-results.json"
+  ],
+  "artifactDirectories": [
+    "release-notes-app/.agents/skills/release-notes",
+    "evidence/release-sessions"
+  ],
+  "optionalArtifacts": [],
+  "kind": "construction"
+}
