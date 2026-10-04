@@ -1,0 +1,67 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/pr-summary.md",
+      "type": "markdown",
+      "headings": [
+        "Change",
+        "Checks",
+        "Evidence map",
+        "Decision",
+        "Risk and rollback"
+      ]
+    },
+    {
+      "path": "evidence/review-response.md",
+      "type": "markdown",
+      "headings": [
+        "Reviewer comment",
+        "Response",
+        "Evidence",
+        "PR decision"
+      ]
+    }
+  ],
+  "topics": [
+    "flag-boundary",
+    "side-effects",
+    "atomic-rollback"
+  ],
+  "sourceRoots": [
+    "feature-rollback-app/src/rollout/",
+    "feature-rollback-app/scripts/",
+    "docs/",
+    "evidence/enabled.json",
+    "evidence/disabled.json",
+    "evidence/provider-error.json",
+    "evidence/rollback-drill",
+    "evidence/commands/checks.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "verification-before-completion",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/checks.txt",
+    "evidence/enabled.json",
+    "evidence/disabled.json",
+    "evidence/provider-error.json",
+    "evidence/rollback-drill.json",
+    "evidence/rollback-drill.md"
+  ],
+  "sourceArtifact": "evidence/enabled.json",
+  "sourceArtifacts": [
+    "evidence/enabled.json",
+    "evidence/disabled.json",
+    "evidence/provider-error.json",
+    "evidence/rollback-drill.json"
+  ],
+  "proofScript": "rollout:verify",
+  "reviewDecision": "READY FOR REVIEW",
+  "reviewCommentId": "ROLLBACK-01"
+}

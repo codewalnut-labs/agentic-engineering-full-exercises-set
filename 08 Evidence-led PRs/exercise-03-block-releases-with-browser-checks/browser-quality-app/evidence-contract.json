@@ -1,0 +1,70 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/pr-summary.md",
+      "type": "markdown",
+      "headings": [
+        "Change",
+        "Checks",
+        "Evidence map",
+        "Decision",
+        "Risk and rollback"
+      ]
+    },
+    {
+      "path": "evidence/review-response.md",
+      "type": "markdown",
+      "headings": [
+        "Reviewer comment",
+        "Response",
+        "Evidence",
+        "PR decision"
+      ]
+    }
+  ],
+  "topics": [
+    "browser-measurements",
+    "accessible-action",
+    "failure-controls"
+  ],
+  "sourceRoots": [
+    "browser-quality-app/src/",
+    "browser-quality-app/scripts/",
+    "docs/",
+    "fixtures/",
+    "evidence/raw/",
+    "evidence/quality-summary.json",
+    "evidence/quality-report.md",
+    "evidence/commands/checks.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "verification-before-completion",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/checks.txt",
+    "evidence/raw/lighthouse/run-1.json",
+    "evidence/raw/lighthouse/run-2.json",
+    "evidence/raw/lighthouse/run-3.json",
+    "evidence/raw/axe.json",
+    "evidence/capture-manifest.json",
+    "evidence/capture-complete.json",
+    "evidence/quality-summary.json",
+    "evidence/quality-report.md"
+  ],
+  "sourceArtifact": "evidence/quality-summary.json",
+  "sourceArtifacts": [
+    "evidence/quality-summary.json",
+    "evidence/raw/axe.json",
+    "evidence/capture-manifest.json",
+    "evidence/capture-complete.json"
+  ],
+  "proofScript": "quality:verify",
+  "reviewDecision": "READY FOR REVIEW",
+  "reviewCommentId": "QUALITY-01"
+}
