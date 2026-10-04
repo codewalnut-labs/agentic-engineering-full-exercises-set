@@ -29,6 +29,7 @@ Use `## Changes`, `## Verified`, and `## Remaining questions` in `evidence/compa
 Write `evidence/pr-summary.md` using:
 
 ```markdown
+Title: <clear problem or outcome for the PR>
 Source SHA: <implementation SHA>
 
 ## Change
@@ -38,6 +39,11 @@ Source SHA: <implementation SHA>
 <Commands, results, artifact links, and failed checks.>
 Reproduce: <exact commands from the starter app directory>
 
+## Evidence map
+| PR claim | Changed file or diff | Exact check and exit code | Raw proof |
+| --- | --- | --- | --- |
+| <Important claim> | <Link and relevant lines> | <Command and observed exit code> | <Artifact link and relevant lines> |
+
 ## Decision
 Decision: READY FOR REVIEW
 <Why this evidence supports that recommendation.>
@@ -46,7 +52,33 @@ Decision: READY FOR REVIEW
 <Residual risks, reviewer action, and the concrete rollback or recovery step.>
 ```
 
-Paste this summary into the focused PR body and add links to the actual hosted evidence where available. The automated contract checks structure and code binding; reviewers assess whether the claims and recommendation are justified.
+Use the title for your PR and paste the remaining summary into its body. Link important claims to the implementation diff and raw proof in the Evidence map. See the [PR review brief](./pr-review-brief.md) for the supplied draft to correct.
+
+## Reviewer response
+
+Write `evidence/review-response.md` for the supplied comment:
+
+```markdown
+Reviewed implementation commit: <same full implementation SHA as the summary>
+Reviewer comment: ROLLBACK-01
+PR decision: READY FOR REVIEW
+
+## Reviewer comment
+<Summarize the supplied comment accurately.>
+
+## Response
+<What you corrected in the PR description or implementation, and why.>
+
+## Evidence
+<Links to the changed files, exact checks, and raw proof that address the comment.>
+
+## PR decision
+<Why the PR stays blocked or is ready for review, including unresolved limitations.>
+```
+
+This is a response to the supplied review scenario; no additional reviewer or agent session is required. Keep actual skill-use records separate from this response.
+
+After local verification, open the PR and add accessible branch or Actions links. Keep post-opening URLs and discussion updates in the hosted body or comments. Local checks verify structure, commit binding, and sealed files; a reviewer checks the actual PR title, body, links, draft status, and whether its claims are justified.
 
 ## Proof to explain
 
@@ -55,6 +87,7 @@ Paste this summary into the focused PR body and add links to the actual hosted e
 - An API error occurs after one attempted call; it returns legacy and emits zero preview telemetry. Do not claim it made no API call.
 - Cite the drill's successful replacement, invalid-input rejection, interruption, concurrency results, and audit metadata.
 - Report actual timing. The 1000 ms budget measures only the successful rollback command.
+- Describe the proposed rollout scope, who operates rollback, its trigger, exact command, and how to verify recovery.
 - Explain remaining production concerns such as provider propagation, monitoring, and removing the flag later.
 
 ## Source citations

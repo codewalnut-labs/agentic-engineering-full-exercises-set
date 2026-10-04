@@ -20,9 +20,9 @@ function fixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "pr-review-evidence-test-"));
   const app = path.join(root, "starter-app");
   const contract = {
-    mode: "observation", outputs: [{ path: "evidence/pr-summary.md", type: "markdown", headings: ["Change", "Checks", "Decision", "Risk and rollback"] }],
+    mode: "observation", outputs: [{ path: "evidence/pr-summary.md", type: "markdown", headings: ["Change", "Checks", "Evidence map", "Decision", "Risk and rollback"] }, { path: "evidence/review-response.md", type: "markdown", headings: ["Reviewer comment", "Response", "Evidence", "PR decision"] }],
     topics: ["failed-checks"], sourceRoots: ["starter-app/check.mjs"],
-    sourceArtifact: "evidence/proof.json", sourceArtifacts: ["evidence/proof.json"], proofScript: "pack:verify", reviewDecision: "BLOCKED",
+    sourceArtifact: "evidence/proof.json", sourceArtifacts: ["evidence/proof.json"], proofScript: "pack:verify", reviewDecision: "BLOCKED", reviewCommentId: "FAIL-01",
     requiredSkills: [{ name: "verification-before-completion", source: "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion" }],
     extraEvidence: ["evidence/proof.json", "evidence/commands/checks.txt", "evidence/skill-use.md", "evidence/skill-session.txt"],
   };
@@ -41,11 +41,12 @@ function fixture() {
   git(root, ["add", "."]); git(root, ["commit", "-m", "synthetic implementation"]);
   const sourceSha = git(root, ["rev-parse", "HEAD"]);
   json(root, "evidence/proof.json", { sourceSha, checkExit: 0 });
-  write(root, "evidence/pr-summary.md", `Source SHA: ${sourceSha}\n\n## Change\nThe fixture deliberately represents a blocked product check.\n\n## Checks\nReproduce with npm run pack:verify.\n\n## Decision\nDecision: BLOCKED\n\n## Risk and rollback\nDo not deploy; inspect the failed fixture check.\n`);
+  write(root, "evidence/pr-summary.md", `Title: Preserve the failing check in the PR evidence\nSource SHA: ${sourceSha}\n\n## Change\nThe fixture deliberately represents a blocked product check.\n\n## Checks\nReproduce with npm run pack:verify.\n\n## Evidence map\nThe blocked check is defined in starter-app/check.mjs and recorded in evidence/proof.json.\n\n## Decision\nDecision: BLOCKED\n\n## Risk and rollback\nDo not deploy; inspect the failed fixture check.\n`);
+  write(root, "evidence/review-response.md", "Reviewed implementation commit: " + sourceSha + "\nReviewer comment: FAIL-01\nPR decision: BLOCKED\n\n## Reviewer comment\nMake the failed check visible.\n\n## Response\nThe corrected PR title and body explain the blocked result.\n\n## Evidence\nSee starter-app/check.mjs and evidence/proof.json.\n\n## PR decision\nThe synthetic product check still blocks the PR.\n");
   write(root, "evidence/before.md", `## Conditions\nStarting commit: ${sourceSha}\n\n## Findings\nThe synthetic fixture needs a captured proof record.\n\n## Proof\nInspect the fixture source.\n`);
   write(root, "evidence/after.md", `## Conditions\nImplementation commit: ${sourceSha}\n\n## Findings\nThe synthetic proof is captured for this exact implementation.\n\n## Proof\nSee evidence/commands/checks.txt.\n`);
   write(root, "evidence/comparison.md", "## Changes\nCaptured the proof output.\n\n## Verified\nThe recorder ran the actual fixture command.\n\n## Remaining questions\nThis is a framework fixture, not a native agent run.\n");
-  json(root, "evidence/source-audit.json", { claims: [{ id: "fixture", topic: "failed-checks", status: "supported", reason: "The cited comment identifies the synthetic fixture purpose.", artifact: { path: "evidence/pr-summary.md", line: 4, excerpt: "The fixture deliberately represents a blocked product check." }, sources: [{ path: "starter-app/check.mjs", line: 2, excerpt: "// The fixture deliberately represents a blocked product check." }] }] });
+  json(root, "evidence/source-audit.json", { claims: [{ id: "fixture", topic: "failed-checks", status: "supported", reason: "The cited comment identifies the synthetic fixture purpose.", artifact: { path: "evidence/pr-summary.md", line: 5, excerpt: "The fixture deliberately represents a blocked product check." }, sources: [{ path: "starter-app/check.mjs", line: 2, excerpt: "// The fixture deliberately represents a blocked product check." }] }] });
   write(root, "evidence/skill-session.txt", "Synthetic framework transcript: verification-before-completion was invoked to run the fixture command and inspect its actual output. This tests record validation, not agent behavior.\n");
   write(root, "evidence/skill-use.md", `## verification-before-completion\nSource: ${contract.requiredSkills[0].source}\nRevision: ${"a".repeat(40)}\nInvocation: synthetic framework invocation\nProof: evidence/skill-session.txt:L1-L1\n`);
   return { root, app, contract, sourceSha, cleanup: () => fs.rmSync(root, { recursive: true, force: true }) };
@@ -102,5 +103,22 @@ test("proof recording rejects new uncommitted source and a different HEAD", () =
     git(f.root, ["commit", "--allow-empty", "-m", "different commit"]);
     assert.notEqual(run(f.app, "proof:capture").status, 0);
     assert.ok(!fs.existsSync(path.join(f.root, "evidence/commands/checks.txt")));
+  } finally { f.cleanup(); }
+});
+
+test("reviewer response rejects a stale commit, another comment, and a contradictory decision", () => {
+  const f = fixture();
+  try {
+    const result = run(f.app, "proof:capture"); assert.equal(result.status, 0, result.stderr);
+    const response = fs.readFileSync(path.join(f.root, "evidence/review-response.md"), "utf8");
+    const cases = [
+      [f.sourceSha, "b".repeat(40), /measured implementation commit/],
+      ["Reviewer comment: FAIL-01", "Reviewer comment: QUALITY-01", /supplied comment/],
+      ["PR decision: BLOCKED", "PR decision: READY FOR REVIEW", /review decision/],
+    ];
+    for (const [from, to, expected] of cases) {
+      write(f.root, "evidence/review-response.md", response.replace(from, to));
+      assert.throws(() => validateReviewEvidence(f.root, f.contract), expected);
+    }
   } finally { f.cleanup(); }
 });

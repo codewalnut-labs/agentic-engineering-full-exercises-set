@@ -8,6 +8,8 @@ A **SHA** is a Git commit ID. The starting commit describes the inspected starte
 
 ## Prepare
 
+Read the supplied draft and reviewer comment in the [PR review brief](./pr-review-brief.md). Your submission must correct the PR description and answer that comment using generated proof.
+
 Use the repository's `.nvmrc` version (Node 22.12 or newer within the supported range). From `failed-check-evidence-app/`, run:
 
 ```text
@@ -39,7 +41,7 @@ The exercise workflow is expected to remain red because checkout failed. A green
 npm run evidence:generate -- --sha <implementation-sha>
 ```
 
-4. Write `evidence/pr-summary.md` following the [evidence template](./evidence-template.md). Use the verification skill and capture the focused checks at the implementation commit:
+4. Draft `evidence/pr-summary.md` following the [evidence template](./evidence-template.md). Use the verification skill and capture the focused checks at the implementation commit:
 
 ```text
 npm run proof:capture
@@ -47,7 +49,7 @@ npm run proof:capture
 
 This runs `npm run pack:verify` and records its actual output, code version, timestamps, and exit code in `evidence/commands/checks.txt`. Preserve failed attempts before recapturing; do not type the output by hand.
 
-5. Finish the observations, source audit, and skill record. Commit all evidence artifacts. Seal that committed evidence, then capture final verification:
+5. Finish the corrected PR title and body, Evidence map, and `evidence/review-response.md` using the captured results. Complete the observations, source audit, and skill record. Commit all evidence artifacts. Seal that committed evidence, then capture final verification:
 
 ```text
 npm run evidence:seal
@@ -55,6 +57,7 @@ npm run evidence:capture -- --output ../evidence/commands/verify.txt -- npm run 
 ```
 
 6. Commit `evidence/manifest.json` and `evidence/commands/verify.txt`. Run `npm run verify:exercise`. This final check reads the submitted evidence and uses temporary directories for reproduction.
+7. Follow the [PR review brief](./pr-review-brief.md) to open one focused PR with the corrected title and body. Keep it in draft and add the actual failed Actions run and uploaded artifact links. Check the final diff and accessible links. Approval and merging are not required.
 
 If a check reveals a product change is needed, preserve the failed attempt, commit the repaired implementation, and regenerate all code-bound proof. Do not reuse old proof after changing source. Exclude `node_modules/`, build output, and unrelated changes from the PR.
 

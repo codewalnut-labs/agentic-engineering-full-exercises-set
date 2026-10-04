@@ -7,7 +7,7 @@ const repositoryRoot = path.resolve(import.meta.dirname, "..");
 const prEvidenceHelpers = [
   "../../scripts/pr-review-evidence.mjs", "../../scripts/capture-proof.mjs", "../../scripts/pr-review-evidence.test.mjs",
   "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs",
-  "../docs/setup.md", "../docs/evidence-template.md", "scripts/verify-review-evidence.mjs",
+  "../docs/setup.md", "../docs/evidence-template.md", "../docs/pr-review-brief.md", "scripts/verify-review-evidence.mjs",
 ];
 const additions = new Map([
   ["08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail", ["../fixtures/check-results-multiple-failures.json", ...prEvidenceHelpers]],

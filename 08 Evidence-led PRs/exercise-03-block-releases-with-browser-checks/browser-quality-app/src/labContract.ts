@@ -16,8 +16,8 @@ export const labContract: LabContract = {
   "title": "Block a Release That Fails Browser Quality Checks",
   "competency": "08. Evidence-led PRs",
   "domain": "Production-build Lighthouse and axe evidence used for an enforceable pull-request release decision.",
-  "mission": "Fix the dashboard defects and build a release check that rejects one failing browser run or an axe violation.",
-  "outcome": "A reviewer can reproduce the decision from raw browser reports and see what manual accessibility checks remain.",
+  "mission": "Fix the dashboard defects and prepare a PR whose browser quality decision is reproducible from current raw reports.",
+  "outcome": "A reviewer can reproduce the worst-case decision, confirm evidence covers the PR code, and see the remaining manual accessibility checks.",
   "entities": [
     "source commit",
     "production build",
@@ -30,7 +30,8 @@ export const labContract: LabContract = {
     "The first render is delayed beyond the LCP budget.",
     "An icon-only action has no accessible name.",
     "No executable gate aggregates the worst of three Lighthouse runs.",
-    "Existing evidence can be hand-written and does not prove a failing exit code."
+    "Existing evidence can be hand-written and does not prove a failing exit code.",
+    "The supplied PR description makes unsupported claims that the reviewer challenges."
   ],
   "verificationGates": [
     "Exactly three comparable raw Lighthouse reports meet protected thresholds.",
@@ -41,13 +42,16 @@ export const labContract: LabContract = {
     "npm run verify:exercise checks protected inputs, implementation quality, and required submission evidence."
   ],
   "agentWorkflow": [
+    "Inspect the supplied PR draft and reviewer comment in docs/pr-review-brief.md.",
     "Inspect the starting state and record observed gaps in evidence/before.md.",
     "Inspect the UI, thresholds, gate CLI contract, and baseline reports.",
     "Fix the measured render and accessible-name defects.",
     "Implement Lighthouse configuration and the quality-gate CLI.",
     "Commit the implementation, capture browser evidence, and verify the submission.",
     "Use verification-before-completion to check each PR claim against fresh command output.",
-    "Write the reviewer decision, source citations, and evidence/after.md and evidence/comparison.md."
+    "Write the reviewer decision, source citations, and evidence/after.md and evidence/comparison.md.",
+    "Correct the PR title and body, map claims to the diff and proof, and answer QUALITY-01 in evidence/review-response.md.",
+    "After local verification, open a focused PR, link the evidence, and refresh proof after any implementation change."
   ],
   "workingDeliverables": [
     "Corrected dashboard startup and accessible action.",
@@ -56,12 +60,15 @@ export const labContract: LabContract = {
     "Raw reports, generated summary, comparison, and verification output.",
     "evidence/comparison.md",
     "evidence/before.md and evidence/after.md",
-    "Reviewer summary, skill-use record, source audit, sealed manifest, and actual command captures."
+    "Reviewer summary, skill-use record, source audit, sealed manifest, and actual command captures.",
+    "evidence/review-response.md addressing the supplied comment.",
+    "A focused hosted PR with a corrected title, evidence map, accessible proof, and a supported review decision."
   ],
   "masterySignals": [
     "One failing run cannot be hidden by better runs.",
     "Any axe violation blocks release.",
     "Every reported metric and claim traces to a raw artifact digest.",
-    "A reviewer can reproduce the exact decision from the source commit."
+    "A reviewer can reproduce the exact decision from the source commit.",
+    "PR claims and reviewer responses stay within the scope of the measured evidence."
   ]
 };

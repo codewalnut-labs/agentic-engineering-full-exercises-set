@@ -7,8 +7,19 @@
       "headings": [
         "Change",
         "Checks",
+        "Evidence map",
         "Decision",
         "Risk and rollback"
+      ]
+    },
+    {
+      "path": "evidence/review-response.md",
+      "type": "markdown",
+      "headings": [
+        "Reviewer comment",
+        "Response",
+        "Evidence",
+        "PR decision"
       ]
     }
   ],
@@ -45,5 +56,6 @@
     "evidence/generated/pr-evidence.json"
   ],
   "proofScript": "pack:verify",
-  "reviewDecision": "BLOCKED"
+  "reviewDecision": "BLOCKED",
+  "reviewCommentId": "FAIL-01"
 }

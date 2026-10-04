@@ -5,7 +5,7 @@
     "../../../scripts/context-document-evidence.mjs": "50cc485c0ec0649c283e3cbb91f868a609c6af2bc0aed3cbb552d6b9f4ef3133",
     "../../../scripts/run-clean-verification.mjs": "9b17cbb8865a642a7789113c145be88c6bb965bc2d8c024b82202e8ae85bf368",
     "../../../scripts/run-vite-build.mjs": "b7901ed4f770e6537e80f864392c8c1de841b5c97fa8993246c5df7a86d5d415",
-    "../../../scripts/verify-exercise-contracts.mjs": "a6566013da0001696effbd1f364a82d1d77415dcadc1498f489510b14d3af14d",
+    "../../../scripts/verify-exercise-contracts.mjs": "371e3ea9e9bd445fe4372201ebd342aa762fbcfdee8072f9d931e46cf8e86448",
     "../../../scripts/verify-protected-inputs.mjs": "d99346d9a84651bcb654d07d1b5d131d39d5f3b703ee9614db4eafc86cb4d96c",
     "../../../scripts/verify-submission-contract.mjs": "5c34aab86313eeb825b19c6ceabc8afbaf65cce3d1cde325bdea7a9739e23ca4",
     "../README.md": "fd1538d6e4eaebe4870efa26e5cef040e23af948379295a0b63c2a5f07bc8a9f",

@@ -50,6 +50,9 @@ for (const relative of challengeReadmes) {
   }
 }
 const requiredArtifacts = [
+  "08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail/docs/pr-review-brief.md",
+  "08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off/docs/pr-review-brief.md",
+  "08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks/docs/pr-review-brief.md",
   "08 Evidence-led PRs/scripts/pr-review-evidence.mjs",
   "08 Evidence-led PRs/scripts/pr-review-evidence.test.mjs",
   "08 Evidence-led PRs/scripts/capture-proof.mjs",
@@ -376,6 +379,12 @@ for (const relative of exercisePackages) {
       assert.ok(manifest.scripts["proof:capture"].includes("capture-proof.mjs"), relative + " must capture actual domain proof");
       assert.ok(requiredPaths.has("evidence/commands/checks.txt"), relative + " must retain focused proof output");
       assert.ok(requiredPaths.has("evidence/commands/verify.txt"), relative + " must retain final verification output");
+      assert.ok(requiredPaths.has("evidence/review-response.md"), relative + " must require a reviewer response");
+      assert.ok(proofContract.outputs.some((output) => output.path === "evidence/review-response.md"), relative + " must seal the reviewer response");
+      assert.ok(proofContract.outputs.find((output) => output.path === "evidence/pr-summary.md")?.headings.includes("Evidence map"), relative + " must map PR claims to proof");
+      const reviewBrief = readFileSync(path.resolve(root, project, "../docs/pr-review-brief.md"), "utf8");
+      assert.ok(proofContract.reviewCommentId && reviewBrief.includes(proofContract.reviewCommentId), relative + " must identify its supplied review comment");
+      assert.ok(integrity.protectedFiles["../docs/pr-review-brief.md"], relative + " must protect the review brief");
       for (const helper of ["../../scripts/pr-review-evidence.mjs", "../../scripts/capture-proof.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
       assert.ok(proofContract.extraEvidence.includes("evidence/commands/checks.txt"), relative + " must seal actual proof output");
       assert.ok(!proofContract.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");

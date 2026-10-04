@@ -7,8 +7,19 @@
       "headings": [
         "Change",
         "Checks",
+        "Evidence map",
         "Decision",
         "Risk and rollback"
+      ]
+    },
+    {
+      "path": "evidence/review-response.md",
+      "type": "markdown",
+      "headings": [
+        "Reviewer comment",
+        "Response",
+        "Evidence",
+        "PR decision"
       ]
     }
   ],
@@ -51,5 +62,6 @@
     "evidence/rollback-drill.json"
   ],
   "proofScript": "rollout:verify",
-  "reviewDecision": "READY FOR REVIEW"
+  "reviewDecision": "READY FOR REVIEW",
+  "reviewCommentId": "ROLLBACK-01"
 }

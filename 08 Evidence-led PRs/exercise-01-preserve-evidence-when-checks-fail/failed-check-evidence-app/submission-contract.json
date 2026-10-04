@@ -47,7 +47,22 @@
         "Exit code",
         "Reviewer action",
         "evidence/generated/summary.md",
-        "evidence/generated/artifacts/checkout-smoke.txt"
+        "evidence/generated/artifacts/checkout-smoke.txt",
+        "Title:",
+        "## Evidence map"
+      ]
+    },
+    {
+      "path": "evidence/review-response.md",
+      "minCharacters": 250,
+      "includeAll": [
+        "Reviewed implementation commit:",
+        "Reviewer comment: FAIL-01",
+        "PR decision: BLOCKED",
+        "## Reviewer comment",
+        "## Response",
+        "## Evidence",
+        "## PR decision"
       ]
     },
     {

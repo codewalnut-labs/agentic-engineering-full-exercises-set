@@ -41,7 +41,22 @@
         "## Risk and rollback",
         "Source SHA:",
         "Decision: READY FOR REVIEW",
-        "Reproduce"
+        "Reproduce",
+        "Title:",
+        "## Evidence map"
+      ]
+    },
+    {
+      "path": "evidence/review-response.md",
+      "minCharacters": 250,
+      "includeAll": [
+        "Reviewed implementation commit:",
+        "Reviewer comment: QUALITY-01",
+        "PR decision: READY FOR REVIEW",
+        "## Reviewer comment",
+        "## Response",
+        "## Evidence",
+        "## PR decision"
       ]
     },
     {
