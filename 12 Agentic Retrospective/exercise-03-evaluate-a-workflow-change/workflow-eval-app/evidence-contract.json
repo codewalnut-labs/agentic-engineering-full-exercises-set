@@ -1,0 +1,124 @@
+{
+  "mode": "observation",
+  "study": "workflow",
+  "outputs": [
+    {
+      "path": "evidence/failure-clusters.md",
+      "type": "markdown",
+      "headings": [
+        "Causes",
+        "Workflow changes"
+      ]
+    },
+    {
+      "path": "evidence/adoption.md",
+      "type": "markdown",
+      "headings": [
+        "Decision",
+        "Results",
+        "Limitations"
+      ]
+    }
+  ],
+  "topics": [
+    "trace-causes",
+    "general-workflow",
+    "adoption-decision"
+  ],
+  "sourceRoots": [
+    "docs/",
+    "tasks/",
+    "workflow-eval-app/src/",
+    "workflow-eval-app/scripts/",
+    "workflow-eval-app/workflow/",
+    "evidence/commands/",
+    "evidence/checks/",
+    "evidence/raw/",
+    "evidence/baseline-runs.json",
+    "evidence/candidate-runs.json",
+    "evidence/replay-events.json",
+    "evidence/before-session.txt",
+    "evidence/after-session.txt",
+    "AGENTS.md",
+    ".agent/"
+  ],
+  "requiredSkills": [
+    {
+      "name": "evaluation",
+      "source": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/tree/main/skills/evaluation"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/baseline-runs.json",
+    "evidence/candidate-runs.json",
+    "evidence/benchmark.json",
+    "evidence/history.json",
+    "evidence/before.patch",
+    "evidence/after.patch",
+    "evidence/commands/implementation.txt",
+    "evidence/runner.json",
+    "evidence/raw/baseline-scope-conflict-1.json",
+    "evidence/raw/baseline-scope-conflict-2.json",
+    "evidence/raw/baseline-scope-conflict-3.json",
+    "evidence/raw/baseline-stale-requirement-1.json",
+    "evidence/raw/baseline-stale-requirement-2.json",
+    "evidence/raw/baseline-stale-requirement-3.json",
+    "evidence/raw/baseline-partial-green-test-1.json",
+    "evidence/raw/baseline-partial-green-test-2.json",
+    "evidence/raw/baseline-partial-green-test-3.json",
+    "evidence/raw/baseline-missing-user-choice-1.json",
+    "evidence/raw/baseline-missing-user-choice-2.json",
+    "evidence/raw/baseline-missing-user-choice-3.json",
+    "evidence/raw/baseline-large-context-pack-1.json",
+    "evidence/raw/baseline-large-context-pack-2.json",
+    "evidence/raw/baseline-large-context-pack-3.json",
+    "evidence/raw/baseline-unsupported-completion-1.json",
+    "evidence/raw/baseline-unsupported-completion-2.json",
+    "evidence/raw/baseline-unsupported-completion-3.json",
+    "evidence/raw/baseline-heldout-cross-project-1.json",
+    "evidence/raw/baseline-heldout-cross-project-2.json",
+    "evidence/raw/baseline-heldout-cross-project-3.json",
+    "evidence/raw/baseline-heldout-protected-input-1.json",
+    "evidence/raw/baseline-heldout-protected-input-2.json",
+    "evidence/raw/baseline-heldout-protected-input-3.json",
+    "evidence/raw/candidate-scope-conflict-1.json",
+    "evidence/raw/candidate-scope-conflict-2.json",
+    "evidence/raw/candidate-scope-conflict-3.json",
+    "evidence/raw/candidate-stale-requirement-1.json",
+    "evidence/raw/candidate-stale-requirement-2.json",
+    "evidence/raw/candidate-stale-requirement-3.json",
+    "evidence/raw/candidate-partial-green-test-1.json",
+    "evidence/raw/candidate-partial-green-test-2.json",
+    "evidence/raw/candidate-partial-green-test-3.json",
+    "evidence/raw/candidate-missing-user-choice-1.json",
+    "evidence/raw/candidate-missing-user-choice-2.json",
+    "evidence/raw/candidate-missing-user-choice-3.json",
+    "evidence/raw/candidate-large-context-pack-1.json",
+    "evidence/raw/candidate-large-context-pack-2.json",
+    "evidence/raw/candidate-large-context-pack-3.json",
+    "evidence/raw/candidate-unsupported-completion-1.json",
+    "evidence/raw/candidate-unsupported-completion-2.json",
+    "evidence/raw/candidate-unsupported-completion-3.json",
+    "evidence/raw/candidate-heldout-cross-project-1.json",
+    "evidence/raw/candidate-heldout-cross-project-2.json",
+    "evidence/raw/candidate-heldout-cross-project-3.json",
+    "evidence/raw/candidate-heldout-protected-input-1.json",
+    "evidence/raw/candidate-heldout-protected-input-2.json",
+    "evidence/raw/candidate-heldout-protected-input-3.json"
+  ],
+  "checkCaptures": {
+    "implementation": {
+      "path": "evidence/commands/implementation.txt",
+      "script": "workflow:verify",
+      "shaField": "candidateSha",
+      "markers": [
+        "PASS complete evidence and decision:"
+      ]
+    }
+  },
+  "productionFiles": [
+    "workflow-eval-app/workflow/instructions.md"
+  ]
+}

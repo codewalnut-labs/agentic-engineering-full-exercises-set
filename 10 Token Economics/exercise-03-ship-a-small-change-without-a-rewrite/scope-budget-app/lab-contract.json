@@ -1,0 +1,50 @@
+{
+  "title": "Ship a Small Change Without a Broad Rewrite",
+  "competency": "10. Token Economics - bounded implementation scope",
+  "skillPattern": "Pre-committed minimal-diff budget",
+  "domain": "Single-action design-system variant migration",
+  "mission": "Ship the export variant migration within a pre-declared Git scope budget while preserving legacy actions.",
+  "outcome": "The export change and its test fit the precommitted scope budget while legacy behavior remains unchanged.",
+  "entities": [
+    "pre-change scope plan",
+    "variant helper",
+    "learner regression test",
+    "Git numstat ledger"
+  ],
+  "seededDefects": [
+    "export remains legacy-primary",
+    "declared scope can be self-reported",
+    "shared cleanup is tempting",
+    "unknown legacy fallback is easy to lose"
+  ],
+  "verificationGates": [
+    "Complete source diff: two files and at most 30 changed lines",
+    "Identical learner regression tests on starter and fixed helpers",
+    "Starter identity and source history",
+    "Skill use, source citations, and sealed command evidence",
+    "npm run verify:exercise"
+  ],
+  "agentWorkflow": [
+    "Capture the supplied starter before editing.",
+    "Use test-driven-development for the challenge decisions and retain its actual session.",
+    "Commit the budget plan before making focused source changes.",
+    "Capture checks at the final implementation commit, then commit and seal evidence."
+  ],
+  "workingDeliverables": [
+    "src/migration/exportButton.mjs",
+    "tests/export-button.test.mjs",
+    "evidence/verification.md",
+    "evidence/scope-plan.json",
+    "evidence/scope-plan.md",
+    "evidence/scope-budget.json",
+    "evidence/avoided-work.json",
+    "evidence/before.md, evidence/after.md, and evidence/comparison.md",
+    "Skill session, source audit, and captured checks."
+  ],
+  "masterySignals": [
+    "Scope is agreed before editing.",
+    "Regression tests prove the requested behavior.",
+    "A small diff preserves real neighboring consumers.",
+    "Diff size is reported without inventing token or money savings."
+  ]
+}

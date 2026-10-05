@@ -1,0 +1,71 @@
+{
+  "mode": "observation",
+  "study": "guidance",
+  "outputs": [
+    {
+      "path": "evidence/rule-map.md",
+      "type": "markdown",
+      "headings": [
+        "Repeated corrections",
+        "Guidance",
+        "Exceptions"
+      ]
+    }
+  ],
+  "topics": [
+    "repeated-corrections",
+    "guidance-routing",
+    "measured-effect"
+  ],
+  "sourceRoots": [
+    "docs/",
+    "tasks/",
+    "guidance-eval-app/src/",
+    "guidance-eval-app/scripts/",
+    "guidance-eval-app/workflow/",
+    "evidence/commands/",
+    "evidence/checks/",
+    "evidence/raw/",
+    "evidence/baseline-runs.json",
+    "evidence/candidate-runs.json",
+    "evidence/replay-events.json",
+    "evidence/before-session.txt",
+    "evidence/after-session.txt",
+    "AGENTS.md",
+    ".agent/"
+  ],
+  "requiredSkills": [
+    {
+      "name": "evaluation",
+      "source": "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/tree/main/skills/evaluation"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/before-metadata.json",
+    "evidence/after-metadata.json",
+    "evidence/history.json",
+    "evidence/before.patch",
+    "evidence/after.patch",
+    "evidence/checks/implementation.txt",
+    "evidence/before-session.txt",
+    "evidence/after-session.txt"
+  ],
+  "checkCaptures": {
+    "implementation": {
+      "path": "evidence/checks/implementation.txt",
+      "script": "verify:implementation",
+      "shaField": "implementationSha",
+      "markers": [
+        "PASS"
+      ]
+    }
+  },
+  "productionFiles": [
+    "AGENTS.md",
+    ".agent/persistence.md",
+    "guidance-eval-app/src/services/filterPersistence.mjs",
+    "guidance-eval-app/src/services/filterPersistence.test.mjs"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "name": "Simplify Legacy Rules Without Changing Behavior",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Changes",
+        "## Verified",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "evidence/behavior-decisions.md",
+      "minCharacters": 80,
+      "includeAll": [
+        "## Preserved behavior",
+        "## Suspected bugs"
+      ]
+    },
+    {
+      "path": "evidence/refactor-steps.md",
+      "minCharacters": 80,
+      "includeAll": [
+        "## Structure",
+        "## Verification"
+      ]
+    },
+    {
+      "path": "evidence/before-output.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "evidence/after-output.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "evidence/history.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "behavior-refactor-app/src/rules/legacyEligibility.characterization.test.mjs",
+      "minCharacters": 80
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/baseline.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/characterization.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/implementation.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/manifest.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 150,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ]
+}

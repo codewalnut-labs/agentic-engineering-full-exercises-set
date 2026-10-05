@@ -50,6 +50,14 @@ for (const relative of challengeReadmes) {
   }
 }
 const requiredArtifacts = [
+  "10 Token Economics/scripts/economics-evidence.mjs",
+  "10 Token Economics/scripts/economics-evidence.test.mjs",
+  "10 Token Economics/scripts/capture-economics-check.mjs",
+  "10 Token Economics/scripts/run-baseline.mjs",
+  "10 Token Economics/scripts/replay-scope-regression.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/setup.md",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/docs/setup.md",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/docs/setup.md",
   "09 Code Review/exercise-01-find-and-fix-review-risks/docs/setup.md",
   "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/evidence-contract.json",
   "09 Code Review/exercise-01-find-and-fix-review-risks/review-fix-app/scripts/verify-code-review-evidence.mjs",
@@ -262,77 +270,76 @@ const requiredArtifacts = [
   "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/test-review-eval-verifier.mjs",
   "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/verify-review-eval-submission.mjs",
   "09 Code Review/exercise-03-improve-review-skill/review-skill-app/scripts/run-review-session.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/run-context-tests.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/run-adapter-acceptance.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/docs/adapter-refactor-request.md",
-  "10 Token Economics/exercise-01-token-budget-refactor/docs/ledger-contract.md",
-  "10 Token Economics/exercise-01-token-budget-refactor/docs/context-sources/AGENTS.md",
-  "10 Token Economics/exercise-01-token-budget-refactor/docs/context-sources/current-adapter-contract.md",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/context-verification.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/test-context-verifier.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/scripts/verify-context-submission.mjs",
-  "10 Token Economics/exercise-01-token-budget-refactor/token-budget-app/src/session/adaptSession.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/evals/routing-cases.json",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/evals/recorded-runs.json",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/docs/routing-policy-contract.md",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/docs/measurement-contract.md",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/scripts/routing-verification.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/scripts/score-routing-eval.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/scripts/test-routing-verifier.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/scripts/verify-routing-submission.mjs",
-  "10 Token Economics/exercise-02-risk-based-model-routing-cost-gate/model-routing-app/src/routing/dispatchTasks.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/scripts/run-migration-tests.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/scripts/scope-verification.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/scripts/test-scope-verifier.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/src/migration/actionButtons.mjs",
-  "10 Token Economics/exercise-03-minimal-diff-scope-budget/minimal-diff-app/scripts/replay-before-scope.mjs",
-  "11 Agentic Refactoring/exercise-01-characterization-test-refactor/docs/renewal-golden-cases.json",
-  "11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/scripts/refactor-verification.mjs",
-  "11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/scripts/test-refactor-verifier.mjs",
-  "11 Agentic Refactoring/exercise-01-characterization-test-refactor/rules-refactor-app/scripts/verify-refactor-submission.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/docs/checkout-cases.json",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/src/checkout/legacyCheckout.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/scripts/strangler-verification.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/scripts/test-strangler-verifier.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/scripts/verify-strangler-submission.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/docs/contract-observations.json",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowApiContractTest.java",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/src/services/workflowDecisionContract.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/run-client-contract.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/run-rules-contract.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/rules-refactor-verification.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/test-rules-verifier.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-app/scripts/verify-rules-submission.mjs",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/session-metadata.json",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/metric-contract.md",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/replay-contract.md",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/preflight-contract.md",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/scripts/retro-verification.mjs",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/scripts/test-retro-verifier.mjs",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/session-waste-app/scripts/verify-retro-submission.mjs",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/docs/correction-history.json",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/docs/guidance-contract.md",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/fixtures/filterPersistence.starter.mjs",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/scripts/rule-hardening-verification.mjs",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/scripts/test-rule-hardening-verifier.mjs",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/rule-hardening-app/scripts/verify-rule-hardening-submission.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/docs/failure-traces.json",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/docs/benchmark-contract.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/docs/trace-analysis-contract.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/fixtures/workflow-baseline.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/workflow-grading.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/workflow-submission-verification.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/score-workflow-results.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/write-workflow-patches.mjs",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/scripts/test-workflow-verifier.mjs",
-  "11 Agentic Refactoring/exercise-02-strangler-pattern-checkout/checkout-strangler-app/scripts/run-checkout-tests.mjs",
-  "11 Agentic Refactoring/exercise-03-legacy-rules-engine-untangle/legacy-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowContractCharacterizationTest.java",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/docs/session-events.json",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/tasks/implementation-request.md",
-  "12 Agentic Retrospective/exercise-01-session-waste-retro-from-logs/tasks/policy-217-replay.md",
-  "12 Agentic Retrospective/exercise-02-rule-hardening-from-repeated-mistakes/tasks/proving-change.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/docs/action-schema.md",
-  "12 Agentic Retrospective/exercise-03-trace-backed-workflow-optimizer/workflow-optimizer-app/evals/replay-cases.json",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/run-context-tests.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/run-adapter-acceptance.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/adapter-refactor-request.md",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/ledger-contract.md",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/context-sources/AGENTS.md",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/docs/context-sources/current-adapter-contract.md",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/context-verification.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/test-context-verifier.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/scripts/verify-context-submission.mjs",
+  "10 Token Economics/exercise-01-reduce-context-without-losing-rules/context-budget-app/src/session/adaptSession.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/evals/routing-cases.json",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/evals/recorded-runs.json",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/docs/routing-policy-contract.md",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/docs/measurement-contract.md",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/scripts/routing-verification.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/scripts/score-routing-eval.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/scripts/test-routing-verifier.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/scripts/verify-routing-submission.mjs",
+  "10 Token Economics/exercise-02-evaluate-cheaper-model-routing/model-routing-eval-app/src/routing/dispatchTasks.mjs",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/scripts/run-migration-tests.mjs",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/scripts/scope-verification.mjs",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/scripts/test-scope-verifier.mjs",
+  "10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite/scope-budget-app/src/migration/actionButtons.mjs",
+  "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/docs/renewal-golden-cases.json",
+  "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/behavior-refactor-app/scripts/refactor-verification.mjs",
+  "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/behavior-refactor-app/scripts/test-refactor-verifier.mjs",
+  "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/behavior-refactor-app/scripts/verify-refactor-submission.mjs",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/docs/checkout-cases.json",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/src/checkout/legacyCheckout.mjs",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/strangler-verification.mjs",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/test-strangler-verifier.mjs",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/verify-strangler-submission.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/docs/contract-observations.json",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowApiContractTest.java",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/src/services/workflowDecisionContract.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/run-client-contract.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/run-rules-contract.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/rules-refactor-verification.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/test-rules-verifier.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/verify-rules-submission.mjs",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/session-metadata.json",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/metric-contract.md",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/replay-contract.md",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/preflight-contract.md",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/retry-policy-app/scripts/retro-verification.mjs",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/retry-policy-app/scripts/test-retro-verifier.mjs",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/retry-policy-app/scripts/verify-retro-submission.mjs",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/docs/correction-history.json",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/docs/guidance-contract.md",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/fixtures/filterPersistence.starter.mjs",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/guidance-eval-app/scripts/rule-hardening-verification.mjs",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/guidance-eval-app/scripts/test-rule-hardening-verifier.mjs",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/guidance-eval-app/scripts/verify-rule-hardening-submission.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/docs/failure-traces.json",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/docs/benchmark-contract.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/docs/trace-analysis-contract.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/fixtures/workflow-baseline.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/workflow-grading.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/workflow-submission-verification.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/score-workflow-results.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/write-workflow-patches.mjs",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/test-workflow-verifier.mjs",
+  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/run-checkout-tests.mjs",
+  "11 Agentic Refactoring/exercise-03-extract-business-rules/workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowContractCharacterizationTest.java",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/session-events.json",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/tasks/implementation-request.md",
+  "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/tasks/policy-217-replay.md",
+  "12 Agentic Retrospective/exercise-02-turn-corrections-into-agent-guidance/tasks/proving-change.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/docs/action-schema.md",
+  "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/evals/replay-cases.json",
   "scripts/capture-verification.mjs",
 ];
 for (const relative of requiredArtifacts) assert.ok(existsSync(path.join(root, relative)), `Missing starter artifact: ${relative}`);
@@ -411,6 +418,52 @@ for (const relative of exercisePackages) {
       assert.ok(!reviewContract.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
       if (reviewContract.reviewSessionField) for (const artifact of ["evidence/review-session.txt", "evidence/recheck-session.txt", "evidence/recheck.json"]) assert.ok(requiredPaths.has(artifact), relative + " must retain independent review proof");
       if (project.endsWith("review-skill-app")) assert.ok(!integrity.protectedFiles["skills/regression-review/SKILL.md"], relative + " must allow learners to improve the skill");
+    }
+    if (project.startsWith("10 Token Economics")) {
+      assert.equal(submissionContract.evidenceMode, "observation", relative + " must use observed economics evidence");
+      const economics = JSON.parse(readFileSync(path.join(root, project, "evidence-contract.json"), "utf8"));
+      assert.ok(manifest.scripts["proof:capture"].includes("capture-economics-check.mjs"), relative + " must capture actual economics checks");
+      assert.ok(manifest.scripts["evidence:verify"].includes("economics:check"), relative + " must rerun the domain checks before final capture");
+      for (const helper of ["../../scripts/economics-evidence.mjs", "../../scripts/capture-economics-check.mjs", "../../scripts/run-baseline.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
+      for (const check of Object.values(economics.checkCaptures)) assert.ok(economics.extraEvidence.includes(check.path) && requiredPaths.has(check.path), relative + " must seal its captured checks");
+      for (const file of economics.allowedSourceFiles) {
+        const appPath = file.slice(path.basename(project).length + 1);
+        assert.ok(!integrity.protectedFiles[appPath], relative + " must leave the learner implementation editable: " + file);
+      }
+      assert.ok(!economics.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
+      assert.ok(economics.starterSources && Object.keys(economics.starterSources).length, relative + " must bind baseline evidence to the actual starter");
+    }
+    if (project.startsWith("11 Agentic Refactoring")) {
+      assert.equal(submissionContract.evidenceMode, "observation", relative + " must use observed refactoring evidence");
+      const phases = JSON.parse(readFileSync(path.join(root, project, "evidence-contract.json"), "utf8"));
+      for (const helper of ["../../../scripts/challenge-phase-evidence.mjs", "../../../scripts/capture-challenge-check.mjs", "../../../scripts/test-challenge-phase-evidence.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
+      assert.ok(manifest.scripts["proof:capture"].includes("capture-challenge-check.mjs"), relative + " must capture actual phase checks");
+      for (const check of Object.values(phases.checkCaptures)) assert.ok(phases.extraEvidence.includes(check.path) && requiredPaths.has(check.path), relative + " must seal phase checks");
+      for (const file of [...phases.productionFiles, ...phases.preparedFiles]) {
+        const appPath = path.relative(path.join(root, project), path.resolve(root, project, "..", file)).split(path.sep).join("/");
+        assert.ok(!integrity.protectedFiles[appPath], relative + " must leave learner files editable: " + file);
+      }
+      assert.ok(!phases.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
+      assert.ok(Object.keys(phases.starterSources).length, relative + " must bind checks to the supplied starter");
+    }
+    if (project.startsWith("12 Agentic Retrospective")) {
+      assert.equal(submissionContract.evidenceMode, "observation", relative + " must use sealed retrospective evidence");
+      const retrospective = JSON.parse(readFileSync(path.join(root, project, "evidence-contract.json"), "utf8"));
+      for (const helper of ["../../scripts/retrospective-evidence.mjs", "../../../scripts/challenge-phase-evidence.mjs", "../../../scripts/capture-challenge-check.mjs", "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs"]) assert.ok(integrity.protectedFiles[helper], relative + " must protect " + helper);
+      for (const check of Object.values(retrospective.checkCaptures)) assert.ok(retrospective.extraEvidence.includes(check.path) && requiredPaths.has(check.path), relative + " must seal captured checks");
+      for (const file of retrospective.productionFiles) {
+        const appPath = path.relative(path.join(root, project), path.resolve(root, project, "..", file)).split(path.sep).join("/");
+        assert.ok(!integrity.protectedFiles[appPath], relative + " must leave learner files editable: " + file);
+      }
+      if (retrospective.study === "guidance") {
+        assert.ok(manifest.scripts["rules:compare"].includes("comparable-evidence.mjs"), relative + " must preserve matched guidance experiments");
+        for (const file of ["evidence/before-session.txt", "evidence/after-session.txt"]) assert.ok(retrospective.extraEvidence.includes(file), relative + " must seal original sessions");
+      }
+      if (retrospective.study === "workflow") {
+        assert.equal(retrospective.extraEvidence.filter((file) => file.startsWith("evidence/raw/")).length, 48, relative + " must seal all 48 raw captures");
+        assert.ok(manifest.scripts["workflow:run"].includes("run-workflow-batch.mjs"), relative + " must provide the complete batch recorder");
+      }
+      assert.ok(!retrospective.extraEvidence.includes("evidence/commands/verify.txt"), relative + " must capture final verification after sealing");
     }
     if (["observation", "handover"].includes(submissionContract.evidenceMode)) {
       assert.ok(submissionScripts.includes("context-document-evidence.mjs"), `${relative} must verify its observation evidence`);

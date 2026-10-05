@@ -1,0 +1,110 @@
+{
+  "name": "Decide Whether Cheaper Model Routing Is Safe",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 180,
+      "includeAll": [
+        "## Changes",
+        "## Verified",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "evidence/adoption.md",
+      "minCharacters": 80,
+      "includeAll": [
+        "## Routing decisions",
+        "## Quality and safety",
+        "## Cost and latency",
+        "## Decision and limits"
+      ]
+    },
+    {
+      "path": "evidence/routing-policy.md",
+      "minCharacters": 80,
+      "includeAll": [
+        "## Rules",
+        "## Fallbacks"
+      ]
+    },
+    {
+      "path": "evidence/routing-measurements.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "evidence/measurement-run.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "evidence/cost-model.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "model-routing-eval-app/tests/route-task.test.mjs",
+      "minCharacters": 80
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 80
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/baseline.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/implementation.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/manifest.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 150,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ]
+}

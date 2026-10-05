@@ -1,0 +1,49 @@
+{
+  "name": "behavior-refactor-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "node ../../../scripts/run-vite-build.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false",
+    "test": "node ./scripts/test-refactor-verifier.mjs && node ./scripts/agent-check.mjs && npm run test:phase-evidence",
+    "test:oracle": "node ./scripts/run-characterization-oracle.mjs && node ./src/rules/legacyEligibility.characterization.test.mjs",
+    "refactor:verify": "node ./scripts/verify-refactor-submission.mjs",
+    "evidence:verify": "npm run agent:check && npm run verify:implementation && npm run refactor:verify && node scripts/verify-refactoring-evidence.mjs content",
+    "test:submission": "npm run test:oracle && npm run refactor:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json",
+    "evidence:capture": "node ../../../scripts/capture-verification.mjs",
+    "lint": "node ./scripts/lint-check.mjs",
+    "format": "node ./scripts/format-check.mjs",
+    "agent:check": "npm run test:integrity && npm run lint && npm run test && npm run format && npm run typecheck && npm run build",
+    "test:integrity": "node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json",
+    "verify:implementation": "npm run test:oracle",
+    "verify:submission": "npm run refactor:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json && node scripts/verify-refactoring-evidence.mjs",
+    "verify:exercise:core": "npm run agent:check && npm run verify:implementation && npm run verify:submission",
+    "verify:exercise": "node ../../../scripts/run-clean-verification.mjs",
+    "baseline:observe": "node scripts/run-characterization-oracle.mjs",
+    "test:characterization": "npm run test:oracle",
+    "snapshot:before": "node scripts/capture-output.mjs before",
+    "snapshot:after": "node scripts/capture-output.mjs after",
+    "proof:capture": "node ../../../scripts/capture-challenge-check.mjs",
+    "test:phase-evidence": "node --test ../../../scripts/test-challenge-phase-evidence.mjs",
+    "evidence:seal": "node scripts/verify-refactoring-evidence.mjs seal"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@vitejs/plugin-react": "^5.0.4",
+    "jsdom": "^27.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12",
+    "vitest": "^3.2.4"
+  }
+}

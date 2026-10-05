@@ -1,0 +1,97 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/route-matrix.md",
+      "type": "markdown",
+      "headings": [
+        "Routes",
+        "Failure handling"
+      ]
+    },
+    {
+      "path": "evidence/contract-comparison.md",
+      "type": "markdown",
+      "headings": [
+        "Public contract",
+        "Checks"
+      ]
+    },
+    {
+      "path": "evidence/rollback.md",
+      "type": "markdown",
+      "headings": [
+        "Switch off",
+        "Authorization safety"
+      ]
+    },
+    {
+      "path": "evidence/history.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "card-only-routing",
+    "safe-fallback",
+    "rollback"
+  ],
+  "sourceRoots": [
+    "checkout-migration-app/src/",
+    "docs/",
+    "evidence/commands/",
+    "evidence/skill-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "test-driven-development",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/test-driven-development"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/characterization.txt",
+    "evidence/commands/implementation.txt"
+  ],
+  "sourceArtifact": "evidence/history.json",
+  "sourceField": "sourceSha",
+  "preparedField": "characterizationSha",
+  "preparedFiles": [
+    "checkout-migration-app/src/checkout/checkoutRouter.test.mjs"
+  ],
+  "productionFiles": [
+    "checkout-migration-app/src/checkout/cardCheckout.mjs",
+    "checkout-migration-app/src/checkout/checkoutRouter.mjs"
+  ],
+  "starterSources": {
+    "checkout-migration-app/src/checkout/checkoutRouter.mjs": "0037be33dfae4b54e679ac7b949a527ad0fb8e9e19242d12e55dc4308ce75e97"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "path": "evidence/commands/baseline.txt",
+      "shaField": "starting",
+      "markers": [
+        "PASS supplied router sends every payment type to legacy"
+      ]
+    },
+    "characterization": {
+      "script": "test:characterization",
+      "path": "evidence/commands/characterization.txt",
+      "shaField": "characterizationSha",
+      "exitCode": 1,
+      "markers": [
+        "ERR_ASSERTION"
+      ]
+    },
+    "implementation": {
+      "script": "verify:implementation",
+      "path": "evidence/commands/implementation.txt",
+      "shaField": "sourceSha",
+      "markers": [
+        "PASS 2 legacy comparisons and 11 protected strangler route checks"
+      ]
+    }
+  }
+}

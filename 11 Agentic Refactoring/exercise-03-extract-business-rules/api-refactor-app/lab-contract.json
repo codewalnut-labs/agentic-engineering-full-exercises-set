@@ -1,0 +1,54 @@
+{
+  "title": "Extract Business Rules Without Breaking the API",
+  "competency": "11. Agentic Refactoring - Test-driven tech-debt cleanup",
+  "domain": "Spring policy extraction with preserved HTTP and client contracts",
+  "mission": "Extract decision validation without moving lookup, construction, persistence, or changing observable behavior.",
+  "outcome": "A pure injected policy and test-first history preserve service, repository, HTTP, and client contracts.",
+  "entities": [
+    "workflow item",
+    "decision policy",
+    "repository",
+    "HTTP response"
+  ],
+  "seededDefects": [
+    "validation is interleaved with persistence orchestration",
+    "legacy validation gaps are undocumented",
+    "contract changes can escape backend-only tests"
+  ],
+  "verificationGates": [
+    "characterization-first history",
+    "service and policy architecture",
+    "strict HTTP JSON tests",
+    "React client parser contract",
+    "Maven verification writes only to temporary storage",
+    "npm run verify:exercise checks protected inputs, implementation quality, and required submission evidence.",
+    "Actual phase captures, frozen characterization evidence, and sealed source citations."
+  ],
+  "agentWorkflow": [
+    "Observe the supplied starter and identify the public behavior to preserve.",
+    "Use writing-plans and retain its real invocation and relevant session.",
+    "Commit characterization tests and required snapshots before production work.",
+    "Make focused production changes and rerun the unchanged tests.",
+    "Compare actual before and after results, then capture and seal the evidence."
+  ],
+  "workingDeliverables": [
+    "evidence/contract-before.json",
+    "workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowPolicyCharacterizationTest.java",
+    "workflow-rules-api/src/main/java/dev/agentic/exercise/workflow/DecisionPolicy.java",
+    "workflow-rules-api/src/main/java/dev/agentic/exercise/workflow/WorkflowService.java",
+    "evidence/refactor-map.md",
+    "evidence/rollback.md",
+    "evidence/refactor-plan.md",
+    "evidence/contract-before.json",
+    "evidence/contract-after.json",
+    "evidence/history.json",
+    "evidence/before.md, evidence/after.md, and evidence/comparison.md",
+    "Skill-use proof, source audit, and captured checks."
+  ],
+  "masterySignals": [
+    "Not-found lookup remains first.",
+    "Policy has no repository dependency.",
+    "Exact errors, fields, gaps, and save counts remain stable.",
+    "Later commits contain evidence only."
+  ]
+}

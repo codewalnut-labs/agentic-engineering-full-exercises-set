@@ -1,0 +1,7 @@
+*.md text eol=lf
+*.json text eol=lf
+*.mjs text eol=lf
+*.txt text eol=lf
+*.patch -text
+**/evidence/before-session.txt -text
+**/evidence/after-session.txt -text

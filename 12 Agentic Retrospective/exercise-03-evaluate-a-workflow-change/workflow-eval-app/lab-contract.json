@@ -1,0 +1,126 @@
+{
+  "title": "Prove Whether an Agent Workflow Change Helps",
+  "competency": "12. Agentic Retrospective - Session review, waste reduction, and improvement",
+  "skillPattern": "evaluation",
+  "domain": "Deterministically graded workflow optimization with held-out replays",
+  "mission": "Use recurring trace failures to propose and evaluate one general workflow change.",
+  "outcome": "A complete benchmark supports an honest adopt-or-reject decision.",
+  "entities": [
+    "failure trace",
+    "workflow instruction",
+    "raw replay response",
+    "deterministic grade"
+  ],
+  "seededDefects": [
+    "baseline guidance does not establish scope or authority",
+    "partial checks can support completion",
+    "broad context is loaded before decisions are known"
+  ],
+  "verificationGates": [
+    "trace-backed failure clusters",
+    "48 matched raw runs",
+    "unique session and measurement provenance",
+    "held-out critical quality",
+    "request-wording leakage prevention",
+    "variance and cost thresholds",
+    "npm run verify:exercise checks protected inputs, implementation quality, and required submission evidence.",
+    "Actual skill use and sealed evidence",
+    "npm run verify:exercise"
+  ],
+  "agentWorkflow": [
+    "Use evaluation to define the hypothesis and fixed conditions.",
+    "Capture a complete baseline batch.",
+    "Change only workflow instructions and run the candidate batch.",
+    "Compare quality, safety, consistency, and cost; adopt or reject from the evidence."
+  ],
+  "workingDeliverables": [
+    "workflow-eval-app/workflow/instructions.md",
+    "evidence/failure-clusters.md",
+    "evidence/adoption.md",
+    "Before and after evidence, source citations, actual skill use, and captured verification."
+  ],
+  "masterySignals": [
+    "Uses all runs rather than selecting winners.",
+    "Keeps grading independent from agent claims.",
+    "Improves both train and held-out quality.",
+    "Rejects quality gains that violate critical or cost gates."
+  ],
+  "backlog": [
+    {
+      "id": "12-03-01",
+      "title": "Scope and clarification failures",
+      "owner": "agent candidate",
+      "skill": "evaluation",
+      "risk": "high",
+      "done": false
+    },
+    {
+      "id": "12-03-02",
+      "title": "Evidence authority failures",
+      "owner": "accountable owner",
+      "skill": "evaluation",
+      "risk": "high",
+      "done": false
+    },
+    {
+      "id": "12-03-03",
+      "title": "Unsupported completion failures",
+      "owner": "agent candidate",
+      "skill": "evaluation",
+      "risk": "critical",
+      "done": false
+    },
+    {
+      "id": "12-03-04",
+      "title": "Excess context cost",
+      "owner": "accountable owner",
+      "skill": "evaluation",
+      "risk": "medium",
+      "done": false
+    }
+  ],
+  "evidence": [
+    {
+      "gate": "Trace-backed failure clusters",
+      "status": "missing",
+      "proof": "requires learner evidence"
+    },
+    {
+      "gate": "48 original run captures",
+      "status": "missing",
+      "proof": "batch recorder ready"
+    },
+    {
+      "gate": "Quality, critical, variance, and cost gates",
+      "status": "partial",
+      "proof": "protected scorer ready"
+    },
+    {
+      "gate": "Supported adoption decision",
+      "status": "missing",
+      "proof": "accept or reject from the benchmark"
+    }
+  ],
+  "decisions": [
+    {
+      "question": "What may change?",
+      "decision": "Only workflow/instructions.md in the candidate commit.",
+      "status": "decided"
+    },
+    {
+      "question": "Who grades outputs?",
+      "decision": "The protected deterministic grader.",
+      "status": "decided"
+    },
+    {
+      "question": "Does the candidate generalize?",
+      "decision": "Use held-out replay evidence and report its limits.",
+      "status": "open"
+    },
+    {
+      "question": "Should the workflow be adopted?",
+      "decision": "Adopt only if every gate passes; otherwise explain rejection.",
+      "status": "open"
+    }
+  ]
+}

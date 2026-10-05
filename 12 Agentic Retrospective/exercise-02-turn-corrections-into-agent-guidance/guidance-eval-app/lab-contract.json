@@ -1,0 +1,48 @@
+{
+  "title": "Turn Repeated Mistakes into Useful Agent Guidance",
+  "competency": "12. Agentic Retrospective - Session review, waste reduction, and improvement",
+  "domain": "Trace-backed repository guidance with behavioral patch comparison",
+  "mission": "Turn recurring review corrections into concise guidance and measure its effect on a fresh agent.",
+  "outcome": "A guided first attempt respects repository conventions without broad or duplicated instructions.",
+  "entities": [
+    "correction event",
+    "safe-start rule",
+    "deep persistence guidance",
+    "first-attempt patch"
+  ],
+  "seededDefects": [
+    "proving task omits hidden persistence conventions",
+    "starter stores display and noncanonical values",
+    "business logic uses ambient time"
+  ],
+  "verificationGates": [
+    "two-event support per rule",
+    "minimal and nonduplicated guidance",
+    "isolated patch grading",
+    "ceiling-aware no-regression when the baseline is already correct",
+    "matched fresh-agent conditions",
+    "npm run verify:exercise checks protected inputs, implementation quality, and required submission evidence.",
+    "Actual skill use and sealed evidence",
+    "npm run verify:exercise"
+  ],
+  "agentWorkflow": [
+    "Use evaluation to freeze comparison conditions.",
+    "Capture an unedited unguided first attempt.",
+    "Map repeated corrections to routed guidance.",
+    "Capture and grade a fresh guided attempt, then add regression tests."
+  ],
+  "workingDeliverables": [
+    "AGENTS.md",
+    ".agent/persistence.md",
+    "guidance-eval-app/src/services/filterPersistence.mjs",
+    "guidance-eval-app/src/services/filterPersistence.test.mjs",
+    "evidence/rule-map.md",
+    "Before and after evidence, source citations, actual skill use, and captured verification."
+  ],
+  "masterySignals": [
+    "Promotes only repeated corrections.",
+    "Keeps deep detail out of safe-start context.",
+    "Tests both rule effectiveness and exceptions.",
+    "Binds final implementation to the graded agent patch."
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "name": "Stop an Agent from Repeating Failed Commands",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/retrospective.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/replay.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 60
+    },
+    {
+      "path": "evidence/baseline.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/after.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/replay-events.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/replay-metadata.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/history.json",
+      "minCharacters": 2,
+      "validJson": true
+    },
+    {
+      "path": "evidence/commands/baseline.txt",
+      "minCharacters": 60
+    },
+    {
+      "path": "evidence/commands/implementation.txt",
+      "minCharacters": 60
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "validJson": true,
+      "minCharacters": 20
+    },
+    {
+      "path": "evidence/manifest.json",
+      "validJson": true,
+      "minCharacters": 20
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 100,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    },
+    {
+      "path": "retry-policy-app/src/retro/analyzeSession.mjs",
+      "minCharacters": 10
+    },
+    {
+      "path": "retry-policy-app/src/retro/preflightPolicy.mjs",
+      "minCharacters": 10
+    },
+    {
+      "path": "retry-policy-app/src/retro/analyzeSession.test.mjs",
+      "minCharacters": 10
+    }
+  ]
+}

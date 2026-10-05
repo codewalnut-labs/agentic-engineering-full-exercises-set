@@ -1,0 +1,91 @@
+{
+  "mode": "observation",
+  "study": "retry-policy",
+  "outputs": [
+    {
+      "path": "evidence/retrospective.md",
+      "type": "markdown",
+      "headings": [
+        "Root cause",
+        "Policy",
+        "Remaining waste"
+      ]
+    },
+    {
+      "path": "evidence/replay.md",
+      "type": "markdown",
+      "headings": [
+        "Conditions",
+        "Results",
+        "Limitations"
+      ]
+    }
+  ],
+  "topics": [
+    "waste-classification",
+    "retry-policy",
+    "replay-limits"
+  ],
+  "sourceRoots": [
+    "docs/",
+    "tasks/",
+    "retry-policy-app/src/",
+    "retry-policy-app/scripts/",
+    "retry-policy-app/workflow/",
+    "evidence/commands/",
+    "evidence/checks/",
+    "evidence/raw/",
+    "evidence/baseline-runs.json",
+    "evidence/candidate-runs.json",
+    "evidence/replay-events.json",
+    "evidence/before-session.txt",
+    "evidence/after-session.txt",
+    "AGENTS.md",
+    ".agent/"
+  ],
+  "requiredSkills": [
+    {
+      "name": "systematic-debugging",
+      "source": "https://github.com/obra/superpowers/tree/main/skills/systematic-debugging"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/baseline.json",
+    "evidence/after.json",
+    "evidence/replay-events.json",
+    "evidence/replay-metadata.json",
+    "evidence/history.json",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/implementation.txt"
+  ],
+  "checkCaptures": {
+    "baseline": {
+      "path": "evidence/commands/baseline.txt",
+      "script": "baseline:observe",
+      "shaField": "starting",
+      "markers": [
+        "PASS observed the supplied analyzer"
+      ]
+    },
+    "implementation": {
+      "path": "evidence/commands/implementation.txt",
+      "script": "verify:implementation",
+      "shaField": "sourceSha",
+      "markers": [
+        "PASS baseline metrics, classification traps, schema rejection, and executable retry preflight"
+      ]
+    }
+  },
+  "productionFiles": [
+    "retry-policy-app/src/retro/analyzeSession.mjs",
+    "retry-policy-app/src/retro/preflightPolicy.mjs",
+    "retry-policy-app/src/retro/analyzeSession.test.mjs"
+  ],
+  "sourceArtifact": "evidence/history.json",
+  "sourceField": "sourceSha",
+  "starterSources": {
+    "retry-policy-app/src/retro/analyzeSession.mjs": "34d707873548e1260c84a49c5b8288fdf56bf1d998d7bc4c4d2c4a7b06d72263"
+  }
+}

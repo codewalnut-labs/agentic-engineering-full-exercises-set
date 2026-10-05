@@ -1,0 +1,120 @@
+{
+  "name": "Extract Business Rules Without Breaking the API",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Conditions",
+        "## Findings",
+        "## Proof",
+        "Starting commit"
+      ]
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 150,
+      "includeAll": [
+        "## Changes",
+        "## Verified",
+        "## Remaining questions"
+      ]
+    },
+    {
+      "path": "evidence/refactor-map.md",
+      "minCharacters": 80,
+      "includeAll": [
+        "## Ownership",
+        "## Preserved contract"
+      ]
+    },
+    {
+      "path": "evidence/rollback.md",
+      "minCharacters": 80,
+      "includeAll": [
+        "## Revert",
+        "## Recheck"
+      ]
+    },
+    {
+      "path": "evidence/refactor-plan.md",
+      "minCharacters": 80,
+      "includeAll": [
+        "## Steps",
+        "## Checks"
+      ]
+    },
+    {
+      "path": "evidence/contract-before.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "evidence/contract-after.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "evidence/history.json",
+      "minCharacters": 80,
+      "validJson": true
+    },
+    {
+      "path": "workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowPolicyCharacterizationTest.java",
+      "minCharacters": 80
+    },
+    {
+      "path": "evidence/skill-use.md",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/skill-session.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/baseline.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/characterization.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/commands/implementation.txt",
+      "minCharacters": 100
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/manifest.json",
+      "minCharacters": 100,
+      "validJson": true
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "minCharacters": 150,
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ]
+}
