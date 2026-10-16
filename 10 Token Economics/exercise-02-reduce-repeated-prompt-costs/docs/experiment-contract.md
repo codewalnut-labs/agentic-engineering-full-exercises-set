@@ -1,0 +1,7 @@
+# Experiment contract
+
+There are four questions: retention days, maximum rows, restricted reviewers, and retention after the current policy changes. Correct JSON answers are derived from the provided handbook. The first three share the same complete handbook; the fourth changes only the current retention-days statement. The source builder may reorder static and dynamic blocks but cannot shorten or replace the document or question. Cache the stable prefix; keep the changing timestamp after it.
+
+Use actual response usage: input_tokens is uncached input, cache_creation_input_tokens is newly cached input, cache_read_input_tokens is reused input, and output_tokens is generated output. Their input categories are mutually exclusive for this API. Cost in USD is (uncached*inputRate + created*writeRate + read*readRate + output*outputRate)/1,000,000. Include the initial write, all policy-change calls, and output. Record dated list prices, not a claimed subscription invoice.
+
+All four responses must be successful and correct. The first after request and changed-policy request need cache creation; the two warm requests need cache reads. Adopt if full after cost is lower; reject otherwise. A shorter prompt is not a caching requirement. If a provider call fails, its original response is retained and the partial experiment cannot pass as successful proof. Preserve the complete failed attempt outside the active submission before another full capture.

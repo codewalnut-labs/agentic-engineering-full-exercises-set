@@ -1,0 +1,31 @@
+export const labContract = {
+  "title": "Reduce Tool Output Without Hiding Failures",
+  "competency": "10 Token Economics",
+  "domain": "RTK command-output compression",
+  "entities": [
+    "Starting commit",
+    "Raw capture",
+    "Measured comparison"
+  ],
+  "seededDefects": [
+    "Starting workflow wastes resources",
+    "Savings are not yet measured",
+    "Completion needs original evidence"
+  ],
+  "verificationGates": [
+    "Original captures match their hashes",
+    "Correctness passes before adoption",
+    "All attempts count toward the result"
+  ],
+  "agentWorkflow": [
+    "Record the starting state",
+    "Apply the named technique",
+    "Measure the full workload",
+    "Report an adopt or reject decision"
+  ],
+  "workingDeliverables": [
+    "Implementation or configuration",
+    "Original captured records",
+    "Before and after reports"
+  ]
+};

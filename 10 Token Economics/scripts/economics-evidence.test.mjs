@@ -1,122 +1,122 @@
-import assert from "node:assert/strict";
-import fs from "node:fs";
-import os from "node:os";
-import path from "node:path";
-import { execFileSync, spawnSync } from "node:child_process";
-import { pathToFileURL } from "node:url";
-import test from "node:test";
-import { hash } from "../../scripts/context-document-evidence.mjs";
-import { verifyCapture, verifyImplementationRange } from "./economics-evidence.mjs";
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { artifact, assertBatches, command, contained, createBatch, median, price, sha256, usage, verifyCapture, writeJson } from './economics-evidence.mjs';
+import { inspectRequest, questions, documentFor, score as scoreCache } from './cache.mjs';
+import { adoptionDecision, gradeFiles, snapshotFeature } from './ponytail.mjs';
+import { run as runRtk, score as scoreRtk } from './rtk.mjs';
 
-// Synthetic verifier fixtures only. These are not learner submissions or agent runs.
-function fixture() {
-  const repository = fs.mkdtempSync(path.join(os.tmpdir(), "economics-proof-test-"));
-  const root = path.join(repository, "exercise with spaces");
-  const app = path.join(root, "app");
-  const write = (file, text) => { const target = path.join(root, file); fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, text); };
-  const git = (...args) => execFileSync("git", args, { cwd: repository, encoding: "utf8", stdio: "pipe" }).trim();
-  git("init", "-q"); git("config", "user.name", "Verifier fixture"); git("config", "user.email", "fixture@example.invalid"); git("config", "core.autocrlf", "false"); git("config", "commit.gpgsign", "false");
-  write("app/src/feature.mjs", "export const value = 'starter';\n");
-  write("app/shared.mjs", "export const untouched = true;\n");
-  const contract = { mode: "observation", kind: "fixture", outputs: [{ path: "evidence/report.md", type: "markdown", headings: ["Finding"] }, { path: "evidence/result.json", type: "json" }], topics: ["behavior"], sourceRoots: ["app/src/"], requiredSkills: [], extraEvidence: ["evidence/commands/baseline.txt", "evidence/commands/implementation.txt"], sourceArtifact: "evidence/result.json", allowedSourceFiles: ["app/src/feature.mjs", "app/tests/feature.test.mjs"], starterSources: { "app/src/feature.mjs": hash("export const value = 'starter';\n") }, checkCaptures: { baseline: { script: "baseline:observe", path: "evidence/commands/baseline.txt", phase: "starting", markers: ["BASELINE OBSERVED"] }, implementation: { script: "economics:check", path: "evidence/commands/implementation.txt", phase: "implementation", markers: ["IMPLEMENTATION CHECKED"] } } };
-  write("app/evidence-contract.json", JSON.stringify(contract));
-  const helper = pathToFileURL(path.join(import.meta.dirname, "economics-evidence.mjs")).href;
-  const generic = pathToFileURL(path.resolve(import.meta.dirname, "../../scripts/context-document-evidence.mjs")).href;
-  write("app/scripts/evidence.mjs", 'import { runEvidence } from ' + JSON.stringify(generic) + ';\nimport { validateEconomicsEvidence } from ' + JSON.stringify(helper) + ';\nawait runEvidence({appRoot:process.cwd(),validate:validateEconomicsEvidence});\n');
-  write("app/scripts/observe.mjs", 'console.log("BASELINE OBSERVED");\n');
-  write("app/scripts/check.mjs", 'import assert from "node:assert/strict"; import {value} from "../src/feature.mjs"; assert.equal(value,"fixed"); console.log("IMPLEMENTATION CHECKED");\n');
-  write("app/scripts/capture.mjs", fs.readFileSync(path.join(import.meta.dirname, "capture-economics-check.mjs")));
-  write("app/scripts/final-capture.mjs", fs.readFileSync(path.resolve(import.meta.dirname, "../../scripts/capture-verification.mjs")));
-  write("app/package.json", JSON.stringify({ type: "module", scripts: { "baseline:observe": "node scripts/observe.mjs", "economics:check": "node scripts/check.mjs", "proof:capture": "node scripts/capture.mjs", "evidence:capture": "node scripts/final-capture.mjs", "evidence:verify": "node scripts/check.mjs && node scripts/evidence.mjs content" } }));
-  const commit = (label) => { git("add", "."); git("commit", "-qm", label); return git("rev-parse", "HEAD"); };
-  const starting = commit("synthetic starter");
-  const dispose = () => { const resolved = fs.realpathSync(repository); assert.ok(resolved.startsWith(fs.realpathSync(os.tmpdir()) + path.sep) && path.basename(resolved).startsWith("economics-proof-test-")); fs.rmSync(resolved, { recursive: true, force: true }); };
-  return { repository, root, app, contract, starting, write, git, commit, dispose };
+const chapter=path.resolve(import.meta.dirname,'..');
+function fixture(kind='cache') {
+  const base=fs.mkdtempSync(path.join(os.tmpdir(),'economics-test-')),root=path.join(base,'exercise'),app=path.join(root,'app');
+  fs.mkdirSync(app,{recursive:true});
+  const git=args=>execFileSync('git',args,{cwd:base,stdio:'pipe',encoding:'utf8'}).trim();
+  git(['init','-q']);git(['config','user.name','Test']);git(['config','user.email','test@example.invalid']);
+  fs.writeFileSync(path.join(app,'starter.txt'),'original');git(['add','.']);git(['commit','-qm','Test starter']);
+  const sha=git(['rev-parse','HEAD']);fs.mkdirSync(path.join(root,'evidence'));fs.writeFileSync(path.join(root,'evidence/before.md'),'Starting commit: '+sha+'\n');
+  return {base,root,app,contract:{kind},git,dispose(){assert.ok(base.startsWith(path.resolve(os.tmpdir())+path.sep));fs.rmSync(base,{recursive:true,force:true});}};
 }
-const run = (cwd, script, args = [], env = process.env) => spawnSync(process.execPath, [script, ...args], { cwd, encoding: "utf8", env });
-const success = (result) => assert.equal(result.status, 0, (result.stdout ?? "") + (result.stderr ?? ""));
-
-test("captures reject wrong commits, failures, missing proof, and reversed timestamps", () => {
-  const sha = "a".repeat(40), check = { script: "economics:check", markers: ["CHECK PASSED"] };
-  const text = "Command: npm run economics:check\nRepository commit: " + sha + "\nSource SHA: " + sha + "\nStarted at: 2026-01-01T00:00:00Z\nFinished at: 2026-01-01T00:00:01Z\nCHECK PASSED\nexit code: 0\n";
-  verifyCapture(text, check, sha);
-  assert.throws(() => verifyCapture(text, check, "b".repeat(40)), /source commit/);
-  assert.throws(() => verifyCapture(text.replace("exit code: 0", "exit code: 1"), check, sha), /failed/);
-  assert.throws(() => verifyCapture(text.replace("CHECK PASSED", ""), check, sha), /missing/);
-  assert.throws(() => verifyCapture(text.replace("00:00:01", "00:00:00").replace("Started at: 2026-01-01", "Started at: 2026-01-02"), check, sha), /timestamps/);
+test('usage includes all mutually exclusive input categories and does not invent missing counts',()=>{
+  assert.deepEqual(usage({input_tokens:5,output_tokens:2,cache_creation_input_tokens:3,cache_read_input_tokens:8}),{input:5,output:2,cacheWrite:3,cacheRead:8});
+  assert.throws(()=>usage({input_tokens:5,output_tokens:2}));
+  assert.throws(()=>usage({input_tokens:-1,output_tokens:2,cache_creation_input_tokens:0,cache_read_input_tokens:0}));
 });
-
-test("history allows focused iterations and rejects changes hidden by later reverts", () => {
-  const f = fixture();
-  try {
-    f.write("evidence/plan.md", "Synthetic pre-change plan\n"); const plan = f.commit("plan");
-    f.write("app/tests/feature.test.mjs", "// Synthetic regression test fixture\n"); f.commit("test");
-    f.write("app/src/feature.mjs", "export const value = 'fixed';\n"); const source = f.commit("implementation");
-    verifyImplementationRange(f.root, f.contract, f.starting, source, plan);
-    f.write("app/shared.mjs", "export const untouched = false;\n"); f.commit("out of scope");
-    f.write("app/shared.mjs", "export const untouched = true;\n"); const reverted = f.commit("reverted");
-    assert.throws(() => verifyImplementationRange(f.root, f.contract, f.starting, reverted, plan), /out-of-scope/);
-    assert.throws(() => verifyImplementationRange(f.root, f.contract, f.starting, source, plan), /evidence only/);
-  } finally { f.dispose(); }
+test('pricing counts cold writes and cache reads separately',()=>{
+  assert.equal(price({input:1e6,output:1e6,cacheWrite:1e6,cacheRead:1e6},{input:3,output:15,cacheWrite:3.75,cacheRead:0.3}),22.05);
+  assert.throws(()=>price({input:0,output:0,cacheWrite:0,cacheRead:0},{input:-3,output:15,cacheWrite:3.75,cacheRead:0.3}));
+  assert.equal(median([30,10,20]),20);
 });
-
-test("history rejects a rewritten baseline and source work performed before its plan", () => {
-  const f = fixture();
-  try {
-    f.write("app/src/feature.mjs", "export const value = 'fixed';\n"); f.commit("premature source");
-    f.write("evidence/plan.md", "Synthetic late plan\n"); const plan = f.commit("late plan");
-    f.write("app/tests/feature.test.mjs", "// Synthetic regression fixture\n"); const source = f.commit("test");
-    assert.throws(() => verifyImplementationRange(f.root, f.contract, f.starting, source, plan), /before the plan/);
-    assert.throws(() => verifyImplementationRange(f.root, f.contract, plan, source), /supplied starter/);
-  } finally { f.dispose(); }
+test('capture verification rejects wrong commits, failure exits, and reversed timestamps',()=>{
+  const check={script:'economics:check',markers:['PASS experiment evidence']},sha='a'.repeat(40);
+  const text=`Command: npm run economics:check\nRepository commit: ${sha}\nSource SHA: ${sha}\nStarted at: 2026-10-16T00:00:00Z\nFinished at: 2026-10-16T00:00:01Z\nPASS experiment evidence\nexit code: 0\n`;
+  verifyCapture(text,check,sha);
+  assert.throws(()=>verifyCapture(text,check,'b'.repeat(40)));
+  assert.throws(()=>verifyCapture(text.replace('exit code: 0','exit code: 1'),check,sha));
+  assert.throws(()=>verifyCapture(text.replace('00:00:01Z','00:00:00Z').replace('Started at: 2026-10-16T00:00:00Z','Started at: 2026-10-16T01:00:00Z'),check,sha));
 });
-
-test("scope replay distinguishes a real behavior regression from broken or ineffective tests", () => {
-  const f = fixture();
-  try {
-    f.write("app/src/migration/exportButton.mjs", 'export const buttonVariantFor = () => "legacy-primary";\n');
-    const starting = f.commit("synthetic scope starter");
-    f.write("evidence/before.md", "Starting commit: " + starting + "\n");
-    f.write("app/src/migration/exportButton.mjs", 'export const buttonVariantFor = () => "ds-secondary";\n');
-    f.write("app/tests/export-button.test.mjs", 'import assert from "node:assert/strict";\nimport {buttonVariantFor} from "../src/migration/exportButton.mjs";\nassert.equal(buttonVariantFor("export"), "ds-secondary");\n');
-    const replay = path.join(import.meta.dirname, "replay-scope-regression.mjs");
-    success(run(f.app, replay));
-    f.write("app/tests/export-button.test.mjs", 'console.log("A test with no behavior assertion");\n');
-    const ineffective = run(f.app, replay);
-    assert.notEqual(ineffective.status, 0);
-    assert.match(ineffective.stderr, /must fail against the original helper/);
-    f.write("app/tests/export-button.test.mjs", 'import "./missing-file.mjs";\n');
-    const broken = run(f.app, replay);
-    assert.notEqual(broken.status, 0);
-    assert.match(broken.stderr, /behavior assertion/);
-  } finally { f.dispose(); }
+test('capture refuses overwrite, binds bytes, and leaves partial batches visible',()=>{
+  const ctx=fixture();try{
+    const batch=createBatch(ctx,'before');batch.save('test',{},{'response.json':'{"synthetic":true}'});
+    assert.throws(()=>createBatch(ctx,'before'));
+    const index=JSON.parse(fs.readFileSync(path.join(ctx.root,'evidence/records.json'),'utf8'));
+    assert.equal(index.batches[0].complete,false);assert.throws(()=>assertBatches(index,'cache',1));
+    const record=index.batches[0].records[0];assert.equal(artifact(ctx.root,record,'response.json'),'{"synthetic":true}');
+    fs.writeFileSync(path.join(ctx.root,'evidence/raw/before/test.response.json'),'changed');assert.throws(()=>artifact(ctx.root,record,'response.json'));
+  }finally{ctx.dispose();}
 });
-
-test("real capture and sealing lifecycle passes, then rejects altered artifacts", { skip: !process.env.npm_execpath }, () => {
-  const f = fixture();
-  const npm = (args) => run(f.app, process.env.npm_execpath, args);
-  try {
-    f.write("evidence/before.md", "## Conditions\nStarting commit: " + f.starting + "\n## Findings\nSynthetic fixture, no agent session.\n## Proof\nCaptured original state.\n");
-    success(npm(["run", "proof:capture", "--", "baseline"]));
-    assert.notEqual(npm(["run", "proof:capture", "--", "baseline"]).status, 0, "capture cannot overwrite an earlier attempt");
-    f.write("app/src/feature.mjs", "export const value = 'fixed';\n");
-    assert.notEqual(npm(["run", "proof:capture", "--", "baseline"]).status, 0, "dirty source cannot be measured at the old SHA");
-    f.write("app/tests/feature.test.mjs", "// Synthetic test fixture\n");
-    const source = f.commit("focused fixture change");
-    f.write("evidence/result.json", JSON.stringify({ sourceSha: source }));
-    success(npm(["run", "proof:capture", "--", "implementation"]));
-    f.write("evidence/after.md", "## Conditions\nStarting commit: " + f.starting + "\nImplementation commit: " + source + "\n## Findings\nSynthetic fixed fixture.\n## Proof\nCaptured implementation check.\n");
-    f.write("evidence/comparison.md", "## Changes\nFixture value changed.\n## Verified\nCaptured output.\n## Remaining questions\nNo model execution is represented by this test.\n");
-    f.write("evidence/report.md", "## Finding\nThe fixture value is fixed.\n");
-    f.write("evidence/source-audit.json", JSON.stringify({ claims: [{ id: "fixture", topic: "behavior", status: "supported", reason: "The exact implementation line supports the synthetic fixture claim.", artifact: { path: "evidence/report.md", line: 2, excerpt: "The fixture value is fixed." }, sources: [{ path: "app/src/feature.mjs", line: 1, excerpt: "export const value = 'fixed';" }] }] }));
-    f.commit("fixture evidence");
-    success(run(f.app, "scripts/evidence.mjs", ["seal"]));
-    success(npm(["run", "evidence:capture", "--", "--output", "../evidence/commands/verify.txt", "--", "npm", "run", "evidence:verify"]));
-    f.commit("fixture verification");
-    success(run(f.app, "scripts/evidence.mjs"));
-    f.write("evidence/report.md", "## Finding\nThe fixture value is fixed.\nAn unsealed alteration.\n");
-    const altered = run(f.app, "scripts/evidence.mjs");
-    assert.notEqual(altered.status, 0);
-    assert.match(altered.stderr, /changed since seal/);
-  } finally { f.dispose(); }
+test('capture refuses source changes and artifact traversal',()=>{
+  const ctx=fixture();try{
+    assert.throws(()=>contained(ctx.root,'../escape.txt'));assert.throws(()=>contained(ctx.root,path.resolve(ctx.root,'x')));
+    fs.writeFileSync(path.join(ctx.app,'starter.txt'),'uncommitted');assert.throws(()=>createBatch(ctx,'before'));
+  }finally{ctx.dispose();}
+});
+test('builder contract preserves every character and places changing data after the breakpoint',()=>{
+  const stable='Experiment namespace: N\nRules',dynamic='Request timestamp: T\n',messages=[{role:'user',content:'Q'}];
+  inspectRequest({system:[{type:'text',text:stable,cache_control:{type:'ephemeral'}},{type:'text',text:dynamic}],messages},'Rules','Q','T','N',true);
+  assert.throws(()=>inspectRequest({system:[{type:'text',text:dynamic+stable,cache_control:{type:'ephemeral'}}],messages},'Rules','Q','T','N',true));
+  assert.throws(()=>inspectRequest({system:[{type:'text',text:stable.slice(0,-1)+dynamic}],messages},'Rules','Q','T','N'));
+});
+function cacheExperiment() {
+  const ctx=fixture();
+  const source=path.join(chapter,'exercise-02-reduce-repeated-prompt-costs/prompt-cache-app');
+  fs.cpSync(path.join(source,'fixtures'),path.join(ctx.app,'fixtures'),{recursive:true});fs.copyFileSync(path.join(source,'provider.json'),path.join(ctx.app,'provider.json'));
+  const index={schemaVersion:1,kind:'cache',batches:[]};
+  for(const lane of ['before','after']) {
+    const batch={lane,sourceSha:'a'.repeat(40),startingSha:'a'.repeat(40),startedAt:'2026-10-16T00:00:00Z',finishedAt:'2026-10-16T00:01:00Z',complete:true,records:[]};index.batches.push(batch);
+    for(const [n,task] of questions.entries()) {
+      const timestamp='T:'+n,namespace=lane,stable=`Experiment namespace: ${namespace}\n${documentFor(ctx.app,task.id)}`,dynamic=`Request timestamp: ${timestamp}\n`;
+      const request={model:'claude-sonnet-4-6',max_tokens:256,temperature:0,messages:[{role:'user',content:task.question}],system:lane==='before'?[{type:'text',text:dynamic+stable,cache_control:{type:'ephemeral'}}]:[{type:'text',text:stable,cache_control:{type:'ephemeral'}},{type:'text',text:dynamic}]};
+      const response={id:lane+'-'+n,model:'claude-sonnet-4-6',content:[{type:'text',text:JSON.stringify(task.answer)}],usage:{input_tokens:20,output_tokens:10,cache_creation_input_tokens:lane==='before'||n===0||n===3?2000:0,cache_read_input_tokens:lane==='after'&&n>0&&n<3?2000:0}};
+      const record={id:task.id,timestamp,namespace,durationMs:1,artifacts:{}};batch.records.push(record);
+      for(const [suffix,value] of Object.entries({'request.json':request,'response.json':response,'http.json':{status:200,requestId:lane+'-'+n}})) {
+        const file=`evidence/raw/${lane}/${task.id}.${suffix}`,raw=JSON.stringify(value);fs.mkdirSync(path.dirname(path.join(ctx.root,file)),{recursive:true});fs.writeFileSync(path.join(ctx.root,file),raw);record.artifacts[file]=sha256(raw);
+      }
+    }
+  }
+  return {ctx,index};
+}
+test('synthetic cache workload accounts for cold creation, warm reads, outputs, and policy invalidation',()=>{
+  const {ctx,index}=cacheExperiment();try{const metrics=scoreCache(ctx,index);assert.equal(metrics.decision,'adopt');assert.equal(metrics.cacheReadTokens,4000);assert.ok(metrics.afterCostUsd<metrics.beforeCostUsd);}finally{ctx.dispose();}
+});
+test('cache verifier rejects a stale policy answer even with a cache hit',()=>{
+  const {ctx,index}=cacheExperiment();try{
+    const record=index.batches[1].records[3],file='evidence/raw/after/updated-policy.response.json';
+    const body=JSON.parse(fs.readFileSync(path.join(ctx.root,file),'utf8'));body.content[0].text='{"retentionDays":30}';const raw=JSON.stringify(body);fs.writeFileSync(path.join(ctx.root,file),raw);record.artifacts[file]=sha256(raw);
+    assert.throws(()=>scoreCache(ctx,index),/current policy/);
+  }finally{ctx.dispose();}
+});
+test('cache verifier rejects missing cells and raw tampering',()=>{
+  const {ctx,index}=cacheExperiment();try{
+    index.batches[1].records.pop();assert.throws(()=>scoreCache(ctx,index));
+  }finally{ctx.dispose();}
+});
+test('Ponytail starter fails acceptance and shared utilities cannot be replaced',()=>{
+  const app=path.join(chapter,'exercise-03-build-feature-with-fewer-tokens/ponytail-feature-app'),ctx={app};
+  const files=snapshotFeature(app);assert.notEqual(gradeFiles(ctx,files).exitCode,0);
+  assert.throws(()=>gradeFiles(ctx,{...files,'src/lib/csv.mjs':'weakened serializer'}),/utilities changed/);
+});
+test('process errors are represented as failures rather than passing empty captures',()=>{
+  const result=command('nonexistent-economics-test-executable',[]);assert.notEqual(result.exitCode,0);assert.ok(result.stderr.length);
+});
+test('Ponytail cannot adopt a cheaper incomplete result or hide weak cells',()=>{
+  assert.equal(adoptionDecision([100,110,120],[70,75,80],3),'adopt');
+  assert.equal(adoptionDecision([100,110,120],[70,75,80],2),'reject');
+  assert.equal(adoptionDecision([100,110,120],[90,120,130],3),'reject');
+  assert.equal(adoptionDecision([100,110,120],[100,110,120],3),'reject');
+  assert.throws(()=>adoptionDecision([100],[80],1));
+});
+test('real pinned RTK captures preserve failed checks and count fallback output',{skip:!process.env.RTK_EXE},async()=>{
+  const ctx=fixture('rtk');try{
+    const source=path.join(chapter,'exercise-01-reduce-tool-output-without-hiding-failures/rtk-investigation-app');
+    fs.cpSync(path.join(source,'fixtures'),path.join(ctx.app,'fixtures'),{recursive:true});writeJson(path.join(ctx.app,'rtk-policy.json'),{history:'raw',search:'raw',checks:'raw'});
+    ctx.git(['add','.']);ctx.git(['commit','-qm','Synthetic pilot setup']);fs.writeFileSync(path.join(ctx.root,'evidence/before.md'),'Starting commit: '+ctx.git(['rev-parse','HEAD'])+'\n');
+    await runRtk(ctx,{lane:'before'});
+    writeJson(path.join(ctx.app,'rtk-policy.json'),{history:'rtk',search:'rtk',checks:'rtk-then-raw'});ctx.git(['add','.']);ctx.git(['commit','-qm','Pilot policy']);
+    await runRtk(ctx,{lane:'after',rtk:process.env.RTK_EXE});
+    const metrics=scoreRtk(ctx,JSON.parse(fs.readFileSync(path.join(ctx.root,'evidence/records.json'),'utf8')));assert.ok(metrics.beforeBytes>0&&metrics.afterBytes>0);assert.equal(metrics.decision,'adopt');
+    console.log('Actual pinned RTK pilot:',metrics);
+  }finally{ctx.dispose();}
 });

@@ -1,0 +1,77 @@
+{
+  "mode": "observation",
+  "kind": "ponytail",
+  "app": "ponytail-feature-app",
+  "outputs": [
+    {
+      "path": "evidence/decision.md",
+      "type": "markdown",
+      "headings": [
+        "Measurements",
+        "Correctness",
+        "Decision",
+        "Limitations"
+      ]
+    },
+    {
+      "path": "evidence/summary.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "measurement",
+    "correctness",
+    "limits"
+  ],
+  "sourceRoots": [
+    "ponytail-feature-app/src/",
+    "ponytail-feature-app/tests/",
+    "ponytail-feature-app/fixtures/",
+    "docs/",
+    "evidence/raw/",
+    "evidence/commands/"
+  ],
+  "requiredSkills": [
+    {
+      "name": "ponytail",
+      "source": "https://github.com/DietrichGebert/ponytail"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/records.json",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/implementation.txt",
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/selected-trial.json"
+  ],
+  "sourceArtifact": "evidence/summary.json",
+  "allowedSourceFiles": [
+    "ponytail-feature-app/src/feature/",
+    "ponytail-feature-app/tests/"
+  ],
+  "starterSources": {
+    "ponytail-feature-app/src/feature/exportFiltered.mjs": "f290921cc699a48cc26e2c92e78c40c3405f1c739f18389c51ae108429454922",
+    "ponytail-feature-app/src/lib/csv.mjs": "08e23012b8cce1cf6746d46f88fe6f38bcc6e42b7dd568fb95edb06d57a7569c",
+    "ponytail-feature-app/src/lib/filters.mjs": "c4993c3295553ae72b58c95f3e1520d5e314cf8020a939638bcf5c60363f9770",
+    "ponytail-feature-app/tests/export-filtered.test.mjs": "bcb5affa7221dcae003341eee124df644ed61c397c8d46a5316829d4a3e16086"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "path": "evidence/commands/baseline.txt",
+      "phase": "starting",
+      "markers": [
+        "PASS starter framework"
+      ]
+    },
+    "implementation": {
+      "script": "economics:check",
+      "path": "evidence/commands/implementation.txt",
+      "phase": "implementation",
+      "markers": [
+        "PASS experiment evidence"
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "folder": "exercise-01-reduce-tool-output-without-hiding-failures",
+    "app": "rtk-investigation-app",
+    "kind": "rtk",
+    "title": "Reduce Tool Output Without Hiding Failures",
+    "workflow": "RTK command-output compression",
+    "editable": [
+      "rtk-policy.json"
+    ],
+    "checks": "RTK output preserves diagnostic signals",
+    "skill": null
+  },
+  {
+    "folder": "exercise-02-reduce-repeated-prompt-costs",
+    "app": "prompt-cache-app",
+    "kind": "cache",
+    "title": "Reduce Repeated Prompt Costs with Caching",
+    "workflow": "Prompt-prefix caching",
+    "editable": [
+      "src/buildRequest.mjs"
+    ],
+    "checks": "Stable prefixes and current policy answers",
+    "skill": null
+  },
+  {
+    "folder": "exercise-03-build-feature-with-fewer-tokens",
+    "app": "ponytail-feature-app",
+    "kind": "ponytail",
+    "title": "Build the Same Feature with Fewer Tokens",
+    "workflow": "ponytail",
+    "editable": [
+      "src/feature/exportFiltered.mjs",
+      "tests/export-filtered.test.mjs"
+    ],
+    "checks": "Complete feature with measured session usage",
+    "skill": {
+      "name": "ponytail",
+      "source": "https://github.com/DietrichGebert/ponytail"
+    }
+  }
+]
