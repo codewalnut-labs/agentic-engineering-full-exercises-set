@@ -1,6 +1,6 @@
 # Setup and verification
 
-Use the Node version in `.nvmrc`. Install **[verification-before-completion](https://github.com/obra/superpowers/tree/main/skills/verification-before-completion)** using the [upstream instructions](https://github.com/obra/superpowers#installation). Record its revision and actual use. This exercise stands alone.
+Use the Node version in `.nvmrc`. Install the **[refactor skill](https://github.com/github/awesome-copilot/blob/main/skills/refactor/SKILL.md)** with `npx skills add github/awesome-copilot --skill refactor --global`. The source was reviewed at upstream revision `cb64ad12e32737ae764becd6885462e9b4c7cb00`; record the revision actually installed. Record its revision and actual use. This exercise stands alone.
 
 ## Observe and prepare
 
@@ -10,7 +10,9 @@ Add `src/rules/legacyEligibility.characterization.test.mjs`. Import only the pub
 
 Run `npm run test:oracle`, then `npm run snapshot:before`. Commit only the test and `evidence/before-output.json`. This is `characterizationSha`. Record it in `evidence/history.json`, then run `npm run proof:capture -- characterization`.
 
-Refactor only `src/rules/legacyEligibility.mjs`. You may iterate and use several focused production commits, but keep the precommitted test and snapshot unchanged. Record the final commit as `refactorSha`. Run `npm run snapshot:after` and `npm run proof:capture -- implementation`.
+Run `npm run test:differential` before editing. Inspect the supplied incorrect candidate's shrunk counterexample; `replay(candidate, seed, path)` in `scripts/differential.mjs` replays it. The protected domain covers named tiers, finite integer counts, and boolean overrides; passing these comparisons is not a proof for every JavaScript value.
+
+Use refactor to change only `src/rules/legacyEligibility.mjs`. You may iterate and use several focused production commits, but keep the precommitted test and snapshot unchanged. Record the final commit as `refactorSha`. Run `npm run snapshot:after`, `npm run differential:capture`, and `npm run proof:capture -- implementation`.
 
 ## Report and seal
 

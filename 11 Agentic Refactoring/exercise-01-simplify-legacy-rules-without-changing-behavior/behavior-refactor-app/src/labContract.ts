@@ -37,7 +37,7 @@ export const labContract: LabContract = {
   ],
   "agentWorkflow": [
     "Observe the supplied starter and identify the public behavior to preserve.",
-    "Use verification-before-completion and retain its real invocation and relevant session.",
+    "Use refactor and retain its real invocation and relevant session.",
     "Commit characterization tests and required snapshots before production work.",
     "Make focused production changes and rerun the unchanged tests.",
     "Compare actual before and after results, then capture and seal the evidence."

@@ -133,7 +133,8 @@ export function verifySnapshot(root, manifest, contract) {
     const bytes = read(root, relative);
     assert.equal(manifest.files?.[relative], hash(bytes), `artifact changed since seal: ${relative}`);
     const repoPath = prefix + relative.split(path.sep).join("/");
-    assert.equal(normalize(git(root, ["show", `${manifest.sourceSha}:${repoPath}`])), normalize(bytes), `commit all outputs before evidence:seal: ${relative}`);
+    // cat-file reads a blob directly; git show may stat revision:path as a Windows filename.
+    assert.equal(normalize(git(root, ["cat-file", "blob", `${manifest.sourceSha}:${repoPath}`])), normalize(bytes), `commit all outputs before evidence:seal: ${relative}`);
   }
   const changes = git(root, ["diff", "--name-only", "--relative", manifest.sourceSha, "--", "."]).toString().trim().split(/\r?\n/).filter(Boolean);
   const evidencePrefix = "evidence/";

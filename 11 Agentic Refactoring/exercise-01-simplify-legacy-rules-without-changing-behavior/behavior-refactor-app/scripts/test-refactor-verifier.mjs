@@ -8,6 +8,8 @@ import { verifyOutputs, verifyRefactorHistory } from "./refactor-verification.mj
 const cases = [{ name: "case", input: { value: 1 }, expected: { status: "same" } }];
 const output = [{ name: "case", input: { value: 1 }, output: { status: "same" } }];
 assert.deepEqual(verifyOutputs(output, structuredClone(output), cases), []);
+const reordered = [{ output: { status: "same" }, input: { value: 1 }, name: "case" }];
+assert.deepEqual(verifyOutputs(output, reordered, cases), [], "object key order is not a business behavior");
 const changed = structuredClone(output); changed[0].output.status = "new";
 assert.ok(verifyOutputs(output, changed, cases).some((failure) => failure.includes("not identical")));
 // A synthetic history exercises the participant-test replay and mutation check.

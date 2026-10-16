@@ -33,7 +33,7 @@ export function validatePhaseEvidence(root, contract) {
   git(root, ["merge-base", "--is-ancestor", source, "HEAD"]);
   const prefix = git(root, ["rev-parse", "--show-prefix"]);
   for (const [file, digest] of Object.entries(contract.starterSources ?? {})) {
-    assert.equal(hash(execFileSync("git", ["show", starting + ":" + prefix + file], { cwd: root })), digest, "starting commit must contain the supplied starter: " + file);
+    assert.equal(hash(execFileSync("git", ["cat-file", "blob", starting + ":" + prefix + file], { cwd: root })), digest, "starting commit must contain the supplied starter: " + file);
   }
   const prepared = contract.preparedField ? history[contract.preparedField] : starting;
   assert.match(prepared ?? "", /^[a-f0-9]{40}$/, "record the preparation SHA");
@@ -52,7 +52,7 @@ export function validatePhaseEvidence(root, contract) {
   const actual = lines(git(root, ["diff", "--name-only", prepared, source])).filter((file) => !file.startsWith(prefix + "evidence/")).sort();
   assert.deepEqual(actual, productionFiles, "implementation must change exactly the declared production files");
   for (const file of preparedFiles) {
-    const committed = execFileSync("git", ["show", prepared + ":" + file], { cwd: root });
+    const committed = execFileSync("git", ["cat-file", "blob", prepared + ":" + file], { cwd: root });
     assert.equal(hash(committed), hash(read(file.slice(prefix.length))), "precommitted test or observation changed: " + file);
   }
   for (const check of Object.values(contract.checkCaptures)) {

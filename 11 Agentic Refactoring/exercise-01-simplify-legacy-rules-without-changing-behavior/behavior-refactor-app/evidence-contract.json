@@ -28,6 +28,10 @@
     {
       "path": "evidence/history.json",
       "type": "json"
+    },
+    {
+      "path": "evidence/differential.json",
+      "type": "json"
     }
   ],
   "topics": [
@@ -39,12 +43,14 @@
     "behavior-refactor-app/src/",
     "docs/",
     "evidence/commands/",
-    "evidence/skill-session.txt"
+    "evidence/skill-session.txt",
+    "behavior-refactor-app/fixtures/",
+    "behavior-refactor-app/scripts/"
   ],
   "requiredSkills": [
     {
-      "name": "verification-before-completion",
-      "source": "https://github.com/obra/superpowers/tree/main/skills/verification-before-completion"
+      "name": "refactor",
+      "source": "https://github.com/github/awesome-copilot/blob/main/skills/refactor/SKILL.md"
     }
   ],
   "extraEvidence": [

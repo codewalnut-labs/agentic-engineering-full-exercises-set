@@ -23,7 +23,9 @@ function fileDigest(repositoryRoot, relative) {
 function snapshot(repositoryRoot) {
   const tracked = nulList(git(repositoryRoot, ["ls-files", "-z"]));
   const untracked = nulList(git(repositoryRoot, ["ls-files", "--others", "--exclude-standard", "-z"])).sort();
-  const ignored = nulList(git(repositoryRoot, ["ls-files", "--others", "--ignored", "--exclude-standard", "-z"]))
+  // Exclude dependency trees before Git writes them: filtering afterward can overflow
+  // execFileSync's buffer in an ordinary npm install with long exercise paths.
+  const ignored = nulList(git(repositoryRoot, ["ls-files", "--others", "--ignored", "--exclude-standard", "-z", "--", ".", ":(exclude)**/node_modules/**"]))
     .filter((relative) => !relative.split("/").includes("node_modules"))
     .sort();
   const trackedFiles = Object.fromEntries(tracked.map((relative) => [relative, fileDigest(repositoryRoot, relative)]));
