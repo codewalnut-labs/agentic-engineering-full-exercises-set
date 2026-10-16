@@ -1,0 +1,174 @@
+[
+  {
+    "name": "missing wins over invalid decision",
+    "result": null,
+    "error": {
+      "status": 404,
+      "message": "Workflow not found: missing"
+    },
+    "stored": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "Review",
+      "score": 81,
+      "owner": "Sam",
+      "note": "Original evidence"
+    },
+    "events": [
+      "find:missing"
+    ]
+  },
+  {
+    "name": "short Ready note rejects before risk",
+    "result": null,
+    "error": {
+      "status": 400,
+      "message": "Ready decisions require a longer evidence note"
+    },
+    "stored": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "Review",
+      "score": 81,
+      "owner": "Sam",
+      "note": "Original evidence"
+    },
+    "events": [
+      "find:w-1"
+    ]
+  },
+  {
+    "name": "Ready exactly twelve accepted",
+    "result": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "Ready",
+      "score": 81,
+      "owner": "Ada",
+      "note": "123456789012"
+    },
+    "error": null,
+    "stored": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "Ready",
+      "score": 81,
+      "owner": "Ada",
+      "note": "123456789012"
+    },
+    "events": [
+      "find:w-1",
+      "risk:w-1",
+      "save:w-1",
+      "notify:w-1"
+    ]
+  },
+  {
+    "name": "risk rejection does not save",
+    "result": null,
+    "error": {
+      "status": 409,
+      "message": "Risk review rejected"
+    },
+    "stored": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "Review",
+      "score": 81,
+      "owner": "Sam",
+      "note": "Original evidence"
+    },
+    "events": [
+      "find:w-1",
+      "risk:w-1"
+    ]
+  },
+  {
+    "name": "risk unavailable does not save",
+    "result": null,
+    "error": {
+      "status": 502,
+      "message": "Risk service unavailable"
+    },
+    "stored": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "Review",
+      "score": 81,
+      "owner": "Sam",
+      "note": "Original evidence"
+    },
+    "events": [
+      "find:w-1",
+      "risk:w-1"
+    ]
+  },
+  {
+    "name": "legacy unknown status accepted without risk",
+    "result": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "LegacyCustom",
+      "score": 81,
+      "owner": "Ada",
+      "note": "x"
+    },
+    "error": null,
+    "stored": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "LegacyCustom",
+      "score": 81,
+      "owner": "Ada",
+      "note": "x"
+    },
+    "events": [
+      "find:w-1",
+      "save:w-1",
+      "notify:w-1"
+    ]
+  },
+  {
+    "name": "store failure prevents notification",
+    "result": null,
+    "error": {
+      "status": 503,
+      "message": "Store unavailable"
+    },
+    "stored": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "Review",
+      "score": 81,
+      "owner": "Sam",
+      "note": "Original evidence"
+    },
+    "events": [
+      "find:w-1",
+      "risk:w-1",
+      "save:w-1"
+    ]
+  },
+  {
+    "name": "notification failure leaves saved item and does not retry",
+    "result": null,
+    "error": {
+      "status": 502,
+      "message": "Notification unavailable"
+    },
+    "stored": {
+      "id": "w-1",
+      "customer": "Northwind",
+      "status": "Ready",
+      "score": 81,
+      "owner": "Ada",
+      "note": "Reviewed evidence"
+    },
+    "events": [
+      "find:w-1",
+      "risk:w-1",
+      "save:w-1",
+      "notify:w-1"
+    ]
+  }
+]

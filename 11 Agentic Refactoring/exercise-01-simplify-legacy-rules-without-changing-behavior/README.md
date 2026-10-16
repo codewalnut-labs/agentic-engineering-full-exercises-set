@@ -2,36 +2,30 @@
 
 ## Your Mission
 
-A legacy eligibility function is difficult to change, and some of its results look wrong. Callers may already depend on those results.
+A legacy eligibility function has nested decisions and surprising results. An agent can make it look cleaner while silently changing which rule wins.
 
-Simplify its decision structure without changing observable behavior. Your challenge is to establish what the function does today, preserve even the surprising cases, and show why the new structure is easier to maintain.
+Simplify the decision structure while preserving its existing behavior. Establish a safety net that can distinguish a correct refactor from a plausible but incorrect one. Suspected product bugs belong in a separate change.
 
 ## Project
 
-[behavior-refactor-app](./behavior-refactor-app) contains the legacy function and a protected behavior checker. The [golden cases](./docs/renewal-golden-cases.json) record its current outputs.
+[behavior-refactor-app](./behavior-refactor-app) contains the editable function, twelve golden examples, a protected original, and an incorrect candidate with a subtle threshold change. A differential runner compares implementations over generated inputs using fast-check.
 
-Support overrides, negative late-payment counts, and unexpected rejection reasons are part of this task's existing contract. Fixing those behaviors would require a separate change.
-
-Use the [setup instructions](./docs/setup.md). Time box: 45 minutes.
+Use the [setup instructions](./docs/setup.md). Time box: 60 minutes after setup.
 
 ## How To Go About It
 
-1. Inspect the public function and record its current behavior in `evidence/before.md`. Separate observed behavior from what you think the rules should be.
-2. Write a characterization test: a test that captures existing behavior through the public function. Run it against the starter, capture all golden-case outputs, and commit the test and snapshot before editing production code.
-3. Refactor only `legacyEligibility.mjs`. Make the decision flow clearer while preserving inputs, result fields, exact reason strings, and decision order.
-4. Use **[verification-before-completion](https://github.com/obra/superpowers/tree/main/skills/verification-before-completion)** to run the unchanged tests and compare the complete before and after outputs.
-5. Explain the structural improvement and document suspected bugs for future work. A green test proves the checked behavior stayed stable; it does not by itself prove the code is easier to understand.
+1. Inspect the public function and record observed behavior in `evidence/before.md`, including overrides and unexpected rejection reasons.
+2. Write a public characterization test, capture the twelve baseline outputs, and commit both before production changes. Keep them unchanged afterward.
+3. Run the differential checks. Inspect the incorrect candidate's shrunk counterexample and replay it. Explain which behavior the check protects and the limits of the generated input domain.
+4. Use the **[refactor skill](https://github.com/github/awesome-copilot/blob/main/skills/refactor/SKILL.md)** to improve only the legacy rule module through small, focused changes. Preserve output fields, exact strings, thresholds, and override precedence.
+5. Run the same characterization and differential checks, capture the final outputs and report, and explain the structural improvement in `evidence/after.md` and `evidence/comparison.md`. Fewer lines alone do not establish maintainability.
 
 ## Evidence
 
-Submit the characterization test, refactored function, before and after output snapshots, behavior decisions, and a short account of the structural changes. Include `evidence/before.md`, `evidence/after.md`, `evidence/comparison.md`, and proof of skill use.
+Submit the precommitted test, implementation, before/after snapshots, generated comparison report, behavior decisions, and skill-use transcript. Follow the [evidence instructions and template](./docs/evidence-template.md) for phase captures, source citations, and sealing.
 
-Follow the [evidence instructions and template](./docs/evidence-template.md) to capture checks, cite sources, and seal the evidence. Open one focused PR using the [submission standard](../../docs/SUBMISSION_STANDARD.md).
+Run `npm run verify:exercise` from `behavior-refactor-app/` and open one focused PR using the [submission standard](../../docs/SUBMISSION_STANDARD.md).
 
 ## Completion Criteria
 
-- The public characterization test and baseline snapshot precede production changes.
-- Every protected output is identical, including surprising legacy behavior.
-- Only the allowed function is refactored; the characterization test remains unchanged.
-- The explanation identifies a concrete improvement in the decision structure.
-- `npm run verify:exercise` passes.
+The unchanged characterization test and all twelve golden outputs pass. Three reproducible runs cover 3,000 generated comparisons; the supplied incorrect candidate is rejected and its counterexample replays. The safety net preserves documented surprises, and the explanation identifies a concrete structural improvement. Verification passes with evidence recorded before and after the refactor.

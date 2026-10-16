@@ -2,6 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
+import { isDeepStrictEqual } from "node:util";
 import { verifyEvidenceOnlyHistory } from "../../../../scripts/comparable-evidence.mjs";
 
 function git(root, args) { return execFileSync("git", args, { cwd: root, encoding: "utf8" }).trim(); }
@@ -15,7 +16,7 @@ export function verifyRefactorHistory({ repositoryRoot, exerciseRoot, characteri
     const actualCharacterization = git(repositoryRoot, ["diff-tree", "--no-commit-id", "--name-only", "-r", characterizationSha]).split(/\r?\n/).filter(Boolean).sort();
     if (JSON.stringify(actualCharacterization) !== JSON.stringify(characterizationFiles)) failures.push("characterizationSha must contain only public characterization test and before output");
     const testFile = `${prefix}/behavior-refactor-app/src/rules/legacyEligibility.characterization.test.mjs`;
-    const testSource = execFileSync("git", ["show", `${characterizationSha}:${testFile}`], { cwd: repositoryRoot, encoding: "utf8" });
+    const testSource = execFileSync("git", ["cat-file", "blob", `${characterizationSha}:${testFile}`], { cwd: repositoryRoot, encoding: "utf8" });
     const executableTest = testSource.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "");
     if (!executableTest.includes("evaluateRenewalEligibility") || !executableTest.includes("renewal-golden-cases") || !executableTest.includes("deepEqual") || /from\s+["'][^"']*(helper|internal)/i.test(executableTest)) failures.push("characterization test must execute the public rule against the protected golden cases");
     const refactorFile = `${prefix}/behavior-refactor-app/src/rules/legacyEligibility.mjs`;
@@ -29,8 +30,8 @@ export function verifyRefactorHistory({ repositoryRoot, exerciseRoot, characteri
       fs.mkdirSync(path.dirname(testPath), { recursive: true });
       fs.mkdirSync(path.dirname(fixturePath), { recursive: true });
       fs.writeFileSync(testPath, testSource);
-      fs.writeFileSync(sourcePath, execFileSync("git", ["show", `${refactorSha}:${refactorFile}`], { cwd: repositoryRoot }));
-      const fixtureSource = execFileSync("git", ["show", `${characterizationSha}:${prefix}/docs/renewal-golden-cases.json`], { cwd: repositoryRoot, encoding: "utf8" });
+      fs.writeFileSync(sourcePath, execFileSync("git", ["cat-file", "blob", `${refactorSha}:${refactorFile}`], { cwd: repositoryRoot }));
+      const fixtureSource = execFileSync("git", ["cat-file", "blob", `${characterizationSha}:${prefix}/docs/renewal-golden-cases.json`], { cwd: repositoryRoot, encoding: "utf8" });
       fs.writeFileSync(fixturePath, fixtureSource);
       const passing = spawnSync(process.execPath, [testPath], { cwd: temporary, encoding: "utf8" });
       if (passing.status !== 0) failures.push("participant characterization test must pass against refactorSha");
@@ -50,10 +51,10 @@ export function verifyRefactorHistory({ repositoryRoot, exerciseRoot, characteri
 
 export function verifyOutputs(before, after, cases) {
   const failures = [];
-  if (JSON.stringify(before) !== JSON.stringify(after)) failures.push("before and after outputs are not identical");
+  if (!isDeepStrictEqual(before, after)) failures.push("before and after outputs are not identical");
   if (!Array.isArray(before) || before.length !== cases.length) failures.push("output snapshots must cover every golden case");
   for (let index = 0; index < cases.length; index += 1) {
-    if (before?.[index]?.name !== cases[index].name || JSON.stringify(before?.[index]?.input) !== JSON.stringify(cases[index].input) || JSON.stringify(before?.[index]?.output) !== JSON.stringify(cases[index].expected)) failures.push(`snapshot mismatch for ${cases[index].name}`);
+    if (before?.[index]?.name !== cases[index].name || !isDeepStrictEqual(before?.[index]?.input, cases[index].input) || !isDeepStrictEqual(before?.[index]?.output, cases[index].expected)) failures.push(`snapshot mismatch for ${cases[index].name}`);
   }
   return failures;
 }

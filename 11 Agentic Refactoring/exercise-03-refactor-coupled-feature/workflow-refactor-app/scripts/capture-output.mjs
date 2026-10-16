@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { observeHttp, assertContract } from './observe-contract.mjs';
+const lane=process.argv[2];assert.ok(['before','after'].includes(lane));
+const actual=await observeHttp();assertContract(actual);
+const target=new URL('../../evidence/contract-'+lane+'.json',import.meta.url);
+assert.ok(!fs.existsSync(target),'preserve previous snapshot before recapturing');
+fs.mkdirSync(new URL('../../evidence/',import.meta.url),{recursive:true});
+fs.writeFileSync(target,JSON.stringify(actual,null,2)+'\n',{flag:'wx'});
+console.log('Captured actual HTTP-backed workflow observations');

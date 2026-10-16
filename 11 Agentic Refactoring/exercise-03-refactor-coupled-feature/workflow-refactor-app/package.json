@@ -1,0 +1,33 @@
+{
+  "name": "workflow-refactor-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0 <25"
+  },
+  "scripts": {
+    "test:integrity": "node ../../../scripts/verify-protected-inputs.mjs ./challenge-integrity.json",
+    "test": "node --test scripts/infrastructure.test.mjs && npm run test:phase-evidence",
+    "test:phase-evidence": "node --test ../../../scripts/test-challenge-phase-evidence.mjs",
+    "baseline:observe": "node scripts/run-contract.mjs",
+    "test:characterization": "node scripts/run-contract.mjs && node src/decisionWorkflow.characterization.test.mjs",
+    "test:independent": "node scripts/run-independent.mjs",
+    "test:wiring": "node scripts/run-contract.mjs",
+    "test:architecture": "node scripts/check-architecture.mjs",
+    "agent:check": "npm run test:integrity && npm test && npm run baseline:observe",
+    "verify:implementation": "npm run test:characterization && npm run test:architecture && npm run test:independent && npm run test:wiring",
+    "verify:submission": "node scripts/verify-history.mjs && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json && node scripts/verify-refactoring-evidence.mjs",
+    "verify:exercise:core": "npm run agent:check && npm run verify:implementation && npm run verify:submission",
+    "verify:exercise": "node ../../../scripts/run-clean-verification.mjs",
+    "snapshot:before": "node scripts/capture-output.mjs before",
+    "snapshot:after": "node scripts/capture-output.mjs after",
+    "proof:capture": "node ../../../scripts/capture-challenge-check.mjs",
+    "evidence:seal": "node scripts/verify-refactoring-evidence.mjs seal",
+    "evidence:capture": "node ../../../scripts/capture-verification.mjs",
+    "evidence:verify": "npm run agent:check && npm run verify:implementation && node scripts/verify-history.mjs && node scripts/verify-refactoring-evidence.mjs content"
+  },
+  "devDependencies": {
+    "acorn": "8.15.0"
+  }
+}

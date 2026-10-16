@@ -107,6 +107,11 @@
         "Finished at:",
         "exit code: 0"
       ]
+    },
+    {
+      "path": "evidence/differential.json",
+      "minCharacters": 100,
+      "validJson": true
     }
   ]
 }
