@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { context, compute, git, readJson, writeJson } from './economics-evidence.mjs';
+const ctx=context();
+const metrics=await compute(ctx);
+const target=path.join(ctx.root,'evidence/summary.json');
+if(process.argv.includes('--verify'))assert.deepEqual(readJson(target).metrics,metrics,'stored summary differs from captures');
+else writeJson(target,{sourceSha:git(ctx.root,['rev-parse','HEAD']),metrics});
+console.log('PASS experiment evidence: '+JSON.stringify(metrics));

@@ -1,0 +1,65 @@
+{
+  "mode": "observation",
+  "kind": "rtk",
+  "app": "rtk-investigation-app",
+  "outputs": [
+    {
+      "path": "evidence/decision.md",
+      "type": "markdown",
+      "headings": [
+        "Measurements",
+        "Correctness",
+        "Decision",
+        "Limitations"
+      ]
+    },
+    {
+      "path": "evidence/summary.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "measurement",
+    "correctness",
+    "limits"
+  ],
+  "sourceRoots": [
+    "rtk-investigation-app/src/",
+    "rtk-investigation-app/tests/",
+    "rtk-investigation-app/fixtures/",
+    "docs/",
+    "evidence/raw/",
+    "evidence/commands/"
+  ],
+  "requiredSkills": [],
+  "extraEvidence": [
+    "evidence/records.json",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/implementation.txt"
+  ],
+  "sourceArtifact": "evidence/summary.json",
+  "allowedSourceFiles": [
+    "rtk-investigation-app/rtk-policy.json"
+  ],
+  "starterSources": {
+    "rtk-investigation-app/rtk-policy.json": "a5dca995551fdb5647a2c19952b0ecd4f9d8b224b3895e2b93fe6d0e4205c572"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "path": "evidence/commands/baseline.txt",
+      "phase": "starting",
+      "markers": [
+        "PASS starter framework"
+      ]
+    },
+    "implementation": {
+      "script": "economics:check",
+      "path": "evidence/commands/implementation.txt",
+      "phase": "implementation",
+      "markers": [
+        "PASS experiment evidence"
+      ]
+    }
+  }
+}

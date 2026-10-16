@@ -18,7 +18,8 @@ const refactoringHelpers = [
 ];
 const economicsHelpers = [
   "../../.gitattributes", "../../scripts/economics-evidence.mjs", "../../scripts/economics-evidence.test.mjs",
-  "../../scripts/capture-economics-check.mjs", "../../scripts/run-baseline.mjs", "../../scripts/replay-scope-regression.mjs",
+  "../../scripts/capture-economics-check.mjs", "../../scripts/run-experiment.mjs", "../../scripts/score-experiment.mjs", "../../scripts/check-implementation.mjs", "../../scripts/exercises.json",
+  "../../scripts/rtk.mjs", "../../scripts/cache.mjs", "../../scripts/ponytail.mjs", "../../scripts/select-trial.mjs",
   "../../../scripts/context-document-evidence.mjs", "../../../scripts/capture-verification.mjs",
   "../docs/setup.md", "../docs/evidence-template.md", "scripts/verify-economics-evidence.mjs",
 ];
@@ -33,15 +34,15 @@ const prEvidenceHelpers = [
   "../docs/setup.md", "../docs/evidence-template.md", "../docs/pr-review-brief.md", "scripts/verify-review-evidence.mjs",
 ];
 const additions = new Map([
+  ["10 Token Economics/exercise-01-reduce-tool-output-without-hiding-failures", economicsHelpers],
+  ["10 Token Economics/exercise-02-reduce-repeated-prompt-costs", economicsHelpers],
+  ["10 Token Economics/exercise-03-build-feature-with-fewer-tokens", economicsHelpers],
   ["08 Evidence-led PRs/exercise-01-preserve-evidence-when-checks-fail", ["../fixtures/check-results-multiple-failures.json", ...prEvidenceHelpers]],
   ["08 Evidence-led PRs/exercise-02-prove-a-feature-can-be-switched-off", ["scripts/fs-rollback-trace-preload.mjs", ...prEvidenceHelpers]],
   ["08 Evidence-led PRs/exercise-03-block-releases-with-browser-checks", prEvidenceHelpers],
   ["09 Code Review/exercise-01-find-and-fix-review-risks", ["scripts/replay-regression-tests.mjs", "scripts/review-component-behavior.test.tsx", "scripts/run-protected-semgrep.mjs", ...codeReviewHelpers]],
   ["09 Code Review/exercise-02-verify-review-feedback", ["scripts/replay-regression-tests.mjs", "scripts/app-cache-behavior.test.tsx", ...codeReviewHelpers]],
   ["09 Code Review/exercise-03-improve-review-skill", ["../docs/skill-contract.md", "../docs/evaluation-contract.md", "eval/verify-catalog.mjs", "scripts/run-review-session.mjs", "scripts/run-review-session.test.mjs", ...codeReviewHelpers]],
-  ["10 Token Economics/exercise-01-reduce-context-without-losing-rules", ["../docs/adapter-refactor-request.md", "scripts/run-adapter-acceptance.mjs", ...economicsHelpers]],
-  ["10 Token Economics/exercise-02-evaluate-cheaper-model-routing", ["../docs/routing-policy-contract.md", "../evals/recorded-runs.json", "src/routing/dispatchTasks.mjs", "scripts/verify-benchmark-pack.mjs", ...economicsHelpers]],
-  ["10 Token Economics/exercise-03-ship-a-small-change-without-a-rewrite", ["src/migration/actionButtons.mjs", ...economicsHelpers]],
   ["11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior", refactoringHelpers],
   ["11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code", refactoringHelpers],
   ["11 Agentic Refactoring/exercise-03-extract-business-rules", refactoringHelpers],
@@ -63,6 +64,7 @@ function findManifests(directory, results = []) {
 const digest = (file) => crypto.createHash("sha256").update(fs.readFileSync(file, "utf8").replaceAll("\r\n", "\n")).digest("hex");
 let updated = 0;
 for (const manifestPath of findManifests(repositoryRoot)) {
+  if (process.argv[2] === "--chapter" && !path.relative(repositoryRoot, manifestPath).split(path.sep).join("/").startsWith(process.argv[3] + "/")) continue;
   const manifestDirectory = path.dirname(manifestPath);
   const root = fs.existsSync(path.join(manifestDirectory, "package.json"))
     ? manifestDirectory
@@ -115,6 +117,16 @@ for (const manifestPath of findManifests(repositoryRoot)) {
     collect(path.join(root, "docs"));
     collect(path.join(root, "..", "business"));
     collect(path.join(root, "..", "docs"));
+    if (isEconomicsExercise) {
+      collect(path.join(root, "fixtures"));
+      collect(path.join(root, "src"));
+      for (const file of ["provider.json", "agent-config.json"]) if (fs.existsSync(path.join(root, file))) paths.add(file);
+      const economics = JSON.parse(fs.readFileSync(path.join(root, "evidence-contract.json"), "utf8"));
+      for (const editable of economics.allowedSourceFiles) {
+        const appRelative = editable.slice(path.basename(root).length + 1);
+        for (const candidate of [...paths]) if (candidate === appRelative || (appRelative.endsWith("/") && candidate.startsWith(appRelative))) paths.delete(candidate);
+      }
+    }
     // Documentation exercises inspect a fixed source. Implementation exercises keep their task surface editable.
     if (!isPrEvidenceExercise && !isCodeReviewExercise && !isEconomicsExercise && !isRefactoringExercise && !isRetrospectiveExercise && !root.includes("bugfix-context-app") && !root.includes("brownfield-agent-app")) collect(path.join(root, "src"));
     for (const generated of ["../docs/design-document.md", "../docs/domain-model.md", "../docs/query-guide.md"]) paths.delete(generated);

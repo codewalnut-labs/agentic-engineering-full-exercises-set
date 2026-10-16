@@ -1,0 +1,65 @@
+{
+  "mode": "observation",
+  "kind": "cache",
+  "app": "prompt-cache-app",
+  "outputs": [
+    {
+      "path": "evidence/decision.md",
+      "type": "markdown",
+      "headings": [
+        "Measurements",
+        "Correctness",
+        "Decision",
+        "Limitations"
+      ]
+    },
+    {
+      "path": "evidence/summary.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "measurement",
+    "correctness",
+    "limits"
+  ],
+  "sourceRoots": [
+    "prompt-cache-app/src/",
+    "prompt-cache-app/tests/",
+    "prompt-cache-app/fixtures/",
+    "docs/",
+    "evidence/raw/",
+    "evidence/commands/"
+  ],
+  "requiredSkills": [],
+  "extraEvidence": [
+    "evidence/records.json",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/implementation.txt"
+  ],
+  "sourceArtifact": "evidence/summary.json",
+  "allowedSourceFiles": [
+    "prompt-cache-app/src/buildRequest.mjs"
+  ],
+  "starterSources": {
+    "prompt-cache-app/src/buildRequest.mjs": "358793725927e13aeb627f0e8a3ce6ecbfd794e178799b518fc15a9d27747e11"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "path": "evidence/commands/baseline.txt",
+      "phase": "starting",
+      "markers": [
+        "PASS starter framework"
+      ]
+    },
+    "implementation": {
+      "script": "economics:check",
+      "path": "evidence/commands/implementation.txt",
+      "phase": "implementation",
+      "markers": [
+        "PASS experiment evidence"
+      ]
+    }
+  }
+}

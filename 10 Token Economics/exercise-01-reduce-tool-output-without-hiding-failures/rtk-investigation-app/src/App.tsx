@@ -1,0 +1,3 @@
+import { labContract as lab } from "./labContract";
+import "./styles.css";
+export default function App() { return <main className="app-shell"><header className="page-header"><div><p className="eyebrow">{lab.competency}</p><h1>{lab.title}</h1><p>{lab.domain}</p></div></header><section className="workspace-grid">{[["Workflow",lab.agentWorkflow],["Deliverables",lab.workingDeliverables],["Verification",lab.verificationGates]].map(([title,items])=><article className="panel" key={title as string}><h2>{title}</h2><ul>{(items as string[]).map(item=><li key={item}>{item}</li>)}</ul></article>)}</section><p>Use the linked exercise README and the CLI capture harness. This page describes the challenge; it does not display fabricated measurements.</p></main>; }

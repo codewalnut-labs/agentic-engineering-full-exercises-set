@@ -1,0 +1,57 @@
+{
+  "name": "Reduce Tool Output Without Hiding Failures",
+  "root": "..",
+  "evidenceMode": "observation",
+  "requiredFiles": [
+    {
+      "path": "evidence/decision.md",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/summary.json",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/records.json",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/commands/baseline.txt",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/commands/implementation.txt",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/before.md",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/after.md",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/comparison.md",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/source-audit.json",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/manifest.json",
+      "minCharacters": 2
+    },
+    {
+      "path": "evidence/commands/verify.txt",
+      "includeAll": [
+        "Command: npm run evidence:verify",
+        "Repository commit:",
+        "Started at:",
+        "Finished at:",
+        "exit code: 0"
+      ]
+    }
+  ]
+}

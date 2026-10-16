@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { exportFiltered } from './src/feature/exportFiltered.mjs';
+const rows=[{id:1,title:'Invoice, "ready"',status:'Ready'},{id:2,title:'=HYPERLINK("bad")',status:'Queued'},{id:3,title:'Second\nInvoice',status:'Ready'}];
+const snapshot=JSON.stringify(rows);
+const result=exportFiltered(rows,{status:'Ready',query:'invoice'});
+assert.equal(result.filename,'filtered-records.csv');assert.equal(result.mimeType,'text/csv;charset=utf-8');
+assert.equal(result.content,'id,title,status\r\n1,"Invoice, ""ready""",Ready\r\n3,"Second\nInvoice",Ready\r\n');
+assert.equal(exportFiltered(rows,{status:'All',query:'not found'}).content,'id,title,status\r\n');
+assert.equal(exportFiltered(rows,{query:'  INVOICE  '}).content,result.content);
+assert.ok(exportFiltered(rows,{status:'Queued'}).content.includes("'=HYPERLINK"));
+assert.equal(exportFiltered([],{}).content,'id,title,status\r\n');
+assert.equal(JSON.stringify(rows),snapshot,'do not mutate the supplied data');
+console.log('PASS filtered export, escaping, formula safety, empty results, metadata, and immutability');
