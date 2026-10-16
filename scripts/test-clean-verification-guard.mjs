@@ -24,10 +24,15 @@ try {
   execFileSync("git", ["add", "."], { cwd: temporary });
   execFileSync("git", ["commit", "-m", "fixture"], { cwd: temporary });
   fs.writeFileSync(path.join(temporary, "untracked-notes.txt"), "keep this evidence unchanged\n");
-  fs.writeFileSync(path.join(temporary, ".gitignore"), "ignored-output.txt\n");
+  fs.writeFileSync(path.join(temporary, ".gitignore"), "ignored-output.txt\nnode_modules/\n");
   execFileSync("git", ["add", ".gitignore"], { cwd: temporary });
   execFileSync("git", ["commit", "-m", "ignore generated output"], { cwd: temporary });
   fs.writeFileSync(path.join(temporary, "ignored-output.txt"), "stable generated state\n");
+  const dependencies = path.join(temporary, 'nested', 'node_modules', 'package-'.repeat(10));
+  fs.mkdirSync(dependencies, { recursive: true });
+  for (let index = 0; index < 7000; index++) fs.writeFileSync(path.join(dependencies, String(index).padStart(5, '0') + '-source-'.repeat(8) + '.js'), '');
+  const dependencyListing = execFileSync('git', ['ls-files', '--others', '--ignored', '--exclude-standard', '-z'], { cwd: temporary, maxBuffer: 4 * 1024 * 1024 });
+  assert.ok(dependencyListing.length > 1024 * 1024, 'fixture must exceed the old Git output buffer');
 
   const stable = run(temporary, process.execPath, [guard]);
   assert.equal(stable.status, 0, stable.stderr);

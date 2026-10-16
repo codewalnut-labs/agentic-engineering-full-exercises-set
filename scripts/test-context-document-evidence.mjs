@@ -87,5 +87,17 @@ try {
  assert.equal(hash("same\r\ntext"),hash("same\ntext"));
  fs.unlinkSync(path.join(exercise,"evidence/after.md"));
  assert.throws(()=>verifySnapshot(exercise,manifest,contract),/missing evidence\/after/);
+ // Windows Git can treat revision:path as a filesystem argument to `show`.
+ // Real nested exercise paths must seal without depending on core.longpaths.
+ const nested=path.join(exercise,"chapter with spaces","exercise-"+"long-refactor-".repeat(5));
+ const nestedContract={outputs:[{path:"evidence/result.txt"}]};
+ for(const relative of evidencePaths(nestedContract)) {
+   const target=path.join(nested,relative);fs.mkdirSync(path.dirname(target),{recursive:true});
+   fs.writeFileSync(target,"Synthetic long-path evidence fixture.\n");
+ }
+ git(["add","."]);git(["commit","-m","synthetic nested evidence"]);
+ seal(nested,nested,nestedContract);
+ verifySnapshot(nested,JSON.parse(fs.readFileSync(path.join(nested,"evidence/manifest.json"))),nestedContract);
+ console.log("PASS nested exercise evidence seals and verifies through Git blob reads");
  console.log("PASS evidence: skill records and transcript ranges, complete capture/commit workflow, clean verification, valid snapshot, missing file, changed artifact, source drift, escaped/self citation, failed/stale capture, diagram type and uncited edge");
 } finally { fs.rmSync(temporary,{recursive:true,force:true}); }

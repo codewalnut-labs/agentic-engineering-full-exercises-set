@@ -1,7 +1,7 @@
 {
   "algorithm": "sha256-normalized-lf",
   "protectedFiles": {
-    "../../../scripts/run-clean-verification.mjs": "9b17cbb8865a642a7789113c145be88c6bb965bc2d8c024b82202e8ae85bf368",
+    "../../../scripts/run-clean-verification.mjs": "eed0be57588ecade14b572cbce89b4df8de87defa297a77e5738614a5ec649ef",
     "../../../scripts/run-vite-build.mjs": "b7901ed4f770e6537e80f864392c8c1de841b5c97fa8993246c5df7a86d5d415",
     "../../../scripts/verify-protected-inputs.mjs": "d99346d9a84651bcb654d07d1b5d131d39d5f3b703ee9614db4eafc86cb4d96c",
     "../../../scripts/verify-submission-contract.mjs": "5c34aab86313eeb825b19c6ceabc8afbaf65cce3d1cde325bdea7a9739e23ca4",
@@ -25,7 +25,7 @@
     "../../.gitattributes": "2ac215a61df4e2c725e7e76b63a05b6a0116a924eef9a1cc0b1f6bb3d8cab00b",
     "../../scripts/packaging-evidence.mjs": "90c08664deb843e24a2550278dc9768dcc9efac9a2cdac9d099418d95f295078",
     "../../scripts/packaging-evidence.test.mjs": "2e499e4ea6cc78c9fb961c986bf5318211cee2bd4cc1b2f47c4b6fff24107ccc",
-    "../../../scripts/context-document-evidence.mjs": "50cc485c0ec0649c283e3cbb91f868a609c6af2bc0aed3cbb552d6b9f4ef3133",
+    "../../../scripts/context-document-evidence.mjs": "f2731ecaac9c92f9244136f96616bd630919abd16235fe0268528b6d26b0b3df",
     "../../../scripts/capture-verification.mjs": "857bf77e3359e1e1fe077512e4278045ad90c8b2b4ac1065df23bf1afdfc60e4",
     "scripts/adoption-gate.mjs": "59c672fe3302e27d0ade055849f934a9998d6247e74a922c17eda448bddc70e8"
   }

@@ -1,0 +1,110 @@
+{
+  "mode": "observation",
+  "outputs": [
+    {
+      "path": "evidence/architecture-review.html",
+      "type": "html"
+    },
+    {
+      "path": "evidence/design-decision.md",
+      "type": "markdown",
+      "headings": [
+        "Chosen design",
+        "Alternatives",
+        "Test surface",
+        "Dependencies"
+      ]
+    },
+    {
+      "path": "evidence/refactor-map.md",
+      "type": "markdown",
+      "headings": [
+        "Before",
+        "After",
+        "Production wiring"
+      ]
+    },
+    {
+      "path": "evidence/contract-before.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/contract-after.json",
+      "type": "json"
+    },
+    {
+      "path": "evidence/history.json",
+      "type": "json"
+    }
+  ],
+  "topics": [
+    "module-design",
+    "independent-tests",
+    "production-wiring",
+    "behavior-parity"
+  ],
+  "sourceRoots": [
+    "workflow-refactor-app/src/",
+    "workflow-refactor-app/scripts/",
+    "docs/",
+    "evidence/commands/",
+    "evidence/skill-session.txt"
+  ],
+  "requiredSkills": [
+    {
+      "name": "improve-codebase-architecture",
+      "source": "https://github.com/mattpocock/skills/blob/main/skills/engineering/improve-codebase-architecture/SKILL.md"
+    }
+  ],
+  "extraEvidence": [
+    "evidence/skill-use.md",
+    "evidence/skill-session.txt",
+    "evidence/commands/baseline.txt",
+    "evidence/commands/characterization.txt",
+    "evidence/commands/implementation.txt"
+  ],
+  "sourceArtifact": "evidence/history.json",
+  "sourceField": "refactorSha",
+  "preparedField": "characterizationSha",
+  "preparedFiles": [
+    "workflow-refactor-app/src/decisionWorkflow.characterization.test.mjs",
+    "evidence/contract-before.json"
+  ],
+  "productionFiles": [
+    "workflow-refactor-app/src/workflow.mjs",
+    "workflow-refactor-app/src/decisionWorkflow.mjs",
+    "workflow-refactor-app/src/adapters/http.mjs"
+  ],
+  "starterSources": {
+    "workflow-refactor-app/src/workflow.mjs": "1a64e04474a4df3f8921f4d02c107ca8a438198ef78c8d4d9d6a8e1890b301ef",
+    "workflow-refactor-app/src/decisionWorkflow.mjs": "cad9c7c3c5faa30dd9ca01c8f1b862988acc60f22c8899ca5b03b41bac33a810",
+    "workflow-refactor-app/src/adapters/http.mjs": "73e2c9b088d1edc54428a5e93258fac0524eacda259da1c937e100cb10d68125"
+  },
+  "checkCaptures": {
+    "baseline": {
+      "script": "baseline:observe",
+      "shaField": "starting",
+      "markers": [
+        "PASS 8 HTTP-backed workflow contracts with ordered effects"
+      ],
+      "path": "evidence/commands/baseline.txt"
+    },
+    "characterization": {
+      "script": "test:characterization",
+      "shaField": "characterizationSha",
+      "markers": [
+        "PASS 8 HTTP-backed workflow contracts with ordered effects"
+      ],
+      "path": "evidence/commands/characterization.txt"
+    },
+    "implementation": {
+      "script": "verify:implementation",
+      "shaField": "refactorSha",
+      "markers": [
+        "PASS 8 independent workflow contracts without environment configuration or network access",
+        "PASS HTTP entry uses the injected workflow and transport remains behind adapters"
+      ],
+      "path": "evidence/commands/implementation.txt"
+    }
+  }
+}

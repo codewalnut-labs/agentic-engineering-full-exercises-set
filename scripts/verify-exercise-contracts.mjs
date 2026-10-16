@@ -50,6 +50,15 @@ for (const relative of challengeReadmes) {
   }
 }
 const requiredArtifacts = [
+  "11 Agentic Refactoring/exercise-03-refactor-coupled-feature/docs/contract-cases.json",
+  "11 Agentic Refactoring/exercise-03-refactor-coupled-feature/docs/contract-observations.json",
+  "11 Agentic Refactoring/exercise-03-refactor-coupled-feature/docs/module-contract.md",
+  "11 Agentic Refactoring/exercise-03-refactor-coupled-feature/workflow-refactor-app/src/legacy/transport.mjs",
+  "11 Agentic Refactoring/exercise-03-refactor-coupled-feature/workflow-refactor-app/scripts/run-independent.mjs",
+  "11 Agentic Refactoring/exercise-03-refactor-coupled-feature/workflow-refactor-app/scripts/fixture-services.mjs",
+  "11 Agentic Refactoring/exercise-03-refactor-coupled-feature/workflow-refactor-app/scripts/check-architecture.mjs",
+  "11 Agentic Refactoring/exercise-03-refactor-coupled-feature/workflow-refactor-app/scripts/verify-history.mjs",
+  "11 Agentic Refactoring/exercise-03-refactor-coupled-feature/workflow-refactor-app/scripts/infrastructure.test.mjs",
   "10 Token Economics/scripts/rtk.mjs",
   "10 Token Economics/scripts/cache.mjs",
   "10 Token Economics/scripts/ponytail.mjs",
@@ -295,19 +304,11 @@ const requiredArtifacts = [
   "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/behavior-refactor-app/scripts/refactor-verification.mjs",
   "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/behavior-refactor-app/scripts/test-refactor-verifier.mjs",
   "11 Agentic Refactoring/exercise-01-simplify-legacy-rules-without-changing-behavior/behavior-refactor-app/scripts/verify-refactor-submission.mjs",
-  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/docs/checkout-cases.json",
-  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/src/checkout/legacyCheckout.mjs",
-  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/strangler-verification.mjs",
-  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/test-strangler-verifier.mjs",
-  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/verify-strangler-submission.mjs",
-  "11 Agentic Refactoring/exercise-03-extract-business-rules/docs/contract-observations.json",
-  "11 Agentic Refactoring/exercise-03-extract-business-rules/workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowApiContractTest.java",
-  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/src/services/workflowDecisionContract.mjs",
-  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/run-client-contract.mjs",
-  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/run-rules-contract.mjs",
-  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/rules-refactor-verification.mjs",
-  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/test-rules-verifier.mjs",
-  "11 Agentic Refactoring/exercise-03-extract-business-rules/api-refactor-app/scripts/verify-rules-submission.mjs",
+  "11 Agentic Refactoring/exercise-02-replace-legacy-feature-in-reversible-steps/docs/checkout-cases.json",
+  "11 Agentic Refactoring/exercise-02-replace-legacy-feature-in-reversible-steps/checkout-migration-app/src/checkout/legacyCheckout.mjs",
+  "11 Agentic Refactoring/exercise-02-replace-legacy-feature-in-reversible-steps/checkout-migration-app/scripts/strangler-verification.mjs",
+  "11 Agentic Refactoring/exercise-02-replace-legacy-feature-in-reversible-steps/checkout-migration-app/scripts/test-strangler-verifier.mjs",
+  "11 Agentic Refactoring/exercise-02-replace-legacy-feature-in-reversible-steps/checkout-migration-app/scripts/verify-strangler-submission.mjs",
   "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/session-metadata.json",
   "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/metric-contract.md",
   "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/replay-contract.md",
@@ -330,8 +331,7 @@ const requiredArtifacts = [
   "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/score-workflow-results.mjs",
   "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/write-workflow-patches.mjs",
   "12 Agentic Retrospective/exercise-03-evaluate-a-workflow-change/workflow-eval-app/scripts/test-workflow-verifier.mjs",
-  "11 Agentic Refactoring/exercise-02-move-one-checkout-route-out-of-legacy-code/checkout-migration-app/scripts/run-checkout-tests.mjs",
-  "11 Agentic Refactoring/exercise-03-extract-business-rules/workflow-rules-api/src/test/java/dev/agentic/exercise/workflow/WorkflowContractCharacterizationTest.java",
+  "11 Agentic Refactoring/exercise-02-replace-legacy-feature-in-reversible-steps/checkout-migration-app/scripts/run-checkout-tests.mjs",
   "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/docs/session-events.json",
   "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/tasks/implementation-request.md",
   "12 Agentic Retrospective/exercise-01-stop-repeated-failed-commands/tasks/policy-217-replay.md",
@@ -504,7 +504,7 @@ assert.equal(readFileSync(path.join(root, ".nvmrc"), "utf8").trim(), "22.12.0", 
 assert.equal(readFileSync(path.join(root, ".java-version"), "utf8").trim(), "21", "Unexpected Java version");
 
 const pomFiles = files.filter((relative) => path.basename(relative) === "pom.xml");
-assert.equal(pomFiles.length, 2, `Expected two Maven projects, found ${pomFiles.length}`);
+assert.equal(pomFiles.length, 1, `Expected one Maven project, found ${pomFiles.length}`);
 for (const relative of pomFiles) {
   const project = path.dirname(relative);
   for (const wrapperFile of ["mvnw", "mvnw.cmd", path.join(".mvn", "wrapper", "maven-wrapper.jar"), path.join(".mvn", "wrapper", "maven-wrapper.properties")]) {

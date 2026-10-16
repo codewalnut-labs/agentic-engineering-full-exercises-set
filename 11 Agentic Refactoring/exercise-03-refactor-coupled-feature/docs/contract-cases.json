@@ -1,0 +1,78 @@
+[
+  {
+    "name": "missing wins over invalid decision",
+    "id": "missing",
+    "decision": {
+      "status": "Ready",
+      "owner": "Ada",
+      "evidenceNote": "short"
+    }
+  },
+  {
+    "name": "short Ready note rejects before risk",
+    "id": "w-1",
+    "decision": {
+      "status": "Ready",
+      "owner": "Ada",
+      "evidenceNote": "short"
+    }
+  },
+  {
+    "name": "Ready exactly twelve accepted",
+    "id": "w-1",
+    "decision": {
+      "status": "Ready",
+      "owner": "Ada",
+      "evidenceNote": "123456789012"
+    }
+  },
+  {
+    "name": "risk rejection does not save",
+    "id": "w-1",
+    "decision": {
+      "status": "Ready",
+      "owner": "Ada",
+      "evidenceNote": "Reviewed evidence"
+    },
+    "allowed": false
+  },
+  {
+    "name": "risk unavailable does not save",
+    "id": "w-1",
+    "decision": {
+      "status": "Ready",
+      "owner": "Ada",
+      "evidenceNote": "Reviewed evidence"
+    },
+    "failure": "risk"
+  },
+  {
+    "name": "legacy unknown status accepted without risk",
+    "id": "w-1",
+    "decision": {
+      "status": "LegacyCustom",
+      "owner": "Ada",
+      "evidenceNote": "x"
+    }
+  },
+  {
+    "name": "store failure prevents notification",
+    "id": "w-1",
+    "decision": {
+      "status": "Ready",
+      "owner": "Ada",
+      "evidenceNote": "Reviewed evidence"
+    },
+    "failure": "save"
+  },
+  {
+    "name": "notification failure leaves saved item and does not retry",
+    "id": "w-1",
+    "decision": {
+      "status": "Ready",
+      "owner": "Ada",
+      "evidenceNote": "Reviewed evidence"
+    },
+    "failure": "notify"
+  }
+]

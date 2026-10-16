@@ -3,6 +3,8 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { verifyOutputs, verifyRefactorHistory } from "./refactor-verification.mjs";
 
+import assert from "node:assert/strict";
+import { runComparison } from "./differential.mjs";
 const appRoot = process.cwd();
 const exerciseRoot = path.resolve(appRoot, "..");
 const repositoryRoot = execFileSync("git", ["rev-parse", "--show-toplevel"], { cwd: appRoot, encoding: "utf8" }).trim();
@@ -23,6 +25,7 @@ for (const [file, terms] of [
   const text = fs.existsSync(path.join(evidenceRoot, file)) ? fs.readFileSync(path.join(evidenceRoot, file), "utf8").toLowerCase() : "";
   for (const term of terms) if (!text.includes(term.toLowerCase())) failures.push(`${file} is missing ${term}`);
 }
+try { assert.deepEqual(json(path.join(evidenceRoot, "differential.json"), "differential report"), await runComparison()); } catch (error) { failures.push("differential report must match a fresh run: " + error.message); }
 if (failures.length) {
   console.error(`Refactor submission verification failed:\n${[...new Set(failures)].map((failure) => `- ${failure}`).join("\n")}`);
   process.exit(1);

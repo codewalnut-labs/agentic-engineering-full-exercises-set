@@ -8,8 +8,8 @@
     "build": "node ../../../scripts/run-vite-build.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit --pretty false --incremental false",
-    "test": "node ./scripts/test-refactor-verifier.mjs && node ./scripts/agent-check.mjs && npm run test:phase-evidence",
-    "test:oracle": "node ./scripts/run-characterization-oracle.mjs && node ./src/rules/legacyEligibility.characterization.test.mjs",
+    "test": "node ./scripts/test-refactor-verifier.mjs && node --test scripts/differential.test.mjs && node ./scripts/agent-check.mjs && npm run test:phase-evidence",
+    "test:oracle": "node ./scripts/run-characterization-oracle.mjs && node ./src/rules/legacyEligibility.characterization.test.mjs && npm run test:differential",
     "refactor:verify": "node ./scripts/verify-refactor-submission.mjs",
     "evidence:verify": "npm run agent:check && npm run verify:implementation && npm run refactor:verify && node scripts/verify-refactoring-evidence.mjs content",
     "test:submission": "npm run test:oracle && npm run refactor:verify && node ../../../scripts/verify-submission-contract.mjs ./submission-contract.json",
@@ -28,7 +28,9 @@
     "snapshot:after": "node scripts/capture-output.mjs after",
     "proof:capture": "node ../../../scripts/capture-challenge-check.mjs",
     "test:phase-evidence": "node --test ../../../scripts/test-challenge-phase-evidence.mjs",
-    "evidence:seal": "node scripts/verify-refactoring-evidence.mjs seal"
+    "evidence:seal": "node scripts/verify-refactoring-evidence.mjs seal",
+    "test:differential": "node scripts/run-differential.mjs",
+    "differential:capture": "node scripts/run-differential.mjs --capture"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -44,6 +46,7 @@
     "jsdom": "^27.0.1",
     "typescript": "^5.9.3",
     "vite": "^7.1.12",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "fast-check": "4.3.0"
   }
 }

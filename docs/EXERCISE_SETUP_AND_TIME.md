@@ -71,3 +71,5 @@ Estimate cost before starting from the provider's current input and output token
 Do not silently replace failed provider calls, selectively rerun weak results, or mix models. If the provider fails, record the failed run and restart the complete comparable set under one environment.
 
 Exercises 9.3 and 10.2 do not make provider API calls during verification. Exercise 9.3 uses six interactive coding-agent sessions, and Exercise 10.2 uses a protected offline pack of 36 recorded measurements.
+
+For 11.1, install GitHub Awesome Copilot's refactor skill and npm dependencies before timing; the challenge adds characterization and generated differential evidence. For 11.2, Branch by Abstraction is the named technique and no skill installation or real payment account is required. For 11.3, install improve-codebase-architecture with codebase-design, grilling and domain-modeling before timing. Its actual report and interactive candidate discussion are part of the challenge. The standalone workflow uses Node and local HTTP fixtures; it no longer requires Java or Maven. Record all participating agent sessions honestly.

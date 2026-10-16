@@ -1,0 +1,41 @@
+{
+  "title": "Refactor a Tightly Coupled Feature into a Testable Module",
+  "competency": "11. Agentic Refactoring - Module design and testability",
+  "domain": "Workflow orchestration with storage, risk and notification adapters",
+  "mission": "Concentrate the workflow behind a small injectable interface while preserving production behavior.",
+  "outcome": "One module runs with both memory and HTTP adapters.",
+  "entities": [
+    "Workflow",
+    "Decision",
+    "Risk assessment",
+    "Notification"
+  ],
+  "seededDefects": [
+    "Dependencies constructed through environment globals",
+    "Rules and transport coupled across shallow modules",
+    "Testing requires starting HTTP services"
+  ],
+  "verificationGates": [
+    "HTTP characterization",
+    "Transport-free module tests",
+    "Production adapter wiring",
+    "Ordered effects and exact errors",
+    "Frozen phase evidence"
+  ],
+  "agentWorkflow": [
+    "Use improve-codebase-architecture to investigate the supplied workflow",
+    "Choose a candidate from the architecture report and discuss its design",
+    "Freeze public characterization evidence",
+    "Implement the selected refactor with the coding agent",
+    "Run module and HTTP checks"
+  ],
+  "workingDeliverables": [
+    "src/decisionWorkflow.mjs",
+    "src/adapters/http.mjs",
+    "src/workflow.mjs",
+    "evidence/architecture-review.html",
+    "evidence/design-decision.md",
+    "evidence/contract-before.json",
+    "evidence/contract-after.json"
+  ]
+}
