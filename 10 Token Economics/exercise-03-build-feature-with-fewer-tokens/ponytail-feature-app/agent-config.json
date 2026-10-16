@@ -1,0 +1,9 @@
+{
+  "model": "claude-sonnet-4-6",
+  "effort": "medium",
+  "maxTurns": 20,
+  "timeoutMs": 600000,
+  "pricingAsOf": "2026-10-16",
+  "pricingSource": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+  "usdPerMillionTokens": {"input":3,"output":15,"cacheWrite":3.75,"cacheRead":0.3}
+}
