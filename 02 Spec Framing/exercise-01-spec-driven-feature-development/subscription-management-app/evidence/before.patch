@@ -1,0 +1,138 @@
+diff --git a/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/plan.md b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/plan.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..a87e3c1d3411bcf5d18fc9caea44ce77d0d2fbff
+--- /dev/null
++++ b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/plan.md	
+@@ -0,0 +1,19 @@
++# Plan: Subscription Self-Service Management
++
++Implements the specification in `specs/spec.md`.
++
++## PLAN-001: Permissions and role gating
++
++Covers REQ-001 by extending the role model in `src/types.ts` and gating actions in the UI.
++
++## PLAN-002: Billing change pipeline
++
++Covers REQ-002, REQ-003, and REQ-004 by adding a change-request flow through the billing provider with price preview, immediate application, refunds, and credits.
++
++## PLAN-003: Pending change queue
++
++Covers REQ-005 by extending `SubscriptionAccount.pendingChange` in `src/types.ts` into a queue, rendered in the UI with removal support.
++
++## PLAN-004: Failure handling and retries
++
++Covers REQ-006 by adding provider error surfacing and automatic retry in the change pipeline.
+diff --git a/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/spec.md b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/spec.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..18d425130a71b3e64c33133438f6ac2ea74107b7
+--- /dev/null
++++ b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/spec.md	
+@@ -0,0 +1,66 @@
++# Specification: Subscription Self-Service Management
++
++Users can upgrade, downgrade, change seats, and cancel their subscription from the app without contacting support.
++
++## Requirements
++
++### REQ-001: Enforce role-based permissions
++
++- Account owners and billing admins can change plans, adjust seats, and cancel the subscription.
++- Viewers are read-only and see the current subscription state without action buttons.
++- Cancellation may be performed by any billing admin or the account owner.
++
++### REQ-002: Immediate plan and seat changes
++
++- Upgrades apply immediately with prorated charges.
++- Downgrades apply immediately and the account is credited for unused time.
++- Seat increases apply immediately and are prorated; seat decreases apply at the next renewal.
++
++### REQ-003: Immediate cancellation with refund
++
++- Cancelling ends the subscription immediately and issues a pro-rata refund for the unused portion of the term.
++
++### REQ-004: Price confirmation before charged changes
++
++- Before any change that results in a charge, the user sees the new price, proration amount, and the next renewal total, and must explicitly confirm.
++- Changes that do not produce a charge can be applied without a confirmation step.
++
++### REQ-005: Pending change queue
++
++- Users can queue multiple changes; each is applied in order at the next renewal.
++- The UI shows all queued changes and allows removing them before the renewal date.
++
++### REQ-006: Error surfacing and retry
++
++- If the billing provider rejects a change, the UI shows the provider error message and offers a Retry button.
++- Failed changes remain queued and are retried automatically every 60 seconds until they succeed.
++
++## Acceptance Criteria
++
++### AC-001: Viewer read-only access
++
++- Given a signed-in viewer, When they open the subscription page, Then plan, seat, and cancel actions are not available and the current state is displayed.
++
++### AC-002: Immediate upgrade with proration
++
++- Given an account owner on a monthly Starter plan, When they upgrade to Growth mid-cycle, Then the new plan is active immediately and the prorated difference is charged at confirmation.
++
++### AC-003: Immediate downgrade credit
++
++- Given a billing admin on an annual Growth plan, When they downgrade to Starter mid-cycle, Then the plan changes immediately and a credit for unused time is applied.
++
++### AC-004: Immediate cancellation refund
++
++- Given an account owner, When they cancel mid-cycle and confirm, Then the subscription ends immediately and a pro-rata refund is issued to the original payment method.
++
++### AC-005: Price preview before charge
++
++- Given any permitted user, When they select a change that will be charged, Then the exact price impact is displayed before the confirm button can be used.
++
++### AC-006: Multiple queued changes
++
++- Given a permitted user with one queued change, When they queue a second change, Then both appear in the pending list in submission order.
++
++### AC-007: Provider failure retry
++
++- Given the billing provider returns an error during a change, When the error is received, Then the error message is shown in the UI and the change is retried automatically.
+diff --git a/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/tasks.md b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/tasks.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..f8203039be35b930446440e2b78ed0732a9c2a4c
+--- /dev/null
++++ b/02 Spec Framing/exercise-01-spec-driven-feature-development/subscription-management-app/specs/tasks.md	
+@@ -0,0 +1,35 @@
++# Tasks: Subscription Self-Service Management
++
++Traceable to `specs/spec.md` and `specs/plan.md`.
++
++## TASK-001: Add role-based action gating
++
++Implements REQ-001 and PLAN-001. Extend `OwnerRole` handling in `src/services/subscriptionService.ts` so owners and billing admins can act and viewers cannot.
++
++- Verifies AC-001: viewers see a read-only subscription view.
++
++## TASK-002: Build the charged-change confirmation flow
++
++Implements REQ-002, REQ-004, and PLAN-002. Add a confirmation step that shows plan, proration, and next renewal total before submitting an upgrade or seat increase through the provider.
++
++- Verifies AC-002: immediate upgrade with proration.
++- Verifies AC-005: price preview before any charge.
++
++## TASK-003: Implement downgrade credits and cancellation refunds
++
++Implements REQ-002, REQ-003, and PLAN-002. Apply downgrades immediately with unused-time credit, and immediate cancellation with a pro-rata refund through the provider.
++
++- Verifies AC-003: immediate downgrade credit.
++- Verifies AC-004: immediate cancellation refund.
++
++## TASK-004: Convert pendingChange into a change queue
++
++Implements REQ-005 and PLAN-003. Replace the single `pendingChange` field in `src/types.ts` with an ordered queue, surfaced in the UI with per-item removal before renewal.
++
++- Verifies AC-006: multiple queued changes with visible ordering.
++
++## TASK-005: Add provider error handling and automatic retry
++
++Implements REQ-006 and PLAN-004. Map provider errors into UI messages, keep failed changes queued, and auto-retry every 60 seconds.
++
++- Verifies AC-007: provider failure retry.
