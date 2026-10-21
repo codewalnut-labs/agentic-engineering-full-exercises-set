@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source_sha": "63601a3662358da499f72118fd4d693bcfc530da",
+  "diagrams": [
+    {
+      "id": "state",
+      "path": "diagrams/access-state.mmd",
+      "type": "stateDiagram",
+      "sha256": "75fe9c0545c0033b065e7681e1b141c32fd96e0cf1e7510a5e77832bfcf8556a"
+    },
+    {
+      "id": "approval",
+      "path": "diagrams/access-approval-sequence.mmd",
+      "type": "sequence",
+      "sha256": "e971030f57b44228890184ac6577dd7a80ef0f8c32f105e20741d81062e7300f"
+    },
+    {
+      "id": "failure",
+      "path": "diagrams/access-failure-sequence.mmd",
+      "type": "sequence",
+      "sha256": "a209cf86299ae27f2cca11c650a853a6e810b399c2a46f7da115caa2b0924f84"
+    }
+  ],
+  "artifacts": {
+    "traceability": {
+      "path": "evidence/traceability.json",
+      "sha256": "27baacd521caa9d8a95cd8b10bc0ded9d387ba225a09a7cc2d4db32cfb604bf1"
+    },
+    "contradictions": {
+      "path": "evidence/contradictions.md",
+      "sha256": "4f93fa3bad49e1fb2f7ab78e8d3bac27301c7e6aab93e65ed6977f02bb27acf7"
+    }
+  },
+  "commands": {
+    "workflow_trace": {
+      "command": "npm run workflow:trace",
+      "exit_code": 0,
+      "output_path": "evidence/commands/workflow-trace.txt",
+      "output_sha256": "9373c65ffae85d8d3356ea81af7456913c70cd2cb295de162514940521ed3a13"
+    },
+    "diagram_parse": {
+      "command": "npm run diagrams:parse",
+      "exit_code": 0,
+      "output_path": "evidence/commands/diagram-parse.txt",
+      "output_sha256": "aba87662cbdc16ee08110f984bd520ba7c5353161c366125ff3283e1fd0a4caa"
+    }
+  }
+}
