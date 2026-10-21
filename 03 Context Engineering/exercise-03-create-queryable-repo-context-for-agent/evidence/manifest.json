@@ -1,0 +1,15 @@
+{
+  "algorithm": "sha256-normalized-lf",
+  "sourceSha": "e44b0a18c3169824a95123862ca9b9e8170341b7",
+  "files": {
+    "graphify-out/graph.json": "eb1cb60dc14bcad8056fe2ab44bf3a652261256fb7b5090333033eaef3547102",
+    "graphify-out/GRAPH_REPORT.md": "2b9b74f99eb5f3037483173f20acbf865ca4428e16140710a5876723aec7c501",
+    "docs/query-guide.md": "033ca23cd61cfc91654160ecc204d84cf2e7dbb291010f34ed005627bc3e3d19",
+    "evidence/answers.md": "213dc790e8895086f6a1e4070b2909015d11a9f4bd00a25d8c63d92183c0bb41",
+    "evidence/before.md": "3045d1720df8619d05f939ee96ceb82331c0c436a04957b10505e8e3661c8f65",
+    "evidence/after.md": "15c780d35326c9123946ac93b1ea662a13ed78d9ba01314d478d46f901899df9",
+    "evidence/comparison.md": "cea58b18e6714c774d07e7a04997473e70e1150c1319ae90dd80d741c4ae37cd",
+    "evidence/source-audit.json": "165130f5272a962f1497d5bf560eb86dcb24267dbf0b474d84df5fe25388f2e7",
+    "evidence/commands/graphify.txt": "029073fe1b4c9a8d953fde7f79f45092fbcc35d53b0ff1ab973d9be0c3d4581c"
+  }
+}
