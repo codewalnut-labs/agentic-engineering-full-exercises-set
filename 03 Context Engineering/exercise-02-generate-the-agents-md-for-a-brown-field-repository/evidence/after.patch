@@ -1,0 +1,27 @@
+diff --git a/03 Context Engineering/exercise-02-generate-the-agents-md-for-a-brown-field-repository/brownfield-agent-app/src/main/java/com/codewalnut/support/ReportController.java b/03 Context Engineering/exercise-02-generate-the-agents-md-for-a-brown-field-repository/brownfield-agent-app/src/main/java/com/codewalnut/support/ReportController.java
+index 681088fdb4c0ca6ab072e567f7afa02fbf725421..efff1f44e15735ca24bbc1f5916a92d67c9b7028 100644
+--- a/03 Context Engineering/exercise-02-generate-the-agents-md-for-a-brown-field-repository/brownfield-agent-app/src/main/java/com/codewalnut/support/ReportController.java	
++++ b/03 Context Engineering/exercise-02-generate-the-agents-md-for-a-brown-field-repository/brownfield-agent-app/src/main/java/com/codewalnut/support/ReportController.java	
+@@ -1,6 +1,8 @@
+ package com.codewalnut.support;
+ 
+ import java.time.Clock;
++import java.time.Duration;
++import java.time.Instant;
+ 
+ public final class ReportController {
+     private final CaseService cases;
+@@ -12,6 +14,12 @@ public final class ReportController {
+     }
+ 
+     public Summary summary(String user, String workspace) {
+-        throw new UnsupportedOperationException("Workspace summary is not implemented");
++        var openCases = cases.visibleCases(user, workspace).stream()
++            .filter(c -> c.status().equals("open"))
++            .toList();
++        if (openCases.isEmpty()) return new Summary(0, 0);
++        Instant oldestOpenedAt = openCases.stream().map(CaseItem::openedAt).min(Instant::compareTo).orElseThrow();
++        long hours = Math.max(0, Duration.between(oldestOpenedAt, clock.instant()).toHours());
++        return new Summary(openCases.size(), hours);
+     }
+ }
