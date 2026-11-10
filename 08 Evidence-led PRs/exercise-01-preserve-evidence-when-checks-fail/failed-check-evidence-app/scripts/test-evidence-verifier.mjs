@@ -98,5 +98,5 @@ jobs:
   assert.ok(verifyEvidencePack({ fixturePath: fixture, outputRoot, expectedSha: sourceSha }).some((failure) => failure.includes("artifact")));
   fs.rmSync(path.join(outputRoot, "artifacts", "unit.txt"));
   assert.ok(verifyEvidencePack({ fixturePath: fixture, outputRoot, expectedSha: sourceSha }).some((failure) => failure.includes("copied artifact is missing")));
-  console.log("PR evidence verifier self-test passed");
+  const conditionalWorkflow = validWorkflow.replaceAll("always()", "always() && false"); const conditionalPath = write(repositoryRoot, "conditional-workflow.yml", conditionalWorkflow); const conditionalFailures = verifyWorkflow(conditionalPath); assert.ok(conditionalFailures.some((failure) => failure.includes("evidence verification must run with if: always()"))); assert.ok(conditionalFailures.some((failure) => failure.includes("artifact upload must use if: always()"))); console.log("PR evidence verifier self-test passed");
 } finally { fs.rmSync(temporary, { recursive: true, force: true }); }

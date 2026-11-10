@@ -140,10 +140,10 @@ export function verifyWorkflow(workflowPath) {
   if (!generate || generate["working-directory"] !== APP) failures.push("workflow must use exactly: npm run evidence:generate -- --sha \"${{ github.sha }}\"");
   if (generate?.if !== undefined || generate?.shell !== undefined) failures.push("evidence generation must not be conditional or use a custom shell");
   const verify = steps.find((step) => typeof step.run === "string" && step.run.trim() === "npm run pack:verify");
-  if (!verify || verify["working-directory"] !== APP || !String(verify.if ?? "").includes("always()")) failures.push("evidence verification must run with if: always()");
+  if (!verify || verify["working-directory"] !== APP || !["always()", "${{ always() }}"].includes(String(verify.if ?? "").trim())) failures.push("evidence verification must run with if: always()");
   const upload = steps.find((step) => step.uses?.startsWith("actions/upload-artifact@"));
   if (!actionPinned(upload, "upload-artifact")) failures.push("actions/upload-artifact must be pinned to a full commit SHA");
-  if (!String(upload?.if ?? "").includes("always()")) failures.push("artifact upload must use if: always()");
+  if (!["always()", "${{ always() }}"].includes(String(upload?.if ?? "").trim())) failures.push("artifact upload must use if: always()");
   if (upload?.with?.path !== `${EXERCISE}/evidence/generated` || upload?.with?.["if-no-files-found"] !== "error") failures.push("upload must use the stable generated evidence path and fail when missing");
   if (!String(upload?.with?.name ?? "").includes("github.sha")) failures.push("artifact name must include github.sha");
   const retention = Number(upload?.with?.["retention-days"]);
