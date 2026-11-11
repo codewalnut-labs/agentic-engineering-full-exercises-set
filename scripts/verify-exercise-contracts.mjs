@@ -500,7 +500,13 @@ for (const relative of exercisePackages) {
     }
   }
 }
-assert.equal(readFileSync(path.join(root, ".nvmrc"), "utf8").trim(), "22.12.0", "Unexpected Node version");
+const pinnedNodeVersion = readFileSync(path.join(root, ".nvmrc"), "utf8").trim();
+assert.equal(pinnedNodeVersion, "22.12.0", "Unexpected Node version");
+const rootPackage = JSON.parse(readFileSync(path.join(root, "package.json"), "utf8"));
+assert.ok(
+  rootPackage.engines?.node?.startsWith(`>=${pinnedNodeVersion} `),
+  `Root package Node engine must include the pinned .nvmrc version as its minimum; found ${rootPackage.engines?.node ?? "no Node engine"}`,
+);
 assert.equal(readFileSync(path.join(root, ".java-version"), "utf8").trim(), "21", "Unexpected Java version");
 
 const pomFiles = files.filter((relative) => path.basename(relative) === "pom.xml");
