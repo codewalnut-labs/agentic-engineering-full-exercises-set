@@ -13,12 +13,12 @@ The duration for this challenge is 45 min or less.
 ## How To Go About It
 
 1. Record your initial understanding in `evidence/before.md`, then identify the workflow entry point, actors, services, decisions, calls, responses, failures, and rollback paths.
-2. Trace normal, high-risk, and failure scenarios through the code and tests.
+2. Trace the required scenario branches and rollback acknowledgement through the code and tests using the [diagram contract](./docs/diagram-contract.md).
 3. Use the [Design Doc Mermaid skill](https://www.skills.sh/spillwavesolutions/design-doc-mermaid/design-doc-mermaid) to create one sequence diagram containing the important alternatives and error paths.
 4. Map every important interaction to the source file and line that proves it.
 5. Record differences between the old documentation and the implementation.
 
-Record the source-verified result in `evidence/after.md` and compare it in `evidence/comparison.md`. Use the [diagram requirements](./docs/diagram-contract.md). Document source defects or uncertainty; source changes are not required.
+Record the source-verified result in `evidence/after.md` and compare it in `evidence/comparison.md`. Document source defects or uncertainty; source changes are not required.
 
 ## Evidence
 
